@@ -1,0 +1,21 @@
+hostname,ip_address,device_type,vendor,model,os_version,location,rack,status,environment
+core-rtr-01,10.0.0.1,router,Cisco,ASR-9001,IOS-XR 7.5.2,DC-East,R01-A1,online,production
+core-rtr-02,10.0.0.2,router,Cisco,ASR-9001,IOS-XR 7.5.2,DC-East,R01-A2,online,production
+edge-rtr-01,10.0.1.1,router,Juniper,MX480,Junos 22.4R1,DC-West,R02-B1,online,production
+edge-rtr-02,10.0.1.2,router,Juniper,MX480,Junos 22.4R1,DC-West,R02-B2,degraded,production
+dist-sw-01,10.1.0.1,switch,Cisco,Catalyst-9300,IOS-XE 17.9.3,DC-East,R01-C1,online,production
+dist-sw-02,10.1.0.2,switch,Cisco,Catalyst-9300,IOS-XE 17.9.3,DC-East,R01-C2,online,production
+acc-sw-01,10.1.1.1,switch,Arista,7050X3,EOS 4.29.2F,Floor-1,F1-A1,online,production
+acc-sw-02,10.1.1.2,switch,Arista,7050X3,EOS 4.29.2F,Floor-2,F2-A1,offline,production
+fw-01,10.2.0.1,firewall,Palo Alto,PA-5250,PAN-OS 10.2.4,DC-East,R01-D1,online,production
+fw-02,10.2.0.2,firewall,Palo Alto,PA-5250,PAN-OS 10.2.4,DC-West,R02-D1,online,production
+fw-03,10.2.0.3,firewall,Fortinet,FG-600F,FortiOS 7.4.1,DC-West,R02-D2,online,production
+lb-01,10.3.0.1,load_balancer,F5,BIG-IP i2600,TMOS 16.1.3,DC-East,R01-E1,online,production
+lb-02,10.3.0.2,load_balancer,F5,BIG-IP i2600,TMOS 16.1.3,DC-West,R02-E1,online,production
+web-srv-01,10.4.0.1,server,Dell,PowerEdge R750,Ubuntu 22.04,DC-East,R01-F1,online,production
+web-srv-02,10.4.0.2,server,Dell,PowerEdge R750,Ubuntu 22.04,DC-East,R01-F2,online,production
+db-srv-01,10.4.1.1,server,HPE,ProLiant DL380,RHEL 9.2,DC-East,R01-G1,online,production
+db-srv-02,10.4.1.2,server,HPE,ProLiant DL380,RHEL 9.2,DC-West,R02-G1,online,production
+mgmt-srv-01,10.5.0.1,server,Dell,PowerEdge R450,Ubuntu 20.04,DC-East,R01-H1,online,production
+vpn-gw-01,10.6.0.1,router,Cisco,ISR-4451,IOS-XE 17.6.5,DC-East,R01-I1,online,production
+ids-01,10.7.0.1,ids_ips,Snort,Virtual,Snort 3.1.50,DC-East,VIRT,online,production

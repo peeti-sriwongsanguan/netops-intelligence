@@ -1,0 +1,21 @@
+cve_id,title,severity,cvss_score,affected_component,fix_available,status
+CVE-2024-20356,Cisco IOS XE Privilege Escalation,critical,9.8,IOS-XE,true,open
+CVE-2023-46805,Ivanti Connect Secure Auth Bypass,critical,8.2,SSL-VPN,true,open
+CVE-2024-3400,PAN-OS Command Injection,critical,10.0,PAN-OS,true,mitigated
+CVE-2023-34048,VMware vCenter RCE,critical,9.8,vCenter,true,open
+CVE-2024-21762,FortiOS Out-of-Bound Write,critical,9.6,FortiOS,true,open
+CVE-2023-44487,HTTP/2 Rapid Reset DoS,high,7.5,HTTP/2,true,mitigated
+CVE-2024-23897,Jenkins Arbitrary File Read,high,9.8,Jenkins,true,open
+CVE-2023-48788,Fortinet EMS SQL Injection,high,9.3,FortiClientEMS,true,open
+CVE-2024-1709,ConnectWise ScreenConnect Auth Bypass,high,10.0,ScreenConnect,true,closed
+CVE-2023-22527,Confluence RCE Template Injection,high,10.0,Confluence,true,open
+CVE-2024-27198,JetBrains TeamCity Auth Bypass,high,9.8,TeamCity,true,open
+,Weak SSH Key Algorithm (diffie-hellman-group1),medium,5.3,OpenSSH,false,open
+,TLS 1.0/1.1 Enabled,medium,4.3,TLS,true,open
+,SNMP v1/v2c Community String Exposed,medium,5.0,SNMP,true,open
+,Default Credentials Not Changed,high,8.8,Auth,false,open
+,NTP Amplification Vulnerability,low,3.7,NTP,true,accepted
+,DNS Zone Transfer Allowed,low,3.1,DNS,true,open
+,Expired SSL Certificate,medium,4.0,PKI,true,open
+,Open Telnet Port,medium,5.3,Telnet,true,open
+,HTTP TRACE Method Enabled,low,2.6,HTTP,true,closed

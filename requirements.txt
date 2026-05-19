@@ -1,0 +1,40 @@
+# ── Core ─────────────────────────────────────────────
+flask==3.0.3
+flask-sqlalchemy==3.1.1
+flask-migrate==4.0.7
+flask-cors==4.0.1
+flask-limiter==3.7.0
+
+# ── Database ──────────────────────────────────────────
+psycopg2-binary==2.9.9         # PostgreSQL adapter
+sqlalchemy==2.0.30
+
+# ── Environment ───────────────────────────────────────
+python-dotenv==1.0.1
+
+# ── Network automation (production integration) ───────
+netmiko==4.3.0                 # SSH to network devices
+napalm==4.1.0                  # Multi-vendor abstraction
+nornir==3.4.1                  # Parallel task runner (Ansible alternative)
+nornir-netmiko==1.0.1
+paramiko==3.4.0
+
+# ── Task queue (async jobs) ───────────────────────────
+celery==5.4.0
+redis==5.0.4
+
+# ── Utilities ─────────────────────────────────────────
+requests==2.32.3
+pyyaml==6.0.1
+jinja2==3.1.4
+click==8.1.7
+rich==13.7.1                   # Pretty CLI output
+
+# ── Testing ───────────────────────────────────────────
+pytest==8.2.2
+pytest-flask==1.3.0
+factory-boy==3.3.0
+
+# ── Dev tools ─────────────────────────────────────────
+black==24.4.2
+flake8==7.0.0

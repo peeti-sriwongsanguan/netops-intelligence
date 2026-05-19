@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NetOps Intelligence Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --bg:       #060b14;
+      --panel:    #0c1523;
+      --border:   #1a2d45;
+      --accent:   #00e5ff;
+      --accent2:  #ff4d6d;
+      --accent3:  #a3ff57;
+      --warn:     #ffd166;
+      --text:     #c8d8e8;
+      --muted:    #4a6580;
+      --crit:     #ff3860;
+      --high:     #ff7043;
+      --med:      #ffd166;
+      --low:      #a3ff57;
+      --info:     #00e5ff;
+      --online:   #00ff88;
+      --offline:  #ff3860;
+      --font-mono: 'Share Tech Mono', monospace;
+      --font-head: 'Rajdhani', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 13px;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Animated grid background */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,229,255,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,229,255,.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ---- NAV ---- */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 0 24px;
+      height: 56px;
+      background: rgba(6,11,20,.9);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+    .nav-logo {
+      font-family: var(--font-head);
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+    .nav-logo span { color: var(--accent2); }
+    .nav-badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      padding: 2px 8px;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      border-radius: 2px;
+      letter-spacing: 1px;
+    }
+    .nav-right {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .clock {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .status-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--online);
+      box-shadow: 0 0 8px var(--online);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; } 50% { opacity: .4; }
+    }
+
+    /* ---- LAYOUT ---- */
+    main {
+      position: relative;
+      z-index: 1;
+      padding: 20px 24px;
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+    .section-title {
+      font-family: var(--font-head);
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      padding-left: 10px;
+      border-left: 2px solid var(--accent);
+    }
+
+    /* ---- KPI ROW ---- */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .kpi-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 16px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color .2s;
+    }
+    .kpi-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--accent-color, var(--accent));
+    }
+    .kpi-card:hover { border-color: var(--accent); }
+    .kpi-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .kpi-value {
+      font-family: var(--font-head);
+      font-size: 36px;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--accent-color, var(--accent));
+    }
+    .kpi-sub {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    /* ---- CHARTS GRID ---- */
+    .charts-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .charts-grid .wide { grid-column: span 2; }
+    @media (max-width: 1100px) {
+      .charts-grid { grid-template-columns: 1fr 1fr; }
+      .charts-grid .wide { grid-column: span 2; }
+    }
+    @media (max-width: 700px) {
+      .charts-grid { grid-template-columns: 1fr; }
+      .charts-grid .wide { grid-column: span 1; }
+    }
+
+    .chart-panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 16px;
+    }
+    .chart-title {
+      font-family: var(--font-head);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: var(--text);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .chart-title .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+    .chart-wrap { position: relative; height: 200px; }
+
+    /* ---- TABLES ---- */
+    .bottom-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 900px) { .bottom-grid { grid-template-columns: 1fr; } }
+
+    .table-panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .table-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .table-title {
+      font-family: var(--font-head);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 2px;
+      border: 1px solid;
+    }
+    .badge-crit  { color: var(--crit);  border-color: var(--crit);  background: rgba(255,56,96,.08); }
+    .badge-high  { color: var(--high);  border-color: var(--high);  background: rgba(255,112,67,.08); }
+    .badge-med   { color: var(--med);   border-color: var(--med);   background: rgba(255,209,102,.08); }
+    .badge-low   { color: var(--low);   border-color: var(--low);   background: rgba(163,255,87,.08); }
+    .badge-info  { color: var(--info);  border-color: var(--info);  background: rgba(0,229,255,.08); }
+    .badge-online  { color: var(--online);  border-color: var(--online);  background: rgba(0,255,136,.08); }
+    .badge-offline { color: var(--offline); border-color: var(--offline); background: rgba(255,56,96,.08); }
+    .badge-degraded { color: var(--warn); border-color: var(--warn); background: rgba(255,209,102,.08); }
+
+    table { width: 100%; border-collapse: collapse; }
+    thead tr { border-bottom: 1px solid var(--border); }
+    th {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 1px;
+      color: var(--muted);
+      text-align: left;
+      padding: 8px 16px;
+      text-transform: uppercase;
+    }
+    td {
+      padding: 9px 16px;
+      border-bottom: 1px solid rgba(26,45,69,.5);
+      font-size: 12px;
+    }
+    tbody tr:hover { background: rgba(0,229,255,.03); }
+    tbody tr:last-child td { border-bottom: none; }
+
+    .hostname { font-family: var(--font-mono); color: var(--accent); font-size: 11px; }
+    .ip       { font-family: var(--font-mono); color: var(--muted);  font-size: 11px; }
+    .ts       { font-family: var(--font-mono); color: var(--muted);  font-size: 10px; }
+
+    /* ---- REFRESH BTN ---- */
+    .refresh-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 1px;
+      padding: 4px 12px;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .refresh-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* Skeleton loader */
+    .skeleton {
+      background: linear-gradient(90deg, var(--border) 25%, var(--panel) 50%, var(--border) 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+      border-radius: 3px;
+      height: 12px;
+    }
+    @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Net<span>Ops</span> Intelligence</div>
+  <div class="nav-badge">v1.0</div>
+  <div class="nav-right">
+    <div class="clock" id="clock">--:--:--</div>
+    <div class="status-dot" title="API Connected"></div>
+  </div>
+</nav>
+
+<main>
+  <!-- KPIs -->
+  <p class="section-title">System Overview</p>
+  <div class="kpi-grid" id="kpi-grid">
+    <div class="kpi-card" style="--accent-color: var(--accent)">
+      <div class="kpi-label">Total Devices</div>
+      <div class="kpi-value" id="kpi-devices">—</div>
+      <div class="kpi-sub" id="kpi-devices-sub">Loading…</div>
+    </div>
+    <div class="kpi-card" style="--accent-color: var(--crit)">
+      <div class="kpi-label">Critical Alerts</div>
+      <div class="kpi-value" id="kpi-crit">—</div>
+      <div class="kpi-sub" id="kpi-crit-sub">Open incidents</div>
+    </div>
+    <div class="kpi-card" style="--accent-color: var(--high)">
+      <div class="kpi-label">Open Vulns</div>
+      <div class="kpi-value" id="kpi-vulns">—</div>
+      <div class="kpi-sub" id="kpi-vulns-sub">All severities</div>
+    </div>
+    <div class="kpi-card" style="--accent-color: var(--online)">
+      <div class="kpi-label">Online Devices</div>
+      <div class="kpi-value" id="kpi-online">—</div>
+      <div class="kpi-sub" id="kpi-online-sub">Active nodes</div>
+    </div>
+    <div class="kpi-card" style="--accent-color: var(--accent3)">
+      <div class="kpi-label">Total Scans</div>
+      <div class="kpi-value" id="kpi-scans">—</div>
+      <div class="kpi-sub">Lifetime jobs</div>
+    </div>
+    <div class="kpi-card" style="--accent-color: var(--warn)">
+      <div class="kpi-label">Offline Devices</div>
+      <div class="kpi-value" id="kpi-offline">—</div>
+      <div class="kpi-sub">Unreachable nodes</div>
+    </div>
+  </div>
+
+  <!-- Charts -->
+  <p class="section-title">Analytics</p>
+  <div class="charts-grid">
+    <!-- Vulnerability severity donut -->
+    <div class="chart-panel">
+      <div class="chart-title"><span class="dot"></span>Vulnerabilities by Severity</div>
+      <div class="chart-wrap"><canvas id="vulnSeverityChart"></canvas></div>
+    </div>
+
+    <!-- Alert severity bar -->
+    <div class="chart-panel">
+      <div class="chart-title"><span class="dot" style="background:var(--accent2)"></span>Open Alerts by Severity</div>
+      <div class="chart-wrap"><canvas id="alertSeverityChart"></canvas></div>
+    </div>
+
+    <!-- Device type donut -->
+    <div class="chart-panel">
+      <div class="chart-title"><span class="dot" style="background:var(--accent3)"></span>Devices by Type</div>
+      <div class="chart-wrap"><canvas id="deviceTypeChart"></canvas></div>
+    </div>
+
+    <!-- Scan activity line -->
+    <div class="chart-panel wide">
+      <div class="chart-title"><span class="dot" style="background:var(--warn)"></span>Scan Activity — Last 7 Days</div>
+      <div class="chart-wrap"><canvas id="scanActivityChart"></canvas></div>
+    </div>
+  </div>
+
+  <!-- Tables -->
+  <p class="section-title">Live Data</p>
+  <div class="bottom-grid">
+    <!-- Devices table -->
+    <div class="table-panel">
+      <div class="table-header">
+        <div class="table-title">Devices</div>
+        <button class="refresh-btn" onclick="loadDevices()">↻ REFRESH</button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Hostname</th>
+            <th>IP</th>
+            <th>Type</th>
+            <th>Status</th>
+            <th>Vulns</th>
+          </tr>
+        </thead>
+        <tbody id="devices-tbody">
+          <tr><td colspan="5" style="text-align:center;color:var(--muted);padding:20px;">Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Alerts table -->
+    <div class="table-panel">
+      <div class="table-header">
+        <div class="table-title">Recent Alerts</div>
+        <button class="refresh-btn" onclick="loadAlerts()">↻ REFRESH</button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Device</th>
+            <th>Type</th>
+            <th>Severity</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody id="alerts-tbody">
+          <tr><td colspan="4" style="text-align:center;color:var(--muted);padding:20px;">Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<script>
+const API = '/api/v1';
+let vulnChart, alertChart, deviceTypeChart, scanChart;
+
+// Clock
+function updateClock() {
+  document.getElementById('clock').textContent =
+    new Date().toLocaleTimeString('en-US', {hour12: false});
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// ---- Chart defaults ----
+Chart.defaults.color = '#4a6580';
+Chart.defaults.borderColor = '#1a2d45';
+Chart.defaults.font.family = "'Share Tech Mono', monospace";
+
+const SEV_COLORS = {
+  critical: '#ff3860', high: '#ff7043', medium: '#ffd166', low: '#a3ff57', info: '#00e5ff'
+};
+const TYPE_COLORS = ['#00e5ff','#a3ff57','#ff4d6d','#ffd166','#7b5ea7','#00ff88'];
+
+function donut(ctx, labels, values, colors) {
+  return new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels,
+      datasets: [{ data: values, backgroundColor: colors,
+        borderColor: '#060b14', borderWidth: 3, hoverOffset: 4 }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      cutout: '68%',
+      plugins: { legend: { position: 'right',
+        labels: { boxWidth: 10, padding: 14, font: { size: 11 } } } }
+    }
+  });
+}
+
+function bar(ctx, labels, values, colors) {
+  return new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [{ data: values, backgroundColor: colors,
+        borderRadius: 3, borderSkipped: false }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { display: false }, ticks: { font: { size: 10 } } },
+        y: { grid: { color: '#1a2d45' }, beginAtZero: true,
+             ticks: { precision: 0, font: { size: 10 } } }
+      }
+    }
+  });
+}
+
+function line(ctx, labels, values) {
+  return new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [{
+        data: values,
+        borderColor: '#ffd166',
+        backgroundColor: 'rgba(255,209,102,.08)',
+        pointBackgroundColor: '#ffd166',
+        pointRadius: 4,
+        fill: true,
+        tension: 0.35
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { grid: { display: false }, ticks: { font: { size: 10 } } },
+        y: { grid: { color: '#1a2d45' }, beginAtZero: true,
+             ticks: { precision: 0, font: { size: 10 } } }
+      }
+    }
+  });
+}
+
+// ---- Summary ----
+async function loadSummary() {
+  try {
+    const r = await fetch(`${API}/summary`);
+    const json = await r.json();
+    const d = json.data;
+
+    // KPIs
+    document.getElementById('kpi-devices').textContent = d.devices.total;
+    document.getElementById('kpi-crit').textContent    = d.alerts.critical_open;
+    document.getElementById('kpi-vulns').textContent   = d.vulnerabilities.total_open;
+    document.getElementById('kpi-online').textContent  = d.devices.by_status.online  || 0;
+    document.getElementById('kpi-offline').textContent = d.devices.by_status.offline || 0;
+    document.getElementById('kpi-scans').textContent   = d.scans.total;
+    document.getElementById('kpi-devices-sub').textContent =
+      Object.entries(d.devices.by_status).map(([k,v])=>`${v} ${k}`).join(' · ');
+    document.getElementById('kpi-vulns-sub').textContent =
+      Object.entries(d.vulnerabilities.by_severity).map(([k,v])=>`${v} ${k}`).join(' · ');
+
+    // Charts
+    const sv = d.vulnerabilities.by_severity;
+    const svLabels = Object.keys(sv);
+    const svColors = svLabels.map(l => SEV_COLORS[l] || '#888');
+    if (vulnChart) vulnChart.destroy();
+    vulnChart = donut(document.getElementById('vulnSeverityChart'), svLabels, Object.values(sv), svColors);
+
+    const av = d.alerts.by_severity;
+    const avLabels = Object.keys(av);
+    const avColors = avLabels.map(l => SEV_COLORS[l] || '#888');
+    if (alertChart) alertChart.destroy();
+    alertChart = bar(document.getElementById('alertSeverityChart'), avLabels, Object.values(av), avColors);
+
+    const dt = d.devices.by_type;
+    if (deviceTypeChart) deviceTypeChart.destroy();
+    deviceTypeChart = donut(document.getElementById('deviceTypeChart'),
+      Object.keys(dt), Object.values(dt), TYPE_COLORS);
+
+    const sa = d.scans.last_7_days;
+    if (scanChart) scanChart.destroy();
+    scanChart = line(document.getElementById('scanActivityChart'),
+      sa.map(s => s.date.slice(5)), sa.map(s => s.count));
+
+  } catch(e) { console.error('Summary load failed', e); }
+}
+
+// ---- Devices ----
+async function loadDevices() {
+  const tbody = document.getElementById('devices-tbody');
+  tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--muted);padding:16px;">Loading…</td></tr>';
+  try {
+    const r = await fetch(`${API}/devices?per_page=10`);
+    const json = await r.json();
+    if (!json.data?.length) {
+      tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--muted);padding:16px;">No devices found. Run the seed script.</td></tr>';
+      return;
+    }
+    tbody.innerHTML = json.data.map(d => `
+      <tr>
+        <td><span class="hostname">${d.hostname}</span></td>
+        <td><span class="ip">${d.ip_address}</span></td>
+        <td>${d.device_type}</td>
+        <td><span class="badge badge-${d.status}">${d.status}</span></td>
+        <td>${d.vuln_count}</td>
+      </tr>
+    `).join('');
+  } catch(e) {
+    tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--accent2);padding:16px;">API unavailable</td></tr>';
+  }
+}
+
+// ---- Alerts ----
+function relativeTime(iso) {
+  if (!iso) return '—';
+  const diff = Date.now() - new Date(iso).getTime();
+  const m = Math.floor(diff / 60000);
+  if (m < 1) return 'just now';
+  if (m < 60) return `${m}m ago`;
+  const h = Math.floor(m/60);
+  if (h < 24) return `${h}h ago`;
+  return `${Math.floor(h/24)}d ago`;
+}
+
+async function loadAlerts() {
+  const tbody = document.getElementById('alerts-tbody');
+  tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:var(--muted);padding:16px;">Loading…</td></tr>';
+  try {
+    const r = await fetch(`${API}/alerts?status=open&per_page=10`);
+    const json = await r.json();
+    if (!json.data?.length) {
+      tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:var(--muted);padding:16px;">No open alerts. ✓</td></tr>';
+      return;
+    }
+    tbody.innerHTML = json.data.map(a => `
+      <tr>
+        <td><span class="hostname">${a.device_hostname || '—'}</span></td>
+        <td>${a.alert_type}</td>
+        <td><span class="badge badge-${a.severity}">${a.severity}</span></td>
+        <td><span class="ts">${relativeTime(a.created_at)}</span></td>
+      </tr>
+    `).join('');
+  } catch(e) {
+    tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:var(--accent2);padding:16px;">API unavailable</td></tr>';
+  }
+}
+
+// ---- Boot ----
+loadSummary();
+loadDevices();
+loadAlerts();
+setInterval(() => { loadSummary(); loadDevices(); loadAlerts(); }, 30000);
+</script>
+</body>
+</html>
