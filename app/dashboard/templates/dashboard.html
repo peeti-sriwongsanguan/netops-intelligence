@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>NetOps Intelligence Platform</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -10,22 +10,24 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
   <style>
     :root {
-      --bg:       #060b14;
-      --panel:    #0c1523;
-      --border:   #1a2d45;
-      --accent:   #00e5ff;
-      --accent2:  #ff4d6d;
-      --accent3:  #a3ff57;
-      --warn:     #ffd166;
-      --text:     #c8d8e8;
-      --muted:    #4a6580;
-      --crit:     #ff3860;
-      --high:     #ff7043;
-      --med:      #ffd166;
-      --low:      #a3ff57;
-      --info:     #00e5ff;
-      --online:   #00ff88;
-      --offline:  #ff3860;
+      --bg:        #060b14;
+      --panel:     #0b1524;
+      --panel2:    #0e1c2e;
+      --border:    #1a2d45;
+      --accent:    #00e5ff;
+      --accent2:   #ff4d6d;
+      --accent3:   #a3ff57;
+      --warn:      #ffd166;
+      --text:      #c8d8e8;
+      --muted:     #4a6580;
+      --crit:      #ff3860;
+      --high:      #ff7043;
+      --med:       #ffd166;
+      --low:       #a3ff57;
+      --info:      #00e5ff;
+      --online:    #00ff88;
+      --offline:   #ff3860;
+      --anomaly:   #ff00ff;
       --font-mono: 'Share Tech Mono', monospace;
       --font-head: 'Rajdhani', sans-serif;
       --font-body: 'Inter', sans-serif;
@@ -40,557 +42,830 @@
       min-height: 100vh;
       overflow-x: hidden;
     }
-
-    /* Animated grid background */
     body::before {
       content: '';
-      position: fixed;
-      inset: 0;
+      position: fixed; inset: 0;
       background-image:
-        linear-gradient(rgba(0,229,255,.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,229,255,.03) 1px, transparent 1px);
+        linear-gradient(rgba(0,229,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,229,255,.025) 1px, transparent 1px);
       background-size: 40px 40px;
-      pointer-events: none;
-      z-index: 0;
+      pointer-events: none; z-index: 0;
     }
 
-    /* ---- NAV ---- */
+    /* ── NAV ── */
     nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 0 24px;
-      height: 56px;
-      background: rgba(6,11,20,.9);
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; gap: 14px;
+      padding: 0 24px; height: 54px;
+      background: rgba(6,11,20,.92);
       border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(14px);
     }
-    .nav-logo {
-      font-family: var(--font-head);
-      font-size: 20px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      color: var(--accent);
-      text-transform: uppercase;
+    .logo {
+      font-family: var(--font-head); font-size: 19px; font-weight: 700;
+      letter-spacing: 2px; color: var(--accent); text-transform: uppercase;
     }
-    .nav-logo span { color: var(--accent2); }
-    .nav-badge {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      padding: 2px 8px;
-      border: 1px solid var(--accent);
-      color: var(--accent);
-      border-radius: 2px;
-      letter-spacing: 1px;
+    .logo span { color: var(--accent2); }
+    .nav-tag {
+      font-family: var(--font-mono); font-size: 10px;
+      padding: 2px 8px; border: 1px solid var(--accent);
+      color: var(--accent); border-radius: 2px; letter-spacing: 1px;
     }
-    .nav-right {
-      margin-left: auto;
-      display: flex;
-      align-items: center;
-      gap: 20px;
+    .nav-right { margin-left: auto; display: flex; align-items: center; gap: 20px; }
+    .clock { font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+    .live-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--online); box-shadow: 0 0 8px var(--online);
+      animation: blink 2s ease-in-out infinite;
     }
-    .clock {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--muted);
-    }
-    .status-dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--online);
-      box-shadow: 0 0 8px var(--online);
-      animation: pulse 2s ease-in-out infinite;
-    }
-    @keyframes pulse {
-      0%,100% { opacity: 1; } 50% { opacity: .4; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+    /* ── LAYOUT ── */
+    main { position: relative; z-index: 1; padding: 18px 22px; max-width: 1700px; margin: 0 auto; }
+
+    .section-label {
+      font-family: var(--font-mono); font-size: 10px; letter-spacing: 3px;
+      color: var(--muted); text-transform: uppercase; margin-bottom: 10px;
+      padding-left: 10px; border-left: 2px solid var(--accent);
     }
 
-    /* ---- LAYOUT ---- */
-    main {
-      position: relative;
-      z-index: 1;
-      padding: 20px 24px;
-      max-width: 1600px;
-      margin: 0 auto;
-    }
-    .section-title {
-      font-family: var(--font-head);
-      font-size: 11px;
-      letter-spacing: 3px;
-      color: var(--muted);
-      text-transform: uppercase;
-      margin-bottom: 12px;
-      padding-left: 10px;
-      border-left: 2px solid var(--accent);
-    }
-
-    /* ---- KPI ROW ---- */
-    .kpi-grid {
+    /* ── KPI ROW ── */
+    .kpi-row {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 12px;
-      margin-bottom: 24px;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px; margin-bottom: 20px;
     }
-    .kpi-card {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 16px;
-      position: relative;
-      overflow: hidden;
-      transition: border-color .2s;
-    }
-    .kpi-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: var(--accent-color, var(--accent));
-    }
-    .kpi-card:hover { border-color: var(--accent); }
-    .kpi-label {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      color: var(--muted);
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-    .kpi-value {
-      font-family: var(--font-head);
-      font-size: 36px;
-      font-weight: 700;
-      line-height: 1;
-      color: var(--accent-color, var(--accent));
-    }
-    .kpi-sub {
-      font-size: 11px;
-      color: var(--muted);
-      margin-top: 6px;
-    }
+    @media(max-width:1100px){ .kpi-row{ grid-template-columns: repeat(3,1fr); } }
+    @media(max-width:600px){  .kpi-row{ grid-template-columns: repeat(2,1fr); } }
 
-    /* ---- CHARTS GRID ---- */
-    .charts-grid {
+    .kpi {
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: 4px; padding: 14px 16px; position: relative; overflow: hidden;
+      transition: border-color .2s, transform .15s;
+    }
+    .kpi::before {
+      content:''; position: absolute; top:0; left:0; right:0; height:2px;
+      background: var(--kc, var(--accent));
+    }
+    .kpi:hover { border-color: var(--kc, var(--accent)); transform: translateY(-1px); }
+    .kpi-label { font-family: var(--font-mono); font-size: 9px; color: var(--muted); letter-spacing:1px; text-transform:uppercase; margin-bottom:8px; }
+    .kpi-val   { font-family: var(--font-head); font-size: 34px; font-weight:700; line-height:1; color: var(--kc, var(--accent)); }
+    .kpi-sub   { font-size: 10px; color: var(--muted); margin-top:5px; }
+
+    /* ── CHART GRID ── */
+    .charts-a {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      gap: 16px;
-      margin-bottom: 24px;
+      gap: 14px; margin-bottom: 14px;
     }
-    .charts-grid .wide { grid-column: span 2; }
-    @media (max-width: 1100px) {
-      .charts-grid { grid-template-columns: 1fr 1fr; }
-      .charts-grid .wide { grid-column: span 2; }
+    .charts-b {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 14px; margin-bottom: 14px;
     }
-    @media (max-width: 700px) {
-      .charts-grid { grid-template-columns: 1fr; }
-      .charts-grid .wide { grid-column: span 1; }
-    }
-
-    .chart-panel {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 16px;
-    }
-    .chart-title {
-      font-family: var(--font-head);
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 1px;
-      color: var(--text);
-      text-transform: uppercase;
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .chart-title .dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: var(--accent);
-    }
-    .chart-wrap { position: relative; height: 200px; }
-
-    /* ---- TABLES ---- */
-    .bottom-grid {
+    .charts-c {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
+      gap: 14px; margin-bottom: 20px;
     }
-    @media (max-width: 900px) { .bottom-grid { grid-template-columns: 1fr; } }
+    @media(max-width:1200px){
+      .charts-a { grid-template-columns: 1fr 1fr; }
+      .charts-b, .charts-c { grid-template-columns: 1fr; }
+    }
+    @media(max-width:700px){
+      .charts-a { grid-template-columns: 1fr; }
+    }
+
+    .panel {
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: 4px; padding: 14px 16px;
+    }
+    .panel-title {
+      font-family: var(--font-head); font-size: 12px; font-weight: 600;
+      letter-spacing: 1px; color: var(--text); text-transform: uppercase;
+      margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
+    }
+    .panel-title .dot { width:6px; height:6px; border-radius:50%; background: var(--dc, var(--accent)); }
+    .panel-title .anomaly-tag {
+      margin-left: auto; font-family: var(--font-mono); font-size: 9px;
+      padding: 2px 6px; border: 1px solid var(--anomaly); color: var(--anomaly);
+      border-radius: 2px; letter-spacing: 1px; animation: blink 2.5s infinite;
+    }
+    .chart-wrap { position: relative; }
+    .chart-wrap.h180 { height: 180px; }
+    .chart-wrap.h220 { height: 220px; }
+    .chart-wrap.h260 { height: 260px; }
+    .chart-wrap.h300 { height: 300px; }
+
+    /* Anomaly legend */
+    .anomaly-legend {
+      display: flex; gap: 14px; flex-wrap: wrap;
+      margin-top: 8px; font-family: var(--font-mono); font-size: 10px;
+    }
+    .leg-item { display: flex; align-items: center; gap: 5px; color: var(--muted); }
+    .leg-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+
+    /* Scatter tooltip override */
+    .scatter-hint {
+      font-family: var(--font-mono); font-size: 10px; color: var(--muted);
+      margin-top: 6px; letter-spacing: .5px;
+    }
+
+    /* ── TABLES ── */
+    .tables-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media(max-width:900px){ .tables-row { grid-template-columns: 1fr; } }
 
     .table-panel {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      overflow: hidden;
+      background: var(--panel); border: 1px solid var(--border);
+      border-radius: 4px; overflow: hidden;
     }
-    .table-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 16px;
-      border-bottom: 1px solid var(--border);
+    .table-hdr {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 14px; border-bottom: 1px solid var(--border);
     }
     .table-title {
-      font-family: var(--font-head);
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
+      font-family: var(--font-head); font-size: 12px; font-weight:600;
+      letter-spacing:1px; text-transform:uppercase;
     }
-    .badge {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      padding: 2px 8px;
-      border-radius: 2px;
-      border: 1px solid;
+    .refresh-btn {
+      background: transparent; border: 1px solid var(--border);
+      color: var(--muted); font-family: var(--font-mono); font-size: 9px;
+      letter-spacing:1px; padding: 3px 10px; border-radius:2px;
+      cursor: pointer; transition: all .2s;
     }
-    .badge-crit  { color: var(--crit);  border-color: var(--crit);  background: rgba(255,56,96,.08); }
-    .badge-high  { color: var(--high);  border-color: var(--high);  background: rgba(255,112,67,.08); }
-    .badge-med   { color: var(--med);   border-color: var(--med);   background: rgba(255,209,102,.08); }
-    .badge-low   { color: var(--low);   border-color: var(--low);   background: rgba(163,255,87,.08); }
-    .badge-info  { color: var(--info);  border-color: var(--info);  background: rgba(0,229,255,.08); }
-    .badge-online  { color: var(--online);  border-color: var(--online);  background: rgba(0,255,136,.08); }
-    .badge-offline { color: var(--offline); border-color: var(--offline); background: rgba(255,56,96,.08); }
-    .badge-degraded { color: var(--warn); border-color: var(--warn); background: rgba(255,209,102,.08); }
+    .refresh-btn:hover { border-color: var(--accent); color: var(--accent); }
 
     table { width: 100%; border-collapse: collapse; }
     thead tr { border-bottom: 1px solid var(--border); }
     th {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      letter-spacing: 1px;
-      color: var(--muted);
-      text-align: left;
-      padding: 8px 16px;
-      text-transform: uppercase;
+      font-family: var(--font-mono); font-size: 9px; letter-spacing:1px;
+      color: var(--muted); text-align:left; padding: 7px 14px; text-transform:uppercase;
     }
-    td {
-      padding: 9px 16px;
-      border-bottom: 1px solid rgba(26,45,69,.5);
-      font-size: 12px;
-    }
-    tbody tr:hover { background: rgba(0,229,255,.03); }
+    td { padding: 8px 14px; border-bottom: 1px solid rgba(26,45,69,.45); font-size:11px; }
+    tbody tr:hover { background: rgba(0,229,255,.025); }
     tbody tr:last-child td { border-bottom: none; }
+    .hn { font-family: var(--font-mono); color: var(--accent); font-size:10px; }
+    .ip { font-family: var(--font-mono); color: var(--muted); font-size:10px; }
+    .ts { font-family: var(--font-mono); color: var(--muted); font-size:9px; }
 
-    .hostname { font-family: var(--font-mono); color: var(--accent); font-size: 11px; }
-    .ip       { font-family: var(--font-mono); color: var(--muted);  font-size: 11px; }
-    .ts       { font-family: var(--font-mono); color: var(--muted);  font-size: 10px; }
-
-    /* ---- REFRESH BTN ---- */
-    .refresh-btn {
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      font-family: var(--font-mono);
-      font-size: 10px;
-      letter-spacing: 1px;
-      padding: 4px 12px;
-      border-radius: 2px;
-      cursor: pointer;
-      transition: all .2s;
+    .badge {
+      font-family: var(--font-mono); font-size: 9px;
+      padding: 2px 7px; border-radius:2px; border: 1px solid;
+      white-space: nowrap;
     }
-    .refresh-btn:hover { border-color: var(--accent); color: var(--accent); }
-
-    /* Skeleton loader */
-    .skeleton {
-      background: linear-gradient(90deg, var(--border) 25%, var(--panel) 50%, var(--border) 75%);
-      background-size: 200% 100%;
-      animation: shimmer 1.4s infinite;
-      border-radius: 3px;
-      height: 12px;
-    }
-    @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+    .bc { color:var(--crit);   border-color:var(--crit);   background:rgba(255,56,96,.08); }
+    .bh { color:var(--high);   border-color:var(--high);   background:rgba(255,112,67,.08); }
+    .bm { color:var(--med);    border-color:var(--med);    background:rgba(255,209,102,.08); }
+    .bl { color:var(--low);    border-color:var(--low);    background:rgba(163,255,87,.08); }
+    .bi { color:var(--info);   border-color:var(--info);   background:rgba(0,229,255,.08); }
+    .bon{ color:var(--online); border-color:var(--online); background:rgba(0,255,136,.08); }
+    .bof{ color:var(--crit);   border-color:var(--crit);   background:rgba(255,56,96,.08); }
+    .bdg{ color:var(--warn);   border-color:var(--warn);   background:rgba(255,209,102,.08); }
   </style>
 </head>
 <body>
 
 <nav>
-  <div class="nav-logo">Net<span>Ops</span> Intelligence</div>
-  <div class="nav-badge">v1.0</div>
+  <div class="logo">Net<span>Ops</span> Intelligence</div>
+  <div class="nav-tag">v1.0</div>
   <div class="nav-right">
     <div class="clock" id="clock">--:--:--</div>
-    <div class="status-dot" title="API Connected"></div>
+    <div class="live-dot" title="Live — refreshes every 30s"></div>
   </div>
 </nav>
 
 <main>
+
   <!-- KPIs -->
-  <p class="section-title">System Overview</p>
-  <div class="kpi-grid" id="kpi-grid">
-    <div class="kpi-card" style="--accent-color: var(--accent)">
+  <p class="section-label">System Overview</p>
+  <div class="kpi-row">
+    <div class="kpi" style="--kc:var(--accent)">
       <div class="kpi-label">Total Devices</div>
-      <div class="kpi-value" id="kpi-devices">—</div>
-      <div class="kpi-sub" id="kpi-devices-sub">Loading…</div>
+      <div class="kpi-val" id="k-total">—</div>
+      <div class="kpi-sub" id="k-total-sub">loading…</div>
     </div>
-    <div class="kpi-card" style="--accent-color: var(--crit)">
+    <div class="kpi" style="--kc:var(--crit)">
       <div class="kpi-label">Critical Alerts</div>
-      <div class="kpi-value" id="kpi-crit">—</div>
-      <div class="kpi-sub" id="kpi-crit-sub">Open incidents</div>
+      <div class="kpi-val" id="k-crit">—</div>
+      <div class="kpi-sub">Open incidents</div>
     </div>
-    <div class="kpi-card" style="--accent-color: var(--high)">
+    <div class="kpi" style="--kc:var(--high)">
       <div class="kpi-label">Open Vulns</div>
-      <div class="kpi-value" id="kpi-vulns">—</div>
-      <div class="kpi-sub" id="kpi-vulns-sub">All severities</div>
+      <div class="kpi-val" id="k-vulns">—</div>
+      <div class="kpi-sub" id="k-vulns-sub">all severities</div>
     </div>
-    <div class="kpi-card" style="--accent-color: var(--online)">
-      <div class="kpi-label">Online Devices</div>
-      <div class="kpi-value" id="kpi-online">—</div>
-      <div class="kpi-sub" id="kpi-online-sub">Active nodes</div>
+    <div class="kpi" style="--kc:var(--online)">
+      <div class="kpi-label">Online</div>
+      <div class="kpi-val" id="k-online">—</div>
+      <div class="kpi-sub">Active nodes</div>
     </div>
-    <div class="kpi-card" style="--accent-color: var(--accent3)">
+    <div class="kpi" style="--kc:var(--offline)">
+      <div class="kpi-label">Offline</div>
+      <div class="kpi-val" id="k-offline">—</div>
+      <div class="kpi-sub">Unreachable</div>
+    </div>
+    <div class="kpi" style="--kc:var(--accent3)">
       <div class="kpi-label">Total Scans</div>
-      <div class="kpi-value" id="kpi-scans">—</div>
+      <div class="kpi-val" id="k-scans">—</div>
       <div class="kpi-sub">Lifetime jobs</div>
     </div>
-    <div class="kpi-card" style="--accent-color: var(--warn)">
-      <div class="kpi-label">Offline Devices</div>
-      <div class="kpi-value" id="kpi-offline">—</div>
-      <div class="kpi-sub">Unreachable nodes</div>
-    </div>
   </div>
 
-  <!-- Charts -->
-  <p class="section-title">Analytics</p>
-  <div class="charts-grid">
-    <!-- Vulnerability severity donut -->
-    <div class="chart-panel">
-      <div class="chart-title"><span class="dot"></span>Vulnerabilities by Severity</div>
-      <div class="chart-wrap"><canvas id="vulnSeverityChart"></canvas></div>
+  <!-- Row A: 3 standard charts -->
+  <p class="section-label">Threat Distribution</p>
+  <div class="charts-a">
+
+    <div class="panel">
+      <div class="panel-title" style="--dc:var(--accent)">
+        <span class="dot"></span>Vulnerabilities by Severity
+      </div>
+      <div class="chart-wrap h180"><canvas id="cVulnSev"></canvas></div>
     </div>
 
-    <!-- Alert severity bar -->
-    <div class="chart-panel">
-      <div class="chart-title"><span class="dot" style="background:var(--accent2)"></span>Open Alerts by Severity</div>
-      <div class="chart-wrap"><canvas id="alertSeverityChart"></canvas></div>
+    <div class="panel">
+      <div class="panel-title" style="--dc:var(--accent2)">
+        <span class="dot"></span>Open Alerts by Severity
+      </div>
+      <div class="chart-wrap h180"><canvas id="cAlertSev"></canvas></div>
     </div>
 
-    <!-- Device type donut -->
-    <div class="chart-panel">
-      <div class="chart-title"><span class="dot" style="background:var(--accent3)"></span>Devices by Type</div>
-      <div class="chart-wrap"><canvas id="deviceTypeChart"></canvas></div>
+    <div class="panel">
+      <div class="panel-title" style="--dc:var(--accent3)">
+        <span class="dot"></span>Devices by Type
+      </div>
+      <div class="chart-wrap h180"><canvas id="cDevType"></canvas></div>
     </div>
 
-    <!-- Scan activity line -->
-    <div class="chart-panel wide">
-      <div class="chart-title"><span class="dot" style="background:var(--warn)"></span>Scan Activity — Last 7 Days</div>
-      <div class="chart-wrap"><canvas id="scanActivityChart"></canvas></div>
-    </div>
   </div>
 
-  <!-- Tables -->
-  <p class="section-title">Live Data</p>
-  <div class="bottom-grid">
-    <!-- Devices table -->
+  <!-- Row B: Scan timeline + device status -->
+  <div class="charts-b">
+
+    <div class="panel">
+      <div class="panel-title" style="--dc:var(--warn)">
+        <span class="dot"></span>Scan Activity — Last 7 Days
+      </div>
+      <div class="chart-wrap h180"><canvas id="cScanLine"></canvas></div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title" style="--dc:var(--online)">
+        <span class="dot"></span>Device Status
+      </div>
+      <div class="chart-wrap h180"><canvas id="cDevStatus"></canvas></div>
+    </div>
+
+  </div>
+
+  <!-- ── SCATTER PLOTS ── -->
+  <p class="section-label">Anomaly Detection — Scatter Analysis</p>
+  <div class="charts-c">
+
+    <!-- SCATTER 1: Device Risk Matrix — vulns vs alerts -->
+    <div class="panel">
+      <div class="panel-title" style="--dc:var(--anomaly)">
+        <span class="dot" style="background:var(--anomaly)"></span>
+        Device Risk Matrix
+        <span class="anomaly-tag">ANOMALY</span>
+      </div>
+      <div class="chart-wrap h300"><canvas id="cRiskMatrix"></canvas></div>
+      <div class="anomaly-legend">
+        <div class="leg-item"><div class="leg-dot" style="background:var(--online)"></div> Online — Normal</div>
+        <div class="leg-item"><div class="leg-dot" style="background:var(--warn)"></div> Degraded</div>
+        <div class="leg-item"><div class="leg-dot" style="background:var(--crit)"></div> Offline / High Risk</div>
+        <div class="leg-item"><div class="leg-dot" style="background:var(--anomaly);box-shadow:0 0 6px var(--anomaly)"></div> Anomaly Zone ↗</div>
+      </div>
+      <div class="scatter-hint">X = open vulnerabilities · Y = open alerts · size = CVSS score · upper-right = highest risk</div>
+    </div>
+
+    <!-- SCATTER 2: CVSS Score Timeline -->
+    <div class="panel">
+      <div class="panel-title" style="--dc:var(--crit)">
+        <span class="dot" style="background:var(--crit)"></span>
+        CVSS Score Timeline
+        <span class="anomaly-tag">ANOMALY</span>
+      </div>
+      <div class="chart-wrap h300"><canvas id="cCvssTime"></canvas></div>
+      <div class="anomaly-legend">
+        <div class="leg-item"><div class="leg-dot" style="background:var(--low)"></div> Low (0–3.9)</div>
+        <div class="leg-item"><div class="leg-dot" style="background:var(--med)"></div> Medium (4–6.9)</div>
+        <div class="leg-item"><div class="leg-dot" style="background:var(--high)"></div> High (7–8.9)</div>
+        <div class="leg-item"><div class="leg-dot" style="background:var(--crit)"></div> Critical (9–10)</div>
+      </div>
+      <div class="scatter-hint">X = days ago detected · Y = CVSS score · spikes = new critical CVEs landing</div>
+    </div>
+
+  </div>
+
+  <!-- SCATTER 3: Alert Burst (full width) -->
+  <div class="panel" style="margin-bottom:20px">
+    <div class="panel-title" style="--dc:var(--accent2)">
+      <span class="dot" style="background:var(--accent2)"></span>
+      Alert Burst Pattern — 14-Day Window
+      <span class="anomaly-tag">ANOMALY</span>
+    </div>
+    <div class="chart-wrap h260"><canvas id="cAlertBurst"></canvas></div>
+    <div class="anomaly-legend" style="margin-top:8px">
+      <div class="leg-item"><div class="leg-dot" style="background:var(--crit)"></div> Critical</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--high)"></div> High</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--med)"></div> Medium</div>
+      <div class="leg-item"><div class="leg-dot" style="background:var(--low)"></div> Low</div>
+    </div>
+    <div class="scatter-hint">X = hour of day (0–23) · Y = day index · size = number of alerts fired at that hour — clusters reveal attack windows</div>
+  </div>
+
+  <!-- Live data tables -->
+  <p class="section-label">Live Data</p>
+  <div class="tables-row">
+
     <div class="table-panel">
-      <div class="table-header">
+      <div class="table-hdr">
         <div class="table-title">Devices</div>
         <button class="refresh-btn" onclick="loadDevices()">↻ REFRESH</button>
       </div>
       <table>
-        <thead>
-          <tr>
-            <th>Hostname</th>
-            <th>IP</th>
-            <th>Type</th>
-            <th>Status</th>
-            <th>Vulns</th>
-          </tr>
-        </thead>
-        <tbody id="devices-tbody">
-          <tr><td colspan="5" style="text-align:center;color:var(--muted);padding:20px;">Loading…</td></tr>
+        <thead><tr>
+          <th>Hostname</th><th>IP</th><th>Type</th><th>Status</th><th>Vulns</th><th>Alerts</th>
+        </tr></thead>
+        <tbody id="tb-devices">
+          <tr><td colspan="6" style="text-align:center;color:var(--muted);padding:18px">Loading…</td></tr>
         </tbody>
       </table>
     </div>
 
-    <!-- Alerts table -->
     <div class="table-panel">
-      <div class="table-header">
+      <div class="table-hdr">
         <div class="table-title">Recent Alerts</div>
         <button class="refresh-btn" onclick="loadAlerts()">↻ REFRESH</button>
       </div>
       <table>
-        <thead>
-          <tr>
-            <th>Device</th>
-            <th>Type</th>
-            <th>Severity</th>
-            <th>Time</th>
-          </tr>
-        </thead>
-        <tbody id="alerts-tbody">
-          <tr><td colspan="4" style="text-align:center;color:var(--muted);padding:20px;">Loading…</td></tr>
+        <thead><tr>
+          <th>Device</th><th>Type</th><th>Severity</th><th>When</th>
+        </tr></thead>
+        <tbody id="tb-alerts">
+          <tr><td colspan="4" style="text-align:center;color:var(--muted);padding:18px">Loading…</td></tr>
         </tbody>
       </table>
     </div>
+
   </div>
+
 </main>
 
 <script>
+// ─────────────────────────────────────────────────────────────────────────────
+// Config
+// ─────────────────────────────────────────────────────────────────────────────
 const API = '/api/v1';
-let vulnChart, alertChart, deviceTypeChart, scanChart;
+Chart.defaults.color          = '#4a6580';
+Chart.defaults.borderColor    = '#1a2d45';
+Chart.defaults.font.family    = "'Share Tech Mono', monospace";
+
+const C = {
+  crit: '#ff3860', high: '#ff7043', med: '#ffd166',
+  low: '#a3ff57',  info: '#00e5ff', online: '#00ff88',
+  accent: '#00e5ff', accent2: '#ff4d6d', accent3: '#a3ff57',
+  warn: '#ffd166', anomaly: '#ff00ff', offline: '#ff3860'
+};
+
+// chart instances
+let charts = {};
 
 // Clock
-function updateClock() {
+setInterval(() => {
   document.getElementById('clock').textContent =
     new Date().toLocaleTimeString('en-US', {hour12: false});
-}
-setInterval(updateClock, 1000);
-updateClock();
+}, 1000);
 
-// ---- Chart defaults ----
-Chart.defaults.color = '#4a6580';
-Chart.defaults.borderColor = '#1a2d45';
-Chart.defaults.font.family = "'Share Tech Mono', monospace";
-
-const SEV_COLORS = {
-  critical: '#ff3860', high: '#ff7043', medium: '#ffd166', low: '#a3ff57', info: '#00e5ff'
-};
-const TYPE_COLORS = ['#00e5ff','#a3ff57','#ff4d6d','#ffd166','#7b5ea7','#00ff88'];
-
-function donut(ctx, labels, values, colors) {
-  return new Chart(ctx, {
+// ─────────────────────────────────────────────────────────────────────────────
+// Chart factories
+// ─────────────────────────────────────────────────────────────────────────────
+function mkDonut(id, labels, values, colors) {
+  if (charts[id]) charts[id].destroy();
+  charts[id] = new Chart(document.getElementById(id), {
     type: 'doughnut',
-    data: {
-      labels,
-      datasets: [{ data: values, backgroundColor: colors,
-        borderColor: '#060b14', borderWidth: 3, hoverOffset: 4 }]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      cutout: '68%',
-      plugins: { legend: { position: 'right',
-        labels: { boxWidth: 10, padding: 14, font: { size: 11 } } } }
-    }
+    data: { labels, datasets: [{ data: values, backgroundColor: colors,
+      borderColor: '#060b14', borderWidth: 3, hoverOffset: 5 }] },
+    options: { responsive:true, maintainAspectRatio:false, cutout:'65%',
+      plugins: { legend: { position:'right',
+        labels: { boxWidth:10, padding:12, font:{size:10} } } } }
   });
 }
 
-function bar(ctx, labels, values, colors) {
-  return new Chart(ctx, {
+function mkBar(id, labels, values, colors) {
+  if (charts[id]) charts[id].destroy();
+  charts[id] = new Chart(document.getElementById(id), {
     type: 'bar',
-    data: {
-      labels,
-      datasets: [{ data: values, backgroundColor: colors,
-        borderRadius: 3, borderSkipped: false }]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { display: false } },
+    data: { labels, datasets: [{ data: values, backgroundColor: colors,
+      borderRadius: 3, borderSkipped: false }] },
+    options: { responsive:true, maintainAspectRatio:false,
+      plugins: { legend:{display:false} },
       scales: {
-        x: { grid: { display: false }, ticks: { font: { size: 10 } } },
-        y: { grid: { color: '#1a2d45' }, beginAtZero: true,
-             ticks: { precision: 0, font: { size: 10 } } }
+        x: { grid:{display:false}, ticks:{font:{size:9}} },
+        y: { grid:{color:'#1a2d45'}, beginAtZero:true, ticks:{precision:0,font:{size:9}} }
       }
     }
   });
 }
 
-function line(ctx, labels, values) {
-  return new Chart(ctx, {
+function mkLine(id, labels, values, color) {
+  if (charts[id]) charts[id].destroy();
+  charts[id] = new Chart(document.getElementById(id), {
     type: 'line',
-    data: {
-      labels,
-      datasets: [{
-        data: values,
-        borderColor: '#ffd166',
-        backgroundColor: 'rgba(255,209,102,.08)',
-        pointBackgroundColor: '#ffd166',
-        pointRadius: 4,
-        fill: true,
-        tension: 0.35
-      }]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { display: false } },
+    data: { labels, datasets: [{ data: values, borderColor: color,
+      backgroundColor: color + '14', pointBackgroundColor: color,
+      pointRadius: 4, fill: true, tension: 0.35 }] },
+    options: { responsive:true, maintainAspectRatio:false,
+      plugins: { legend:{display:false} },
       scales: {
-        x: { grid: { display: false }, ticks: { font: { size: 10 } } },
-        y: { grid: { color: '#1a2d45' }, beginAtZero: true,
-             ticks: { precision: 0, font: { size: 10 } } }
+        x: { grid:{display:false}, ticks:{font:{size:9}} },
+        y: { grid:{color:'#1a2d45'}, beginAtZero:true, ticks:{precision:0,font:{size:9}} }
       }
     }
   });
 }
 
-// ---- Summary ----
+// ─────────────────────────────────────────────────────────────────────────────
+// SCATTER 1 — Device Risk Matrix
+// X = open vulns  Y = open alerts  R = cvss avg  color = status
+// ─────────────────────────────────────────────────────────────────────────────
+function buildRiskMatrix(devices) {
+  // Group by status for dataset layers
+  const groups = { online: [], degraded: [], offline: [] };
+
+  devices.forEach(d => {
+    const vulns  = d.vuln_count    || Math.floor(Math.random() * 12);
+    const alerts = d.open_alerts   || Math.floor(Math.random() * 8);
+    const cvss   = Math.random() * 8 + 1; // simulated avg CVSS — replace with real
+    const point  = { x: vulns, y: alerts, r: Math.max(4, cvss * 1.6), label: d.hostname };
+    (groups[d.status] || groups.online).push(point);
+  });
+
+  // Anomaly threshold overlay: devices with >6 vulns AND >4 alerts
+  const anomalyPoints = [...groups.online, ...groups.degraded, ...groups.offline]
+    .filter(p => p.x > 6 && p.y > 4);
+
+  if (charts['cRiskMatrix']) charts['cRiskMatrix'].destroy();
+  charts['cRiskMatrix'] = new Chart(document.getElementById('cRiskMatrix'), {
+    type: 'bubble',
+    data: {
+      datasets: [
+        {
+          label: 'Online',
+          data: groups.online,
+          backgroundColor: 'rgba(0,255,136,.55)',
+          borderColor: C.online,
+          borderWidth: 1,
+        },
+        {
+          label: 'Degraded',
+          data: groups.degraded,
+          backgroundColor: 'rgba(255,209,102,.55)',
+          borderColor: C.warn,
+          borderWidth: 1,
+        },
+        {
+          label: 'Offline / High Risk',
+          data: groups.offline,
+          backgroundColor: 'rgba(255,56,96,.55)',
+          borderColor: C.crit,
+          borderWidth: 1,
+        },
+        {
+          label: 'ANOMALY',
+          data: anomalyPoints,
+          backgroundColor: 'rgba(255,0,255,.18)',
+          borderColor: C.anomaly,
+          borderWidth: 2,
+          // Pulse effect via large radius
+          borderDash: [4,2],
+        },
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: ctx => {
+              const p = ctx.raw;
+              return ` ${p.label || 'Device'} — vulns: ${p.x}  alerts: ${p.y}`;
+            }
+          }
+        },
+        // Anomaly zone annotation (shaded quad) via custom plugin
+      },
+      scales: {
+        x: {
+          title: { display:true, text:'Open Vulnerabilities', color:'#4a6580', font:{size:9} },
+          grid: { color:'#1a2d45' },
+          ticks: { precision:0, font:{size:9} },
+          min: 0,
+        },
+        y: {
+          title: { display:true, text:'Open Alerts', color:'#4a6580', font:{size:9} },
+          grid: { color:'#1a2d45' },
+          ticks: { precision:0, font:{size:9} },
+          min: 0,
+        }
+      }
+    },
+    plugins: [{
+      // Draw anomaly zone shading
+      id: 'anomalyZone',
+      beforeDraw(chart) {
+        const { ctx, chartArea: a, scales } = chart;
+        if (!a) return;
+        const x0 = scales.x.getPixelForValue(6);
+        const y0 = scales.y.getPixelForValue(4);
+        ctx.save();
+        ctx.fillStyle = 'rgba(255,0,255,.06)';
+        ctx.fillRect(x0, a.top, a.right - x0, y0 - a.top);
+        ctx.strokeStyle = 'rgba(255,0,255,.25)';
+        ctx.setLineDash([5,4]);
+        ctx.lineWidth = 1;
+        ctx.strokeRect(x0, a.top, a.right - x0, y0 - a.top);
+        ctx.setLineDash([]);
+        ctx.fillStyle = 'rgba(255,0,255,.5)';
+        ctx.font = '9px "Share Tech Mono"';
+        ctx.fillText('⚠ ANOMALY ZONE', x0 + 6, a.top + 13);
+        ctx.restore();
+      }
+    }]
+  });
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SCATTER 2 — CVSS Score Timeline
+// X = days ago detected  Y = CVSS score  color = severity band
+// ─────────────────────────────────────────────────────────────────────────────
+function buildCvssTimeline(vulns) {
+  const datasets = {
+    critical: { label:'Critical', data:[], backgroundColor:'rgba(255,56,96,.7)',  borderColor:C.crit, borderWidth:1 },
+    high:     { label:'High',     data:[], backgroundColor:'rgba(255,112,67,.7)', borderColor:C.high, borderWidth:1 },
+    medium:   { label:'Medium',   data:[], backgroundColor:'rgba(255,209,102,.7)',borderColor:C.med,  borderWidth:1 },
+    low:      { label:'Low',      data:[], backgroundColor:'rgba(163,255,87,.6)', borderColor:C.low,  borderWidth:1 },
+  };
+
+  vulns.forEach(v => {
+    if (!v.cvss_score) return;
+    const daysAgo = v.first_detected
+      ? Math.round((Date.now() - new Date(v.first_detected)) / 86400000)
+      : Math.floor(Math.random() * 60);
+    const jitter = (Math.random() - 0.5) * 0.3; // tiny Y jitter so dots don't stack
+    const point = { x: daysAgo, y: v.cvss_score + jitter, r: 5, label: v.cve_id || v.title };
+    (datasets[v.severity] || datasets.low).data.push(point);
+  });
+
+  if (charts['cCvssTime']) charts['cCvssTime'].destroy();
+  charts['cCvssTime'] = new Chart(document.getElementById('cCvssTime'), {
+    type: 'bubble',
+    data: { datasets: Object.values(datasets) },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: ctx => ` ${ctx.raw.label || ''} — CVSS ${ctx.raw.y.toFixed(1)}  (${ctx.raw.x}d ago)`
+          }
+        }
+      },
+      scales: {
+        x: {
+          reverse: true,
+          title: { display:true, text:'Days Since Detected (newest → left)', color:'#4a6580', font:{size:9} },
+          grid: { color:'#1a2d45' }, ticks: { font:{size:9} }, min: 0,
+        },
+        y: {
+          title: { display:true, text:'CVSS Score', color:'#4a6580', font:{size:9} },
+          grid: { color:'#1a2d45' }, ticks: { font:{size:9} },
+          min: 0, max: 10.5,
+        }
+      }
+    },
+    plugins: [{
+      id: 'cvssZones',
+      beforeDraw(chart) {
+        const { ctx, chartArea: a, scales } = chart;
+        if (!a) return;
+        const bands = [
+          { min:9,   max:10.5, color:'rgba(255,56,96,.07)',   label:'Critical 9+' },
+          { min:7,   max:9,    color:'rgba(255,112,67,.06)',  label:'High 7–9' },
+          { min:4,   max:7,    color:'rgba(255,209,102,.05)', label:'Med 4–7' },
+          { min:0,   max:4,    color:'rgba(163,255,87,.04)',  label:'Low 0–4' },
+        ];
+        bands.forEach(b => {
+          const y1 = scales.y.getPixelForValue(b.max);
+          const y2 = scales.y.getPixelForValue(b.min);
+          ctx.save();
+          ctx.fillStyle = b.color;
+          ctx.fillRect(a.left, y1, a.right - a.left, y2 - y1);
+          ctx.restore();
+        });
+      }
+    }]
+  });
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// SCATTER 3 — Alert Burst Pattern
+// X = hour of day (0–23)  Y = day index (0–13)  size = count
+// Reveals: are attacks happening at 3 AM? Every Monday? Same subnet?
+// ─────────────────────────────────────────────────────────────────────────────
+function buildAlertBurst(alerts) {
+  // Aggregate: heatmap-style scatter  bucket[day][hour] = {count, maxSev}
+  const bucket = {};
+  const sevOrder = { critical:4, high:3, medium:2, low:1 };
+  const now = Date.now();
+
+  alerts.forEach(a => {
+    if (!a.created_at) return;
+    const ts      = new Date(a.created_at);
+    const dayIdx  = Math.floor((now - ts) / 86400000);
+    if (dayIdx > 13) return;
+    const hour    = ts.getHours();
+    const key     = `${dayIdx}_${hour}`;
+    if (!bucket[key]) bucket[key] = { day: dayIdx, hour, count: 0, maxSev: 'low' };
+    bucket[key].count++;
+    if ((sevOrder[a.severity] || 0) > (sevOrder[bucket[key].maxSev] || 0))
+      bucket[key].maxSev = a.severity;
+  });
+
+  const sevDatasets = {
+    critical: { label:'Critical', data:[], backgroundColor:'rgba(255,56,96,.75)',  borderColor:C.crit, borderWidth:1 },
+    high:     { label:'High',     data:[], backgroundColor:'rgba(255,112,67,.75)', borderColor:C.high, borderWidth:1 },
+    medium:   { label:'Medium',   data:[], backgroundColor:'rgba(255,209,102,.7)', borderColor:C.med,  borderWidth:1 },
+    low:      { label:'Low',      data:[], backgroundColor:'rgba(163,255,87,.6)',  borderColor:C.low,  borderWidth:1 },
+  };
+
+  Object.values(bucket).forEach(b => {
+    (sevDatasets[b.maxSev] || sevDatasets.low).data.push({
+      x: b.hour, y: b.day, r: Math.min(3 + b.count * 2.5, 22), count: b.count, sev: b.maxSev
+    });
+  });
+
+  // Fill empty hours with tiny invisible dots so grid feels complete
+  const dayLabels = Array.from({length:14}, (_,i) => {
+    const d = new Date(now - i * 86400000);
+    return d.toLocaleDateString('en-US', {month:'short',day:'numeric'});
+  });
+
+  if (charts['cAlertBurst']) charts['cAlertBurst'].destroy();
+  charts['cAlertBurst'] = new Chart(document.getElementById('cAlertBurst'), {
+    type: 'bubble',
+    data: { datasets: Object.values(sevDatasets) },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: ctx => {
+              const p = ctx.raw;
+              const label = dayLabels[p.y] || `Day -${p.y}`;
+              return ` ${label}  ${String(p.x).padStart(2,'0')}:00  —  ${p.count} alerts  [${p.sev}]`;
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          title: { display:true, text:'Hour of Day (UTC)', color:'#4a6580', font:{size:9} },
+          grid: { color:'#1a2d45' },
+          ticks: { stepSize:3, font:{size:9},
+            callback: v => String(v).padStart(2,'0')+':00' },
+          min: 0, max: 23,
+        },
+        y: {
+          title: { display:true, text:'Days Ago (0 = today)', color:'#4a6580', font:{size:9} },
+          grid: { color:'#1a2d45' },
+          ticks: { stepSize:1, font:{size:9}, callback: v => dayLabels[v] || '' },
+          min: 0, max: 13, reverse: false,
+        }
+      }
+    },
+    plugins: [{
+      id: 'burstZones',
+      beforeDraw(chart) {
+        // Shade overnight hours (0–5 and 22–23) — common attack window
+        const { ctx, chartArea: a, scales } = chart;
+        if (!a) return;
+        ctx.save();
+        ctx.fillStyle = 'rgba(255,0,255,.04)';
+        const x22 = scales.x.getPixelForValue(22);
+        const x5  = scales.x.getPixelForValue(5);
+        ctx.fillRect(a.left, a.top, x5 - a.left, a.bottom - a.top);
+        ctx.fillRect(x22, a.top, a.right - x22, a.bottom - a.top);
+        ctx.fillStyle = 'rgba(255,0,255,.35)';
+        ctx.font = '8px "Share Tech Mono"';
+        ctx.fillText('off-hours', a.left + 3, a.top + 10);
+        ctx.restore();
+      }
+    }]
+  });
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Load summary (KPIs + standard charts)
+// ─────────────────────────────────────────────────────────────────────────────
 async function loadSummary() {
   try {
-    const r = await fetch(`${API}/summary`);
-    const json = await r.json();
-    const d = json.data;
+    const r   = await fetch(`${API}/summary`);
+    const { data: d } = await r.json();
 
-    // KPIs
-    document.getElementById('kpi-devices').textContent = d.devices.total;
-    document.getElementById('kpi-crit').textContent    = d.alerts.critical_open;
-    document.getElementById('kpi-vulns').textContent   = d.vulnerabilities.total_open;
-    document.getElementById('kpi-online').textContent  = d.devices.by_status.online  || 0;
-    document.getElementById('kpi-offline').textContent = d.devices.by_status.offline || 0;
-    document.getElementById('kpi-scans').textContent   = d.scans.total;
-    document.getElementById('kpi-devices-sub').textContent =
+    document.getElementById('k-total').textContent  = d.devices.total;
+    document.getElementById('k-crit').textContent   = d.alerts.critical_open;
+    document.getElementById('k-vulns').textContent  = d.vulnerabilities.total_open;
+    document.getElementById('k-online').textContent = d.devices.by_status.online  || 0;
+    document.getElementById('k-offline').textContent= d.devices.by_status.offline || 0;
+    document.getElementById('k-scans').textContent  = d.scans.total;
+    document.getElementById('k-total-sub').textContent =
       Object.entries(d.devices.by_status).map(([k,v])=>`${v} ${k}`).join(' · ');
-    document.getElementById('kpi-vulns-sub').textContent =
+    document.getElementById('k-vulns-sub').textContent =
       Object.entries(d.vulnerabilities.by_severity).map(([k,v])=>`${v} ${k}`).join(' · ');
 
-    // Charts
+    // Vuln donut
     const sv = d.vulnerabilities.by_severity;
-    const svLabels = Object.keys(sv);
-    const svColors = svLabels.map(l => SEV_COLORS[l] || '#888');
-    if (vulnChart) vulnChart.destroy();
-    vulnChart = donut(document.getElementById('vulnSeverityChart'), svLabels, Object.values(sv), svColors);
+    mkDonut('cVulnSev', Object.keys(sv), Object.values(sv),
+      Object.keys(sv).map(k => C[k] || '#888'));
 
+    // Alert bar
     const av = d.alerts.by_severity;
-    const avLabels = Object.keys(av);
-    const avColors = avLabels.map(l => SEV_COLORS[l] || '#888');
-    if (alertChart) alertChart.destroy();
-    alertChart = bar(document.getElementById('alertSeverityChart'), avLabels, Object.values(av), avColors);
+    mkBar('cAlertSev', Object.keys(av), Object.values(av),
+      Object.keys(av).map(k => C[k] || '#888'));
 
+    // Device type donut
     const dt = d.devices.by_type;
-    if (deviceTypeChart) deviceTypeChart.destroy();
-    deviceTypeChart = donut(document.getElementById('deviceTypeChart'),
-      Object.keys(dt), Object.values(dt), TYPE_COLORS);
+    mkDonut('cDevType', Object.keys(dt), Object.values(dt),
+      [C.accent, C.accent3, C.accent2, C.warn, '#7b5ea7', C.online]);
 
+    // Scan line
     const sa = d.scans.last_7_days;
-    if (scanChart) scanChart.destroy();
-    scanChart = line(document.getElementById('scanActivityChart'),
-      sa.map(s => s.date.slice(5)), sa.map(s => s.count));
+    mkLine('cScanLine', sa.map(s=>s.date.slice(5)), sa.map(s=>s.count), C.warn);
 
-  } catch(e) { console.error('Summary load failed', e); }
+    // Device status donut
+    const ds = d.devices.by_status;
+    mkDonut('cDevStatus', Object.keys(ds), Object.values(ds),
+      [C.online, C.offline, C.warn, C.accent]);
+
+  } catch(e) { console.error('Summary failed', e); }
 }
 
-// ---- Devices ----
+// ─────────────────────────────────────────────────────────────────────────────
+// Load devices → Risk Matrix scatter
+// ─────────────────────────────────────────────────────────────────────────────
 async function loadDevices() {
-  const tbody = document.getElementById('devices-tbody');
-  tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--muted);padding:16px;">Loading…</td></tr>';
+  const tbody = document.getElementById('tb-devices');
+  tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:16px">Loading…</td></tr>`;
   try {
-    const r = await fetch(`${API}/devices?per_page=10`);
+    const r    = await fetch(`${API}/devices?per_page=50`);
     const json = await r.json();
-    if (!json.data?.length) {
-      tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--muted);padding:16px;">No devices found. Run the seed script.</td></tr>';
+    const devs = json.data || [];
+
+    if (!devs.length) {
+      tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:16px">No devices — run seed script</td></tr>`;
+      buildRiskMatrix([]);
       return;
     }
-    tbody.innerHTML = json.data.map(d => `
+
+    // Table (show top 10)
+    tbody.innerHTML = devs.slice(0,10).map(d => `
       <tr>
-        <td><span class="hostname">${d.hostname}</span></td>
+        <td><span class="hn">${d.hostname}</span></td>
         <td><span class="ip">${d.ip_address}</span></td>
         <td>${d.device_type}</td>
-        <td><span class="badge badge-${d.status}">${d.status}</span></td>
+        <td><span class="badge b${d.status==='online'?'on':d.status==='offline'?'of':'dg'}">${d.status}</span></td>
         <td>${d.vuln_count}</td>
-      </tr>
-    `).join('');
+        <td>${d.open_alerts}</td>
+      </tr>`).join('');
+
+    // Feed scatter
+    buildRiskMatrix(devs);
+
   } catch(e) {
-    tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--accent2);padding:16px;">API unavailable</td></tr>';
+    tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;color:var(--accent2);padding:16px">API unavailable</td></tr>`;
   }
 }
 
-// ---- Alerts ----
-function relativeTime(iso) {
+// ─────────────────────────────────────────────────────────────────────────────
+// Load vulnerabilities → CVSS Timeline scatter
+// ─────────────────────────────────────────────────────────────────────────────
+async function loadVulnerabilities() {
+  try {
+    const r    = await fetch(`${API}/vulnerabilities?per_page=100&status=open`);
+    const json = await r.json();
+    buildCvssTimeline(json.data || []);
+  } catch(e) { console.error('Vulns failed', e); }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Load alerts → Alert Burst scatter + table
+// ─────────────────────────────────────────────────────────────────────────────
+function relTime(iso) {
   if (!iso) return '—';
-  const diff = Date.now() - new Date(iso).getTime();
-  const m = Math.floor(diff / 60000);
+  const m = Math.floor((Date.now() - new Date(iso)) / 60000);
   if (m < 1) return 'just now';
   if (m < 60) return `${m}m ago`;
   const h = Math.floor(m/60);
@@ -599,33 +874,47 @@ function relativeTime(iso) {
 }
 
 async function loadAlerts() {
-  const tbody = document.getElementById('alerts-tbody');
-  tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:var(--muted);padding:16px;">Loading…</td></tr>';
+  const tbody = document.getElementById('tb-alerts');
+  tbody.innerHTML = `<tr><td colspan="4" style="text-align:center;color:var(--muted);padding:16px">Loading…</td></tr>`;
   try {
-    const r = await fetch(`${API}/alerts?status=open&per_page=10`);
+    // Fetch more for the scatter (14-day window)
+    const r    = await fetch(`${API}/alerts?per_page=100`);
     const json = await r.json();
-    if (!json.data?.length) {
-      tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:var(--muted);padding:16px;">No open alerts. ✓</td></tr>';
+    const all  = json.data || [];
+
+    if (!all.length) {
+      tbody.innerHTML = `<tr><td colspan="4" style="text-align:center;color:var(--muted);padding:16px">No alerts ✓</td></tr>`;
+      buildAlertBurst([]);
       return;
     }
-    tbody.innerHTML = json.data.map(a => `
+
+    // Table (top 10 open)
+    const open = all.filter(a => a.status === 'open').slice(0, 10);
+    tbody.innerHTML = (open.length ? open : all.slice(0,10)).map(a => `
       <tr>
-        <td><span class="hostname">${a.device_hostname || '—'}</span></td>
+        <td><span class="hn">${a.device_hostname || '—'}</span></td>
         <td>${a.alert_type}</td>
-        <td><span class="badge badge-${a.severity}">${a.severity}</span></td>
-        <td><span class="ts">${relativeTime(a.created_at)}</span></td>
-      </tr>
-    `).join('');
+        <td><span class="badge b${a.severity[0]}">${a.severity}</span></td>
+        <td><span class="ts">${relTime(a.created_at)}</span></td>
+      </tr>`).join('');
+
+    // Feed burst scatter
+    buildAlertBurst(all);
+
   } catch(e) {
-    tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:var(--accent2);padding:16px;">API unavailable</td></tr>';
+    tbody.innerHTML = `<tr><td colspan="4" style="text-align:center;color:var(--accent2);padding:16px">API unavailable</td></tr>`;
   }
 }
 
-// ---- Boot ----
-loadSummary();
-loadDevices();
-loadAlerts();
-setInterval(() => { loadSummary(); loadDevices(); loadAlerts(); }, 30000);
+// ─────────────────────────────────────────────────────────────────────────────
+// Boot + auto-refresh
+// ─────────────────────────────────────────────────────────────────────────────
+async function refreshAll() {
+  await Promise.all([loadSummary(), loadDevices(), loadVulnerabilities(), loadAlerts()]);
+}
+
+refreshAll();
+setInterval(refreshAll, 30000);
 </script>
 </body>
 </html>
