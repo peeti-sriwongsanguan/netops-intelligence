@@ -1,0 +1,326 @@
+CLSPCOYKVZWvSAS-Y-AT-SECaS-01-CLRDW-001
+ACP 17.15.32 CentOS 7.9
+build_13 2024-12-30 SSPK
+
+ clearsee             17.2.32.7                                                                                           
+
+
+*****cs_admin status****
+[38mNode   [0m | [38mDatabase[0m | [38mETL state[0m 
+-------------------------------
+[38mNode 1[0m  |    [92mOK[0m    |    [92mOK[0m     
+[38mNode 2[0m  |    [92mOK[0m    |    [92mOK[0m     
+[38mNode 3[0m  |    [92mOK[0m    |    [92mOK[0m     
+[38mNode 4[0m  |    [92mOK[0m    |    [92mOK[0m     
+[38mNode 5[0m  |    [92mOK[0m    |    [92mOK[0m     
+[38mNode 6[0m  |    [92mOK[0m    |    [92mOK[0m     
+[38mNode 7[0m  |    [92mOK[0m    |    [92mOK[0m     
+[38mNode 8[0m  |    [92mOK[0m    |    [92mOK[0m     
+[38mNode 9[0m  |    [92mOK[0m    |    [92mOK[0m     
+[38mNode 10[0m |    [92mOK[0m    |    [92mOK[0m     
+[38mNode 11[0m |    [92mOK[0m    |    [92mOK[0m     
+[38mNode 12[0m |    [92mOK[0m    |    [92mOK[0m     
+
+
+
+*****cat RAW_COUNT *****
+Thu May 21 14:35:01 GMT 2026
+Last hour
+ count  
+--------
+ 665608
+(1 row)
+
+Last 24 hours
+  count  
+---------
+ 1296964
+(1 row)
+
+Last 30 days
+  count  
+---------
+ 1509504
+(1 row)
+
+
+
+*****df -h*****
+[WARNING]: Invalid characters were found in group names but not replaced, use
+-vvvv to see details
+CLSPCOYKVZWvSAS-Y-AT-SECaS-01-CLRDW-005 | CHANGED | rc=0 >>
+Filesystem           Size  Used Avail Use% Mounted on
+devtmpfs              32G     0   32G   0% /dev
+tmpfs                 32G     0   32G   0% /dev/shm
+tmpfs                 32G  1.1M   32G   1% /run
+tmpfs                 32G     0   32G   0% /sys/fs/cgroup
+/dev/vda2             15G  7.8G  6.9G  53% /
+/dev/vda3             58G   35G   24G  60% /opt
+/dev/vda5            7.6G   49M  7.2G   1% /tmp
+/dev/vda8            3.9G  1.4G  2.6G  34% /var
+/dev/vda6            4.9G  495M  4.4G  10% /home
+/dev/vda9            3.9G  1.6G  2.4G  39% /var/log
+/dev/vda11           997M   33M  965M   4% /var/tmp
+/dev/vda1           1014M  394M  621M  39% /boot
+/dev/vda12           182M  4.8M  178M   3% /boot/efi
+/dev/vda10           997M   65M  933M   7% /var/log/audit
+/dev/mapper/encvdb2  1.9T  571G  1.2T  33% /data
+/dev/mapper/encvdb1   99G  2.1G   92G   3% /clearsee_input
+tmpfs                6.3G  4.0K  6.3G   1% /run/user/1004
+overlay              3.9G  1.4G  2.6G  34% /var/lib/docker/overlay2/fe05d617c16136ad6c2d631f6ea9a1bd790e2ba99eaac48716a9dcea4576c03e/merged
+overlay              3.9G  1.4G  2.6G  34% /var/lib/docker/overlay2/37688190f6aa98c520960c76d02f4976aa23c82fbf252d1786ea5aebe68f2bca/merged
+tmpfs                6.3G     0  6.3G   0% /run/user/1000
+tmpfs                6.3G     0  6.3G   0% /run/user/0
+CLSPCOYKVZWvSAS-Y-AT-SECaS-01-CLRDW-003 | CHANGED | rc=0 >>
+Filesystem           Size  Used Avail Use% Mounted on
+devtmpfs              32G     0   32G   0% /dev
+tmpfs                 32G     0   32G   0% /dev/shm
+tmpfs                 32G  1.1M   32G   1% /run
+tmpfs                 32G     0   32G   0% /sys/fs/cgroup
+/dev/vda2             15G  7.8G  6.9G  53% /
+/dev/vda3             58G   45G   13G  78% /opt
+/dev/vda5            7.6G   36M  7.2G   1% /tmp
+/dev/vda1           1014M  394M  621M  39% /boot
+/dev/vda12           182M  4.8M  178M   3% /boot/efi
+/dev/vda6            4.9G  495M  4.4G  10% /home
+/dev/vda8            3.9G  1.4G  2.6G  34% /var
+/dev/vda9            3.9G  1.7G  2.3G  42% /var/log
+/dev/vda10           997M   73M  925M   8% /var/log/audit
+/dev/vda11           997M   33M  965M   4% /var/tmp
+/dev/mapper/encvdb1   99G  2.0G   92G   3% /clearsee_input
+/dev/mapper/encvdb2  1.9T  509G  1.3T  29% /data
+tmpfs                6.3G  4.0K  6.3G   1% /run/user/1004
+overlay              3.9G  1.4G  2.6G  34% /var/lib/docker/overlay2/5a95b5259b0dffefea8deff7de92abb3d08b4824aac6f8a39b6bc72082ac329e/merged
+overlay              3.9G  1.4G  2.6G  34% /var/lib/docker/overlay2/aa1751ef3635a416fd98f66e69ef150708b0061ca39a721408bc720ede366542/merged
+tmpfs                6.3G     0  6.3G   0% /run/user/1000
+tmpfs                6.3G     0  6.3G   0% /run/user/0
+CLSPCOYKVZWvSAS-Y-AT-SECaS-01-CLRDW-002 | CHANGED | rc=0 >>
+Filesystem           Size  Used Avail Use% Mounted on
+devtmpfs              32G     0   32G   0% /dev
+tmpfs                 32G     0   32G   0% /dev/shm
+tmpfs                 32G  1.1M   32G   1% /run
+tmpfs                 32G     0   32G   0% /sys/fs/cgroup
+/dev/vda2             15G  7.8G  6.9G  53% /
+/dev/vda3             58G   45G   13G  78% /opt
+/dev/vda5            7.6G   36M  7.2G   1% /tmp
+/dev/vda1           1014M  394M  621M  39% /boot
+/dev/vda12           182M  4.8M  178M   3% /boot/efi
+/dev/vda6            4.9G  495M  4.4G  10% /home
+/dev/vda8            3.9G  1.4G  2.6G  34% /var
+/dev/vda9            3.9G  1.6G  2.4G  41% /var/log
+/dev/vda11           997M   33M  965M   4% /var/tmp
+/dev/vda10           997M   74M  923M   8% /var/log/audit
+/dev/mapper/encvdb1   99G  2.0G   92G   3% /clearsee_input
+/dev/mapper/encvdb2  1.9T  476G  1.3T  27% /data
+tmpfs                6.3G  4.0K  6.3G   1% /run/user/1004
+overlay              3.9G  1.4G  2.6G  34% /var/lib/docker/overlay2/2d4265124ea8eb214ccf161dfbb65c2a37bc9ccbc23616490234e0316d0364f8/merged
+overlay              3.9G  1.4G  2.6G  34% /var/lib/docker/overlay2/c19035001d1c8824bbe98d283fbdb4e7ceaf1461e0d826f297de8c52611b3fc7/merged
+tmpfs                6.3G     0  6.3G   0% /run/user/1000
+tmpfs                6.3G     0  6.3G   0% /run/user/0
+CLSPCOYKVZWvSAS-Y-AT-SECaS-01-CLRDW-001 | CHANGED | rc=0 >>
+Filesystem           Size  Used Avail Use% Mounted on
+devtmpfs              32G     0   32G   0% /dev
+tmpfs                 32G  248K   32G   1% /dev/shm
+tmpfs                 32G  1.1M   32G   1% /run
+tmpfs                 32G     0   32G   0% /sys/fs/cgroup
+/dev/vda2             15G  7.8G  6.9G  53% /
+/dev/vda8            3.9G  1.4G  2.6G  34% /var
+/dev/vda3             58G   41G   18G  70% /opt
+/dev/vda9            3.9G  1.8G  2.2G  45% /var/log
+/dev/vda11           997M   33M  965M   4% /var/tmp
+/dev/vda6            4.9G  500M  4.4G  11% /home
+/dev/vda5            7.6G   36M  7.2G   1% /tmp
+/dev/vda10           997M   73M  925M   8% /var/log/audit
+/dev/mapper/encvdb2  1.9T  606G  1.2T  35% /data
+/dev/vda1           1014M  394M  621M  39% /boot
+/dev/mapper/encvdb1   99G  2.1G   92G   3% /clearsee_input
+/dev/vda12           182M  4.8M  178M   3% /boot/efi
+tmpfs                6.3G     0  6.3G   0% /run/user/1004
+overlay              3.9G  1.4G  2.6G  34% /var/lib/docker/overlay2/3634d5a0800732cdbe804d117073bbeeea22855eb6a81ef94e23c5abc7020554/merged
+overlay              3.9G  1.4G  2.6G  34% /var/lib/docker/overlay2/e80bd3065c7345ba65ebb70681a0bab950a81657cd24ec6008a8a94e7ad9bf8b/merged
+tmpfs                6.3G     0  6.3G   0% /run/user/1000
+tmpfs                6.3G     0  6.3G   0% /run/user/0
+CLSPCOYKVZWvSAS-Y-AT-SECaS-01-CLRDW-004 | CHANGED | rc=0 >>
+Filesystem           Size  Used Avail Use% Mounted on
+devtmpfs              32G     0   32G   0% /dev
+tmpfs                 32G     0   32G   0% /dev/shm
+tmpfs                 32G  1.1M   32G   1% /run
+tmpfs                 32G     0   32G   0% /sys/fs/cgroup
+/dev/vda2             15G  7.8G  6.9G  53% /
+/dev/vda3             58G   38G   21G  65% /opt
+/dev/vda8            3.9G  1.4G  2.6G  34% /var
+/dev/vda9            3.9G  1.7G  2.3G  42% /var/log
+/dev/vda5            7.6G   36M  7.2G   1% /tmp
+/dev/vda11           997M   33M  965M   4% /var/tmp
+/dev/vda1           1014M  394M  621M  39% /boot
+/dev/vda6            4.9G  495M  4.4G  10% /home
+/dev/vda12           182M  4.8M  178M   3% /boot/efi
+/dev/vda10           997M   69M  929M   7% /var/log/audit
+/dev/mapper/encvdb1   99G  2.1G   92G   3% /clearsee_input
+/dev/mapper/encvdb2  1.9T  588G  1.2T  34% /data
+tmpfs                6.3G  4.0K  6.3G   1% /run/user/1004
+overlay              3.9G  1.4G  2.6G  34% /var/lib/docker/overlay2/97d497f6bd2b9310fd027c95bc67170448105acf494c5ed31110074553193490/merged
+overlay              3.9G  1.4G  2.6G  34% /var/lib/docker/overlay2/688bc4485d703cb9763e381adffe77a73646d8fa8d0ff7b53fe89e805a27737e/merged
+tmpfs                6.3G     0  6.3G   0% /run/user/1000
+tmpfs                6.3G     0  6.3G   0% /run/user/0
+CLSPCOYKVZWvSAS-Y-AT-SECaS-01-CLRDW-008 | CHANGED | rc=0 >>
+Filesystem           Size  Used Avail Use% Mounted on
+devtmpfs              32G     0   32G   0% /dev
+tmpfs                 32G     0   32G   0% /dev/shm
+tmpfs                 32G  1.1M   32G   1% /run
+tmpfs                 32G     0   32G   0% /sys/fs/cgroup
+/dev/vda2             15G  7.8G  6.9G  53% /
+/dev/vda8            3.9G  1.4G  2.6G  34% /var
+/dev/vda3             58G   30G   28G  52% /opt
+/dev/vda9            3.9G  1.5G  2.5G  38% /var/log
+/dev/vda6            4.9G  495M  4.4G  10% /home
+/dev/vda1           1014M  394M  621M  39% /boot
+/dev/vda12           182M  4.8M  178M   3% /boot/efi
+/dev/vda11           997M   33M  965M   4% /var/tmp
+/dev/vda5            7.6G   51M  7.2G   1% /tmp
+/dev/vda10           997M   69M  929M   7% /var/log/audit
+/dev/mapper/encvdb1   99G  1.8G   92G   2% /clearsee_input
+/dev/mapper/encvdb2  1.9T  537G  1.3T  31% /data
+tmpfs                6.3G  4.0K  6.3G   1% /run/user/1004
+overlay              3.9G  1.4G  2.6G  34% /var/lib/docker/overlay2/3e8ed63d782cda37dfaf0c2919364d581a1137632fc026c2a097dafc9f58329b/merged
+overlay              3.9G  1.4G  2.6G  34% /var/lib/docker/overlay2/89a8dac2ae8ee184cb977a5f949ea79f7c5a7f81c8cdbeb0329499f3c40e4e38/merged
+tmpfs                6.3G     0  6.3G   0% /run/user/1000
+tmpfs                6.3G     0  6.3G   0% /run/user/0
+CLSPCOYKVZWvSAS-Y-AT-SECaS-01-CLRDW-009 | CHANGED | rc=0 >>
+Filesystem           Size  Used Avail Use% Mounted on
+devtmpfs              32G     0   32G   0% /dev
+tmpfs                 32G     0   32G   0% /dev/shm
+tmpfs                 32G  1.1M   32G   1% /run
+tmpfs                 32G     0   32G   0% /sys/fs/cgroup
+/dev/vda2             15G  7.8G  6.9G  53% /
+/dev/vda8            3.9G  1.4G  2.6G  34% /var
+/dev/vda3             58G   38G   21G  66% /opt
+/dev/vda5            7.6G   36M  7.2G   1% /tmp
+/dev/vda9            3.9G  1.7G  2.3G  44% /var/log
+/dev/vda1           1014M  394M  621M  39% /boot
+/dev/vda6            4.9G  495M  4.4G  10% /home
+/dev/vda12           182M  4.8M  178M   3% /boot/efi
+/dev/vda11           997M   33M  965M   4% /var/tmp
+/dev/vda10           997M   69M  929M   7% /var/log/audit
+/dev/mapper/encvdb1   99G  2.2G   92G   3% /clearsee_input
+/dev/mapper/encvdb2  1.9T  529G  1.3T  30% /data
+tmpfs                6.3G  4.0K  6.3G   1% /run/user/1004
+overlay              3.9G  1.4G  2.6G  34% /var/lib/docker/overlay2/45525177c3ed3022d704bf8975d5692851c03b8a5b44dabf41c3c9ebcbb6e2cc/merged
+overlay              3.9G  1.4G  2.6G  34% /var/lib/docker/overlay2/7ee6874b147c0891b4e9dec33a876320da4b36582d8c6f8971c35698940fb815/merged
+tmpfs                6.3G     0  6.3G   0% /run/user/1000
+tmpfs                6.3G     0  6.3G   0% /run/user/0
+CLSPCOYKVZWvSAS-Y-AT-SECaS-01-CLRDW-007 | CHANGED | rc=0 >>
+Filesystem           Size  Used Avail Use% Mounted on
+devtmpfs              32G     0   32G   0% /dev
+tmpfs                 32G     0   32G   0% /dev/shm
+tmpfs                 32G  1.1M   32G   1% /run
+tmpfs                 32G     0   32G   0% /sys/fs/cgroup
+/dev/vda2             15G  7.8G  6.9G  53% /
+/dev/vda3             58G   38G   21G  65% /opt
+/dev/vda5            7.6G   36M  7.2G   1% /tmp
+/dev/vda1           1014M  394M  621M  39% /boot
+/dev/vda12           182M  4.8M  178M   3% /boot/efi
+/dev/vda8            3.9G  1.4G  2.6G  34% /var
+/dev/vda6            4.9G  495M  4.4G  10% /home
+/dev/vda9            3.9G  1.7G  2.3G  43% /var/log
+/dev/vda11           997M   33M  965M   4% /var/tmp
+/dev/vda10           997M   65M  933M   7% /var/log/audit
+/dev/mapper/encvdb1   99G  2.0G   92G   3% /clearsee_input
+/dev/mapper/encvdb2  1.9T  539G  1.3T  31% /data
+tmpfs                6.3G  4.0K  6.3G   1% /run/user/1004
+overlay              3.9G  1.4G  2.6G  34% /var/lib/docker/overlay2/5ba64e967bff0e954853f4ed479a4e8fb930b159ff2c60349cb28611bf3bd534/merged
+overlay              3.9G  1.4G  2.6G  34% /var/lib/docker/overlay2/6dc7da9100f07744be2c819f3e75aada2f46e999b5c4c4332be93e62309c84b7/merged
+tmpfs                6.3G     0  6.3G   0% /run/user/1000
+tmpfs                6.3G     0  6.3G   0% /run/user/0
+CLSPCOYKVZWvSAS-Y-AT-SECaS-01-CLRDW-006 | CHANGED | rc=0 >>
+Filesystem           Size  Used Avail Use% Mounted on
+devtmpfs              32G     0   32G   0% /dev
+tmpfs                 32G     0   32G   0% /dev/shm
+tmpfs                 32G  1.1M   32G   1% /run
+tmpfs                 32G     0   32G   0% /sys/fs/cgroup
+/dev/vda2             15G  7.8G  6.9G  53% /
+/dev/vda8            3.9G  1.4G  2.6G  34% /var
+/dev/vda3             58G   38G   21G  65% /opt
+/dev/vda9            3.9G  1.7G  2.3G  43% /var/log
+/dev/vda5            7.6G   36M  7.2G   1% /tmp
+/dev/vda10           997M   67M  931M   7% /var/log/audit
+/dev/vda6            4.9G  495M  4.4G  10% /home
+/dev/vda1           1014M  394M  621M  39% /boot
+/dev/vda12           182M  4.8M  178M   3% /boot/efi
+/dev/vda11           997M   33M  965M   4% /var/tmp
+/dev/mapper/encvdb1   99G  2.0G   92G   3% /clearsee_input
+/dev/mapper/encvdb2  1.9T  586G  1.2T  33% /data
+tmpfs                6.3G  4.0K  6.3G   1% /run/user/1004
+overlay              3.9G  1.4G  2.6G  34% /var/lib/docker/overlay2/9ff7a4201e30e616d634303ac5c869adce14c9ad9cf9fe11861d1319e170a448/merged
+overlay              3.9G  1.4G  2.6G  34% /var/lib/docker/overlay2/fba5094e2278484695c7915400f1f9acb27aa12655df3cc14969e01c5a63e392/merged
+tmpfs                6.3G     0  6.3G   0% /run/user/1000
+tmpfs                6.3G     0  6.3G   0% /run/user/0
+CLSPCOYKVZWvSAS-Y-AT-SECaS-01-CLRDW-010 | CHANGED | rc=0 >>
+Filesystem           Size  Used Avail Use% Mounted on
+devtmpfs              32G     0   32G   0% /dev
+tmpfs                 32G     0   32G   0% /dev/shm
+tmpfs                 32G  1.1M   32G   1% /run
+tmpfs                 32G     0   32G   0% /sys/fs/cgroup
+/dev/vda2             15G  7.8G  6.9G  53% /
+/dev/vda3             58G   39G   20G  67% /opt
+/dev/vda8            3.9G  1.4G  2.6G  34% /var
+/dev/vda9            3.9G  1.7G  2.3G  42% /var/log
+/dev/vda5            7.6G   36M  7.2G   1% /tmp
+/dev/vda1           1014M  394M  621M  39% /boot
+/dev/vda12           182M  4.8M  178M   3% /boot/efi
+/dev/vda6            4.9G  495M  4.4G  10% /home
+/dev/vda10           997M   74M  923M   8% /var/log/audit
+/dev/vda11           997M   33M  965M   4% /var/tmp
+/dev/mapper/encvdb2  1.9T  543G  1.3T  31% /data
+/dev/mapper/encvdb1   99G  2.0G   92G   3% /clearsee_input
+tmpfs                6.3G  4.0K  6.3G   1% /run/user/1004
+overlay              3.9G  1.4G  2.6G  34% /var/lib/docker/overlay2/87324b0e579438edc295cb53f21f09833f40a1699fea7ccbe6d0b5cb1e812dc9/merged
+overlay              3.9G  1.4G  2.6G  34% /var/lib/docker/overlay2/3421e7a2c4c72fe9266aad4bc33e855c0c6e0d66ac7f0b4bd4b0accc574a3201/merged
+tmpfs                6.3G     0  6.3G   0% /run/user/1000
+tmpfs                6.3G     0  6.3G   0% /run/user/0
+CLSPCOYKVZWvSAS-Y-AT-SECaS-01-CLRDW-012 | CHANGED | rc=0 >>
+Filesystem           Size  Used Avail Use% Mounted on
+devtmpfs              32G     0   32G   0% /dev
+tmpfs                 32G     0   32G   0% /dev/shm
+tmpfs                 32G  1.1M   32G   1% /run
+tmpfs                 32G     0   32G   0% /sys/fs/cgroup
+/dev/vda2             15G  7.8G  6.9G  53% /
+/dev/vda3             58G   39G   20G  67% /opt
+/dev/vda5            7.6G   36M  7.2G   1% /tmp
+/dev/vda1           1014M  394M  621M  39% /boot
+/dev/vda12           182M  4.8M  178M   3% /boot/efi
+/dev/vda8            3.9G  1.4G  2.6G  34% /var
+/dev/vda6            4.9G  495M  4.4G  10% /home
+/dev/vda9            3.9G  1.7G  2.3G  42% /var/log
+/dev/vda10           997M   67M  931M   7% /var/log/audit
+/dev/vda11           997M   33M  965M   4% /var/tmp
+/dev/mapper/encvdb1   99G  2.0G   92G   3% /clearsee_input
+/dev/mapper/encvdb2  1.9T  491G  1.3T  28% /data
+tmpfs                6.3G  4.0K  6.3G   1% /run/user/1004
+overlay              3.9G  1.4G  2.6G  34% /var/lib/docker/overlay2/63ac340e092f856f0b7629f566d50e8cbeb7a02a55234afdf3a512a65a606fdc/merged
+overlay              3.9G  1.4G  2.6G  34% /var/lib/docker/overlay2/32238c6203cbf61bbee6ffd04279d9b6641d3f1d7f6093aa36fe5c3f88da4661/merged
+tmpfs                6.3G     0  6.3G   0% /run/user/1000
+tmpfs                6.3G     0  6.3G   0% /run/user/0
+CLSPCOYKVZWvSAS-Y-AT-SECaS-01-CLRDW-011 | CHANGED | rc=0 >>
+Filesystem           Size  Used Avail Use% Mounted on
+devtmpfs              32G     0   32G   0% /dev
+tmpfs                 32G     0   32G   0% /dev/shm
+tmpfs                 32G  1.1M   32G   1% /run
+tmpfs                 32G     0   32G   0% /sys/fs/cgroup
+/dev/vda2             15G  7.8G  6.9G  53% /
+/dev/vda3             58G   39G   19G  68% /opt
+/dev/vda8            3.9G  1.4G  2.6G  34% /var
+/dev/vda5            7.6G   46M  7.2G   1% /tmp
+/dev/vda9            3.9G  1.7G  2.3G  44% /var/log
+/dev/vda1           1014M  394M  621M  39% /boot
+/dev/vda12           182M  4.8M  178M   3% /boot/efi
+/dev/vda10           997M   69M  929M   7% /var/log/audit
+/dev/vda11           997M   33M  965M   4% /var/tmp
+/dev/vda6            4.9G  495M  4.4G  10% /home
+/dev/mapper/encvdb2  1.9T  532G  1.3T  30% /data
+/dev/mapper/encvdb1   99G  2.2G   92G   3% /clearsee_input
+tmpfs                6.3G  4.0K  6.3G   1% /run/user/1004
+overlay              3.9G  1.4G  2.6G  34% /var/lib/docker/overlay2/ba590584cafa078f351f4c91aa40178047f92f95539bb3fa8279dc4fcfae2bcc/merged
+overlay              3.9G  1.4G  2.6G  34% /var/lib/docker/overlay2/e2783a8e130defdb9bc8a3bd3cf1508209d3153064c091791d15078d39c6ddab/merged
+tmpfs                6.3G     0  6.3G   0% /run/user/1000
+tmpfs                6.3G     0  6.3G   0% /run/user/0

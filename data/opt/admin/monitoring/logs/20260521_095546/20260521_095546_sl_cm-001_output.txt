@@ -1,0 +1,86 @@
+solktxesvzwvsas-y-at-secas-01-cmgr-001
+ACP 17.15.32 CentOS 7.9
+build_13 2024-12-30 SSPK
+
+No Allot products found.
+Module: CentralManager Module Release
+Version: 40.10.26.22083~D2025121007
+Build OS: Linux 3.10.0-1160.95.1.el7.x86_64 x86_64 CentOS Linux release 7.9.2009 (Core)
+Build date: Wed Dec 10 07:59:16 UTC 2025
+Git hash: 0d87718072b34a5b7ddab9aa782b60b9f21d39e8
+Git date: Wed Dec 10 07:43:20 UTC 2025
+
+===============================CM Stats==========================
+top - 07:59:34 up 99 days,  6:52,  0 users,  load average: 12.51, 12.63, 13.82
+Tasks: 313 total,   1 running, 312 sleeping,   0 stopped,   0 zombie
+%Cpu(s): 50.0 us,  4.2 sy,  0.0 ni, 44.2 id,  0.0 wa,  0.0 hi,  1.5 si,  0.0 st
+KiB Mem : 82319680 total,   494624 free, 18529120 used, 63295936 buff/cache
+KiB Swap:  4194300 total,  3907836 free,   286464 used. 63304204 avail Mem 
+
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+20238 acp       20   0   22.5g  14.3g  18416 S  1062 18.2  30829:22 CentralMan+
+ 3437 acp       20   0 3479304 568784   5936 S  12.5  0.7  10325:57 Radius
+ 1647 root      rt   0  141404  39116  23092 S   6.2  0.0   1585:09 corosync
+ 3309 acp       20   0   10.7g  36796   5692 S   6.2  0.0   1444:07 QueryManag+
+18356 admin     20   0  162260   2308   1536 R   6.2  0.0   0:00.01 top
+    1 root      20   0   52184   3844   2192 S   0.0  0.0  28:59.20 systemd
+    2 root      20   0       0      0      0 S   0.0  0.0   0:02.15 kthreadd
+    4 root       0 -20       0      0      0 S   0.0  0.0   0:00.00 kworker/0:+
+
+service asp_utm status:
+[47mStatus  [40mPID    [47mExecutable                [40m#Thr  [47mRuntime      [40mPorts                    [47mPath
+OK      2530   ProcessMonitorInit.sh        1  00:00:00     10550,10553              .../ProcessMonitor/bin
+OK      2546   ProcessMonitor              68  1-07:27:25   10550,10553              .../ProcessMonitor/bin
+OK      18329  CentralManager               1  00:00:00     10500,10501,10502,10503  .../CentralManager/bin
+OK      20238  CentralManager.release     646  21-09:49:37  10500,10501,10502,10503  .../CentralManager/bin
+STOP           CentralManager_traces.sh                                              .../CentralManager/bin
+STOP           CentralManagerd                                                       .../CentralManager/bin
+STOP           CentralManagers                                                       .../CentralManager/bin
+OK      3212   CentralReporter            119  20:22:31     13530,13533,23531        .../CentralReporter/bin
+OK      3270   LocalReporter              119  22:10:54     443,10530,10533,20531    .../LocalReporter/bin
+OK      3309   QueryManager               177  1-00:04:07   2020,10565,10568         .../QueryManager/bin
+OK      3437   Radius                      51  7-04:05:57   10515,10518,10620        .../Radius/bin
+STOP           Radiusd                                                               .../Radius/bin
+STOP           Radiuss                                                               .../Radius/bin
+OK      1399   UpdateAgent.sh               1  00:00:00     10610                    .../UpdateAgent/bin
+OK      3097   SnmpAgent                   48  00:58:58     45152                    .+
+
+df -h:
+Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs         40G     0   40G   0% /dev
+tmpfs            40G  8.1M   40G   1% /dev/shm
+tmpfs            40G  740K   40G   1% /run
+tmpfs            40G     0   40G   0% /sys/fs/cgroup
+/dev/vda10      278G  138G  140G  50% /
+/dev/vda1       1.1G  573M  491M  54% /boot
+/dev/vda4       4.4G   33M  4.4G   1% /home
+/dev/vda3       200M  4.8M  196M   3% /boot/efi
+/dev/vda6       3.8G  484M  3.3G  13% /var
+/dev/vda5       7.5G   34M  7.5G   1% /tmp
+/dev/vda8       3.8G 1012M  2.8G  27% /var/log
+/dev/vda7       951M   33M  919M   4% /var/tmp
+/dev/vda9       950M  532M  418M  57% /var/log/audit
+tmpfs           7.9G     0  7.9G   0% /run/user/1000
+
+
+netstat connections status:
+5369
+
+
+netstat connections CLOSE_WAIT:
+7
+
+
+Database Status (CM1):
+	DATABASESTATUS|Status of URL database|40.409912587,42.751131682,43.751131690,45.751139559,47.751139560,50.677446321,60.694607581,70.144442052,75.694607610,80.694607582,90.105087727,100.694607615
+
+Catching Erans MDNs on database:
+
++75.239.129.27 17813050842 3 - - - - - 2600:1002:a112:12ab:: 2600:1002:a112:12ab:ffff:ffff:ffff:ffff 0 0
++97.207.198.15 17813050842 3 - - - - - 2600:1002:a011:aed3:: 2600:1002:a011:aed3:ffff:ffff:ffff:ffff 1 0
+
+
+Database size (dir /opt/ASP/ASP-Management/var/CentralManager/database) Thu May 21 07:59:38 PDT 2026
+2844720	total
+
+

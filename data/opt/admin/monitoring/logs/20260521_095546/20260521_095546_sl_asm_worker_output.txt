@@ -1,0 +1,344 @@
+ansible 2.9.27
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = [u'/root/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python2.7/site-packages/ansible
+  executable location = /bin/ansible
+  python version = 2.7.5 (default, Nov 14 2023, 16:14:06) [GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]
+Using /etc/ansible/ansible.cfg as config file
+[WARNING]: Invalid characters were found in group names but not replaced, use
+-vvvv to see details
+Skipping callback 'actionable', as we already have a stdout callback.
+Skipping callback 'counter_enabled', as we already have a stdout callback.
+Skipping callback 'debug', as we already have a stdout callback.
+Skipping callback 'dense', as we already have a stdout callback.
+Skipping callback 'dense', as we already have a stdout callback.
+Skipping callback 'full_skip', as we already have a stdout callback.
+Skipping callback 'json', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'null', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'selective', as we already have a stdout callback.
+Skipping callback 'skippy', as we already have a stdout callback.
+Skipping callback 'stderr', as we already have a stdout callback.
+Skipping callback 'unixy', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+META: ran handlers
+asm_worker3 | CHANGED | rc=0 >>
+====================================worker_stat=================================
+solktxesvzwvsas-y-at-secas-01-asmwr-003
+ACP 17.15.32 CentOS 7.9
+build_13 2024-12-30 SSPK
+
+No Allot products found.
+---------------------------------------
+top - 14:59:22 up 301 days, 22:36,  1 user,  load average: 1.01, 1.10, 1.61
+Tasks: 435 total,   1 running, 434 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  2.1 us,  0.6 sy,  0.0 ni, 97.1 id,  0.3 wa,  0.0 hi,  0.0 si,  0.0 st
+KiB Mem : 82319680 total,  2569700 free, 17032008 used, 62717972 buff/cache
+KiB Swap:        0 total,        0 free,        0 used. 64798456 avail Mem 
+
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+ 1518 centos    20   0   10.0g   6.0g  17272 S  18.8  7.7   9717:36 mongod
+11193 admin     20   0   21.7g   3.9g 331044 S  12.5  5.0 232311:30 prometheus
+26707 centos    20   0 6995688 981.2m  18452 S  12.5  1.2   9044:39 java
+ 6544 1337      20   0 5574752  68456  20180 S   6.2  0.1 139:38.74 operator
+10648 root      20   0 3562772 319832  12492 S   6.2  0.4   5186:07 filebeat
+18894 admin     20   0  164472   2480   1568 R   6.2  0.0   0:00.01 top
+19534 1337      20   0 2275836  73252  22180 S   6.2  0.1 109:57.37 envoy
+32575 1337      20   0 2275836 115156   8124 S   6.2  0.1   1876:32 envoy
+
+Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs         40G     0   40G   0% /dev
+tmpfs            40G     0   40G   0% /dev/shm
+tmpfs            40G  8.2M   40G   1% /run
+tmpfs            40G     0   40G   0% /sys/fs/cgroup
+/dev/vda10      298G  133G  166G  45% /
+/dev/vda4       4.4G   33M  4.4G   1% /home
+/dev/vda1       1.1G  573M  491M  54% /boot
+/dev/vda3       200M  4.8M  196M   3% /boot/efi
+/dev/vdb1       1.5T  226G  1.2T  17% /opt/allot/kubernetes/pv
+/dev/vda6       3.8G  536M  3.2G  15% /var
+/dev/vda8       3.8G  1.3G  2.5G  35% /var/log
+/dev/vda5       7.5G   33M  7.5G   1% /tmp
+/dev/vda9       950M  417M  534M  44% /var/log/audit
+/dev/vda7       951M   33M  919M   4% /var/tmp
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/57d81ea445f6c5b1a99ee9dfddac75787c3ba8ba7e3a3177cc32ef8e44379bc5/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/18bddef35b218769a79a97af28bbd8d414dec7e6debc5135b949e6362c13e2be/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/4dab2fb2a43dce0058697ec381d02ad3900639b0d93e9baaccfc09aa52159fb3/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/4f313441ec9cdf59e1095496ae19b2d250b402ffdc679c6c75daa462690a64ef/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/97bef4a27329585d8da59a9fd03714634d545eda5eb2dfa3e1cc3165f8ecef8b/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/ccf00c1cd250f253bdb23815de681fbff09a9a73ea88f77374b683cdc098d713/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/f27774956618d8a16b85901ecca8b2cede7145a186204fa54371afb7766f8fe6/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/b6ae3f955417d348a88d064eeaabbf979420e584aeac1797dae0f39cde1dd921/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/48b45bef20cf0d56f30898a508fa94975d7c29c3fc8cbb6e964e7d4e179dbf72/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/55c9cb0bd9d3b5a1b531f0a5dee9dada39f0e023dbdc2f838bfdc1ea1173ecc3/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/6f22d715731f3a1cc4b022d86b5036ff3926bda83da3ecf8c35c03200d5868b3/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/ddb17570916832deca8e88c40dd8bce7dea42775c135ab78a2a5209cf9117511/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/bb4e90e6b09b5064c3a91b1c734f91d9f7f9489c918a4fa1ee10240143c9c8a2/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/01dc2ef1361258c5e42294874b633174339694085b402ec2db15c0fa6c034c2d/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/0e76f1c82a587e665d3e5ddaab60a35ff1c303d704be75a62a92b2d15e2424f1/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/ba94ef783028c0ffc3fbc076219d0c28ae94cb9b7efd2be54b2d00b97042dc39/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/5cc82c2760ef2c6aadabd77fcff9388fdbf8e6ce11977d5bd605050ce879d8a3/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/3e79cfe157441997d5157cd7271910db86de12d651c2d9780339b98c031b5066/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/7775c0fb3097e3fd256593b82014ffabdcb19ab28ea435ee3b1993018ba86db6/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/6618625bd3f659ea32005bf670e84aae73781df51f70f2459a5adb53574299b4/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/0cb968a3b0ec65c50571e0822ddaa8e63fe3a8aba08fecb7090350bafba5dd3a/shm
+tmpfs           7.9G     0  7.9G   0% /run/user/1000
+
+==============================================================================
+asm_worker4 | CHANGED | rc=0 >>
+====================================worker_stat=================================
+solktxesvzwvsas-y-at-secas-01-asmwr-004
+ACP 17.15.32 CentOS 7.9
+build_13 2024-12-30 SSPK
+
+No Allot products found.
+---------------------------------------
+top - 14:59:22 up 301 days, 22:40,  1 user,  load average: 0.86, 0.62, 0.53
+Tasks: 445 total,   1 running, 444 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  1.2 us,  0.9 sy,  0.0 ni, 97.9 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+KiB Mem : 82319680 total,  3214844 free, 12717328 used, 66387508 buff/cache
+KiB Swap:        0 total,        0 free,        0 used. 69111792 avail Mem 
+
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+13037 admin     20   0   20.6g   4.2g 504932 S  12.5  5.3 234186:27 prometheus
+ 4470 admin     20   0  164452   2424   1568 R   6.2  0.0   0:00.01 top
+12822 centos    20   0 2780664 139872   4660 S   6.2  0.2 116:55.21 python3
+12847 centos    20   0 2793080 159312   4572 S   6.2  0.2 116:55.96 python3
+    1 root      20   0  194740   7268   2528 S   0.0  0.0   4633:06 systemd
+    2 root      20   0       0      0      0 S   0.0  0.0   0:08.62 kthreadd
+    4 root       0 -20       0      0      0 S   0.0  0.0   0:00.00 kworker/0:+
+    6 root      20   0       0      0      0 S   0.0  0.0   5:10.67 ksoftirqd/0
+
+Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs         40G     0   40G   0% /dev
+tmpfs            40G     0   40G   0% /dev/shm
+tmpfs            40G  9.9M   40G   1% /run
+tmpfs            40G     0   40G   0% /sys/fs/cgroup
+/dev/vda10      298G   56G  242G  19% /
+/dev/vda6       3.8G  570M  3.2G  15% /var
+/dev/vda1       1.1G  574M  490M  54% /boot
+/dev/vda8       3.8G  1.5G  2.3G  39% /var/log
+/dev/vda4       4.4G   33M  4.4G   1% /home
+/dev/vda3       200M  4.8M  196M   3% /boot/efi
+/dev/vda5       7.5G   33M  7.5G   1% /tmp
+/dev/vdb1       1.5T  126G  1.3T   9% /opt/allot/kubernetes/pv
+/dev/vda7       951M   33M  919M   4% /var/tmp
+/dev/vda9       950M  461M  490M  49% /var/log/audit
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/55cbf9d48bdc4801cc204312532ee3cac5fd316bbbf1c8877222f5c0b5072125/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/36730a5eba0013e3df2931dcce38ad22915c233e08f7a02422d8c808dbb80155/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/ddaea5e3fd4fc6b22786d4075d49e0e79514183abb969ec0e67f007cb1dcd2d7/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/2dfd93256b26f286304a3626db71b19b89e35ec1605c5db6398885910ac16c5c/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/3af7cf227d149dc55a1e5c0b4f1e024346a8c29e292b6d645b49aa7555115692/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/35e1f54bee91eb83d30a6b214941a408c0babad5836e42e345cb8b77a0b87327/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/160d5e3ff10ae02a4a8f723ef0611dee50afa0a335e2f0b8d0194432ad537248/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/4b6319341b8869cbfe096c4fbe8aed85e4a7aee349db6b79a76237409f5a0251/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/34806bbad8ad28d6052682d154cce374ad646698e251b56d00ee6b48f8635f18/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/c90be3a298d5178183b3f137b0d4f5ff7edf4a8d6a055a2631a9567eea5ada72/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/fd452406204ec198cbc5932acf78b81625a747a954cda579f0989668bb7d0226/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/0c437ad6c0b02ea592bab29312e474d6774f3bb063f9633e3355ee0a64994d07/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/e36db1f97c6e2c28692c1aacd7e328126d41e45e4a60491c0b9d729dbe557d3c/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/4111f972c9dd2ddb5a79d31308aa8c2d6572bdfc9dec90b8ef35738313e4232c/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/163ec637044d8afa7a0c292cf102e293a26bc8713994bc0756a05410733224ff/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/c05fbbe3498e17c17aa7164949e4723043223b2d463b3422166f3f81614872ab/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/251607f10bb053bfe38702050ff6441faf64ad83312cc772e0093e095cee87d9/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/9c972e6a26e7766b507482e9925f9fdb63f8e42f7c9e0adb6c239e5f0dbf2beb/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/8d8376c300d28dde78df7f7af026529fbe19add2b9344eb210daa25484468719/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/0a1d1e6ba0f962c41182e786bc78a1749c10df3aae60e75cb2985887d99bf97c/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/e08050e633793454ba707f7575d4b108fe0d9f2a397d3ef94d41c2f2a31dc05d/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/60c1a5fe776c2309352573f029e597dd2c11e3bae362e42eba98865fb308c1ed/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/f45f6f8e7093bd070063459cba570c7745f60e2aa5efc2608b13d060d6b63b92/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/9440db42bcd2584915955a557f14af06dae5dac3713e842d43cda5bb7a9fd094/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/57daeff5d32bc31ba33fbe3013b816619400c7be8a2ba8b061443ed0965f0b2b/shm
+tmpfs           7.9G     0  7.9G   0% /run/user/1000
+
+==============================================================================
+asm_worker5 | CHANGED | rc=0 >>
+====================================worker_stat=================================
+solktxesvzwvsas-y-at-secas-01-asmwr-005
+ACP 17.15.32 CentOS 7.9
+build_13 2024-12-30 SSPK
+
+No Allot products found.
+---------------------------------------
+top - 14:59:22 up 301 days, 22:34,  1 user,  load average: 0.92, 1.11, 1.20
+Tasks: 426 total,   1 running, 425 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  7.7 us,  2.1 sy,  0.0 ni, 89.6 id,  0.0 wa,  0.0 hi,  0.6 si,  0.0 st
+KiB Mem : 82319680 total,  1625444 free, 11990784 used, 68703456 buff/cache
+KiB Swap:        0 total,        0 free,        0 used. 69839760 avail Mem 
+
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+15204 centos    20   0  228.2g   2.3g  17244 S  81.2  2.9  84467:25 java
+11144 centos    20   0   35.2g 971212   7020 S  68.8  1.2  34017:39 java
+ 9280 centos    20   0 7295684   1.7g  10136 S  18.8  2.2   8929:23 java
+10823 1337      20   0 2275836  96380   8060 S  18.8  0.1  11448:55 envoy
+11106 10001     20   0 1403284 170996  13184 S   6.2  0.2   1:17.91 all-in-one+
+12254 centos    20   0  938280 660052   2768 S   6.2  0.8 372:03.23 redis-serv+
+14358 1337      20   0 2275836  45248   7740 S   6.2  0.1 291:43.96 envoy
+24251 root      20   0 2711124 126380  25288 S   6.2  0.2  18466:33 kubelet
+
+Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs         40G     0   40G   0% /dev
+tmpfs            40G     0   40G   0% /dev/shm
+tmpfs            40G  8.4M   40G   1% /run
+tmpfs            40G     0   40G   0% /sys/fs/cgroup
+/dev/vda10      298G   79G  220G  27% /
+/dev/vda4       4.4G   33M  4.4G   1% /home
+/dev/vda1       1.1G  574M  490M  54% /boot
+/dev/vda3       200M  4.8M  196M   3% /boot/efi
+/dev/vdb1       1.5T  227G  1.2T  17% /opt/allot/kubernetes/pv
+/dev/vda6       3.8G  549M  3.2G  15% /var
+/dev/vda5       7.5G   33M  7.5G   1% /tmp
+/dev/vda8       3.8G  1.3G  2.5G  35% /var/log
+/dev/vda7       951M   33M  919M   4% /var/tmp
+/dev/vda9       950M  438M  513M  47% /var/log/audit
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/246f56dc19120579d7f67f5724d5426a8f6f2b1cb250343f3584f0a6a656900f/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/82aa1298b581656ea873755051b2b02a9841b59393578e41656043dcd3f2c449/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/b64a6220484a62f0e0bc2efbb5f40ff222f2ba944d5bcab563d919f40e7c74af/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/12a81267b9f8175ccd9f4339d4946eb1fe32b44f6fa5f19f8991885cd369f24c/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/9ec5ffccce40548bb78cf9072cde6f7287a3d9ca40ccca7fd45906aa0db89676/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/76d66c46942bbfc28323c8111ee209f448ab4c15176cac87a3e12e1a4adfc85e/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/993278baba806fa39a704088f47e4ba561d60e92f59323b0517e6bbb188b04bf/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/f454c8b7a24d32ff834d45ec735bc7da67eda4c49df92ca740903e7a189f7b44/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/8fde5adbc5a72d10b9fd0814f02aa920a424778d542cedf709db07fbb754042d/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/9f7affad03be55b86937da58581a6737852dd918a5a15df0d7376f8f640ecf59/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/e51eab79b9494d564e215dacbce8d33b0e561b984ebc75d1d2a34f19a4c9ca2d/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/84dc536a7cc35546b12091dd1b615ffc515f2da262e8846da1a2a2a916701754/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/d24687d736e6a94978dd92c4cc6cf41eb177415b2defb1670f667d0dee961391/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/fe76f9c497e54812de6ddb5da00764ba4074457f408e2ee706153398357da37f/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/1d3a65316d44169c7c83fda603ba71448bc9fd85ea50c22e7fbafbed70795ee9/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/e684dd37647c3fabc105e1c43098a81b50b33bcdcd715adf941f14f3436f551f/shm
+shm              64M  4.0K   64M   1% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/411c9f1730c02545793cd3579873368dea8cefae4279077d9b2e90dc7d4253eb/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/cb3f871421dadf4d3ed03ade836f75e2b405375e9db25a266abf1341f611d3f5/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/537b302a430d2eb083e8e7bb5d178f35f95f70b81c8361f3ecb5aad9678ee947/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/b394165f9f225757e1d66149de13463d4256c6ce62616fa8bb0ed24a3d13604e/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/a8c7ad97cb04a8f1681bfa26e6e9cd4a3fd26080529a79d4b14e8468526a69c3/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/0076699849aa9bffcc942000f476eb196a2208de9978f39a572d84855951e60f/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/5b371f25624b9e7613bff9cf1855e9b57590eb26459d52999858e734f85318c5/shm
+tmpfs           7.9G     0  7.9G   0% /run/user/1000
+
+==============================================================================
+asm_worker1 | CHANGED | rc=0 >>
+====================================worker_stat=================================
+solktxesvzwvsas-y-at-secas-01-asmwr-001
+ACP 17.15.32 CentOS 7.9
+build_13 2024-12-30 SSPK
+
+No Allot products found.
+---------------------------------------
+top - 14:59:22 up 301 days, 22:36,  1 user,  load average: 2.93, 2.66, 2.25
+Tasks: 608 total,   1 running, 607 sleeping,   0 stopped,   0 zombie
+%Cpu(s): 13.4 us,  2.5 sy,  0.0 ni, 83.5 id,  0.0 wa,  0.0 hi,  0.6 si,  0.0 st
+KiB Mem : 82319680 total,  5114392 free, 27380664 used, 49824624 buff/cache
+KiB Swap:        0 total,        0 free,        0 used. 54439852 avail Mem 
+
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+14358 centos    20   0  228.0g   2.3g  14676 S 150.0  2.9 106757:28 java
+11331 centos    20   0   35.3g 989.6m   6800 S  56.2  1.2  36634:11 java
+11241 1337      20   0 2275836  96260   8204 S  18.8  0.1  11957:02 envoy
+ 9502 admin     20   0  164600   2476   1568 R  12.5  0.0   0:00.02 top
+13677 centos    20   0 4106408 180392   7876 S  12.5  0.2  97:12.23 python3
+15804 centos    20   0   10.1g   5.8g  14172 S  12.5  7.4   9145:17 mongod
+ 6178 500       20   0   10.6g   5.2g  16408 S   6.2  6.7  24:30.38 lcc
+14816 root      20   0 3566612 289228  18060 S   6.2  0.4   1769:17 filebeat
+
+Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs         40G     0   40G   0% /dev
+tmpfs            40G     0   40G   0% /dev/shm
+tmpfs            40G   17M   40G   1% /run
+tmpfs            40G     0   40G   0% /sys/fs/cgroup
+/dev/vda10      298G   90G  208G  31% /
+/dev/vda5       7.5G   33M  7.5G   1% /tmp
+/dev/vda4       4.4G   33M  4.4G   1% /home
+/dev/vda6       3.8G  569M  3.2G  15% /var
+/dev/vda1       1.1G  573M  491M  54% /boot
+/dev/vda8       3.8G  1.6G  2.2G  43% /var/log
+/dev/vdb1       1.5T  293G  1.1T  21% /opt/allot/kubernetes/pv
+/dev/vda3       200M  4.8M  196M   3% /boot/efi
+/dev/vda7       951M   33M  919M   4% /var/tmp
+/dev/vda9       950M  513M  438M  54% /var/log/audit
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/c9165e4ce8d35f409108eecbf403f84d80ce28d5d2aadaede44e91ddf1aad180/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/35c53206cd72b1699baa640a543094b21ad72677433ff072f325f690fe522b25/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/4a4e90b3cf9be3562fcaa0ed5f63aff1f7759f1a6fab001d80c531b222c0bbc9/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/2f913bddd5c2f919675d448a1adcf5c92b80e1eb58a786b7fa85f6b1a7682b4d/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/71e80f444b88c0c50ebb8389e40651f8608b7178bb97f41021cf9cdfe97e360e/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/cf75ffabf7fa5d63d7a598ecd1a74bb7272abcc4911ee2372a94cf41e0772ea3/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/67ec36464fb52c4478cbe25a0a469ba72ed461a40c928da956a55f1d2f9f9d2e/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/14a4ffedc4d56b919f66217ae27f560509aaba12bb8432466116f8028c850de1/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/5bd32de031db80e8d13a9c82cf395a9096bb40ff84eca6122dc91ee44cd71a51/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/a13833fc065c542d580f88327b0a8c20e96cc9774b60d51e24591f4e90d84399/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/b1c2a31805f44687535fab4086885d5913f3876b25bce5f5154d39075c0e9f4f/shm
+shm              64M  4.0K   64M   1% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/a169b6301f2b7e057ee4cb6063d08e18726045de74a2b87071039798e64bd065/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/ca2eabcdfb10fdf49d39f90dadd3d8ee10ddb9e7637cd3e668251ec0e5e2220e/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/425c27de43d1437840749555d3c6f7fc0d4eaa0822705fbcef196a55c6a366bd/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/d3c6f6db474592bfb69746403ebd7a5f9997ce2d1ef4acf32f98b1816f2fe9ba/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/de0bdd7283f41c9949c197a7a1e52a8a3befd11901baa3dc831d52190d79cd6b/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/54e907203bbeb21c421d62aed37309d8e6fbffde25864de38f7196ef3fea931f/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/e058c7d75531a5dac66afe4e67e0b813a942b062c9dbe51c1d2676ae9038eb47/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/836864db861c3d049e8cd6fedcc930df3a491c2c226d5a570dff090a192525bf/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/74f6c5a777d3e24f400d1a255a1c634449e9ad5b5e8997fc483afd0b9756b9f0/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/f771573cbf6b2e436c3f883286df8806f540f2299063f603ebf2569ef1eafe83/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/8559239a71799ad1b1a736b5598e601e574f7571c370f4ca1867bd286e59df30/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/4ae971118ab48443b58000d0ba4b2178e69192d292f867d7070049b919ee2201/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/67ce037234cabd20482a4bc05ea8f98dfd1dfd5bed1206e107c102dbccf2509a/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/41fc4084764d815481d6fde8213048215133bc1da13ed90f4c04ff0c0bf46e97/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/dd4b7c1c7d84f0692022d93bcf1a098905fbb82a5c695d673a023800e053890d/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/33972393b33ae6836a3ffd44337f3bd1b7ff3a2841f7117169d42a8247b97ce3/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/57f5dcaba4060c565fd4c6cc84bc6dfe89f6f87b1e1ce498615aa5a32485c8a2/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/b188ecf60b18856503026e7e0ece4cf646679c64ecb1f60e6572f531f55abc78/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/1569767e47bfb3c7d277a26fc4889836e5ad7f5a7c70125f2a8b98fefc79e683/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/2285be4ef43e8543794ff9359a3031e20b4b95c43020a8704f853519564a5971/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/f656f9d5d3309ade2bd588f81afb2ba5c3c3560a83fd838a98f72c741abe37d9/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/b923cb3b010c7eca28405896b567dab793d0ef00bbbab618a39f8155bd7df6b8/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/0dc24843d1b5aea3b45dbb0b807fd87f710499250a3f8e1d6fb10cde2a19a067/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/8a2e3e63c1f5233ec6a1c9be28922c20e79e8643b42256b493a9143eee3216bd/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/91937094c55853c3a81af6ff3dbd2af1431a39dea4103a2f1b29242a5c2420d0/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/a57b64263dbf01ded8369ff11db4d8e5abdbe0b8005407f0aaabcb06d874930a/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/f3f341abef8db58b864330bec80b1eb582f070b74765c15765d7b33251fb61c2/shm
+tmpfs           7.9G     0  7.9G   0% /run/user/1000
+
+==============================================================================
+asm_worker2 | CHANGED | rc=0 >>
+====================================worker_stat=================================
+solktxesvzwvsas-y-at-secas-01-asmwr-002
+ACP 17.15.32 CentOS 7.9
+build_13 2024-12-30 SSPK
+
+No Allot products found.
+---------------------------------------
+top - 14:59:22 up 301 days, 22:38,  1 user,  load average: 2.28, 2.91, 2.91
+Tasks: 627 total,   1 running, 626 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  7.6 us,  2.7 sy,  0.0 ni, 88.9 id,  0.0 wa,  0.0 hi,  0.8 si,  0.0 st
+KiB Mem : 82319680 total, 11936388 free, 31154916 used, 39228376 buff/cache
+KiB Swap:        0 total,        0 free,        0 used. 50664548 avail Mem 
+
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+27382 centos    20   0  228.0g   2.3g  20068 S  70.6  3.0 121938:23 java
+23389 1337      20   0 2275836  98216   8224 S  23.5  0.1  12233:39 envoy
+17363 500       20   0   10.9g   5.6g  14960 S  11.8  7.1  25:34.89 lcc
+27758 admin     20   0  164600   2512   1568 R  11.8  0.0   0:00.03 top
+30357 centos    20   0    9.8g   6.6g  16272 S  11.8  8.3   8758:56 mongod
+31017 centos    20   0 4385408 119976  10360 S  11.8  0.1 174:06.48 python3
+ 1692 centos    20   0 2596360  88552   8160 S   5.9  0.1 133:01.78 python3
+ 4009 centos    20   0 2967448  93036   9756 S   5.9  0.1  70:22.12 python3
+
+Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs         40G     0   40G   0% /dev
+tmpfs            40G     0   40G   0% /dev/shm
+tmpfs            40G   18M   40G   1% /run
+tmpfs            40G     0   40G   0% /sys/fs/cgroup
+/dev/vda10      298G  106G  192G  36% /
+/dev/vda1       1.1G  573M  491M  54% /boot
+/dev/vda4       4.4G   33M  4.4G   1% /home
+/dev/vda5       7.5G   33M  7.5G   1% /tmp
+/dev/vda3       200M  4.8M  196M   3% /boot/efi
+/dev/vdb1       1.5T  112G  1.3T   8% /opt/allot/kubernetes/pv
+/dev/vda6       3.8G  577M  3.2G  16% /var
+/dev/vda8       3.8G  1.8G  2.1G  46% /var/log
+/dev/vda7       951M   33M  919M   4% /var/tmp
+/dev/vda9       950M  449M  502M  48% /var/log/audit
+tmpfs           7.9G     0  7.9G   0% /run/user/1000
+
+==============================================================================
+META: ran handlers
+META: ran handlers

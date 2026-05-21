@@ -1,0 +1,167 @@
+ansible 2.9.27
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = [u'/root/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python2.7/site-packages/ansible
+  executable location = /bin/ansible
+  python version = 2.7.5 (default, Nov 14 2023, 16:14:06) [GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]
+Using /etc/ansible/ansible.cfg as config file
+[WARNING]: Invalid characters were found in group names but not replaced, use
+-vvvv to see details
+Skipping callback 'actionable', as we already have a stdout callback.
+Skipping callback 'counter_enabled', as we already have a stdout callback.
+Skipping callback 'debug', as we already have a stdout callback.
+Skipping callback 'dense', as we already have a stdout callback.
+Skipping callback 'dense', as we already have a stdout callback.
+Skipping callback 'full_skip', as we already have a stdout callback.
+Skipping callback 'json', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'null', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'selective', as we already have a stdout callback.
+Skipping callback 'skippy', as we already have a stdout callback.
+Skipping callback 'stderr', as we already have a stdout callback.
+Skipping callback 'unixy', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+META: ran handlers
+asm2 | CHANGED | rc=0 >>
+====================================master_stat=================================
+solktxesvzwvsas-y-at-secas-01-asmbs-002
+---------------------------------------
+top - 14:59:22 up 301 days, 22:34,  1 user,  load average: 0.06, 0.11, 0.15
+Tasks: 247 total,   1 running, 246 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  2.3 us,  2.3 sy,  0.0 ni, 95.3 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+KiB Mem : 32779388 total,   336480 free,  3019664 used, 29423244 buff/cache
+KiB Swap:        0 total,        0 free,        0 used. 29532204 avail Mem 
+
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+ 1794 root      20   0  712436   7468   4088 S  12.5  0.0 220:24.65 containerd+
+14799 root      20   0 1562536  91132  38612 S  12.5  0.3   6519:01 kubelet
+ 1795 root      20   0  712692   7568   4184 S   6.2  0.0 216:27.03 containerd+
+ 3966 root      20   0  712436   7444   4136 S   6.2  0.0 533:50.24 containerd+
+    1 root      20   0  191896   4860   2680 S   0.0  0.0 501:31.27 systemd
+    2 root      20   0       0      0      0 S   0.0  0.0   0:07.22 kthreadd
+    4 root       0 -20       0      0      0 S   0.0  0.0   0:00.00 kworker/0:+
+    6 root      20   0       0      0      0 S   0.0  0.0   4:07.36 ksoftirqd/0
+
+Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs         16G     0   16G   0% /dev
+tmpfs            16G     0   16G   0% /dev/shm
+tmpfs            16G  3.3M   16G   1% /run
+tmpfs            16G     0   16G   0% /sys/fs/cgroup
+/dev/vda10      178G   57G  122G  32% /
+/dev/vda6       3.8G  928M  2.9G  25% /var
+/dev/vda1       1.1G  573M  491M  54% /boot
+/dev/vda4       4.4G   33M  4.4G   1% /home
+/dev/vda3       200M  4.8M  196M   3% /boot/efi
+/dev/vda8       3.8G  920M  2.9G  25% /var/log
+/dev/vda5       7.5G   33M  7.5G   1% /tmp
+/dev/vda9       950M  457M  494M  49% /var/log/audit
+/dev/vda7       951M   33M  919M   4% /var/tmp
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/28ea66641bffd7c10d35f860050ccdf21ce2cbaeed2c6aaf7b677ee0c4cf3259/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/e0de59db2b3c2e08a75a195fde0b886433bdf16f621bb89df695139eec4e05d1/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/bfa2946476da145624e852c0f5db872a9bad1c621dd278055f8c6fd3471ecbe1/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/cfbda6469051a939bb0a71c1f6de98fe8ce0b0c92ef449120527a9e8f5420b3d/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/26af1394ca7bd454a9b34de67ba6ae94a75caca6f13ac3a90321ff80d57fe8df/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/49fcf38aa51aa77ce96fdec5bc5866d85c2ba8b1111a8a5c242612c1f8a26be6/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/4e6f3ff847e90029db446728768d3f6ddb925bcdf4fade1f7173c62c415b51b4/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/61f28251e224665cc5388dc64e9582e2063f622fc1f24d9c8f8b24212b33136f/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/c1976fa76bd7496ca2b864328243a864a922c8f1b977f792dea3d3fa13ebbf98/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/7772f4d6233df28ef5595af6375f10e08ae1d933de093e571b1981ceaf60e1f2/shm
+tmpfs           3.2G     0  3.2G   0% /run/user/1000
+
+==============================================================================
+asm1 | CHANGED | rc=0 >>
+====================================master_stat=================================
+solktxesvzwvsas-y-at-secas-01-asmbs-001
+---------------------------------------
+top - 14:59:22 up 301 days, 22:36,  2 users,  load average: 0.67, 0.45, 0.32
+Tasks: 254 total,   1 running, 253 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  1.6 us,  0.8 sy,  0.0 ni, 97.6 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+KiB Mem : 32779388 total,   299620 free,  2598308 used, 29881460 buff/cache
+KiB Swap:        0 total,        0 free,        0 used. 29953528 avail Mem 
+
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+ 2498 root      20   0   10.8g 187868  66420 S  12.5  0.6   3979:20 etcd
+ 2508 root      20   0 2089164   1.1g  43264 S   6.2  3.6   6366:43 kube-apise+
+    1 root      20   0  191756   4776   2680 S   0.0  0.0 306:54.37 systemd
+    2 root      20   0       0      0      0 S   0.0  0.0   0:09.68 kthreadd
+    4 root       0 -20       0      0      0 S   0.0  0.0   0:00.00 kworker/0:+
+    6 root      20   0       0      0      0 S   0.0  0.0   6:14.50 ksoftirqd/0
+    7 root      rt   0       0      0      0 S   0.0  0.0   0:52.01 migration/0
+    8 root      20   0       0      0      0 S   0.0  0.0   0:00.00 rcu_bh
+
+Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs         16G     0   16G   0% /dev
+tmpfs            16G     0   16G   0% /dev/shm
+tmpfs            16G  3.3M   16G   1% /run
+tmpfs            16G     0   16G   0% /sys/fs/cgroup
+/dev/vda10      178G  117G   61G  66% /
+/dev/vda1       1.1G  573M  491M  54% /boot
+/dev/vda4       4.4G   33M  4.4G   1% /home
+/dev/vda3       200M  4.8M  196M   3% /boot/efi
+/dev/vda6       3.8G  950M  2.8G  25% /var
+/dev/vda7       951M   33M  919M   4% /var/tmp
+/dev/vda5       7.5G   54M  7.4G   1% /tmp
+/dev/vda8       3.8G  1.2G  2.6G  31% /var/log
+/dev/vda9       950M  442M  508M  47% /var/log/audit
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/b6f1894b7606a2096864beb11d44ed9841a299266212d38777b085b737a26dc2/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/4eea60f6a6d2629eea7bfe5d8cce815fd8992ea8c5a7d620ae64d3459b60bd30/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/3ff309a443ac2e7c9745d620f53adaac88e7d7b530fa851dfe6bb203084777df/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/e0a5e05a56928751cae317d4d3eb73c35ed02e2d2fa37da072e59f390137155a/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/4ea67f5d72c325bdca9b29f8e27f6dcaa708b46a6b09eb5a8eb815bc1a149849/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/dbb96830e7f260e1d8a06ab055b8d474d6e955cb737e813a860c12d1b13f84e0/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/f5a8348f279c4d6919e06c652ddf3fb621629a6f78177e0f5a487a3f02a4dd30/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/0e2282bb60413fbefd370581a7c0ec86f6dd32452cc98a07e0a321dd93057b23/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/e7379d3d1e2625c181902cdf3f9a99e45f8f5957c4a653a7bb14606e8840b05e/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/0bc11580c85b663982aded3bd4f7daf4936db5b50ab463d8a1b0bd80843ab60c/shm
+tmpfs           3.2G     0  3.2G   0% /run/user/1000
+
+==============================================================================
+asm3 | CHANGED | rc=0 >>
+====================================master_stat=================================
+solktxesvzwvsas-y-at-secas-01-asmbs-003
+---------------------------------------
+top - 14:59:22 up 301 days, 22:37,  1 user,  load average: 0.20, 0.32, 0.31
+Tasks: 244 total,   1 running, 243 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  1.6 us,  1.6 sy,  0.0 ni, 96.9 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+KiB Mem : 32779388 total,   451364 free,  2193476 used, 30134548 buff/cache
+KiB Swap:        0 total,        0 free,        0 used. 30358636 avail Mem 
+
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+12753 root      20   0 1562280  88224  37496 S  12.5  0.3   7727:05 kubelet
+ 3126 root      20   0 2650716  45252  23668 S   6.2  0.1   3362:48 calico-node
+    1 root      20   0  191908   4888   2680 S   0.0  0.0 342:37.69 systemd
+    2 root      20   0       0      0      0 S   0.0  0.0   0:07.45 kthreadd
+    4 root       0 -20       0      0      0 S   0.0  0.0   0:00.00 kworker/0:+
+    6 root      20   0       0      0      0 S   0.0  0.0   4:36.88 ksoftirqd/0
+    7 root      rt   0       0      0      0 S   0.0  0.0   0:55.89 migration/0
+    8 root      20   0       0      0      0 S   0.0  0.0   0:00.00 rcu_bh
+
+Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs         16G     0   16G   0% /dev
+tmpfs            16G     0   16G   0% /dev/shm
+tmpfs            16G  3.1M   16G   1% /run
+tmpfs            16G     0   16G   0% /sys/fs/cgroup
+/dev/vda10      178G   56G  122G  32% /
+/dev/vda4       4.4G   33M  4.4G   1% /home
+/dev/vda5       7.5G   33M  7.5G   1% /tmp
+/dev/vda1       1.1G  573M  491M  54% /boot
+/dev/vda6       3.8G  927M  2.9G  25% /var
+/dev/vda3       200M  4.8M  196M   3% /boot/efi
+/dev/vda8       3.8G  918M  2.9G  25% /var/log
+/dev/vda7       951M   33M  919M   4% /var/tmp
+/dev/vda9       950M  425M  526M  45% /var/log/audit
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/4febb650debf5e3b0cc1945e64e7709e76eea5fc0c2b57622c9a9112a7f84ec8/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/41723989f6049e4f4ae0abd6de0437866bc9e22a4976bc4a08a923ebe37d1f01/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/21bb17a4210b52e1bc2fc2c1f22c8297e1dc2076d622a4229e0ae3625bdcda69/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/46262212de887285da15b4a7e42ecc08d07526d305a010ce53c4ee9150e509ef/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/a4deb7224b9efed0908eb50647623b43ae3376136548d70e7ae70443485b6010/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/1b7950f2e404298f589f002fa763791b92b3ce538165d2fa6fd7f49961e99b76/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/77312fd9790252a2870c7a5b8eafbac269e3acfb16fbecb8c1bb8f0c7f0a0b14/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/9ae73ac00a1482ea8381574fa10cadb4bea415da4fe11fcaa668d48cd35273ca/shm
+shm              64M     0   64M   0% /run/containerd/io.containerd.grpc.v1.cri/sandboxes/a8e4010a6d10930d112eef01025fbab99f7a21d9aa16da3b3385d019ab14dae5/shm
+tmpfs           3.2G     0  3.2G   0% /run/user/1000
+
+==============================================================================
+META: ran handlers
+META: ran handlers

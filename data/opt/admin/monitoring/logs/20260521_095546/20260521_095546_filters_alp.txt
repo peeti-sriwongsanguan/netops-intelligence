@@ -1,0 +1,746 @@
+ansible 2.9.27
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = [u'/root/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python2.7/site-packages/ansible
+  executable location = /bin/ansible
+  python version = 2.7.5 (default, Nov 14 2023, 16:14:06) [GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]
+Using /etc/ansible/ansible.cfg as config file
+Skipping callback 'actionable', as we already have a stdout callback.
+Skipping callback 'counter_enabled', as we already have a stdout callback.
+Skipping callback 'debug', as we already have a stdout callback.
+Skipping callback 'dense', as we already have a stdout callback.
+Skipping callback 'dense', as we already have a stdout callback.
+Skipping callback 'full_skip', as we already have a stdout callback.
+Skipping callback 'json', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'null', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'selective', as we already have a stdout callback.
+Skipping callback 'skippy', as we already have a stdout callback.
+Skipping callback 'stderr', as we already have a stdout callback.
+Skipping callback 'unixy', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+META: ran handlers
+filter2_alpharetta_icsr | CHANGED | rc=0 >>
+====================================filter_stats=================================
+alprgagqvzwvsas-y-at-secas-01-ntfil-006
+
+
+ 10:50:04 up 377 days,  8:33,  1 user,  load average: 0.84, 0.77, 0.74
+
+
+Thu May 21 10:50:04 EDT 2026
+
+
+top - 10:50:04 up 377 days,  8:33,  1 user,  load average: 0.84, 0.77, 0.74
+Tasks: 268 total,   1 running, 266 sleeping,   0 stopped,   1 zombie
+%Cpu(s):  2.8 us,  3.7 sy,  0.0 ni, 93.6 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+KiB Mem : 32778476 total,   168248 free, 23637100 used,  8973128 buff/cache
+KiB Swap:  3906556 total,  3722748 free,   183808 used.  7712992 avail Mem 
+
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+17548 acp       20   0   24.2g  10.7g 327144 S  50.0 34.3  28187:07 WF:IpcInit
+15776 acp       20   0   78.0g   7.8g 931116 S  37.5 25.0  77626:09 CCOTTA.rel+
+ 5202 root      20   0  142680   9356   2252 S  12.5  0.0   0:00.17 wsp-call-s+
+ 5336 admin     20   0  162104   2260   1536 R   6.2  0.0   0:00.01 top
+    1 root      20   0  191512   3876   2188 S   0.0  0.0  85:34.98 systemd
+    2 root      20   0       0      0      0 S   0.0  0.0   0:11.16 kthreadd
+    4 root       0 -20       0      0      0 S   0.0  0.0   0:00.00 kworker/0:+
+    6 root      20   0       0      0      0 S   0.0  0.0  35:47.23 ksoftirqd/0
+
+
+top - 10:50:04 up 377 days,  8:33,  1 user,  load average: 0.84, 0.77, 0.74
+Tasks: 269 total,   1 running, 267 sleeping,   0 stopped,   1 zombie
+%Cpu(s):  0.9 us,  1.9 sy,  0.0 ni, 97.2 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+KiB Mem : 32778476 total,   168412 free, 23636936 used,  8973128 buff/cache
+KiB Swap:  3906556 total,  3722748 free,   183808 used.  7713156 avail Mem 
+
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+17548 acp       20   0   24.2g  10.7g 327144 S  50.0 34.3  28187:07 WF:IpcInit
+15776 acp       20   0   78.0g   7.8g 931116 S  31.2 25.0  77626:09 CCOTTA.rel+
+    1 root      20   0  191512   3876   2188 S   0.0  0.0  85:34.98 systemd
+    2 root      20   0       0      0      0 S   0.0  0.0   0:11.16 kthreadd
+    4 root       0 -20       0      0      0 S   0.0  0.0   0:00.00 kworker/0:+
+    6 root      20   0       0      0      0 S   0.0  0.0  35:47.23 ksoftirqd/0
+    7 root      rt   0       0      0      0 S   0.0  0.0   2:44.57 migration/0
+    8 root      20   0       0      0      0 S   0.0  0.0   0:00.00 rcu_bh
+
+
+Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs         16G     0   16G   0% /dev
+tmpfs            16G  2.0M   16G   1% /dev/shm
+tmpfs            16G  808K   16G   1% /run
+tmpfs            16G     0   16G   0% /sys/fs/cgroup
+/dev/vda11      274G   71G  204G  26% /
+/dev/vda4       4.4G   33M  4.4G   1% /home
+/dev/vda6       3.8G  482M  3.3G  13% /var
+/dev/vda5       7.5G   33M  7.5G   1% /tmp
+/dev/vda1       1.1G  573M  491M  54% /boot
+/dev/vda3       200M  4.8M  196M   3% /boot/efi
+/dev/vda8       3.8G  1.2G  2.6G  31% /var/log
+/dev/vda9       950M  449M  502M  48% /var/log/audit
+/dev/vda7       951M   33M  919M   4% /var/tmp
+tmpfs           3.2G     0  3.2G   0% /run/user/1000
+tmpfs           3.2G     0  3.2G   0% /run/user/0
+
+
+ CCOTTA:CT52
+	DATABASESTATUS|Status of URL database|40:19829147092-CentralManager:CM166,409912587-CentralManager:CM1,100683069-CentralManager:CM3;42:24480111900-CentralManager:CM166,7309604-CentralManager:CM167,751054547-CentralManager:CM1,100684687-CentralManager:CM3;43:24484544457-CentralManager:CM166,751054615-CentralManager:CM1,7313270-CentralManager:CM167,100682627-CentralManager:CM3;44:5582793998-CentralManager:CM166;47:24581122417-CentralManager:CM166,611679382-CentralManager:CM167,751059548-CentralManager:CM1,155278122-CentralManager:CM3;
+
+
+ WebFilter:WF52
+	DATABASESTATUS|Status of URL database|40:19829147092-CentralManager:CM166,823925-CentralManager:CM167,409912587-CentralManager:CM1,100683069-CentralManager:CM3;42:24480111900-CentralManager:CM166,7309604-CentralManager:CM167,751054547-CentralManager:CM1,100684687-CentralManager:CM3;43:24484544457-CentralManager:CM166,751054615-CentralManager:CM1,7313270-CentralManager:CM167,100682627-CentralManager:CM3;44:264-lcc_backend_0_ADD3BF36EEBEA66ED6D54838DFE3E88D,276-lcc_backend_1_A8636A67DC2BC82E68138CDC1E4D00D4,5582793998-CentralManager:CM166,340-lcc_backend_1_E15729BB94E05BC46C652F7E8EB1906A,334-lcc_backend_0_200D8F4F7E7DA41CCDA697C8033300B9;50:693705716-edu;60:694607581-edu;70:144442052-edu;75:694607610-edu;80:694607582-edu;90:105087727-edu;100:694607615-edu;200:677446321-glo;201:1778568033515650-glo;
+
+[47mStatus  [40mPID    [47mExecutable               [40m#Thr  [47mRuntime      [40mPorts                  [47mPath
+OK      28066  ProcessMonitorInit.sh       1  00:00:00     10550,10553            .../ProcessMonitor/bin
+OK      28082  ProcessMonitor             62  5-08:59:14   10550,10553            .../ProcessMonitor/bin
+OK      15764  CCOTTA                      1  00:00:00     10570,10573,30570      .../CCOTTA/bin
+OK      15776  CCOTTA.release            179  53-21:46:09  10570,10573,30570      .../CCOTTA/bin
+STOP           CCOTTA_traces.sh                                                   .../CCOTTA/bin
+STOP           CCOTTAd                                                            .../CCOTTA/bin
+OK      28320  LocalReporter               1  00:00:00     443,10530,10533,20531  .../LocalReporter/bin
+OK      28333  LocalReporter.release     129  2-02:24:26   443,10530,10533,20531  .../LocalReporter/bin
+STOP           LocalReporter_traces.sh                                            .../LocalReporter/bin
+STOP           LocalReporterd                                                     .../LocalReporter/bin
+OK      29379  UpdateAgent.sh              1  00:00:00     10610                  .../UpdateAgent/bin
+OK      17526  WebFilter                   1  00:00:00     10560,10563            .../WebFilter/bin
+STOP           WebFilter.release                                                  .../WebFilter/bin
+OK      17548  WebFilter_bin             167  19-13:47:08  10560,10563            .../WebFilter/bin
+STOP           WebFilter_script                                                   .../WebFilter/bin
+STOP           WebFilterd                                                         .../WebFilter/bin
+STOP           WebFilters                                                         .../WebFilter/bin
+OK      28232  SnmpAgent                  34  01:54:18     44611                  .+
+
+=================================================================================
+filter1_alpharetta | CHANGED | rc=0 >>
+====================================filter_stats=================================
+alprgagqvzwvsas-y-at-secas-01-ntfil-001
+
+
+ 08:58:18 up 377 days,  8:40,  2 users,  load average: 2.21, 2.26, 2.36
+
+
+Thu May 21 08:58:18 MDT 2026
+
+
+top - 08:58:19 up 377 days,  8:40,  2 users,  load average: 2.21, 2.26, 2.36
+Tasks: 271 total,   3 running, 268 sleeping,   0 stopped,   0 zombie
+%Cpu(s): 12.6 us,  2.7 sy,  0.0 ni, 84.3 id,  0.0 wa,  0.0 hi,  0.4 si,  0.0 st
+KiB Mem : 32778476 total,   178160 free, 30406140 used,  2194176 buff/cache
+KiB Swap:  3906556 total,    86260 free,  3820296 used.  1156612 avail Mem 
+
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+29045 acp       20   0   81.6g   9.4g 990320 R 160.0 30.0 144361:03 CCOTTA.rel+
+22678 acp       20   0   26.5g  13.7g 994440 S  66.7 44.0   2206:53 WF:IpcInit
+ 2980 root      20   0  227712   6276   2956 R  13.3  0.0   0:00.02 pmconsole
+ 2976 admin     20   0  162104   2264   1536 R   6.7  0.0   0:00.01 top
+    1 root      20   0   52196   3024   1508 S   0.0  0.0  97:15.26 systemd
+    2 root      20   0       0      0      0 S   0.0  0.0   0:13.82 kthreadd
+    4 root       0 -20       0      0      0 S   0.0  0.0   0:00.00 kworker/0:+
+    6 root      20   0       0      0      0 S   0.0  0.0  58:47.28 ksoftirqd/0
+
+
+top - 08:58:19 up 377 days,  8:40,  2 users,  load average: 2.21, 2.26, 2.36
+Tasks: 271 total,   2 running, 269 sleeping,   0 stopped,   0 zombie
+%Cpu(s): 17.8 us,  1.4 sy,  0.0 ni, 80.8 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+KiB Mem : 32778476 total,   175792 free, 30407236 used,  2195448 buff/cache
+KiB Swap:  3906556 total,    86260 free,  3820296 used.  1155680 avail Mem 
+
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+29045 acp       20   0   81.6g   9.4g 990320 S 137.5 30.0 144361:04 CCOTTA.rel+
+ 2980 root      20   0  228256   7592   2956 R 100.0  0.0   0:00.19 pmconsole
+22678 acp       20   0   26.5g  13.7g 994440 S  68.8 44.0   2206:53 WF:IpcInit
+    1 root      20   0   52196   3024   1508 S   0.0  0.0  97:15.26 systemd
+    2 root      20   0       0      0      0 S   0.0  0.0   0:13.82 kthreadd
+    4 root       0 -20       0      0      0 S   0.0  0.0   0:00.00 kworker/0:+
+    6 root      20   0       0      0      0 S   0.0  0.0  58:47.28 ksoftirqd/0
+    7 root      rt   0       0      0      0 S   0.0  0.0   4:18.59 migration/0
+
+
+Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs         16G     0   16G   0% /dev
+tmpfs            16G   25M   16G   1% /dev/shm
+tmpfs            16G  788K   16G   1% /run
+tmpfs            16G     0   16G   0% /sys/fs/cgroup
+/dev/vda11      274G  156G  118G  57% /
+/dev/vda4       4.4G   33M  4.4G   1% /home
+/dev/vda5       7.5G   33M  7.5G   1% /tmp
+/dev/vda6       3.8G  482M  3.3G  13% /var
+/dev/vda8       3.8G  890M  2.9G  24% /var/log
+/dev/vda9       950M  389M  562M  41% /var/log/audit
+/dev/vda1       1.1G  573M  491M  54% /boot
+/dev/vda3       200M  4.8M  196M   3% /boot/efi
+/dev/vda7       951M   33M  919M   4% /var/tmp
+tmpfs           3.2G     0  3.2G   0% /run/user/1000
+
+
+ CCOTTA:CT47
+	DATABASESTATUS|Status of URL database|40:19829147092-CentralManager:CM166,409912587-CentralManager:CM1,100683069-CentralManager:CM3;42:24480111900-CentralManager:CM166,7309604-CentralManager:CM167,751054547-CentralManager:CM1,100684687-CentralManager:CM3;43:24484544457-CentralManager:CM166,751054615-CentralManager:CM1,7313270-CentralManager:CM167,100682627-CentralManager:CM3;44:5582793998-CentralManager:CM166;47:24581122417-CentralManager:CM166,611679382-CentralManager:CM167,751061071-CentralManager:CM1,155278122-CentralManager:CM3;
+
+
+ WebFilter:WF47
+	DATABASESTATUS|Status of URL database|40:19829147092-CentralManager:CM166,409912587-CentralManager:CM1,100683069-CentralManager:CM3;42:24480111900-CentralManager:CM166,7309604-CentralManager:CM167,751054547-CentralManager:CM1,100684687-CentralManager:CM3;43:24484544457-CentralManager:CM166,751054615-CentralManager:CM1,7313270-CentralManager:CM167,100682627-CentralManager:CM3;44:276-lcc_backend_1_A8636A67DC2BC82E68138CDC1E4D00D4,264-lcc_backend_0_ADD3BF36EEBEA66ED6D54838DFE3E88D,5582793998-CentralManager:CM166,340-lcc_backend_1_E15729BB94E05BC46C652F7E8EB1906A,334-lcc_backend_0_200D8F4F7E7DA41CCDA697C8033300B9;50:690511750-edu;60:694607581-edu;70:144442052-edu;75:694607610-edu;80:694607582-edu;90:105087727-edu;100:694607615-edu;200:677446321-glo;201:1778568033515650-glo;
+
+[47mStatus  [40mPID    [47mExecutable               [40m#Thr  [47mRuntime       [40mPorts                  [47mPath
+OK      29828  ProcessMonitorInit.sh       1  00:00:00      10550,10553            .../ProcessMonitor/bin
+OK      29844  ProcessMonitor             62  5-15:19:02    10550,10553            .../ProcessMonitor/bin
+OK      29033  CCOTTA                      1  00:00:00      10570,10573,30570      .../CCOTTA/bin
+OK      29045  CCOTTA.release            179  100-06:01:06  10570,10573,30570      .../CCOTTA/bin
+STOP           CCOTTA_traces.sh                                                    .../CCOTTA/bin
+STOP           CCOTTAd                                                             .../CCOTTA/bin
+OK      30093  LocalReporter               1  00:00:00      443,10530,10533,20531  .../LocalReporter/bin
+OK      30106  LocalReporter.release     129  30-11:16:05   443,10530,10533,20531  .../LocalReporter/bin
+STOP           LocalReporter_traces.sh                                             .../LocalReporter/bin
+STOP           LocalReporterd                                                      .../LocalReporter/bin
+OK      31293  UpdateAgent.sh              1  00:00:00      10610                  .../UpdateAgent/bin
+OK      22622  WebFilter                   1  00:00:00      10560,10563            .../WebFilter/bin
+STOP           WebFilter.release                                                   .../WebFilter/bin
+OK      22678  WebFilter_bin             166  1-12:46:55    10560,10563            .../WebFilter/bin
+STOP           WebFilter_script                                                    .../WebFilter/bin
+STOP           WebFilterd                                                          .../WebFilter/bin
+STOP           WebFilters                                                          .../WebFilter/bin
+OK      30011  SnmpAgent                  34  02:50:44      38385                  .+
+
+=================================================================================
+filter4_alpharetta | CHANGED | rc=0 >>
+====================================filter_stats=================================
+alprgagqvzwvsas-y-at-secas-01-ntfil-004
+
+
+ 10:49:12 up 377 days,  7:06,  2 users,  load average: 5.86, 3.49, 2.68
+
+
+Thu May 21 10:49:12 EDT 2026
+
+
+top - 10:49:12 up 377 days,  7:06,  2 users,  load average: 5.86, 3.49, 2.68
+Tasks: 266 total,   1 running, 265 sleeping,   0 stopped,   0 zombie
+%Cpu(s): 10.8 us,  1.8 sy,  0.0 ni, 87.4 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+KiB Mem : 32778476 total,   183892 free, 29592848 used,  3001736 buff/cache
+KiB Swap:  3906556 total,       12 free,  3906544 used.  1967632 avail Mem 
+
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+ 5664 acp       20   0   79.1g   9.0g 995848 S 137.5 28.9   8474:45 CCOTTA.rel+
+19216 acp       20   0   27.8g  13.2g 998108 S  62.5 42.3   6160:30 WF:IpcInit
+26896 acp       20   0   11.3g   4.4g   5332 S   6.2 13.9  51098:10 LocalRepor+
+31172 admin     20   0  162104   2284   1536 R   6.2  0.0   0:00.01 top
+    1 root      20   0  191656   3060   1520 S   0.0  0.0  94:04.34 systemd
+    2 root      20   0       0      0      0 S   0.0  0.0   0:18.02 kthreadd
+    4 root       0 -20       0      0      0 S   0.0  0.0   0:00.00 kworker/0:+
+    6 root      20   0       0      0      0 S   0.0  0.0  51:30.16 ksoftirqd/0
+
+
+top - 10:49:12 up 377 days,  7:06,  2 users,  load average: 5.86, 3.49, 2.68
+Tasks: 266 total,   2 running, 264 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  9.1 us,  2.3 sy,  0.0 ni, 88.6 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+KiB Mem : 32778476 total,   183360 free, 29593380 used,  3001736 buff/cache
+KiB Swap:  3906556 total,       12 free,  3906544 used.  1967100 avail Mem 
+
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+ 5664 acp       20   0   79.1g   9.0g 995848 R 131.2 28.9   8474:45 CCOTTA.rel+
+19216 acp       20   0   27.8g  13.2g 998108 S  68.8 42.3   6160:30 WF:IpcInit
+31174 admin     20   0  162104   2276   1536 R   6.2  0.0   0:00.01 top
+    1 root      20   0  191656   3060   1520 S   0.0  0.0  94:04.34 systemd
+    2 root      20   0       0      0      0 S   0.0  0.0   0:18.02 kthreadd
+    4 root       0 -20       0      0      0 S   0.0  0.0   0:00.00 kworker/0:+
+    6 root      20   0       0      0      0 S   0.0  0.0  51:30.16 ksoftirqd/0
+    7 root      rt   0       0      0      0 S   0.0  0.0   4:20.03 migration/0
+
+
+Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs         16G     0   16G   0% /dev
+tmpfs            16G  1.2M   16G   1% /dev/shm
+tmpfs            16G  784K   16G   1% /run
+tmpfs            16G     0   16G   0% /sys/fs/cgroup
+/dev/vda11      274G  148G  127G  54% /
+/dev/vda4       4.4G   33M  4.4G   1% /home
+/dev/vda6       3.8G  482M  3.3G  13% /var
+/dev/vda1       1.1G  573M  491M  54% /boot
+/dev/vda3       200M  4.8M  196M   3% /boot/efi
+/dev/vda5       7.5G   33M  7.5G   1% /tmp
+/dev/vda7       951M   33M  919M   4% /var/tmp
+/dev/vda8       3.8G  1.1G  2.8G  28% /var/log
+/dev/vda9       950M  417M  534M  44% /var/log/audit
+tmpfs           3.2G     0  3.2G   0% /run/user/1000
+
+
+ CCOTTA:CT50
+	DATABASESTATUS|Status of URL database|40:19829147092-CentralManager:CM166,409912587-CentralManager:CM1,100683069-CentralManager:CM3;42:24480111900-CentralManager:CM166,7309604-CentralManager:CM167,751054547-CentralManager:CM1,100684687-CentralManager:CM3;43:24484544457-CentralManager:CM166,751054615-CentralManager:CM1,7313270-CentralManager:CM167,100682627-CentralManager:CM3;44:5582793998-CentralManager:CM166;47:24581122417-CentralManager:CM166,611679382-CentralManager:CM167,751058132-CentralManager:CM1,155278122-CentralManager:CM3;
+
+
+ WebFilter:WF50
+	DATABASESTATUS|Status of URL database|40:19829147092-CentralManager:CM166,409912587-CentralManager:CM1,100683069-CentralManager:CM3;42:24480111900-CentralManager:CM166,7309604-CentralManager:CM167,751054547-CentralManager:CM1,100684687-CentralManager:CM3;43:24484544457-CentralManager:CM166,751054615-CentralManager:CM1,7313270-CentralManager:CM167,100682627-CentralManager:CM3;44:276-lcc_backend_1_A8636A67DC2BC82E68138CDC1E4D00D4,264-lcc_backend_0_ADD3BF36EEBEA66ED6D54838DFE3E88D,5582793998-CentralManager:CM166,334-lcc_backend_0_200D8F4F7E7DA41CCDA697C8033300B9,340-lcc_backend_1_E15729BB94E05BC46C652F7E8EB1906A;50:693705716-edu;60:694607581-edu;70:144442052-edu;75:694607610-edu;80:694607582-edu;90:105087727-edu;100:694607615-edu;200:677446321-glo;201:1778568033515650-glo;
+
+[47mStatus  [40mPID    [47mExecutable               [40m#Thr  [47mRuntime      [40mPorts                  [47mPath
+OK      26584  ProcessMonitorInit.sh       1  00:00:00     10550,10553            .../ProcessMonitor/bin
+OK      26600  ProcessMonitor             62  6-01:24:22   10550,10553            .../ProcessMonitor/bin
+OK      5652   CCOTTA                      1  00:00:00     10570,10573,30570      .../CCOTTA/bin
+OK      5664   CCOTTA.release            179  5-21:14:48   10570,10573,30570      .../CCOTTA/bin
+STOP           CCOTTA_traces.sh                                                   .../CCOTTA/bin
+STOP           CCOTTAd                                                            .../CCOTTA/bin
+OK      26883  LocalReporter               1  00:00:00     443,10530,10533,20531  .../LocalReporter/bin
+OK      26896  LocalReporter.release     129  35-11:38:11  443,10530,10533,20531  .../LocalReporter/bin
+STOP           LocalReporter_traces.sh                                            .../LocalReporter/bin
+STOP           LocalReporterd                                                     .../LocalReporter/bin
+OK      28136  UpdateAgent.sh              1  00:00:00     10610                  .../UpdateAgent/bin
+OK      19195  WebFilter                   1  00:00:00     10560,10563            .../WebFilter/bin
+STOP           WebFilter.release                                                  .../WebFilter/bin
+OK      19216  WebFilter_bin             167  4-06:40:32   10560,10563            .../WebFilter/bin
+STOP           WebFilter_script                                                   .../WebFilter/bin
+STOP           WebFilterd                                                         .../WebFilter/bin
+STOP           WebFilters                                                         .../WebFilter/bin
+OK      26791  SnmpAgent                  34  03:01:02     34793                  .+
+
+=================================================================================
+filter3_alpharetta | CHANGED | rc=0 >>
+====================================filter_stats=================================
+alprgagqvzwvsas-y-at-secas-01-ntfil-003
+
+
+ 10:49:13 up 377 days,  7:07,  2 users,  load average: 2.23, 2.52, 2.77
+
+
+Thu May 21 10:49:13 EDT 2026
+
+
+top - 10:49:13 up 377 days,  7:07,  2 users,  load average: 2.23, 2.52, 2.77
+Tasks: 271 total,   2 running, 269 sleeping,   0 stopped,   0 zombie
+%Cpu(s): 19.1 us,  1.8 sy,  0.0 ni, 79.1 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+KiB Mem : 32778476 total,   170340 free, 30868708 used,  1739428 buff/cache
+KiB Swap:  3906556 total,      132 free,  3906424 used.   699996 avail Mem 
+
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+ 1323 acp       20   0   82.5g  10.3g 983308 S 162.5 32.9 128186:03 CCOTTA.rel+
+31482 root      20   0  229800   9176   2956 R 100.0  0.0   0:00.46 pmconsole
+ 1038 acp       20   0   26.1g  13.3g 985988 S  56.2 42.5   1318:38 WF:IpcInit
+31511 admin     20   0  162104   2292   1536 R   6.2  0.0   0:00.01 top
+    1 root      20   0  191476   2988   1472 S   0.0  0.0  95:18.99 systemd
+    2 root      20   0       0      0      0 S   0.0  0.0   0:18.96 kthreadd
+    4 root       0 -20       0      0      0 S   0.0  0.0   0:00.00 kworker/0:+
+    6 root      20   0       0      0      0 S   0.0  0.0  50:26.52 ksoftirqd/0
+
+
+top - 10:49:13 up 377 days,  7:07,  2 users,  load average: 2.23, 2.52, 2.77
+Tasks: 267 total,   1 running, 266 sleeping,   0 stopped,   0 zombie
+%Cpu(s): 12.6 us,  2.7 sy,  0.0 ni, 84.7 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+KiB Mem : 32778476 total,   176632 free, 30862128 used,  1739716 buff/cache
+KiB Swap:  3906556 total,      136 free,  3906420 used.   706484 avail Mem 
+
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+ 1323 acp       20   0   82.5g  10.3g 983308 S 131.2 32.9 128186:03 CCOTTA.rel+
+ 1038 acp       20   0   26.1g  13.3g 985988 S  62.5 42.5   1318:38 WF:IpcInit
+    1 root      20   0  191476   2988   1472 S   0.0  0.0  95:18.99 systemd
+    2 root      20   0       0      0      0 S   0.0  0.0   0:18.96 kthreadd
+    4 root       0 -20       0      0      0 S   0.0  0.0   0:00.00 kworker/0:+
+    6 root      20   0       0      0      0 S   0.0  0.0  50:26.52 ksoftirqd/0
+    7 root      rt   0       0      0      0 S   0.0  0.0   4:00.81 migration/0
+    8 root      20   0       0      0      0 S   0.0  0.0   0:00.00 rcu_bh
+
+
+Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs         16G     0   16G   0% /dev
+tmpfs            16G  548K   16G   1% /dev/shm
+tmpfs            16G  784K   16G   1% /run
+tmpfs            16G     0   16G   0% /sys/fs/cgroup
+/dev/vda11      274G  145G  130G  53% /
+/dev/vda4       4.4G   33M  4.4G   1% /home
+/dev/vda5       7.5G   33M  7.5G   1% /tmp
+/dev/vda1       1.1G  573M  491M  54% /boot
+/dev/vda3       200M  4.8M  196M   3% /boot/efi
+/dev/vda6       3.8G  482M  3.3G  13% /var
+/dev/vda8       3.8G  1.1G  2.7G  28% /var/log
+/dev/vda9       950M  449M  502M  48% /var/log/audit
+/dev/vda7       951M   33M  919M   4% /var/tmp
+tmpfs           3.2G     0  3.2G   0% /run/user/1000
+
+
+ CCOTTA:CT49
+	DATABASESTATUS|Status of URL database|40:19829147092-CentralManager:CM166,409912587-CentralManager:CM1,100683069-CentralManager:CM3;42:24480111900-CentralManager:CM166,7309604-CentralManager:CM167,751054547-CentralManager:CM1,100684687-CentralManager:CM3;43:24484544457-CentralManager:CM166,751054615-CentralManager:CM1,7313270-CentralManager:CM167,100682627-CentralManager:CM3;44:5582793998-CentralManager:CM166;47:24581122417-CentralManager:CM166,611679382-CentralManager:CM167,751060654-CentralManager:CM1,155278122-CentralManager:CM3;
+
+
+ WebFilter:WF49
+	DATABASESTATUS|Status of URL database|40:19829147092-CentralManager:CM166,409912587-CentralManager:CM1,100683069-CentralManager:CM3;42:24480111900-CentralManager:CM166,7309604-CentralManager:CM167,751054547-CentralManager:CM1,100684687-CentralManager:CM3;43:24484544457-CentralManager:CM166,751054615-CentralManager:CM1,7313270-CentralManager:CM167,100682627-CentralManager:CM3;44:264-lcc_backend_0_ADD3BF36EEBEA66ED6D54838DFE3E88D,276-lcc_backend_1_A8636A67DC2BC82E68138CDC1E4D00D4,5582793998-CentralManager:CM166,334-lcc_backend_0_200D8F4F7E7DA41CCDA697C8033300B9,340-lcc_backend_1_E15729BB94E05BC46C652F7E8EB1906A;50:694420260-edu;60:694607581-edu;70:144442052-edu;75:694607610-edu;80:694607582-edu;90:105087727-edu;100:694607615-edu;200:677446321-glo;201:1778568033515650-glo;
+
+[47mStatus  [40mPID    [47mExecutable               [40m#Thr  [47mRuntime      [40mPorts                  [47mPath
+OK      9236   ProcessMonitorInit.sh       1  00:00:00     10550,10553            .../ProcessMonitor/bin
+OK      9252   ProcessMonitor             63  5-15:15:56   10550,10553            .../ProcessMonitor/bin
+OK      1310   CCOTTA                      1  00:00:00     10570,10573,30570      .../CCOTTA/bin
+OK      1323   CCOTTA.release            179  89-00:26:07  10570,10573,30570      .../CCOTTA/bin
+STOP           CCOTTA_traces.sh                                                   .../CCOTTA/bin
+STOP           CCOTTAd                                                            .../CCOTTA/bin
+OK      9531   LocalReporter               1  00:00:00     443,10530,10533,20531  .../LocalReporter/bin
+OK      9546   LocalReporter.release     129  31-23:56:05  443,10530,10533,20531  .../LocalReporter/bin
+STOP           LocalReporter_traces.sh                                            .../LocalReporter/bin
+STOP           LocalReporterd                                                     .../LocalReporter/bin
+OK      11159  UpdateAgent.sh              1  00:00:00     10610                  .../UpdateAgent/bin
+OK      1016   WebFilter                   1  00:00:00     10560,10563            .../WebFilter/bin
+STOP           WebFilter.release                                                  .../WebFilter/bin
+OK      1038   WebFilter_bin             167  21:58:40     10560,10563            .../WebFilter/bin
+STOP           WebFilter_script                                                   .../WebFilter/bin
+STOP           WebFilterd                                                         .../WebFilter/bin
+STOP           WebFilters                                                         .../WebFilter/bin
+OK      9442   SnmpAgent                  34  02:46:34     42164                  .+
+
+=================================================================================
+filter2_alpharetta | CHANGED | rc=0 >>
+====================================filter_stats=================================
+alprgagqvzwvsas-y-at-secas-01-ntfil-002
+
+
+ 10:49:50 up 377 days,  8:32,  2 users,  load average: 2.10, 2.33, 2.37
+
+
+Thu May 21 10:49:50 EDT 2026
+
+
+top - 10:49:50 up 377 days,  8:32,  2 users,  load average: 2.10, 2.33, 2.37
+Tasks: 265 total,   1 running, 264 sleeping,   0 stopped,   0 zombie
+%Cpu(s): 10.0 us,  1.8 sy,  0.0 ni, 88.2 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+KiB Mem : 32778476 total,   281548 free, 30558776 used,  1938152 buff/cache
+KiB Swap:  3906556 total,     1264 free,  3905292 used.  1002052 avail Mem 
+
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+28810 acp       20   0   80.3g   8.7g 991172 S 137.5 27.9  84249:42 CCOTTA.rel+
+14776 acp       20   0   28.2g  14.7g 996432 S  62.5 47.1   5293:40 WF:IpcInit
+14403 admin     20   0  162104   2264   1536 R   6.2  0.0   0:00.01 top
+    1 root      20   0  191512   3000   1476 S   0.0  0.0  97:09.74 systemd
+    2 root      20   0       0      0      0 S   0.0  0.0   0:17.80 kthreadd
+    4 root       0 -20       0      0      0 S   0.0  0.0   0:00.00 kworker/0:+
+    6 root      20   0       0      0      0 S   0.0  0.0  43:21.66 ksoftirqd/0
+    7 root      rt   0       0      0      0 S   0.0  0.0   3:35.01 migration/0
+
+
+top - 10:49:51 up 377 days,  8:32,  2 users,  load average: 2.10, 2.33, 2.37
+Tasks: 265 total,   1 running, 264 sleeping,   0 stopped,   0 zombie
+%Cpu(s): 10.1 us,  3.2 sy,  0.0 ni, 86.7 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+KiB Mem : 32778476 total,   280688 free, 30559636 used,  1938152 buff/cache
+KiB Swap:  3906556 total,     1264 free,  3905292 used.  1001192 avail Mem 
+
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+28810 acp       20   0   80.3g   8.7g 991172 S 137.5 27.9  84249:42 CCOTTA.rel+
+14776 acp       20   0   28.2g  14.7g 996432 S  62.5 47.1   5293:40 WF:IpcInit
+14405 admin     20   0  162104   2264   1536 R   6.2  0.0   0:00.01 top
+21410 root      20   0 3900204  34736   7300 S   6.2  0.1   9109:47 ProcessMon+
+    1 root      20   0  191512   3000   1476 S   0.0  0.0  97:09.74 systemd
+    2 root      20   0       0      0      0 S   0.0  0.0   0:17.80 kthreadd
+    4 root       0 -20       0      0      0 S   0.0  0.0   0:00.00 kworker/0:+
+    6 root      20   0       0      0      0 S   0.0  0.0  43:21.66 ksoftirqd/0
+
+
+Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs         16G     0   16G   0% /dev
+tmpfs            16G  364K   16G   1% /dev/shm
+tmpfs            16G  780K   16G   1% /run
+tmpfs            16G     0   16G   0% /sys/fs/cgroup
+/dev/vda11      274G  174G  101G  64% /
+/dev/vda4       4.4G   33M  4.4G   1% /home
+/dev/vda5       7.5G   33M  7.5G   1% /tmp
+/dev/vda6       3.8G  482M  3.3G  13% /var
+/dev/vda8       3.8G  922M  2.9G  25% /var/log
+/dev/vda1       1.1G  573M  491M  54% /boot
+/dev/vda3       200M  4.8M  196M   3% /boot/efi
+/dev/vda7       951M   33M  919M   4% /var/tmp
+/dev/vda9       950M  432M  519M  46% /var/log/audit
+tmpfs           3.2G     0  3.2G   0% /run/user/1000
+
+
+ CCOTTA:CT48
+	DATABASESTATUS|Status of URL database|40:19829147092-CentralManager:CM166,409912587-CentralManager:CM1,100683069-CentralManager:CM3;42:24480111900-CentralManager:CM166,7309604-CentralManager:CM167,751054547-CentralManager:CM1,100684687-CentralManager:CM3;43:24484544457-CentralManager:CM166,751054615-CentralManager:CM1,7313270-CentralManager:CM167,100682627-CentralManager:CM3;44:5582793998-CentralManager:CM166;47:24581122417-CentralManager:CM166,611679382-CentralManager:CM167,751059068-CentralManager:CM1,155278122-CentralManager:CM3;
+
+
+ WebFilter:WF48
+	DATABASESTATUS|Status of URL database|40:19829147092-CentralManager:CM166,409912587-CentralManager:CM1,100683069-CentralManager:CM3;42:24480111900-CentralManager:CM166,7309604-CentralManager:CM167,751054547-CentralManager:CM1,100684687-CentralManager:CM3;43:24484544457-CentralManager:CM166,751054615-CentralManager:CM1,7313270-CentralManager:CM167,100682627-CentralManager:CM3;44:264-lcc_backend_0_ADD3BF36EEBEA66ED6D54838DFE3E88D,276-lcc_backend_1_A8636A67DC2BC82E68138CDC1E4D00D4,5582793998-CentralManager:CM166,340-lcc_backend_1_E15729BB94E05BC46C652F7E8EB1906A,334-lcc_backend_0_200D8F4F7E7DA41CCDA697C8033300B9;50:693986334-edu;60:694607581-edu;70:144442052-edu;75:694607610-edu;80:694607582-edu;90:105087727-edu;100:694607615-edu;200:677446321-glo;201:1778568033515650-glo;
+
+[47mStatus  [40mPID    [47mExecutable               [40m#Thr  [47mRuntime      [40mPorts                  [47mPath
+OK      21394  ProcessMonitorInit.sh       1  00:00:00     10550,10553            .../ProcessMonitor/bin
+OK      21410  ProcessMonitor             62  6-07:49:47   10550,10553            .../ProcessMonitor/bin
+OK      28797  CCOTTA                      1  00:00:00     10570,10573,30570      .../CCOTTA/bin
+OK      28810  CCOTTA.release            179  58-12:09:46  10570,10573,30570      .../CCOTTA/bin
+STOP           CCOTTA_traces.sh                                                   .../CCOTTA/bin
+STOP           CCOTTAd                                                            .../CCOTTA/bin
+OK      21652  LocalReporter               1  00:00:00     443,10530,10533,20531  .../LocalReporter/bin
+OK      21672  LocalReporter.release     129  34-07:50:08  443,10530,10533,20531  .../LocalReporter/bin
+STOP           LocalReporter_traces.sh                                            .../LocalReporter/bin
+STOP           LocalReporterd                                                     .../LocalReporter/bin
+OK      23187  UpdateAgent.sh              1  00:00:00     10610                  .../UpdateAgent/bin
+OK      14757  WebFilter                   1  00:00:00     10560,10563            .../WebFilter/bin
+STOP           WebFilter.release                                                  .../WebFilter/bin
+OK      14776  WebFilter_bin             167  3-16:13:42   10560,10563            .../WebFilter/bin
+STOP           WebFilter_script                                                   .../WebFilter/bin
+STOP           WebFilterd                                                         .../WebFilter/bin
+STOP           WebFilters                                                         .../WebFilter/bin
+OK      21569  SnmpAgent                  34  03:01:18     43619                  .+
+
+=================================================================================
+filter4_alpharetta_icsr | CHANGED | rc=0 >>
+====================================filter_stats=================================
+alprgagqvzwvsas-y-at-secas-01-ntfil-008
+
+
+ 10:49:20 up 377 days,  7:06,  1 user,  load average: 0.75, 0.71, 0.70
+
+
+Thu May 21 10:49:20 EDT 2026
+
+
+top - 10:49:20 up 377 days,  7:06,  1 user,  load average: 0.75, 0.71, 0.70
+Tasks: 264 total,   1 running, 263 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.5 us,  1.8 sy,  0.0 ni, 97.7 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+KiB Mem : 32778476 total,   205068 free, 23886640 used,  8686768 buff/cache
+KiB Swap:  3906556 total,  3692540 free,   214016 used.  7701916 avail Mem 
+
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+ 8412 acp       20   0   24.4g  11.1g 362072 S  50.0 35.5  43568:27 WF:IpcInit
+14889 acp       20   0   77.9g   7.8g 939476 S  25.0 24.8  78348:15 CCOTTA.rel+
+    1 root      20   0   52236   3868   2188 S   0.0  0.0  82:19.67 systemd
+    2 root      20   0       0      0      0 S   0.0  0.0   0:11.94 kthreadd
+    4 root       0 -20       0      0      0 S   0.0  0.0   0:00.00 kworker/0:+
+    6 root      20   0       0      0      0 S   0.0  0.0  29:26.39 ksoftirqd/0
+    7 root      rt   0       0      0      0 S   0.0  0.0   2:31.17 migration/0
+    8 root      20   0       0      0      0 S   0.0  0.0   0:00.00 rcu_bh
+
+
+top - 10:49:20 up 377 days,  7:06,  1 user,  load average: 0.75, 0.71, 0.70
+Tasks: 264 total,   1 running, 263 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  1.4 us,  2.3 sy,  0.0 ni, 96.3 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+KiB Mem : 32778476 total,   204908 free, 23886800 used,  8686768 buff/cache
+KiB Swap:  3906556 total,  3692540 free,   214016 used.  7701756 avail Mem 
+
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+ 8412 acp       20   0   24.4g  11.1g 362072 S  56.2 35.5  43568:27 WF:IpcInit
+14889 acp       20   0   77.9g   7.8g 939476 S  31.2 24.8  78348:15 CCOTTA.rel+
+18976 admin     20   0  162104   2264   1536 R   6.2  0.0   0:00.01 top
+    1 root      20   0   52236   3868   2188 S   0.0  0.0  82:19.67 systemd
+    2 root      20   0       0      0      0 S   0.0  0.0   0:11.94 kthreadd
+    4 root       0 -20       0      0      0 S   0.0  0.0   0:00.00 kworker/0:+
+    6 root      20   0       0      0      0 S   0.0  0.0  29:26.39 ksoftirqd/0
+    7 root      rt   0       0      0      0 S   0.0  0.0   2:31.17 migration/0
+
+
+Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs         16G     0   16G   0% /dev
+tmpfs            16G  1.9M   16G   1% /dev/shm
+tmpfs            16G  760K   16G   1% /run
+tmpfs            16G     0   16G   0% /sys/fs/cgroup
+/dev/vda11      274G   57G  218G  21% /
+/dev/vda4       4.4G   33M  4.4G   1% /home
+/dev/vda6       3.8G  482M  3.3G  13% /var
+/dev/vda8       3.8G  1.1G  2.7G  29% /var/log
+/dev/vda7       951M   33M  919M   4% /var/tmp
+/dev/vda5       7.5G   33M  7.5G   1% /tmp
+/dev/vda1       1.1G  573M  491M  54% /boot
+/dev/vda3       200M  4.8M  196M   3% /boot/efi
+/dev/vda9       950M  411M  540M  44% /var/log/audit
+tmpfs           3.2G     0  3.2G   0% /run/user/1000
+
+
+ CCOTTA:CT54
+	DATABASESTATUS|Status of URL database|40:19829147092-CentralManager:CM166,409912587-CentralManager:CM1,100683069-CentralManager:CM3;42:24480111900-CentralManager:CM166,7309604-CentralManager:CM167,751065358-CentralManager:CM1,100684687-CentralManager:CM3;43:24484544457-CentralManager:CM166,751065366-CentralManager:CM1,7313270-CentralManager:CM167,100682627-CentralManager:CM3;44:5582793998-CentralManager:CM166;47:24581123785-CentralManager:CM166,611688151-CentralManager:CM167,751066293-CentralManager:CM1,155280556-CentralManager:CM3;
+
+
+ WebFilter:WF54
+	DATABASESTATUS|Status of URL database|40:19829147092-CentralManager:CM166,823925-CentralManager:CM167,409912587-CentralManager:CM1,100683069-CentralManager:CM3;42:24480111900-CentralManager:CM166,7309604-CentralManager:CM167,751065358-CentralManager:CM1,100684687-CentralManager:CM3;43:24484544457-CentralManager:CM166,751065366-CentralManager:CM1,7313270-CentralManager:CM167,100682627-CentralManager:CM3;44:264-lcc_backend_0_ADD3BF36EEBEA66ED6D54838DFE3E88D,276-lcc_backend_1_A8636A67DC2BC82E68138CDC1E4D00D4,5582793998-CentralManager:CM166,340-lcc_backend_1_E15729BB94E05BC46C652F7E8EB1906A,334-lcc_backend_0_200D8F4F7E7DA41CCDA697C8033300B9;50:694229067-edu;60:694607581-edu;70:144442052-edu;75:694607610-edu;80:694607582-edu;90:105087727-edu;100:694607615-edu;200:677446321-glo;201:1778568033515650-glo;
+
+[47mStatus  [40mPID    [47mExecutable               [40m#Thr  [47mRuntime      [40mPorts                  [47mPath
+OK      15916  ProcessMonitorInit.sh       1  00:00:00     10550,10553            .../ProcessMonitor/bin
+OK      15932  ProcessMonitor             62  5-08:41:44   10550,10553            .../ProcessMonitor/bin
+OK      14871  CCOTTA                      1  00:00:00     10570,10573,30570      .../CCOTTA/bin
+OK      14889  CCOTTA.release            179  54-09:48:15  10570,10573,30570      .../CCOTTA/bin
+STOP           CCOTTA_traces.sh                                                   .../CCOTTA/bin
+STOP           CCOTTAd                                                            .../CCOTTA/bin
+OK      16172  LocalReporter               1  00:00:00     443,10530,10533,20531  .../LocalReporter/bin
+OK      16186  LocalReporter.release     129  2-02:59:22   443,10530,10533,20531  .../LocalReporter/bin
+STOP           LocalReporter_traces.sh                                            .../LocalReporter/bin
+STOP           LocalReporterd                                                     .../LocalReporter/bin
+OK      17667  UpdateAgent.sh              1  00:00:00     10610                  .../UpdateAgent/bin
+OK      8394   WebFilter                   1  00:00:00     10560,10563            .../WebFilter/bin
+STOP           WebFilter.release                                                  .../WebFilter/bin
+OK      8412   WebFilter_bin             167  30-06:08:29  10560,10563            .../WebFilter/bin
+STOP           WebFilter_script                                                   .../WebFilter/bin
+STOP           WebFilterd                                                         .../WebFilter/bin
+STOP           WebFilters                                                         .../WebFilter/bin
+OK      16083  SnmpAgent                  34  01:55:39     39021                  .+
+
+=================================================================================
+filter1_alpharetta_icsr | CHANGED | rc=0 >>
+====================================filter_stats=================================
+alprgagqvzwvsas-y-at-secas-01-ntfil-005
+
+
+ 10:49:57 up 377 days,  8:32,  1 user,  load average: 0.86, 0.88, 0.84
+
+
+Thu May 21 10:49:57 EDT 2026
+
+
+top - 10:49:58 up 377 days,  8:32,  1 user,  load average: 0.86, 0.88, 0.84
+Tasks: 267 total,   1 running, 266 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.5 us,  1.8 sy,  0.0 ni, 97.7 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+KiB Mem : 32778476 total,   196548 free, 23733440 used,  8848488 buff/cache
+KiB Swap:  3906556 total,  3667964 free,   238592 used.  7870336 avail Mem 
+
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+28057 acp       20   0   24.5g  10.9g 374280 S  56.2 34.9  47929:45 WF:IpcInit
+  360 acp       20   0   77.7g   7.6g 818588 S  37.5 24.4  85955:05 CCOTTA.rel+
+12329 admin     20   0  162104   2264   1536 R   6.2  0.0   0:00.01 top
+31499 acp       20   0 8257072   1.4g   8696 S   6.2  4.5   3565:16 LocalRepor+
+    1 root      20   0   52456   3900   2188 S   0.0  0.0  93:44.01 systemd
+    2 root      20   0       0      0      0 S   0.0  0.0   0:13.92 kthreadd
+    4 root       0 -20       0      0      0 S   0.0  0.0   0:00.00 kworker/0:+
+    6 root      20   0       0      0      0 S   0.0  0.0  37:45.81 ksoftirqd/0
+
+
+top - 10:49:58 up 377 days,  8:32,  1 user,  load average: 0.86, 0.88, 0.84
+Tasks: 267 total,   1 running, 266 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.5 us,  1.9 sy,  0.0 ni, 97.7 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+KiB Mem : 32778476 total,   196296 free, 23733240 used,  8848940 buff/cache
+KiB Swap:  3906556 total,  3667964 free,   238592 used.  7870716 avail Mem 
+
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+28057 acp       20   0   24.5g  10.9g 374280 S  50.0 34.9  47929:45 WF:IpcInit
+  360 acp       20   0   77.7g   7.6g 818588 S  37.5 24.4  85955:05 CCOTTA.rel+
+12331 admin     20   0  162104   2264   1536 R   6.2  0.0   0:00.01 top
+    1 root      20   0   52456   3900   2188 S   0.0  0.0  93:44.01 systemd
+    2 root      20   0       0      0      0 S   0.0  0.0   0:13.92 kthreadd
+    4 root       0 -20       0      0      0 S   0.0  0.0   0:00.00 kworker/0:+
+    6 root      20   0       0      0      0 S   0.0  0.0  37:45.81 ksoftirqd/0
+    7 root      rt   0       0      0      0 S   0.0  0.0   2:57.11 migration/0
+
+
+Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs         16G     0   16G   0% /dev
+tmpfs            16G  2.0M   16G   1% /dev/shm
+tmpfs            16G  756K   16G   1% /run
+tmpfs            16G     0   16G   0% /sys/fs/cgroup
+/dev/vda11      274G   62G  212G  23% /
+/dev/vda4       4.4G   33M  4.4G   1% /home
+/dev/vda6       3.8G  482M  3.3G  13% /var
+/dev/vda5       7.5G   33M  7.5G   1% /tmp
+/dev/vda1       1.1G  573M  491M  54% /boot
+/dev/vda3       200M  4.8M  196M   3% /boot/efi
+/dev/vda8       3.8G  1.1G  2.8G  28% /var/log
+/dev/vda7       951M   33M  919M   4% /var/tmp
+/dev/vda9       950M  449M  502M  48% /var/log/audit
+tmpfs           3.2G     0  3.2G   0% /run/user/1000
+
+
+ CCOTTA:CT51
+	DATABASESTATUS|Status of URL database|40:19829147092-CentralManager:CM166,409912587-CentralManager:CM1,100683069-CentralManager:CM3;42:24480111900-CentralManager:CM166,7309604-CentralManager:CM167,751065358-CentralManager:CM1,100684687-CentralManager:CM3;43:24484544457-CentralManager:CM166,751065366-CentralManager:CM1,7313270-CentralManager:CM167,100682627-CentralManager:CM3;44:5582793998-CentralManager:CM166;47:24581124333-CentralManager:CM166,611690928-CentralManager:CM167,751069542-CentralManager:CM1,155281470-CentralManager:CM3;
+
+
+ WebFilter:WF51
+	DATABASESTATUS|Status of URL database|40:19829147092-CentralManager:CM166,823925-CentralManager:CM167,409912587-CentralManager:CM1,100683069-CentralManager:CM3;42:24480111900-CentralManager:CM166,7309604-CentralManager:CM167,751065358-CentralManager:CM1,100684687-CentralManager:CM3;43:24484544457-CentralManager:CM166,751065366-CentralManager:CM1,7313270-CentralManager:CM167,100682627-CentralManager:CM3;44:264-lcc_backend_0_ADD3BF36EEBEA66ED6D54838DFE3E88D,276-lcc_backend_1_A8636A67DC2BC82E68138CDC1E4D00D4,5582793998-CentralManager:CM166,340-lcc_backend_1_E15729BB94E05BC46C652F7E8EB1906A,334-lcc_backend_0_200D8F4F7E7DA41CCDA697C8033300B9;50:693986334-edu;60:694607581-edu;70:144442052-edu;75:694607610-edu;80:694607582-edu;90:105087727-edu;100:694607615-edu;200:677446321-glo;201:1778568033515650-glo;
+
+[47mStatus  [40mPID    [47mExecutable               [40m#Thr  [47mRuntime      [40mPorts                  [47mPath
+OK      31061  ProcessMonitorInit.sh       1  00:00:00     10550,10553            .../ProcessMonitor/bin
+OK      31077  ProcessMonitor             62  5-19:37:54   10550,10553            .../ProcessMonitor/bin
+OK      341    CCOTTA                      1  00:00:00     10570,10573,30570      .../CCOTTA/bin
+OK      360    CCOTTA.release            179  59-16:35:05  10570,10573,30570      .../CCOTTA/bin
+STOP           CCOTTA_traces.sh                                                   .../CCOTTA/bin
+STOP           CCOTTAd                                                            .../CCOTTA/bin
+OK      31485  LocalReporter               1  00:00:00     443,10530,10533,20531  .../LocalReporter/bin
+OK      31499  LocalReporter.release     129  2-11:25:17   443,10530,10533,20531  .../LocalReporter/bin
+STOP           LocalReporter_traces.sh                                            .../LocalReporter/bin
+STOP           LocalReporterd                                                     .../LocalReporter/bin
+OK      546    UpdateAgent.sh              1  00:00:00     10610                  .../UpdateAgent/bin
+OK      28035  WebFilter                   1  00:00:00     10560,10563            .../WebFilter/bin
+STOP           WebFilter.release                                                  .../WebFilter/bin
+OK      28057  WebFilter_bin             167  33-06:49:46  10560,10563            .../WebFilter/bin
+STOP           WebFilter_script                                                   .../WebFilter/bin
+STOP           WebFilterd                                                         .../WebFilter/bin
+STOP           WebFilters                                                         .../WebFilter/bin
+OK      31397  SnmpAgent                  34  02:30:43     41347                  .+
+
+=================================================================================
+filter3_alpharetta_icsr | CHANGED | rc=0 >>
+====================================filter_stats=================================
+alprgagqvzwvsas-y-at-secas-01-ntfil-007
+
+
+ 10:49:20 up 377 days,  7:06,  1 user,  load average: 1.02, 1.16, 1.35
+
+
+Thu May 21 10:49:20 EDT 2026
+
+
+top - 10:49:20 up 377 days,  7:06,  1 user,  load average: 1.02, 1.16, 1.35
+Tasks: 262 total,   1 running, 261 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.5 us,  2.3 sy,  0.0 ni, 97.2 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+KiB Mem : 32778476 total,   181516 free, 23592848 used,  9004112 buff/cache
+KiB Swap:  3906556 total,  3601404 free,   305152 used.  7777392 avail Mem 
+
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+ 7414 acp       20   0   24.5g  10.9g 510844 S  50.0 34.8  46680:52 WF:IpcInit
+ 3267 acp       20   0   78.1g   7.8g 920140 S  31.2 24.9  83930:55 CCOTTA.rel+
+16504 admin     20   0  162104   2264   1536 R   6.2  0.0   0:00.01 top
+    1 root      20   0   52236   3860   2192 S   0.0  0.0  91:32.37 systemd
+    2 root      20   0       0      0      0 S   0.0  0.0   0:13.32 kthreadd
+    4 root       0 -20       0      0      0 S   0.0  0.0   0:00.00 kworker/0:+
+    6 root      20   0       0      0      0 S   0.0  0.0  39:18.53 ksoftirqd/0
+    7 root      rt   0       0      0      0 S   0.0  0.0   2:55.76 migration/0
+
+
+top - 10:49:21 up 377 days,  7:06,  1 user,  load average: 1.02, 1.16, 1.35
+Tasks: 262 total,   1 running, 261 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.9 us,  1.4 sy,  0.0 ni, 97.7 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+KiB Mem : 32778476 total,   181764 free, 23592600 used,  9004112 buff/cache
+KiB Swap:  3906556 total,  3601404 free,   305152 used.  7777640 avail Mem 
+
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+ 7414 acp       20   0   24.5g  10.9g 510844 S  56.2 34.8  46680:52 WF:IpcInit
+ 3267 acp       20   0   78.1g   7.8g 920140 S  37.5 24.9  83930:55 CCOTTA.rel+
+16506 admin     20   0  162104   2264   1536 R   6.2  0.0   0:00.01 top
+    1 root      20   0   52236   3860   2192 S   0.0  0.0  91:32.37 systemd
+    2 root      20   0       0      0      0 S   0.0  0.0   0:13.32 kthreadd
+    4 root       0 -20       0      0      0 S   0.0  0.0   0:00.00 kworker/0:+
+    6 root      20   0       0      0      0 S   0.0  0.0  39:18.53 ksoftirqd/0
+    7 root      rt   0       0      0      0 S   0.0  0.0   2:55.76 migration/0
+
+
+Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs         16G     0   16G   0% /dev
+tmpfs            16G  1.9M   16G   1% /dev/shm
+tmpfs            16G  760K   16G   1% /run
+tmpfs            16G     0   16G   0% /sys/fs/cgroup
+/dev/vda11      274G   57G  218G  21% /
+/dev/vda5       7.5G   33M  7.5G   1% /tmp
+/dev/vda4       4.4G   33M  4.4G   1% /home
+/dev/vda6       3.8G  482M  3.3G  13% /var
+/dev/vda1       1.1G  573M  491M  54% /boot
+/dev/vda3       200M  4.8M  196M   3% /boot/efi
+/dev/vda7       951M   33M  919M   4% /var/tmp
+/dev/vda8       3.8G  1.1G  2.7G  30% /var/log
+/dev/vda9       950M  513M  438M  54% /var/log/audit
+tmpfs           3.2G     0  3.2G   0% /run/user/1000
+
+
+ CCOTTA:CT53
+	DATABASESTATUS|Status of URL database|40:19829147092-CentralManager:CM166,409912587-CentralManager:CM1,100683069-CentralManager:CM3;42:24480111900-CentralManager:CM166,7309604-CentralManager:CM167,751065358-CentralManager:CM1,100684687-CentralManager:CM3;43:24484544457-CentralManager:CM166,751065366-CentralManager:CM1,7313270-CentralManager:CM167,100682627-CentralManager:CM3;44:5582793998-CentralManager:CM166;47:24581123949-CentralManager:CM166,611689170-CentralManager:CM167,751067625-CentralManager:CM1,155280776-CentralManager:CM3;
+
+
+ WebFilter:WF53
+	DATABASESTATUS|Status of URL database|40:19829147092-CentralManager:CM166,823925-CentralManager:CM167,409912587-CentralManager:CM1,100683069-CentralManager:CM3;42:24480111900-CentralManager:CM166,7309604-CentralManager:CM167,751065358-CentralManager:CM1,100684687-CentralManager:CM3;43:24484544457-CentralManager:CM166,751065366-CentralManager:CM1,7313270-CentralManager:CM167,100682627-CentralManager:CM3;44:276-lcc_backend_1_A8636A67DC2BC82E68138CDC1E4D00D4,264-lcc_backend_0_ADD3BF36EEBEA66ED6D54838DFE3E88D,5582793998-CentralManager:CM166,340-lcc_backend_1_E15729BB94E05BC46C652F7E8EB1906A,334-lcc_backend_0_200D8F4F7E7DA41CCDA697C8033300B9;50:690511750-edu;60:694607581-edu;70:144442052-edu;75:694607610-edu;80:694607582-edu;90:105087727-edu;100:694607615-edu;200:677446321-glo;201:1778568033515650-glo;
+
+[47mStatus  [40mPID   [47mExecutable               [40m#Thr  [47mRuntime      [40mPorts                  [47mPath
+OK      2039  ProcessMonitorInit.sh       1  00:00:00     10550,10553            .../ProcessMonitor/bin
+OK      2055  ProcessMonitor             62  5-20:26:29   10550,10553            .../ProcessMonitor/bin
+OK      3255  CCOTTA                      1  00:00:00     10570,10573,30570      .../CCOTTA/bin
+OK      3267  CCOTTA.release            179  58-06:50:56  10570,10573,30570      .../CCOTTA/bin
+STOP          CCOTTA_traces.sh                                                   .../CCOTTA/bin
+STOP          CCOTTAd                                                            .../CCOTTA/bin
+OK      2294  LocalReporter               1  00:00:00     443,10530,10533,20531  .../LocalReporter/bin
+OK      2308  LocalReporter.release     129  2-10:10:56   443,10530,10533,20531  .../LocalReporter/bin
+STOP          LocalReporter_traces.sh                                            .../LocalReporter/bin
+STOP          LocalReporterd                                                     .../LocalReporter/bin
+OK      3366  UpdateAgent.sh              1  00:00:00     10610                  .../UpdateAgent/bin
+OK      7392  WebFilter                   1  00:00:00     10560,10563            .../WebFilter/bin
+STOP          WebFilter.release                                                  .../WebFilter/bin
+OK      7414  WebFilter_bin             167  32-10:00:54  10560,10563            .../WebFilter/bin
+STOP          WebFilter_script                                                   .../WebFilter/bin
+STOP          WebFilterd                                                         .../WebFilter/bin
+STOP          WebFilters                                                         .../WebFilter/bin
+OK      2206  SnmpAgent                  34  02:35:23     38564                  .+
+
+=================================================================================
+META: ran handlers
+META: ran handlers

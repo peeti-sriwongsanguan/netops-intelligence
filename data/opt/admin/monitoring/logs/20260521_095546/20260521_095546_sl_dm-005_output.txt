@@ -1,0 +1,114 @@
+solktxesvzwvsas-y-at-secas-01-datmd-005
+ACP 17.15.32 CentOS 7.9
+build_13 2024-12-30 SSPK
+
+dm 17.2.40-16
+HA enabled
+
+===============================DM Stats==========================
+
+*** top 15
+top - 14:59:34 up 301 days, 22:38,  0 users,  load average: 0.07, 0.03, 0.05
+Tasks: 272 total,   1 running, 271 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.0 us,  0.4 sy,  0.0 ni, 99.6 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+KiB Mem : 13186240+total, 11066510+free,  1770524 used, 19426776 buff/cache
+KiB Swap:  4194300 total,  4194300 free,        0 used. 12934415+avail Mem 
+
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+    1 root      20   0  191440   4504   2640 S   0.0  0.0  55:06.10 systemd
+    2 root      20   0       0      0      0 S   0.0  0.0   0:04.82 kthreadd
+    4 root       0 -20       0      0      0 S   0.0  0.0   0:00.00 kworker/0:+
+    6 root      20   0       0      0      0 S   0.0  0.0   0:04.48 ksoftirqd/0
+    7 root      rt   0       0      0      0 S   0.0  0.0   0:10.77 migration/0
+    8 root      20   0       0      0      0 S   0.0  0.0   0:00.00 rcu_bh
+    9 root      20   0       0      0      0 S   0.0  0.0  18:07.80 rcu_sched
+   10 root       0 -20       0      0      0 S   0.0  0.0   0:00.00 lru-add-dr+
+
+*** pcs status
+Cluster Status:
+ Stack: corosync
+ Current DC: ha_SOLKTXESVZWvSAS-Y-AT-SECaS-01-DATMD-006 (version 1.1.23-1.el7_9.1-9acf116022) - partition with quorum
+ Last updated: Thu May 21 14:59:34 2026
+ Last change: Sun Nov 16 19:12:10 2025 by root via cibadmin on ha_SOLKTXESVZWvSAS-Y-AT-SECaS-01-DATMD-006
+ 2 nodes configured
+ 5 resource instances configured
+
+PCSD Status:
+  ha_SOLKTXESVZWvSAS-Y-AT-SECaS-01-DATMD-005: Online
+  ha_SOLKTXESVZWvSAS-Y-AT-SECaS-01-DATMD-006: Online
+
+*** df -h
+Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs         63G     0   63G   0% /dev
+tmpfs            63G   38M   63G   1% /dev/shm
+tmpfs            63G  688K   63G   1% /run
+tmpfs            63G     0   63G   0% /sys/fs/cgroup
+/dev/vda2        15G  7.5G  7.2G  52% /
+/dev/vda6       4.9G   33M  4.9G   1% /home
+/dev/vda3        58G   11G   47G  20% /opt
+/dev/vda5       7.6G   36M  7.2G   1% /tmp
+/dev/vda1      1014M  572M  443M  57% /boot
+/dev/vda12      182M  4.8M  178M   3% /boot/efi
+/dev/vda8       3.9G  482M  3.5G  13% /var
+/dev/vda9       3.9G  747M  3.2G  19% /var/log
+/dev/vda11      997M   33M  965M   4% /var/tmp
+/dev/vda10      997M   65M  933M   7% /var/log/audit
+tmpfs            13G     0   13G   0% /run/user/0
+
+*** iostat -x
+Linux 3.10.0-1160.119.1.el7_9.ciqcbr.2.1.x86_64 (solktxesvzwvsas-y-at-secas-01-datmd-005) 	05/21/2026 	_x86_64_	(16 CPU)
+
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           0.07    0.00    0.05    0.00    0.00   99.88
+
+Device:         rrqm/s   wrqm/s     r/s     w/s    rkB/s    wkB/s avgrq-sz avgqu-sz   await r_await w_await  svctm  %util
+vda               0.00     0.06    0.01    1.14     0.70     7.03    13.39     0.01    4.88    1.22    4.92   1.02   0.12
+vdb               0.00     0.40    0.00    0.81     0.00    29.98    74.38     0.00    2.99    1.05    2.99   0.77   0.06
+scd0              0.00     0.00    0.00    0.00     0.00     0.00    11.43     0.00    0.67    0.67    0.00   0.67   0.00
+
+
+*** drbdadm status
+pgsql role:Secondary
+  disk:UpToDate
+  SOLKTXESVZWvSAS-Y-AT-SECaS-01-DATMD-006 role:Primary
+    peer-disk:UpToDate
+
+
+*** ps pid,comm,cpu
+  PID COMMAND         %CPU
+28894 sshd             2.0
+ 1637 corosync         1.0
+    1 systemd          0.0
+    2 kthreadd         0.0
+    4 kworker/0:0H     0.0
+    6 ksoftirqd/0      0.0
+    7 migration/0      0.0
+    8 rcu_bh           0.0
+    9 rcu_sched        0.0
+
+*** free -m
+              total        used        free      shared  buff/cache   available
+Mem:         128771        1728      108071          38       18971      126312
+Swap:          4095           0        4095
+
+*** netstat LISTEN
+7
+
+*** netstat ESTABLISHED
+3
+
+*** netstat TIMEOUT
+0
+
+*** NXGlobalParameters IP address count ***
+0
+
+*** Buckets found for addresses ***
+
+*** Hourly WSP buckets summary
+202604 inactive no hourly report for WSPRequest buckets
+202604 Inactive no hourly summary for WSPFireWall buckets
+
+*** WSPREQUEST_CS
+
+ls: cannot access /opt/allot/datamediation/export/WSPREQUEST_CS/: No such file or directory

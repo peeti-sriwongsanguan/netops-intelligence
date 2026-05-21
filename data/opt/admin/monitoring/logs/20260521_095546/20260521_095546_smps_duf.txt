@@ -1,0 +1,666 @@
+smp2_duff | CHANGED | rc=0 >>
+====================================smp_stats=================================
+cncqoh22vzwvsas-y-at-secas-01-submp-002
+ACP 17.15.32 CentOS 7.9
+build_13 2024-12-30 SSPK
+
+md 17.2.40-86,  pcc_router
+HA enabled
+
+Number of Java processes:
+609
+
+top - 14:48:44 up 234 days,  6:49,  1 user,  load average: 0.02, 0.07, 0.12
+Tasks: 283 total,   1 running, 282 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.8 us,  0.4 sy,  0.0 ni, 98.9 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+KiB Mem : 65806248 total, 17515300 free, 21286760 used, 27004188 buff/cache
+KiB Swap:  4194300 total,  4194300 free,        0 used. 44083664 avail Mem 
+
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+ 4106 allot     20   0   33.6g   2.8g  14384 S   6.2  4.5  14799:17 java
+ 4123 allot     20   0   13.5g   2.2g  14012 S   6.2  3.5   2068:53 java
+ 6173 admin     20   0  162104   2272   1536 R   6.2  0.0   0:00.01 top
+    1 root      20   0   52068   4372   2632 S   0.0  0.0 613:10.33 systemd
+    2 root      20   0       0      0      0 S   0.0  0.0   0:09.59 kthreadd
+    4 root       0 -20       0      0      0 S   0.0  0.0   0:00.00 kworker/0:+
+    6 root      20   0       0      0      0 S   0.0  0.0   0:23.56 ksoftirqd/0
+    7 root      rt   0       0      0      0 S   0.0  0.0   0:14.28 migration/0
+FUP STATISTICS  
+************************************************* 
+name..........: CNCQOH22VZWVSAS-Y-AT-SECAS-01-SGVE-002
+aos id........: 168
+state.........: Active
+ne............: ne1 (<DsVersions: 36><AttributeBitSet: none>)
+ip............: <IPv6:<IPv6:200148880a373172:3a7022200000002/128>>:5855
+securedStatus.: Secure Connection
+tlsVersion....: TLSv1.2
+cipherSuite...: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+connection....: Connected (1)
+connection id.: 4285911750
+
+total received: 314876763
+- Enhance Update Message: 307273559
+- Keep Alive Message: 1035745
+- Delete IP Message: 6567454
+- ABC Map Update: 3
+- Fup Sync Req: 2
+total dumped: 13266018
+
+Channel Manager
+------------------
+state......................: active
+queue size.................: 0 (43)
+incoming rate..............: 33 (493)
+outgoing rate..............: 33 (493)
+sync type..................: NeSynchronizerV19
+aos pending sync requests..: 0
+abc in sync................: 1024
+total sync.................: 3073
+total sync ip..............: 40492
+total sync triggers........: 40492
+total sync time............: 0.675 (sec)
+
+Provision Channel Map: 
+---------------
+prov id.......: <[3] id:168/<IPv6:<IPv6:200148880a373172:3a7022200000002/128>>:5851>
+state.........: active
+ne............: ne1 (<DsVersions: 36><AttributeBitSet: none>)
+securedStatus.: Secure Connection
+tlsVersion....: TLSv1.2
+cipherSuite...: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+connection....: Connected (85)
+connection id.: 10
+
+command queue size........: 0
+incoming message rate.....: 33
+outgoing message rate.....: 33 (6086 Bps)
+incoming ack rate.........: 7
+totals:
+total queue commands......: 301142570
+- Enhance Update Message: 300670310
+- Keep Alive Message: 470211
+- ABC Map Update: 2049
+messages sent.............: 301146006
+- Enhance Update Message: 300670308
+- Keep Alive Message: 469551
+- Sync Enhance Message: 2049
+- Fup Sync Status: 4098
+messages failed...........: 1
+- Not Set: 1
+
+
+Notification Channels: 
+------------------
+
+Total channels...: 0
+Total messages...: 0 (0)
+
+FUP STATISTICS  
+************************************************* 
+name..........: CNCQOH22VZWVSAS-Y-AT-SECAS-01-SGVE-001
+aos id........: 167
+state.........: Active
+ne............: ne1 (<DsVersions: 36><AttributeBitSet: none>)
+ip............: <IPv6:<IPv6:200148880a373172:3a7022200000001/128>>:5855
+securedStatus.: Secure Connection
+tlsVersion....: TLSv1.2
+cipherSuite...: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+connection....: Connected (1)
+connection id.: 4281791519
+
+total received: 314971327
+- Enhance Update Message: 313840490
+- Keep Alive Message: 1130823
+- ABC Map Update: 7
+- Fup Sync Req: 7
+total dumped: 0
+
+Channel Manager
+------------------
+state......................: active
+queue size.................: 0 (6)
+incoming rate..............: 33 (616)
+outgoing rate..............: 33 (616)
+sync type..................: NeSynchronizerV19
+aos pending sync requests..: 0
+abc in sync................: 1024
+total sync.................: 9236
+total sync ip..............: 40492
+total sync triggers........: 40492
+total sync time............: 0.231 (sec)
+
+Provision Channel Map: 
+---------------
+prov id.......: <[7] id:167/<IPv6:<IPv6:200148880a373172:3a7022200000001/128>>:5851>
+state.........: active
+ne............: ne1 (<DsVersions: 36><AttributeBitSet: none>)
+securedStatus.: Secure Connection
+tlsVersion....: TLSv1.2
+cipherSuite...: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+connection....: Connected (85)
+connection id.: 10
+
+command queue size........: 0
+incoming message rate.....: 33
+outgoing message rate.....: 33 (6086 Bps)
+incoming ack rate.........: 7
+totals:
+total queue commands......: 301142570
+- Enhance Update Message: 300670310
+- Keep Alive Message: 470211
+- ABC Map Update: 2049
+messages sent.............: 301146065
+- Enhance Update Message: 300670308
+- Keep Alive Message: 469610
+- Sync Enhance Message: 2049
+- Fup Sync Status: 4098
+messages failed...........: 1
+- Not Set: 1
+
+
+Notification Channels: 
+------------------
+
+Total channels...: 0
+Total messages...: 0 (0)
+
+FUP STATISTICS  
+************************************************* 
+name..........: CNCQOH22VZWVSAS-Y-AT-SECAS-01-SGVE-003
+aos id........: 169
+state.........: Active
+ne............: ne1 (<DsVersions: 36><AttributeBitSet: none>)
+ip............: <IPv6:<IPv6:200148880a373172:3a7022200000101/128>>:5855
+securedStatus.: Secure Connection
+tlsVersion....: TLSv1.2
+cipherSuite...: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+connection....: Connected (256)
+connection id.: 4281284035
+
+total received: 314971337
+- Enhance Update Message: 313840490
+- Keep Alive Message: 1130842
+- ABC Map Update: 4
+- Fup Sync Req: 1
+total dumped: 0
+
+Channel Manager
+------------------
+state......................: active
+queue size.................: 0 (37)
+incoming rate..............: 33 (617)
+outgoing rate..............: 33 (617)
+sync type..................: NeSynchronizerV19
+aos pending sync requests..: 0
+abc in sync................: 1024
+total sync.................: 5132
+total sync ip..............: 40338
+total sync triggers........: 40338
+total sync time............: 0.228 (sec)
+
+Provision Channel Map: 
+---------------
+prov id.......: <[4] id:169/<IPv6:<IPv6:200148880a373172:3a7022200000101/128>>:5851>
+state.........: active
+ne............: ne1 (<DsVersions: 36><AttributeBitSet: none>)
+securedStatus.: Secure Connection
+tlsVersion....: TLSv1.2
+cipherSuite...: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+connection....: Connected (1)
+connection id.: 10
+
+command queue size........: 0
+incoming message rate.....: 33
+outgoing message rate.....: 33 (6086 Bps)
+incoming ack rate.........: 7
+totals:
+total queue commands......: 301162161
+- Enhance Update Message: 300675240
+- Keep Alive Message: 484909
+- ABC Map Update: 2012
+messages sent.............: 301165535
+- Enhance Update Message: 300675238
+- Keep Alive Message: 484261
+- Sync Enhance Message: 2012
+- Fup Sync Status: 4024
+messages failed...........: 0
+
+
+Notification Channels: 
+------------------
+
+Total channels...: 0
+Total messages...: 0 (0)
+
+FUP STATISTICS  
+************************************************* 
+name..........: CNCQOH22VZWVSAS-Y-AT-SECAS-01-SGVE-004
+aos id........: 170
+state.........: Active
+ne............: ne1 (<DsVersions: 36><AttributeBitSet: none>)
+ip............: <IPv6:<IPv6:200148880a373172:3a7022200000102/128>>:5855
+securedStatus.: Secure Connection
+tlsVersion....: TLSv1.2
+cipherSuite...: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+connection....: Connected (257)
+connection id.: 4285272858
+
+total received: 314971344
+- Enhance Update Message: 313840490
+- Keep Alive Message: 1130850
+- ABC Map Update: 3
+- Fup Sync Req: 1
+total dumped: 0
+
+Channel Manager
+------------------
+state......................: active
+queue size.................: 0 (10)
+incoming rate..............: 33 (616)
+outgoing rate..............: 33 (616)
+sync type..................: NeSynchronizerV19
+aos pending sync requests..: 0
+abc in sync................: 1024
+total sync.................: 4099
+total sync ip..............: 40338
+total sync triggers........: 40338
+total sync time............: 0.347 (sec)
+
+Provision Channel Map: 
+---------------
+prov id.......: <[3] id:170/<IPv6:<IPv6:200148880a373172:3a7022200000102/128>>:5851>
+state.........: active
+ne............: ne1 (<DsVersions: 36><AttributeBitSet: none>)
+securedStatus.: Secure Connection
+tlsVersion....: TLSv1.2
+cipherSuite...: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+connection....: Connected (1)
+connection id.: 10
+
+command queue size........: 0
+incoming message rate.....: 33
+outgoing message rate.....: 33 (6086 Bps)
+incoming ack rate.........: 7
+totals:
+total queue commands......: 301161190
+- Enhance Update Message: 300675240
+- Keep Alive Message: 484923
+- ABC Map Update: 1027
+messages sent.............: 301162647
+- Enhance Update Message: 300675238
+- Keep Alive Message: 484328
+- Sync Enhance Message: 1027
+- Fup Sync Status: 2054
+messages failed...........: 0
+
+
+Notification Channels: 
+------------------
+
+Total channels...: 0
+Total messages...: 0 (0)
+
+
+Last 3 lines of Pcc_Statistics_Json.log
+
+{"timestamp":"2026-05-21@14:48:29.277+0000","accountingMessageHandlerQueueSize":0,"totalAccountingMessagesDumped":0,"poolMonitoringRuleNotif":{"idleObjects":0,"maxObjects":200000},"poolApplicationUseTrigger":{"idleObjects":0,"createdObjects":0,"createRate":0,"getObjects":0,"getRate":0,"returnObjects":0,"returnRate":0},"poolMonitoringRuleTrigger":{"idleObjects":24,"createdObjects":1352779,"createRate":0,"getObjects":30596875,"getRate":2,"returnObjects":29244120,"returnRate":2},"poolNeEnhancedUpdateCommandV2":{"idleObjects":378,"createdObjects":6603629,"createRate":0,"getObjects":314575392,"getRate":31,"returnObjects":307972141,"returnRate":31},"poolNeEventTriggerCommandV2":{"idleObjects":0,"createdObjects":0,"createRate":0,"getObjects":0,"getRate":0,"returnObjects":0,"returnRate":0},"poolNeStopCommand":{"idleObjects":0,"createdObjects":6567454,"createRate":0,"getObjects":6567454,"getRate":0,"returnObjects":0,"returnRate":0},"poolNeDelSessionCommand":null,"poolEventTriggerAction":{"idleObjects":0,"createdObjects":0,"createRate":0,"getObjects":0,"getRate":0,"returnObjects":0,"returnRate":0},"poolNotifyToSMPTriggerAction":{"idleObjects":24,"createdObjects":1352779,"createRate":0,"getObjects":30596875,"getRate":2,"returnObjects":29244120,"returnRate":2},"poolRedirectTriggerAction":{"idleObjects":0,"createdObjects":0,"createRate":0,"getObjects":0,"getRate":0,"returnObjects":0,"returnRate":0},"poolNotifyToBucketTriggerAction":{"idleObjects":0,"createdObjects":0,"createRate":0,"getObjects":0,"getRate":0,"returnObjects":0,"returnRate":0},"poolChangeServiceTriggerAction":{"idleObjects":0,"createdObjects":0,"createRate":0,"getObjects":0,"getRate":0,"returnObjects":0,"returnRate":0},"fupStatistics":{"neManagersListAllToString":"\nAOS ID:170, AOS IP: <IPv6:<IPv6:200148880a373172:3a7022200000102/128>>\nAOS ID:167, AOS IP: <IPv6:<IPv6:200148880a373172:3a7022200000001/128>>\nAOS ID:168, AOS IP: <IPv6:<IPv6:200148880a373172:3a7022200000002/128>>\nAOS ID:169, AOS IP: <IPv6:<IPv6:200148880a373172:3a7022200000101/128>>","startMessagesSent":1202689714,"deleteIpMessagesSent":0,"deleteSessionMessagesSent":null,"failStartMessages":0,"failDeleteIpMessages":0,"failDeleteSessionMessages":0,"dumpedCommands":2,"totalChannels":0,"totalMessages":"0 (0)","notifStatistics":""},"radiusTargetGroupList":[{"groupId":"<Central_Managers/8>","state":"active","targetIps":["2607:f160:8a03:a1f6:c0:222:0:1"],"totalIncoming":313840145,"messagesSuccess":313840145,"messageFiltered":0,"sentFailCounters":{},"commandQueueSize":0,"incomingCommandRate":313840145,"outgoingMessageRate":31}],"diameterAdapterList":[{"type":"GX","ownUriString":"aaa://127.0.0.2:3868","openedSessionsCount":0,"handlerQueueSize":0},{"type":"GX","ownUriString":"aaa://127.0.0.2:56200","openedSessionsCount":0,"handlerQueueSize":0}],"general-info":{"values":{},"status":"Master","upTime":"2025-11-06@05:59:38.465+0000"},"session":{"values":{"Active sessions":81424,"Waiting to close sessions":16,"Waiting to restart PQRF session":0,"Forced closed sessions":0,"Active Gx Volume Reporting sessions":0,"Active Sd Volume Reporting sessions":0,"Active offline sessions":0,"Active sdr collection sessions":0,"Active online sessions":0,"Session Deletion due to ResultCode":0,"Diameter Inactivity Session Termination":0}},"subscriber":{"values":{"Active subscribers":81435,"Active Gx Volume Reporting subscribers":0,"Active Sd Volume Reporting subscribers":0,"Active offline subscribers":0,"Active sdr collection subscribers":0,"Total assign ipv4":81419,"Total assign ipv6":81359,"Total assign TID":162778,"Subscriber name out of bound":0,"Registered cmts subscribers":0,"Active online subscribers":0,"Subscribers instance ids":0}},"gx-client":{"values":{"Sent CCR-I to PCRF":0,"Gx CCR-I Rate":0,"Sent CCR-U to PCRF":0,"Gx CCR-U Rate":0,"Sent CCR-T to PCRF":0,"Gx CCR-T Rate":0,"Fail to send CCR-I to PCRF":0,"Fail to send CCR-U to PCRF":0,"Fail to send CCR-T to PCRF":0,"Number Of Active Policy Control (Gx) Rules":0}},"sd-client":{"values":{"Total number of Sent CCR to Sd PCRF":0,"Sent CCR-U to PCRF":0,"Sd CCR-U Rate":0,"Sent CCR-T to PCRF":0,"Sd CCR-T Rate":0,"Fail to send CCR/RAA/TSA PCRF":0,"Fail to send CCR-U to PCRF":0,"Fail to send CCR-T to PCRF":0,"Number Of Active Policy Control (Sd) Rules":0}},"gy-client":{"values":{"Sent CCR-I to OCS":0,"Gy Ccr-I Rate":0,"Sent CCR-U to OCS":0,"Gy Ccr-U Rate":0,"Sent CCR-T to OCS":0,"Gy Ccr-T Rate":0,"Fail to send CCR-I to OCS":0,"Fail to send CCR-U to OCS":0,"Fail to send CCR-T to OCS":0,"Number Of Active Online Charging (Gy) Rules":0}},"message-handler":{"values":{"Incoming start messages":29496984,"Incoming start messages rate":2,"Incoming stop messages":29489728,"Incoming stop messages rate":3,"Incoming update messages":127491490,"Total incoming messages":313800286,"Total incoming messages rate":31,"Incoming cmts messages":0,"Total skip nat stop messages":249384,"Termination requests":45140649,"Termination requests rate":4,"Incoming notification messages":0,"Incoming notification messages rate":0,"Notification messages queue size":0,"Force session termination queue size":0}},"gx-listener":{"values":{"Incoming CCA-I from PCRF":0,"Incoming CCA-I from PCRF Rate":0,"Incoming CCA-T from PCRF":0,"Incoming CCA-T from PCRF Rate":0,"Incoming CCA-U from PCRF":0,"Incoming CCA-U from PCRF Rate":0,"Incoming RAR from PCRF":0,"Incoming RAR from PCRF Rate":0,"Fail processing RAR from PCRF":0,"Sent RAA to PCRF":0,"Sent RAA to PCRF Rate":0,"Fail to Send RAA to PCRF":0,"Received Error in CCR-I from PCRF":0,"Received Error in CCR-U from PCRF":0,"Received Error in CCR-T from PCRF":0,"Received Timeout on GX CCR-I":0,"Received Timeout on GX CCR-U":0,"Received Timeout on GX CCR-T":0}},"sd-listener":{"values":{"Total Incoming Transactions from Sd PCRF":0,"Incoming TSR from PCRF":0,"Incoming TSR Rate":0,"Incoming CCA-T from PCRF":0,"Incoming CCA-T from PCRF Rate":0,"Incoming CCA-U from PCRF":0,"Incoming CCA-U from PCRF Rate":0,"Incoming RAR from PCRF":0,"Incoming RAR from PCRF Rate":0,"Incoming RAR-Termination Rate":0,"Fail processing RAR from PCRF":0,"Fail processing TSR from PCRF":0,"Sent RAA to PCRF":0,"Sent RAA to PCRF Rate":0,"Sent TSA to PCRF":0,"Sent TSA to PCRF Rate":0,"Fail to send TSA to PCRF":0,"Fail to Sent RAA to PCRF":0,"Received Error in CCR-U from PCRF":0,"Received Error in CCR-T from PCRF":0,"Received Timeout on Sd CCR-U":0,"Received Timeout on Sd CCR-T":0,"Force SD Session Termination":0}},"gy-listener":{"values":{"Incoming RAR from OCS":0,"Gy Incoming RAR Rate":0,"Fail processing RAR from OCS":0,"Sent RAA to OCS":0,"Gy Sent RAA Rate":0,"Fail to Send RAA to OCS":0,"Incoming ASR from OCS":0,"Gy Incoming ASR Rate":0,"Fail processing ASR from OCS":0,"Sent ASA to OCS":0,"Gy Sent ASA Rate":0,"Fail to Send ASA to OCS":0,"Incoming CCA-I from OCS":0,"Incoming CCA-I from OCS Rate":0,"Incoming GY CCA-T from OCS":0,"Incoming GY CCA-T from OCS Rate":0,"Incoming GY CCA-U from OCS":0,"Incoming GY CCA-U from OCS Rate":0,"Received Error in CCR-I from OCS":0,"Received Error in CCR-U from OCS":0,"Received Error in CCR-T from OCS":0,"Received Timeout on GY CCR-I":0,"Received Timeout on GY CCR-U":0,"Received Timeout on GY CCR-T":0}},"message-2-db":{"values":{"Outgoing DB Messages":66856746,"Outgoing DB Messages Rate":4,"Outgoing DB Messages Failed":0}},"persistency":{"values":{"Current Tasks in Persistency Queue":0,"Persistency Queue Max Size":10000000,"Total Incoming Persistency Tasks":313840141,"Total Incoming Persistency Tasks Rate":31,"Total Incoming Persistency Tasks Failed":0,"Total Outgoing Persistency Tasks":313840141,"Total Outgoing Persistency Tasks Rate":31}},"cdr":{"values":{"Number of Active Offline Charging (CDR) rules":0,"Total number of CDRs":0,"CDRs generation rate":0,"CDRs in Queue":0}},"fup":{"values":{"Total number of Start Fup messages sent":621336239,"FUP Start Messages Rate":72,"Total number of Stop Fup messages sent":620854155,"FUP Stop Messages Rate":54,"Total number of Update Fup messages sent":0,"FUP Update Messages Rate":0,"Fup Outgoing Msg Rate":31}},"general-fup":null,"quota":{"values":{"Active Quota subscribers":0,"Active Quota sessions":0}},"charging":{"values":{"Number of Active charging rules":0,"Dynamic QoS Enforcement Rules Total":0,"Dynamic Service Activation Rules total":0,"Dynamic Service Service Plan AddOn Rules total":0}},"dhcp":{"values":{"Outgoing lease query IPv4 messages":0,"Incoming lease query IPv4 messages":0,"Outgoing lease query IPv6 messages":0,"Incoming lease query IPv6 messages":0,"pending dhcp client request":0}},"pilot":{"values":{"Maximal number of port chunks which were allocated to a single session in the reporting interval":0}},"gx-PQRF-client":{"values":{"Sent CCR-I to PQRF":0,"Sent CCR-I to PQRF Rate":0,"Sent CCR-U to PQRF":0,"Sent CCR-U to PQRF Rate":0,"Sent CCR-T to PQRF":0,"Sent CCR-T to PQRF Rate":0,"Sent RAA to PQRF":0,"Sent RAA to PQRF Rate":0,"Failed to Send CCR-I to PQRF":0,"Failed to Send CCR-U to PQRF":0,"Failed to Send CCR-T to PQRF":0,"Fail to Send RAA to PQRF":0}},"gx-PQRF-listener":{"values":{"Incoming CCA-I from PQRF":0,"Incoming CCA-I from PQRF Rate":0,"Incoming CCA-T from PQRF":0,"Incoming CCA-T from PQRF Rate":0,"Incoming CCA-U from PQRF":0,"Incoming CCA-U from PQRF Rate":0,"Incoming RAR from PQRF":0,"Incoming RAR from PQRF Rate":0,"Fail processing RAR from PQRF":0,"Error Received for CCR-I from PQRF":0,"Error Received for CCR-U from PQRF":0,"Error Received for CCR-T from PQRF":0,"Timeout Received on CCR-I from PQRF":0,"Timeout Received on CCR-U from PQRF":0,"Timeout Received on CCR-T from PQRF":0}},"gtp-handler":null}
+{"timestamp":"2026-05-21@14:48:34.276+0000","accountingMessageHandlerQueueSize":0,"totalAccountingMessagesDumped":0,"poolMonitoringRuleNotif":{"idleObjects":0,"maxObjects":200000},"poolApplicationUseTrigger":{"idleObjects":0,"createdObjects":0,"createRate":0,"getObjects":0,"getRate":0,"returnObjects":0,"returnRate":0},"poolMonitoringRuleTrigger":{"idleObjects":24,"createdObjects":1352779,"createRate":0,"getObjects":30596895,"getRate":5,"returnObjects":29244140,"returnRate":5},"poolNeEnhancedUpdateCommandV2":{"idleObjects":376,"createdObjects":6603629,"createRate":0,"getObjects":314575570,"getRate":44,"returnObjects":307972317,"returnRate":44},"poolNeEventTriggerCommandV2":{"idleObjects":0,"createdObjects":0,"createRate":0,"getObjects":0,"getRate":0,"returnObjects":0,"returnRate":0},"poolNeStopCommand":{"idleObjects":0,"createdObjects":6567454,"createRate":0,"getObjects":6567454,"getRate":0,"returnObjects":0,"returnRate":0},"poolNeDelSessionCommand":null,"poolEventTriggerAction":{"idleObjects":0,"createdObjects":0,"createRate":0,"getObjects":0,"getRate":0,"returnObjects":0,"returnRate":0},"poolNotifyToSMPTriggerAction":{"idleObjects":24,"createdObjects":1352779,"createRate":0,"getObjects":30596895,"getRate":5,"returnObjects":29244140,"returnRate":5},"poolRedirectTriggerAction":{"idleObjects":0,"createdObjects":0,"createRate":0,"getObjects":0,"getRate":0,"returnObjects":0,"returnRate":0},"poolNotifyToBucketTriggerAction":{"idleObjects":0,"createdObjects":0,"createRate":0,"getObjects":0,"getRate":0,"returnObjects":0,"returnRate":0},"poolChangeServiceTriggerAction":{"idleObjects":0,"createdObjects":0,"createRate":0,"getObjects":0,"getRate":0,"returnObjects":0,"returnRate":0},"fupStatistics":{"neManagersListAllToString":"\nAOS ID:170, AOS IP: <IPv6:<IPv6:200148880a373172:3a7022200000102/128>>\nAOS ID:167, AOS IP: <IPv6:<IPv6:200148880a373172:3a7022200000001/128>>\nAOS ID:168, AOS IP: <IPv6:<IPv6:200148880a373172:3a7022200000002/128>>\nAOS ID:169, AOS IP: <IPv6:<IPv6:200148880a373172:3a7022200000101/128>>","startMessagesSent":1202690416,"deleteIpMessagesSent":0,"deleteSessionMessagesSent":null,"failStartMessages":0,"failDeleteIpMessages":0,"failDeleteSessionMessages":0,"dumpedCommands":2,"totalChannels":0,"totalMessages":"0 (0)","notifStatistics":""},"radiusTargetGroupList":[{"groupId":"<Central_Managers/8>","state":"active","targetIps":["2607:f160:8a03:a1f6:c0:222:0:1"],"totalIncoming":313840323,"messagesSuccess":313840323,"messageFiltered":0,"sentFailCounters":{},"commandQueueSize":0,"incomingCommandRate":313840323,"outgoingMessageRate":44}],"diameterAdapterList":[{"type":"GX","ownUriString":"aaa://127.0.0.2:3868","openedSessionsCount":0,"handlerQueueSize":0},{"type":"GX","ownUriString":"aaa://127.0.0.2:56200","openedSessionsCount":0,"handlerQueueSize":0}],"general-info":{"values":{},"status":"Master","upTime":"2025-11-06@05:59:38.465+0000"},"session":{"values":{"Active sessions":81429,"Waiting to close sessions":15,"Waiting to restart PQRF session":0,"Forced closed sessions":0,"Active Gx Volume Reporting sessions":0,"Active Sd Volume Reporting sessions":0,"Active offline sessions":0,"Active sdr collection sessions":0,"Active online sessions":0,"Session Deletion due to ResultCode":0,"Diameter Inactivity Session Termination":0}},"subscriber":{"values":{"Active subscribers":81442,"Active Gx Volume Reporting subscribers":0,"Active Sd Volume Reporting subscribers":0,"Active offline subscribers":0,"Active sdr collection subscribers":0,"Total assign ipv4":81424,"Total assign ipv6":81364,"Total assign TID":162788,"Subscriber name out of bound":0,"Registered cmts subscribers":0,"Active online subscribers":0,"Subscribers instance ids":0}},"gx-client":{"values":{"Sent CCR-I to PCRF":0,"Gx CCR-I Rate":0,"Sent CCR-U to PCRF":0,"Gx CCR-U Rate":0,"Sent CCR-T to PCRF":0,"Gx CCR-T Rate":0,"Fail to send CCR-I to PCRF":0,"Fail to send CCR-U to PCRF":0,"Fail to send CCR-T to PCRF":0,"Number Of Active Policy Control (Gx) Rules":0}},"sd-client":{"values":{"Total number of Sent CCR to Sd PCRF":0,"Sent CCR-U to PCRF":0,"Sd CCR-U Rate":0,"Sent CCR-T to PCRF":0,"Sd CCR-T Rate":0,"Fail to send CCR/RAA/TSA PCRF":0,"Fail to send CCR-U to PCRF":0,"Fail to send CCR-T to PCRF":0,"Number Of Active Policy Control (Sd) Rules":0}},"gy-client":{"values":{"Sent CCR-I to OCS":0,"Gy Ccr-I Rate":0,"Sent CCR-U to OCS":0,"Gy Ccr-U Rate":0,"Sent CCR-T to OCS":0,"Gy Ccr-T Rate":0,"Fail to send CCR-I to OCS":0,"Fail to send CCR-U to OCS":0,"Fail to send CCR-T to OCS":0,"Number Of Active Online Charging (Gy) Rules":0}},"message-handler":{"values":{"Incoming start messages":29497004,"Incoming start messages rate":4,"Incoming stop messages":29489743,"Incoming stop messages rate":3,"Incoming update messages":127491562,"Total incoming messages":313800464,"Total incoming messages rate":35,"Incoming cmts messages":0,"Total skip nat stop messages":249384,"Termination requests":45140669,"Termination requests rate":4,"Incoming notification messages":0,"Incoming notification messages rate":0,"Notification messages queue size":0,"Force session termination queue size":0}},"gx-listener":{"values":{"Incoming CCA-I from PCRF":0,"Incoming CCA-I from PCRF Rate":0,"Incoming CCA-T from PCRF":0,"Incoming CCA-T from PCRF Rate":0,"Incoming CCA-U from PCRF":0,"Incoming CCA-U from PCRF Rate":0,"Incoming RAR from PCRF":0,"Incoming RAR from PCRF Rate":0,"Fail processing RAR from PCRF":0,"Sent RAA to PCRF":0,"Sent RAA to PCRF Rate":0,"Fail to Send RAA to PCRF":0,"Received Error in CCR-I from PCRF":0,"Received Error in CCR-U from PCRF":0,"Received Error in CCR-T from PCRF":0,"Received Timeout on GX CCR-I":0,"Received Timeout on GX CCR-U":0,"Received Timeout on GX CCR-T":0}},"sd-listener":{"values":{"Total Incoming Transactions from Sd PCRF":0,"Incoming TSR from PCRF":0,"Incoming TSR Rate":0,"Incoming CCA-T from PCRF":0,"Incoming CCA-T from PCRF Rate":0,"Incoming CCA-U from PCRF":0,"Incoming CCA-U from PCRF Rate":0,"Incoming RAR from PCRF":0,"Incoming RAR from PCRF Rate":0,"Incoming RAR-Termination Rate":0,"Fail processing RAR from PCRF":0,"Fail processing TSR from PCRF":0,"Sent RAA to PCRF":0,"Sent RAA to PCRF Rate":0,"Sent TSA to PCRF":0,"Sent TSA to PCRF Rate":0,"Fail to send TSA to PCRF":0,"Fail to Sent RAA to PCRF":0,"Received Error in CCR-U from PCRF":0,"Received Error in CCR-T from PCRF":0,"Received Timeout on Sd CCR-U":0,"Received Timeout on Sd CCR-T":0,"Force SD Session Termination":0}},"gy-listener":{"values":{"Incoming RAR from OCS":0,"Gy Incoming RAR Rate":0,"Fail processing RAR from OCS":0,"Sent RAA to OCS":0,"Gy Sent RAA Rate":0,"Fail to Send RAA to OCS":0,"Incoming ASR from OCS":0,"Gy Incoming ASR Rate":0,"Fail processing ASR from OCS":0,"Sent ASA to OCS":0,"Gy Sent ASA Rate":0,"Fail to Send ASA to OCS":0,"Incoming CCA-I from OCS":0,"Incoming CCA-I from OCS Rate":0,"Incoming GY CCA-T from OCS":0,"Incoming GY CCA-T from OCS Rate":0,"Incoming GY CCA-U from OCS":0,"Incoming GY CCA-U from OCS Rate":0,"Received Error in CCR-I from OCS":0,"Received Error in CCR-U from OCS":0,"Received Error in CCR-T from OCS":0,"Received Timeout on GY CCR-I":0,"Received Timeout on GY CCR-U":0,"Received Timeout on GY CCR-T":0}},"message-2-db":{"values":{"Outgoing DB Messages":66856766,"Outgoing DB Messages Rate":4,"Outgoing DB Messages Failed":0}},"persistency":{"values":{"Current Tasks in Persistency Queue":0,"Persistency Queue Max Size":10000000,"Total Incoming Persistency Tasks":313840319,"Total Incoming Persistency Tasks Rate":35,"Total Incoming Persistency Tasks Failed":0,"Total Outgoing Persistency Tasks":313840319,"Total Outgoing Persistency Tasks Rate":35}},"cdr":{"values":{"Number of Active Offline Charging (CDR) rules":0,"Total number of CDRs":0,"CDRs generation rate":0,"CDRs in Queue":0}},"fup":{"values":{"Total number of Start Fup messages sent":621336607,"FUP Start Messages Rate":73,"Total number of Stop Fup messages sent":620854489,"FUP Stop Messages Rate":66,"Total number of Update Fup messages sent":0,"FUP Update Messages Rate":0,"Fup Outgoing Msg Rate":35}},"general-fup":null,"quota":{"values":{"Active Quota subscribers":0,"Active Quota sessions":0}},"charging":{"values":{"Number of Active charging rules":0,"Dynamic QoS Enforcement Rules Total":0,"Dynamic Service Activation Rules total":0,"Dynamic Service Service Plan AddOn Rules total":0}},"dhcp":{"values":{"Outgoing lease query IPv4 messages":0,"Incoming lease query IPv4 messages":0,"Outgoing lease query IPv6 messages":0,"Incoming lease query IPv6 messages":0,"pending dhcp client request":0}},"pilot":{"values":{"Maximal number of port chunks which were allocated to a single session in the reporting interval":0}},"gx-PQRF-client":{"values":{"Sent CCR-I to PQRF":0,"Sent CCR-I to PQRF Rate":0,"Sent CCR-U to PQRF":0,"Sent CCR-U to PQRF Rate":0,"Sent CCR-T to PQRF":0,"Sent CCR-T to PQRF Rate":0,"Sent RAA to PQRF":0,"Sent RAA to PQRF Rate":0,"Failed to Send CCR-I to PQRF":0,"Failed to Send CCR-U to PQRF":0,"Failed to Send CCR-T to PQRF":0,"Fail to Send RAA to PQRF":0}},"gx-PQRF-listener":{"values":{"Incoming CCA-I from PQRF":0,"Incoming CCA-I from PQRF Rate":0,"Incoming CCA-T from PQRF":0,"Incoming CCA-T from PQRF Rate":0,"Incoming CCA-U from PQRF":0,"Incoming CCA-U from PQRF Rate":0,"Incoming RAR from PQRF":0,"Incoming RAR from PQRF Rate":0,"Fail processing RAR from PQRF":0,"Error Received for CCR-I from PQRF":0,"Error Received for CCR-U from PQRF":0,"Error Received for CCR-T from PQRF":0,"Timeout Received on CCR-I from PQRF":0,"Timeout Received on CCR-U from PQRF":0,"Timeout Received on CCR-T from PQRF":0}},"gtp-handler":null}
+{"timestamp":"2026-05-21@14:48:39.276+0000","accountingMessageHandlerQueueSize":0,"totalAccountingMessagesDumped":0,"poolMonitoringRuleNotif":{"idleObjects":0,"maxObjects":200000},"poolApplicationUseTrigger":{"idleObjects":0,"createdObjects":0,"createRate":0,"getObjects":0,"getRate":0,"returnObjects":0,"returnRate":0},"poolMonitoringRuleTrigger":{"idleObjects":24,"createdObjects":1352779,"createRate":0,"getObjects":30596915,"getRate":4,"returnObjects":29244160,"returnRate":4},"poolNeEnhancedUpdateCommandV2":{"idleObjects":378,"createdObjects":6603629,"createRate":0,"getObjects":314575737,"getRate":33,"returnObjects":307972486,"returnRate":33},"poolNeEventTriggerCommandV2":{"idleObjects":0,"createdObjects":0,"createRate":0,"getObjects":0,"getRate":0,"returnObjects":0,"returnRate":0},"poolNeStopCommand":{"idleObjects":0,"createdObjects":6567454,"createRate":0,"getObjects":6567454,"getRate":0,"returnObjects":0,"returnRate":0},"poolNeDelSessionCommand":null,"poolEventTriggerAction":{"idleObjects":0,"createdObjects":0,"createRate":0,"getObjects":0,"getRate":0,"returnObjects":0,"returnRate":0},"poolNotifyToSMPTriggerAction":{"idleObjects":24,"createdObjects":1352779,"createRate":0,"getObjects":30596915,"getRate":4,"returnObjects":29244160,"returnRate":4},"poolRedirectTriggerAction":{"idleObjects":0,"createdObjects":0,"createRate":0,"getObjects":0,"getRate":0,"returnObjects":0,"returnRate":0},"poolNotifyToBucketTriggerAction":{"idleObjects":0,"createdObjects":0,"createRate":0,"getObjects":0,"getRate":0,"returnObjects":0,"returnRate":0},"poolChangeServiceTriggerAction":{"idleObjects":0,"createdObjects":0,"createRate":0,"getObjects":0,"getRate":0,"returnObjects":0,"returnRate":0},"fupStatistics":{"neManagersListAllToString":"\nAOS ID:170, AOS IP: <IPv6:<IPv6:200148880a373172:3a7022200000102/128>>\nAOS ID:167, AOS IP: <IPv6:<IPv6:200148880a373172:3a7022200000001/128>>\nAOS ID:168, AOS IP: <IPv6:<IPv6:200148880a373172:3a7022200000002/128>>\nAOS ID:169, AOS IP: <IPv6:<IPv6:200148880a373172:3a7022200000101/128>>","startMessagesSent":1202691092,"deleteIpMessagesSent":0,"deleteSessionMessagesSent":null,"failStartMessages":0,"failDeleteIpMessages":0,"failDeleteSessionMessages":0,"dumpedCommands":2,"totalChannels":0,"totalMessages":"0 (0)","notifStatistics":""},"radiusTargetGroupList":[{"groupId":"<Central_Managers/8>","state":"active","targetIps":["2607:f160:8a03:a1f6:c0:222:0:1"],"totalIncoming":313840490,"messagesSuccess":313840490,"messageFiltered":0,"sentFailCounters":{},"commandQueueSize":0,"incomingCommandRate":313840490,"outgoingMessageRate":33}],"diameterAdapterList":[{"type":"GX","ownUriString":"aaa://127.0.0.2:3868","openedSessionsCount":0,"handlerQueueSize":0},{"type":"GX","ownUriString":"aaa://127.0.0.2:56200","openedSessionsCount":0,"handlerQueueSize":0}],"general-info":{"values":{},"status":"Master","upTime":"2025-11-06@05:59:38.465+0000"},"session":{"values":{"Active sessions":81433,"Waiting to close sessions":16,"Waiting to restart PQRF session":0,"Forced closed sessions":0,"Active Gx Volume Reporting sessions":0,"Active Sd Volume Reporting sessions":0,"Active offline sessions":0,"Active sdr collection sessions":0,"Active online sessions":0,"Session Deletion due to ResultCode":0,"Diameter Inactivity Session Termination":0}},"subscriber":{"values":{"Active subscribers":81445,"Active Gx Volume Reporting subscribers":0,"Active Sd Volume Reporting subscribers":0,"Active offline subscribers":0,"Active sdr collection subscribers":0,"Total assign ipv4":81428,"Total assign ipv6":81368,"Total assign TID":162796,"Subscriber name out of bound":0,"Registered cmts subscribers":0,"Active online subscribers":0,"Subscribers instance ids":0}},"gx-client":{"values":{"Sent CCR-I to PCRF":0,"Gx CCR-I Rate":0,"Sent CCR-U to PCRF":0,"Gx CCR-U Rate":0,"Sent CCR-T to PCRF":0,"Gx CCR-T Rate":0,"Fail to send CCR-I to PCRF":0,"Fail to send CCR-U to PCRF":0,"Fail to send CCR-T to PCRF":0,"Number Of Active Policy Control (Gx) Rules":0}},"sd-client":{"values":{"Total number of Sent CCR to Sd PCRF":0,"Sent CCR-U to PCRF":0,"Sd CCR-U Rate":0,"Sent CCR-T to PCRF":0,"Sd CCR-T Rate":0,"Fail to send CCR/RAA/TSA PCRF":0,"Fail to send CCR-U to PCRF":0,"Fail to send CCR-T to PCRF":0,"Number Of Active Policy Control (Sd) Rules":0}},"gy-client":{"values":{"Sent CCR-I to OCS":0,"Gy Ccr-I Rate":0,"Sent CCR-U to OCS":0,"Gy Ccr-U Rate":0,"Sent CCR-T to OCS":0,"Gy Ccr-T Rate":0,"Fail to send CCR-I to OCS":0,"Fail to send CCR-U to OCS":0,"Fail to send CCR-T to OCS":0,"Number Of Active Online Charging (Gy) Rules":0}},"message-handler":{"values":{"Incoming start messages":29497024,"Incoming start messages rate":4,"Incoming stop messages":29489759,"Incoming stop messages rate":3,"Incoming update messages":127491632,"Total incoming messages":313800631,"Total incoming messages rate":33,"Incoming cmts messages":0,"Total skip nat stop messages":249384,"Termination requests":45140692,"Termination requests rate":4,"Incoming notification messages":0,"Incoming notification messages rate":0,"Notification messages queue size":0,"Force session termination queue size":0}},"gx-listener":{"values":{"Incoming CCA-I from PCRF":0,"Incoming CCA-I from PCRF Rate":0,"Incoming CCA-T from PCRF":0,"Incoming CCA-T from PCRF Rate":0,"Incoming CCA-U from PCRF":0,"Incoming CCA-U from PCRF Rate":0,"Incoming RAR from PCRF":0,"Incoming RAR from PCRF Rate":0,"Fail processing RAR from PCRF":0,"Sent RAA to PCRF":0,"Sent RAA to PCRF Rate":0,"Fail to Send RAA to PCRF":0,"Received Error in CCR-I from PCRF":0,"Received Error in CCR-U from PCRF":0,"Received Error in CCR-T from PCRF":0,"Received Timeout on GX CCR-I":0,"Received Timeout on GX CCR-U":0,"Received Timeout on GX CCR-T":0}},"sd-listener":{"values":{"Total Incoming Transactions from Sd PCRF":0,"Incoming TSR from PCRF":0,"Incoming TSR Rate":0,"Incoming CCA-T from PCRF":0,"Incoming CCA-T from PCRF Rate":0,"Incoming CCA-U from PCRF":0,"Incoming CCA-U from PCRF Rate":0,"Incoming RAR from PCRF":0,"Incoming RAR from PCRF Rate":0,"Incoming RAR-Termination Rate":0,"Fail processing RAR from PCRF":0,"Fail processing TSR from PCRF":0,"Sent RAA to PCRF":0,"Sent RAA to PCRF Rate":0,"Sent TSA to PCRF":0,"Sent TSA to PCRF Rate":0,"Fail to send TSA to PCRF":0,"Fail to Sent RAA to PCRF":0,"Received Error in CCR-U from PCRF":0,"Received Error in CCR-T from PCRF":0,"Received Timeout on Sd CCR-U":0,"Received Timeout on Sd CCR-T":0,"Force SD Session Termination":0}},"gy-listener":{"values":{"Incoming RAR from OCS":0,"Gy Incoming RAR Rate":0,"Fail processing RAR from OCS":0,"Sent RAA to OCS":0,"Gy Sent RAA Rate":0,"Fail to Send RAA to OCS":0,"Incoming ASR from OCS":0,"Gy Incoming ASR Rate":0,"Fail processing ASR from OCS":0,"Sent ASA to OCS":0,"Gy Sent ASA Rate":0,"Fail to Send ASA to OCS":0,"Incoming CCA-I from OCS":0,"Incoming CCA-I from OCS Rate":0,"Incoming GY CCA-T from OCS":0,"Incoming GY CCA-T from OCS Rate":0,"Incoming GY CCA-U from OCS":0,"Incoming GY CCA-U from OCS Rate":0,"Received Error in CCR-I from OCS":0,"Received Error in CCR-U from OCS":0,"Received Error in CCR-T from OCS":0,"Received Timeout on GY CCR-I":0,"Received Timeout on GY CCR-U":0,"Received Timeout on GY CCR-T":0}},"message-2-db":{"values":{"Outgoing DB Messages":66856783,"Outgoing DB Messages Rate":3,"Outgoing DB Messages Failed":0}},"persistency":{"values":{"Current Tasks in Persistency Queue":0,"Persistency Queue Max Size":10000000,"Total Incoming Persistency Tasks":313840486,"Total Incoming Persistency Tasks Rate":33,"Total Incoming Persistency Tasks Failed":0,"Total Outgoing Persistency Tasks":313840486,"Total Outgoing Persistency Tasks Rate":33}},"cdr":{"values":{"Number of Active Offline Charging (CDR) rules":0,"Total number of CDRs":0,"CDRs generation rate":0,"CDRs in Queue":0}},"fup":{"values":{"Total number of Start Fup messages sent":621336963,"FUP Start Messages Rate":71,"Total number of Stop Fup messages sent":620854809,"FUP Stop Messages Rate":64,"Total number of Update Fup messages sent":0,"FUP Update Messages Rate":0,"Fup Outgoing Msg Rate":33}},"general-fup":null,"quota":{"values":{"Active Quota subscribers":0,"Active Quota sessions":0}},"charging":{"values":{"Number of Active charging rules":0,"Dynamic QoS Enforcement Rules Total":0,"Dynamic Service Activation Rules total":0,"Dynamic Service Service Plan AddOn Rules total":0}},"dhcp":{"values":{"Outgoing lease query IPv4 messages":0,"Incoming lease query IPv4 messages":0,"Outgoing lease query IPv6 messages":0,"Incoming lease query IPv6 messages":0,"pending dhcp client request":0}},"pilot":{"values":{"Maximal number of port chunks which were allocated to a single session in the reporting interval":0}},"gx-PQRF-client":{"values":{"Sent CCR-I to PQRF":0,"Sent CCR-I to PQRF Rate":0,"Sent CCR-U to PQRF":0,"Sent CCR-U to PQRF Rate":0,"Sent CCR-T to PQRF":0,"Sent CCR-T to PQRF Rate":0,"Sent RAA to PQRF":0,"Sent RAA to PQRF Rate":0,"Failed to Send CCR-I to PQRF":0,"Failed to Send CCR-U to PQRF":0,"Failed to Send CCR-T to PQRF":0,"Fail to Send RAA to PQRF":0}},"gx-PQRF-listener":{"values":{"Incoming CCA-I from PQRF":0,"Incoming CCA-I from PQRF Rate":0,"Incoming CCA-T from PQRF":0,"Incoming CCA-T from PQRF Rate":0,"Incoming CCA-U from PQRF":0,"Incoming CCA-U from PQRF Rate":0,"Incoming RAR from PQRF":0,"Incoming RAR from PQRF Rate":0,"Fail processing RAR from PQRF":0,"Error Received for CCR-I from PQRF":0,"Error Received for CCR-U from PQRF":0,"Error Received for CCR-T from PQRF":0,"Timeout Received on CCR-I from PQRF":0,"Timeout Received on CCR-U from PQRF":0,"Timeout Received on CCR-T from PQRF":0}},"gtp-handler":null}
+
+Last 12 lines StatisticsLog
+2026-05-21 13:49:38.468 +0000,16962600003,29480485,6,29473424,6,127439906,21,0,45101320,0,0,0,20466,804,36,55,149,191,198,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,621063907,100,620593333,105,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,491,25,77,487,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-05-21 13:54:38.468 +0000,16962900003,29481875,6,29474798,6,127444462,18,0,45104663,0,0,0,16657,775,42,46,134,191,186,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,621087691,97,620615441,97,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,491,25,77,487,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-05-21 13:59:38.468 +0000,16963200003,29483293,6,29476222,7,127448872,18,0,45108135,0,0,0,16709,821,49,45,160,188,161,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,621111003,99,620638338,106,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,491,25,77,487,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-05-21 14:04:38.468 +0000,16963500003,29484728,7,29477626,6,127453218,19,0,45111756,0,0,0,18835,787,50,45,171,200,152,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,621134122,95,620660533,99,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,491,25,77,487,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-05-21 14:09:38.468 +0000,16963800003,29486212,6,29479077,6,127457459,19,0,45115272,0,0,0,17347,831,45,46,142,199,188,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,621157023,99,620682629,104,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,491,25,77,487,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-05-21 14:14:38.468 +0000,16964100003,29487626,6,29480479,6,127461756,20,0,45118757,0,0,0,20264,785,45,43,145,211,173,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,621179871,104,620705325,105,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,491,25,77,487,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-05-21 14:19:38.468 +0000,16964400003,29489043,6,29481862,6,127466151,18,0,45122141,0,0,0,23338,794,29,48,138,195,179,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,621203119,95,620727045,100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,491,25,77,487,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-05-21 14:24:38.468 +0000,16964700003,29490447,6,29483239,7,127470603,17,0,45125634,0,0,0,15660,793,46,54,135,206,142,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,621226547,93,620749705,102,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,491,25,77,487,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-05-21 14:29:38.468 +0000,16965000003,29491816,6,29484656,6,127474811,18,0,45129171,0,0,0,21137,754,45,47,162,227,182,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,621248855,91,620771561,108,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,491,25,77,487,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-05-21 14:34:38.468 +0000,16965300003,29493272,8,29486041,6,127479160,18,0,45132804,0,0,0,16003,821,42,41,144,189,149,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,621272075,94,620793707,96,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,491,25,77,487,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-05-21 14:39:38.468 +0000,16965600003,29494720,7,29487457,6,127483629,18,0,45136237,0,0,0,15932,797,37,58,157,202,165,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,621295739,100,620815561,92,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,491,25,77,487,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-05-21 14:44:38.468 +0000,16965900003,29496114,6,29488851,7,127487911,19,0,45139353,0,0,0,18790,751,54,45,156,209,181,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,621318443,96,620838093,106,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,491,25,77,487,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+
+Last 45 lines RadiusGroups_Statistics.log
+Radius Target Groups
+--------------------
+
+Radius Group:
+-------------
+group id..................: <Central_Managers/8>
+state.....................: active
+target ips................: [/2607:f160:8a03:a1f6:c0:222:0:1]
+load balancing type.......: BROADCAST
+
+total incoming............: 313840674
+messages success..........: 313840674
+- RADIUS_START: 29861689
+- RADIUS_STOP: 29782618
+- RADIUS_INTERIM_UPDATE: 127123459
+- RADIUS_NAT_DEALLOC: 127072908
+messages filtered.........: 0
+
+command queue size........: 0
+incoming message rate.....: 36
+outgoing message rate.....: 36
+
+Radius Client Map: 
+  ---------------
+  ip...................: 2607:f160:8a03:a1f6:c0:222:0:1
+  state................: active
+  reachable............: n/a
+  connections(out of)..: 11 (50)
+  total sent(rate).....: 22468799 (36)
+  total retry..........: 0
+  total sent failed....: 0
+  total ack(rate)......: Disabled
+  total ack failed.....: 0
+  pending ack..........: 0
+
+=================================================================================
+smp1_duff | CHANGED | rc=0 >>
+====================================smp_stats=================================
+cncqoh22vzwvsas-y-at-secas-01-submp-001
+ACP 17.15.32 CentOS 7.9
+build_13 2024-12-30 SSPK
+
+md 17.2.40-86,  pcc_router
+HA enabled
+
+Number of Java processes:
+428
+
+top - 14:54:18 up 234 days,  8:40,  1 user,  load average: 0.04, 0.06, 0.05
+Tasks: 282 total,   1 running, 281 sleeping,   0 stopped,   0 zombie
+%Cpu(s):  0.4 us,  0.4 sy,  0.0 ni, 99.2 id,  0.0 wa,  0.0 hi,  0.0 si,  0.0 st
+KiB Mem : 65806248 total, 15814540 free, 21662840 used, 28328868 buff/cache
+KiB Swap:  4194300 total,  4194300 free,        0 used. 43691756 avail Mem 
+
+  PID USER      PR  NI    VIRT    RES    SHR S  %CPU %MEM     TIME+ COMMAND
+ 5237 admin     20   0  162104   2284   1536 R   6.2  0.0   0:00.01 top
+30677 rabbitmq  20   0 4281084  82100   5084 S   6.2  0.1 415:50.59 beam.smp
+    1 root      20   0   52080   4388   2632 S   0.0  0.0 632:59.28 systemd
+    2 root      20   0       0      0      0 S   0.0  0.0   0:06.56 kthreadd
+    4 root       0 -20       0      0      0 S   0.0  0.0   0:00.00 kworker/0:+
+    6 root      20   0       0      0      0 S   0.0  0.0   0:12.07 ksoftirqd/0
+    7 root      rt   0       0      0      0 S   0.0  0.0   0:10.56 migration/0
+    8 root      20   0       0      0      0 S   0.0  0.0   0:00.00 rcu_bh
+FUP STATISTICS  
+************************************************* 
+name..........: CNCQOH22VZWVSAS-Y-AT-SECAS-01-SGVE-004
+aos id........: 170
+state.........: Active
+ne............: ne1 (<DsVersions: 36><AttributeBitSet: none>)
+ip............: <IPv6:<IPv6:200148880a373172:3a7022200000102/128>>:5855
+securedStatus.: Secure Connection
+tlsVersion....: TLSv1.2
+cipherSuite...: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+connection....: Connected (1)
+connection id.: 4285272858
+
+total received: 2782
+- Enhance Update Message: 2730
+- Keep Alive Message: 50
+- ABC Map Update: 1
+- Fup Sync Req: 1
+total dumped: 0
+
+Channel Manager
+------------------
+state......................: active
+queue size.................: 0 (0)
+incoming rate..............: 6 (11)
+outgoing rate..............: 6 (11)
+sync type..................: NeSynchronizerV19
+aos pending sync requests..: 0
+abc in sync................: 1024
+total sync.................: 2048
+total sync ip..............: 0
+total sync triggers........: 0
+total sync time............: 0.197 (sec)
+
+Provision Channel Map: 
+---------------
+prov id.......: <[1] id:170/<IPv6:<IPv6:200148880a373172:3a7022200000102/128>>:5851>
+state.........: active
+ne............: ne1 (<DsVersions: 36><AttributeBitSet: none>)
+securedStatus.: Secure Connection
+tlsVersion....: TLSv1.2
+cipherSuite...: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+connection....: Connected (47)
+connection id.: 10
+
+command queue size........: 0
+incoming message rate.....: 7
+outgoing message rate.....: 7 (1905 Bps)
+incoming ack rate.........: 5
+totals:
+total queue commands......: 4804
+- Enhance Update Message: 2730
+- Keep Alive Message: 26
+- ABC Map Update: 2048
+messages sent.............: 6852
+- Enhance Update Message: 2730
+- Keep Alive Message: 26
+- Fup Sync Status: 4096
+messages failed...........: 0
+
+
+Notification Channels: 
+------------------
+
+Total channels...: 0
+Total messages...: 0 (0)
+
+FUP STATISTICS  
+************************************************* 
+name..........: CNCQOH22VZWVSAS-Y-AT-SECAS-01-SGVE-003
+aos id........: 169
+state.........: Active
+ne............: ne1 (<DsVersions: 36><AttributeBitSet: none>)
+ip............: <IPv6:<IPv6:200148880a373172:3a7022200000101/128>>:5855
+securedStatus.: Secure Connection
+tlsVersion....: TLSv1.2
+cipherSuite...: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+connection....: Connected (1)
+connection id.: 4281284035
+
+total received: 2782
+- Enhance Update Message: 2730
+- Keep Alive Message: 50
+- ABC Map Update: 1
+- Fup Sync Req: 1
+total dumped: 0
+
+Channel Manager
+------------------
+state......................: active
+queue size.................: 0 (0)
+incoming rate..............: 7 (11)
+outgoing rate..............: 7 (11)
+sync type..................: NeSynchronizerV19
+aos pending sync requests..: 0
+abc in sync................: 1024
+total sync.................: 2048
+total sync ip..............: 0
+total sync triggers........: 0
+total sync time............: 0.264 (sec)
+
+Provision Channel Map: 
+---------------
+prov id.......: <[1] id:169/<IPv6:<IPv6:200148880a373172:3a7022200000101/128>>:5851>
+state.........: active
+ne............: ne1 (<DsVersions: 36><AttributeBitSet: none>)
+securedStatus.: Secure Connection
+tlsVersion....: TLSv1.2
+cipherSuite...: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+connection....: Connected (45)
+connection id.: 10
+
+command queue size........: 0
+incoming message rate.....: 7
+outgoing message rate.....: 7 (1905 Bps)
+incoming ack rate.........: 5
+totals:
+total queue commands......: 4804
+- Enhance Update Message: 2730
+- Keep Alive Message: 26
+- ABC Map Update: 2048
+messages sent.............: 6852
+- Enhance Update Message: 2730
+- Keep Alive Message: 26
+- Fup Sync Status: 4096
+messages failed...........: 0
+
+
+Notification Channels: 
+------------------
+
+Total channels...: 0
+Total messages...: 0 (0)
+
+FUP STATISTICS  
+************************************************* 
+name..........: CNCQOH22VZWVSAS-Y-AT-SECAS-01-SGVE-001
+aos id........: 167
+state.........: Active
+ne............: ne1 (<DsVersions: 36><AttributeBitSet: none>)
+ip............: <IPv6:<IPv6:200148880a373172:3a7022200000001/128>>:5855
+securedStatus.: Secure Connection
+tlsVersion....: TLSv1.2
+cipherSuite...: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+connection....: Connected (1)
+connection id.: 4281791519
+
+total received: 2782
+- Enhance Update Message: 2730
+- Keep Alive Message: 50
+- ABC Map Update: 1
+- Fup Sync Req: 1
+total dumped: 0
+
+Channel Manager
+------------------
+state......................: active
+queue size.................: 0 (0)
+incoming rate..............: 7 (11)
+outgoing rate..............: 7 (11)
+sync type..................: NeSynchronizerV19
+aos pending sync requests..: 1
+abc in sync................: 1023
+*abc out of sync...........: 1
+total sync.................: 2050
+total sync ip..............: 0
+total sync triggers........: 0
+total sync time............: 0.262 (sec)
+
+Provision Channel Map: 
+---------------
+prov id.......: <[1] id:167/<IPv6:<IPv6:200148880a373172:3a7022200000001/128>>:5851>
+state.........: active
+ne............: ne1 (<DsVersions: 36><AttributeBitSet: none>)
+securedStatus.: Secure Connection
+tlsVersion....: TLSv1.2
+cipherSuite...: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+connection....: Connected (50)
+sync pending..: 1connection id.: 10
+
+command queue size........: 0
+incoming message rate.....: 6
+outgoing message rate.....: 6 (1524 Bps)
+incoming ack rate.........: 3
+totals:
+total queue commands......: 4806
+- Enhance Update Message: 2730
+- Keep Alive Message: 26
+- ABC Map Update: 2050
+messages sent.............: 6856
+- Enhance Update Message: 2730
+- Keep Alive Message: 26
+- Fup Sync Status: 4100
+messages failed...........: 0
+
+
+Notification Channels: 
+------------------
+
+Total channels...: 0
+Total messages...: 0 (0)
+
+FUP STATISTICS  
+************************************************* 
+name..........: CNCQOH22VZWVSAS-Y-AT-SECAS-01-SGVE-002
+aos id........: 168
+state.........: Active
+ne............: ne1 (<DsVersions: 0><AttributeBitSet: none>)
+ip............: <IPv6:<IPv6:200148880a373172:3a7022200000002/128>>:5855
+securedStatus.: Secure Connection
+tlsVersion....: NONE
+cipherSuite...: SSL_NULL_WITH_NULL_NULL
+connection....: Connecting (653)
+connection id.: 0
+
+total received: 2755
+- Enhance Update Message: 2650
+- Keep Alive Message: 25
+- Delete IP Message: 80
+total dumped: 2755
+
+
+Last 3 lines of Pcc_Statistics_Json.log
+
+{"timestamp":"2025-11-06@06:03:58.872+0000","accountingMessageHandlerQueueSize":0,"totalAccountingMessagesDumped":0,"poolMonitoringRuleNotif":{"idleObjects":0,"maxObjects":200000},"poolApplicationUseTrigger":{"idleObjects":0,"createdObjects":0,"createRate":0,"getObjects":0,"getRate":0,"returnObjects":0,"returnRate":0},"poolMonitoringRuleTrigger":{"idleObjects":0,"createdObjects":2376,"createRate":6,"getObjects":2376,"getRate":6,"returnObjects":0,"returnRate":0},"poolNeEnhancedUpdateCommandV2":{"idleObjects":1,"createdObjects":2591,"createRate":6,"getObjects":2669,"getRate":7,"returnObjects":79,"returnRate":1},"poolNeEventTriggerCommandV2":{"idleObjects":0,"createdObjects":0,"createRate":0,"getObjects":0,"getRate":0,"returnObjects":0,"returnRate":0},"poolNeStopCommand":{"idleObjects":0,"createdObjects":79,"createRate":1,"getObjects":79,"getRate":1,"returnObjects":0,"returnRate":0},"poolNeDelSessionCommand":null,"poolEventTriggerAction":{"idleObjects":0,"createdObjects":0,"createRate":0,"getObjects":0,"getRate":0,"returnObjects":0,"returnRate":0},"poolNotifyToSMPTriggerAction":{"idleObjects":0,"createdObjects":2376,"createRate":6,"getObjects":2376,"getRate":6,"returnObjects":0,"returnRate":0},"poolRedirectTriggerAction":{"idleObjects":0,"createdObjects":0,"createRate":0,"getObjects":0,"getRate":0,"returnObjects":0,"returnRate":0},"poolNotifyToBucketTriggerAction":{"idleObjects":0,"createdObjects":0,"createRate":0,"getObjects":0,"getRate":0,"returnObjects":0,"returnRate":0},"poolChangeServiceTriggerAction":{"idleObjects":0,"createdObjects":0,"createRate":0,"getObjects":0,"getRate":0,"returnObjects":0,"returnRate":0},"fupStatistics":{"neManagersListAllToString":"\nAOS ID:168, AOS IP: <IPv6:<IPv6:200148880a373172:3a7022200000002/128>>\nAOS ID:170, AOS IP: <IPv6:<IPv6:200148880a373172:3a7022200000102/128>>\nAOS ID:167, AOS IP: <IPv6:<IPv6:200148880a373172:3a7022200000001/128>>\nAOS ID:169, AOS IP: <IPv6:<IPv6:200148880a373172:3a7022200000101/128>>","startMessagesSent":8007,"deleteIpMessagesSent":0,"deleteSessionMessagesSent":null,"failStartMessages":0,"failDeleteIpMessages":0,"failDeleteSessionMessages":0,"dumpedCommands":2694,"totalChannels":0,"totalMessages":"0 (0)","notifStatistics":""},"radiusTargetGroupList":[{"groupId":"<Central_Managers/8>","state":"active","targetIps":["2607:f160:8a05:a253:e0:222:0:1"],"totalIncoming":2669,"messagesSuccess":2669,"messageFiltered":0,"sentFailCounters":{},"commandQueueSize":0,"incomingCommandRate":2669,"outgoingMessageRate":6}],"diameterAdapterList":[{"type":"GX","ownUriString":"aaa://127.0.0.2:3868","openedSessionsCount":0,"handlerQueueSize":0},{"type":"GX","ownUriString":"aaa://127.0.0.2:56200","openedSessionsCount":0,"handlerQueueSize":0}],"general-info":{"values":{},"status":"Master","upTime":"2025-11-06@05:50:22.934+0000"},"session":{"values":{"Active sessions":2315,"Waiting to close sessions":3,"Waiting to restart PQRF session":0,"Forced closed sessions":0,"Active Gx Volume Reporting sessions":0,"Active Sd Volume Reporting sessions":0,"Active offline sessions":0,"Active sdr collection sessions":0,"Active online sessions":0,"Session Deletion due to ResultCode":0,"Diameter Inactivity Session Termination":0}},"subscriber":{"values":{"Active subscribers":2316,"Active Gx Volume Reporting subscribers":0,"Active Sd Volume Reporting subscribers":0,"Active offline subscribers":0,"Active sdr collection subscribers":0,"Total assign ipv4":2315,"Total assign ipv6":2314,"Total assign TID":4629,"Subscriber name out of bound":0,"Registered cmts subscribers":0,"Active online subscribers":0,"Subscribers instance ids":0}},"gx-client":{"values":{"Sent CCR-I to PCRF":0,"Gx CCR-I Rate":0,"Sent CCR-U to PCRF":0,"Gx CCR-U Rate":0,"Sent CCR-T to PCRF":0,"Gx CCR-T Rate":0,"Fail to send CCR-I to PCRF":0,"Fail to send CCR-U to PCRF":0,"Fail to send CCR-T to PCRF":0,"Number Of Active Policy Control (Gx) Rules":0}},"sd-client":{"values":{"Total number of Sent CCR to Sd PCRF":0,"Sent CCR-U to PCRF":0,"Sd CCR-U Rate":0,"Sent CCR-T to PCRF":0,"Sd CCR-T Rate":0,"Fail to send CCR/RAA/TSA PCRF":0,"Fail to send CCR-U to PCRF":0,"Fail to send CCR-T to PCRF":0,"Number Of Active Policy Control (Sd) Rules":0}},"gy-client":{"values":{"Sent CCR-I to OCS":0,"Gy Ccr-I Rate":0,"Sent CCR-U to OCS":0,"Gy Ccr-U Rate":0,"Sent CCR-T to OCS":0,"Gy Ccr-T Rate":0,"Fail to send CCR-I to OCS":0,"Fail to send CCR-U to OCS":0,"Fail to send CCR-T to OCS":0,"Number Of Active Online Charging (Gy) Rules":0}},"message-handler":{"values":{"Incoming start messages":368,"Incoming start messages rate":0,"Incoming stop messages":410,"Incoming stop messages rate":1,"Incoming update messages":2222,"Total incoming messages":5443,"Total incoming messages rate":9,"Incoming cmts messages":0,"Total skip nat stop messages":2425,"Termination requests":73,"Termination requests rate":1,"Incoming notification messages":0,"Incoming notification messages rate":0,"Notification messages queue size":0,"Force session termination queue size":0}},"gx-listener":{"values":{"Incoming CCA-I from PCRF":0,"Incoming CCA-I from PCRF Rate":0,"Incoming CCA-T from PCRF":0,"Incoming CCA-T from PCRF Rate":0,"Incoming CCA-U from PCRF":0,"Incoming CCA-U from PCRF Rate":0,"Incoming RAR from PCRF":0,"Incoming RAR from PCRF Rate":0,"Fail processing RAR from PCRF":0,"Sent RAA to PCRF":0,"Sent RAA to PCRF Rate":0,"Fail to Send RAA to PCRF":0,"Received Error in CCR-I from PCRF":0,"Received Error in CCR-U from PCRF":0,"Received Error in CCR-T from PCRF":0,"Received Timeout on GX CCR-I":0,"Received Timeout on GX CCR-U":0,"Received Timeout on GX CCR-T":0}},"sd-listener":{"values":{"Total Incoming Transactions from Sd PCRF":0,"Incoming TSR from PCRF":0,"Incoming TSR Rate":0,"Incoming CCA-T from PCRF":0,"Incoming CCA-T from PCRF Rate":0,"Incoming CCA-U from PCRF":0,"Incoming CCA-U from PCRF Rate":0,"Incoming RAR from PCRF":0,"Incoming RAR from PCRF Rate":0,"Incoming RAR-Termination Rate":0,"Fail processing RAR from PCRF":0,"Fail processing TSR from PCRF":0,"Sent RAA to PCRF":0,"Sent RAA to PCRF Rate":0,"Sent TSA to PCRF":0,"Sent TSA to PCRF Rate":0,"Fail to send TSA to PCRF":0,"Fail to Sent RAA to PCRF":0,"Received Error in CCR-U from PCRF":0,"Received Error in CCR-T from PCRF":0,"Received Timeout on Sd CCR-U":0,"Received Timeout on Sd CCR-T":0,"Force SD Session Termination":0}},"gy-listener":{"values":{"Incoming RAR from OCS":0,"Gy Incoming RAR Rate":0,"Fail processing RAR from OCS":0,"Sent RAA to OCS":0,"Gy Sent RAA Rate":0,"Fail to Send RAA to OCS":0,"Incoming ASR from OCS":0,"Gy Incoming ASR Rate":0,"Fail processing ASR from OCS":0,"Sent ASA to OCS":0,"Gy Sent ASA Rate":0,"Fail to Send ASA to OCS":0,"Incoming CCA-I from OCS":0,"Incoming CCA-I from OCS Rate":0,"Incoming GY CCA-T from OCS":0,"Incoming GY CCA-T from OCS Rate":0,"Incoming GY CCA-U from OCS":0,"Incoming GY CCA-U from OCS Rate":0,"Received Error in CCR-I from OCS":0,"Received Error in CCR-U from OCS":0,"Received Error in CCR-T from OCS":0,"Received Timeout on GY CCR-I":0,"Received Timeout on GY CCR-U":0,"Received Timeout on GY CCR-T":0}},"message-2-db":{"values":{"Outgoing DB Messages":2972,"Outgoing DB Messages Rate":3,"Outgoing DB Messages Failed":0}},"persistency":{"values":{"Current Tasks in Persistency Queue":0,"Persistency Queue Max Size":10000000,"Total Incoming Persistency Tasks":2669,"Total Incoming Persistency Tasks Rate":6,"Total Incoming Persistency Tasks Failed":0,"Total Outgoing Persistency Tasks":2669,"Total Outgoing Persistency Tasks Rate":6}},"cdr":{"values":{"Number of Active Offline Charging (CDR) rules":0,"Total number of CDRs":0,"CDRs generation rate":0,"CDRs in Queue":0}},"fup":{"values":{"Total number of Start Fup messages sent":7770,"FUP Start Messages Rate":16,"Total number of Stop Fup messages sent":237,"FUP Stop Messages Rate":2,"Total number of Update Fup messages sent":0,"FUP Update Messages Rate":0,"Fup Outgoing Msg Rate":6}},"general-fup":null,"quota":{"values":{"Active Quota subscribers":0,"Active Quota sessions":0}},"charging":{"values":{"Number of Active charging rules":0,"Dynamic QoS Enforcement Rules Total":0,"Dynamic Service Activation Rules total":0,"Dynamic Service Service Plan AddOn Rules total":0}},"dhcp":{"values":{"Outgoing lease query IPv4 messages":0,"Incoming lease query IPv4 messages":0,"Outgoing lease query IPv6 messages":0,"Incoming lease query IPv6 messages":0,"pending dhcp client request":0}},"pilot":{"values":{"Maximal number of port chunks which were allocated to a single session in the reporting interval":0}},"gx-PQRF-client":{"values":{"Sent CCR-I to PQRF":0,"Sent CCR-I to PQRF Rate":0,"Sent CCR-U to PQRF":0,"Sent CCR-U to PQRF Rate":0,"Sent CCR-T to PQRF":0,"Sent CCR-T to PQRF Rate":0,"Sent RAA to PQRF":0,"Sent RAA to PQRF Rate":0,"Failed to Send CCR-I to PQRF":0,"Failed to Send CCR-U to PQRF":0,"Failed to Send CCR-T to PQRF":0,"Fail to Send RAA to PQRF":0}},"gx-PQRF-listener":{"values":{"Incoming CCA-I from PQRF":0,"Incoming CCA-I from PQRF Rate":0,"Incoming CCA-T from PQRF":0,"Incoming CCA-T from PQRF Rate":0,"Incoming CCA-U from PQRF":0,"Incoming CCA-U from PQRF Rate":0,"Incoming RAR from PQRF":0,"Incoming RAR from PQRF Rate":0,"Fail processing RAR from PQRF":0,"Error Received for CCR-I from PQRF":0,"Error Received for CCR-U from PQRF":0,"Error Received for CCR-T from PQRF":0,"Timeout Received on CCR-I from PQRF":0,"Timeout Received on CCR-U from PQRF":0,"Timeout Received on CCR-T from PQRF":0}},"gtp-handler":null}
+{"timestamp":"2025-11-06@06:04:03.872+0000","accountingMessageHandlerQueueSize":0,"totalAccountingMessagesDumped":0,"poolMonitoringRuleNotif":{"idleObjects":0,"maxObjects":200000},"poolApplicationUseTrigger":{"idleObjects":0,"createdObjects":0,"createRate":0,"getObjects":0,"getRate":0,"returnObjects":0,"returnRate":0},"poolMonitoringRuleTrigger":{"idleObjects":0,"createdObjects":2403,"createRate":5,"getObjects":2403,"getRate":5,"returnObjects":0,"returnRate":0},"poolNeEnhancedUpdateCommandV2":{"idleObjects":2,"createdObjects":2621,"createRate":6,"getObjects":2699,"getRate":6,"returnObjects":80,"returnRate":0},"poolNeEventTriggerCommandV2":{"idleObjects":0,"createdObjects":0,"createRate":0,"getObjects":0,"getRate":0,"returnObjects":0,"returnRate":0},"poolNeStopCommand":{"idleObjects":0,"createdObjects":80,"createRate":0,"getObjects":80,"getRate":0,"returnObjects":0,"returnRate":0},"poolNeDelSessionCommand":null,"poolEventTriggerAction":{"idleObjects":0,"createdObjects":0,"createRate":0,"getObjects":0,"getRate":0,"returnObjects":0,"returnRate":0},"poolNotifyToSMPTriggerAction":{"idleObjects":0,"createdObjects":2403,"createRate":5,"getObjects":2403,"getRate":5,"returnObjects":0,"returnRate":0},"poolRedirectTriggerAction":{"idleObjects":0,"createdObjects":0,"createRate":0,"getObjects":0,"getRate":0,"returnObjects":0,"returnRate":0},"poolNotifyToBucketTriggerAction":{"idleObjects":0,"createdObjects":0,"createRate":0,"getObjects":0,"getRate":0,"returnObjects":0,"returnRate":0},"poolChangeServiceTriggerAction":{"idleObjects":0,"createdObjects":0,"createRate":0,"getObjects":0,"getRate":0,"returnObjects":0,"returnRate":0},"fupStatistics":{"neManagersListAllToString":"\nAOS ID:168, AOS IP: <IPv6:<IPv6:200148880a373172:3a7022200000002/128>>\nAOS ID:170, AOS IP: <IPv6:<IPv6:200148880a373172:3a7022200000102/128>>\nAOS ID:167, AOS IP: <IPv6:<IPv6:200148880a373172:3a7022200000001/128>>\nAOS ID:169, AOS IP: <IPv6:<IPv6:200148880a373172:3a7022200000101/128>>","startMessagesSent":8097,"deleteIpMessagesSent":0,"deleteSessionMessagesSent":null,"failStartMessages":0,"failDeleteIpMessages":0,"failDeleteSessionMessages":0,"dumpedCommands":2724,"totalChannels":0,"totalMessages":"0 (0)","notifStatistics":""},"radiusTargetGroupList":[{"groupId":"<Central_Managers/8>","state":"active","targetIps":["2607:f160:8a05:a253:e0:222:0:1"],"totalIncoming":2699,"messagesSuccess":2699,"messageFiltered":0,"sentFailCounters":{},"commandQueueSize":0,"incomingCommandRate":2699,"outgoingMessageRate":6}],"diameterAdapterList":[{"type":"GX","ownUriString":"aaa://127.0.0.2:3868","openedSessionsCount":0,"handlerQueueSize":0},{"type":"GX","ownUriString":"aaa://127.0.0.2:56200","openedSessionsCount":0,"handlerQueueSize":0}],"general-info":{"values":{},"status":"Master","upTime":"2025-11-06@05:50:22.934+0000"},"session":{"values":{"Active sessions":2341,"Waiting to close sessions":1,"Waiting to restart PQRF session":0,"Forced closed sessions":0,"Active Gx Volume Reporting sessions":0,"Active Sd Volume Reporting sessions":0,"Active offline sessions":0,"Active sdr collection sessions":0,"Active online sessions":0,"Session Deletion due to ResultCode":0,"Diameter Inactivity Session Termination":0}},"subscriber":{"values":{"Active subscribers":2341,"Active Gx Volume Reporting subscribers":0,"Active Sd Volume Reporting subscribers":0,"Active offline subscribers":0,"Active sdr collection subscribers":0,"Total assign ipv4":2341,"Total assign ipv6":2340,"Total assign TID":4681,"Subscriber name out of bound":0,"Registered cmts subscribers":0,"Active online subscribers":0,"Subscribers instance ids":0}},"gx-client":{"values":{"Sent CCR-I to PCRF":0,"Gx CCR-I Rate":0,"Sent CCR-U to PCRF":0,"Gx CCR-U Rate":0,"Sent CCR-T to PCRF":0,"Gx CCR-T Rate":0,"Fail to send CCR-I to PCRF":0,"Fail to send CCR-U to PCRF":0,"Fail to send CCR-T to PCRF":0,"Number Of Active Policy Control (Gx) Rules":0}},"sd-client":{"values":{"Total number of Sent CCR to Sd PCRF":0,"Sent CCR-U to PCRF":0,"Sd CCR-U Rate":0,"Sent CCR-T to PCRF":0,"Sd CCR-T Rate":0,"Fail to send CCR/RAA/TSA PCRF":0,"Fail to send CCR-U to PCRF":0,"Fail to send CCR-T to PCRF":0,"Number Of Active Policy Control (Sd) Rules":0}},"gy-client":{"values":{"Sent CCR-I to OCS":0,"Gy Ccr-I Rate":0,"Sent CCR-U to OCS":0,"Gy Ccr-U Rate":0,"Sent CCR-T to OCS":0,"Gy Ccr-T Rate":0,"Fail to send CCR-I to OCS":0,"Fail to send CCR-U to OCS":0,"Fail to send CCR-T to OCS":0,"Number Of Active Online Charging (Gy) Rules":0}},"message-handler":{"values":{"Incoming start messages":377,"Incoming start messages rate":1,"Incoming stop messages":415,"Incoming stop messages rate":1,"Incoming update messages":2242,"Total incoming messages":5504,"Total incoming messages rate":12,"Incoming cmts messages":0,"Total skip nat stop messages":2452,"Termination requests":75,"Termination requests rate":0,"Incoming notification messages":0,"Incoming notification messages rate":0,"Notification messages queue size":0,"Force session termination queue size":0}},"gx-listener":{"values":{"Incoming CCA-I from PCRF":0,"Incoming CCA-I from PCRF Rate":0,"Incoming CCA-T from PCRF":0,"Incoming CCA-T from PCRF Rate":0,"Incoming CCA-U from PCRF":0,"Incoming CCA-U from PCRF Rate":0,"Incoming RAR from PCRF":0,"Incoming RAR from PCRF Rate":0,"Fail processing RAR from PCRF":0,"Sent RAA to PCRF":0,"Sent RAA to PCRF Rate":0,"Fail to Send RAA to PCRF":0,"Received Error in CCR-I from PCRF":0,"Received Error in CCR-U from PCRF":0,"Received Error in CCR-T from PCRF":0,"Received Timeout on GX CCR-I":0,"Received Timeout on GX CCR-U":0,"Received Timeout on GX CCR-T":0}},"sd-listener":{"values":{"Total Incoming Transactions from Sd PCRF":0,"Incoming TSR from PCRF":0,"Incoming TSR Rate":0,"Incoming CCA-T from PCRF":0,"Incoming CCA-T from PCRF Rate":0,"Incoming CCA-U from PCRF":0,"Incoming CCA-U from PCRF Rate":0,"Incoming RAR from PCRF":0,"Incoming RAR from PCRF Rate":0,"Incoming RAR-Termination Rate":0,"Fail processing RAR from PCRF":0,"Fail processing TSR from PCRF":0,"Sent RAA to PCRF":0,"Sent RAA to PCRF Rate":0,"Sent TSA to PCRF":0,"Sent TSA to PCRF Rate":0,"Fail to send TSA to PCRF":0,"Fail to Sent RAA to PCRF":0,"Received Error in CCR-U from PCRF":0,"Received Error in CCR-T from PCRF":0,"Received Timeout on Sd CCR-U":0,"Received Timeout on Sd CCR-T":0,"Force SD Session Termination":0}},"gy-listener":{"values":{"Incoming RAR from OCS":0,"Gy Incoming RAR Rate":0,"Fail processing RAR from OCS":0,"Sent RAA to OCS":0,"Gy Sent RAA Rate":0,"Fail to Send RAA to OCS":0,"Incoming ASR from OCS":0,"Gy Incoming ASR Rate":0,"Fail processing ASR from OCS":0,"Sent ASA to OCS":0,"Gy Sent ASA Rate":0,"Fail to Send ASA to OCS":0,"Incoming CCA-I from OCS":0,"Incoming CCA-I from OCS Rate":0,"Incoming GY CCA-T from OCS":0,"Incoming GY CCA-T from OCS Rate":0,"Incoming GY CCA-U from OCS":0,"Incoming GY CCA-U from OCS Rate":0,"Received Error in CCR-I from OCS":0,"Received Error in CCR-U from OCS":0,"Received Error in CCR-T from OCS":0,"Received Timeout on GY CCR-I":0,"Received Timeout on GY CCR-U":0,"Received Timeout on GY CCR-T":0}},"message-2-db":{"values":{"Outgoing DB Messages":2993,"Outgoing DB Messages Rate":4,"Outgoing DB Messages Failed":0}},"persistency":{"values":{"Current Tasks in Persistency Queue":0,"Persistency Queue Max Size":10000000,"Total Incoming Persistency Tasks":2699,"Total Incoming Persistency Tasks Rate":6,"Total Incoming Persistency Tasks Failed":0,"Total Outgoing Persistency Tasks":2699,"Total Outgoing Persistency Tasks Rate":6}},"cdr":{"values":{"Number of Active Offline Charging (CDR) rules":0,"Total number of CDRs":0,"CDRs generation rate":0,"CDRs in Queue":0}},"fup":{"values":{"Total number of Start Fup messages sent":7857,"FUP Start Messages Rate":17,"Total number of Stop Fup messages sent":240,"FUP Stop Messages Rate":0,"Total number of Update Fup messages sent":0,"FUP Update Messages Rate":0,"Fup Outgoing Msg Rate":6}},"general-fup":null,"quota":{"values":{"Active Quota subscribers":0,"Active Quota sessions":0}},"charging":{"values":{"Number of Active charging rules":0,"Dynamic QoS Enforcement Rules Total":0,"Dynamic Service Activation Rules total":0,"Dynamic Service Service Plan AddOn Rules total":0}},"dhcp":{"values":{"Outgoing lease query IPv4 messages":0,"Incoming lease query IPv4 messages":0,"Outgoing lease query IPv6 messages":0,"Incoming lease query IPv6 messages":0,"pending dhcp client request":0}},"pilot":{"values":{"Maximal number of port chunks which were allocated to a single session in the reporting interval":0}},"gx-PQRF-client":{"values":{"Sent CCR-I to PQRF":0,"Sent CCR-I to PQRF Rate":0,"Sent CCR-U to PQRF":0,"Sent CCR-U to PQRF Rate":0,"Sent CCR-T to PQRF":0,"Sent CCR-T to PQRF Rate":0,"Sent RAA to PQRF":0,"Sent RAA to PQRF Rate":0,"Failed to Send CCR-I to PQRF":0,"Failed to Send CCR-U to PQRF":0,"Failed to Send CCR-T to PQRF":0,"Fail to Send RAA to PQRF":0}},"gx-PQRF-listener":{"values":{"Incoming CCA-I from PQRF":0,"Incoming CCA-I from PQRF Rate":0,"Incoming CCA-T from PQRF":0,"Incoming CCA-T from PQRF Rate":0,"Incoming CCA-U from PQRF":0,"Incoming CCA-U from PQRF Rate":0,"Incoming RAR from PQRF":0,"Incoming RAR from PQRF Rate":0,"Fail processing RAR from PQRF":0,"Error Received for CCR-I from PQRF":0,"Error Received for CCR-U from PQRF":0,"Error Received for CCR-T from PQRF":0,"Timeout Received on CCR-I from PQRF":0,"Timeout Received on CCR-U from PQRF":0,"Timeout Received on CCR-T from PQRF":0}},"gtp-handler":null}
+{"timestamp":"2025-11-06@06:04:08.872+0000","accountingMessageHandlerQueueSize":0,"totalAccountingMessagesDumped":0,"poolMonitoringRuleNotif":{"idleObjects":0,"maxObjects":200000},"poolApplicationUseTrigger":{"idleObjects":0,"createdObjects":0,"createRate":0,"getObjects":0,"getRate":0,"returnObjects":0,"returnRate":0},"poolMonitoringRuleTrigger":{"idleObjects":0,"createdObjects":2429,"createRate":5,"getObjects":2429,"getRate":5,"returnObjects":0,"returnRate":0},"poolNeEnhancedUpdateCommandV2":{"idleObjects":0,"createdObjects":2650,"createRate":5,"getObjects":2730,"getRate":6,"returnObjects":80,"returnRate":0},"poolNeEventTriggerCommandV2":{"idleObjects":0,"createdObjects":0,"createRate":0,"getObjects":0,"getRate":0,"returnObjects":0,"returnRate":0},"poolNeStopCommand":{"idleObjects":0,"createdObjects":80,"createRate":0,"getObjects":80,"getRate":0,"returnObjects":0,"returnRate":0},"poolNeDelSessionCommand":null,"poolEventTriggerAction":{"idleObjects":0,"createdObjects":0,"createRate":0,"getObjects":0,"getRate":0,"returnObjects":0,"returnRate":0},"poolNotifyToSMPTriggerAction":{"idleObjects":0,"createdObjects":2429,"createRate":5,"getObjects":2429,"getRate":5,"returnObjects":0,"returnRate":0},"poolRedirectTriggerAction":{"idleObjects":0,"createdObjects":0,"createRate":0,"getObjects":0,"getRate":0,"returnObjects":0,"returnRate":0},"poolNotifyToBucketTriggerAction":{"idleObjects":0,"createdObjects":0,"createRate":0,"getObjects":0,"getRate":0,"returnObjects":0,"returnRate":0},"poolChangeServiceTriggerAction":{"idleObjects":0,"createdObjects":0,"createRate":0,"getObjects":0,"getRate":0,"returnObjects":0,"returnRate":0},"fupStatistics":{"neManagersListAllToString":"\nAOS ID:168, AOS IP: <IPv6:<IPv6:200148880a373172:3a7022200000002/128>>\nAOS ID:170, AOS IP: <IPv6:<IPv6:200148880a373172:3a7022200000102/128>>\nAOS ID:167, AOS IP: <IPv6:<IPv6:200148880a373172:3a7022200000001/128>>\nAOS ID:169, AOS IP: <IPv6:<IPv6:200148880a373172:3a7022200000101/128>>","startMessagesSent":8190,"deleteIpMessagesSent":0,"deleteSessionMessagesSent":null,"failStartMessages":0,"failDeleteIpMessages":0,"failDeleteSessionMessages":0,"dumpedCommands":2755,"totalChannels":0,"totalMessages":"0 (0)","notifStatistics":""},"radiusTargetGroupList":[{"groupId":"<Central_Managers/8>","state":"active","targetIps":["2607:f160:8a05:a253:e0:222:0:1"],"totalIncoming":2730,"messagesSuccess":2730,"messageFiltered":0,"sentFailCounters":{},"commandQueueSize":0,"incomingCommandRate":2730,"outgoingMessageRate":7}],"diameterAdapterList":[{"type":"GX","ownUriString":"aaa://127.0.0.2:3868","openedSessionsCount":0,"handlerQueueSize":0},{"type":"GX","ownUriString":"aaa://127.0.0.2:56200","openedSessionsCount":0,"handlerQueueSize":0}],"general-info":{"values":{},"status":"Master","upTime":"2025-11-06@05:50:22.934+0000"},"session":{"values":{"Active sessions":2367,"Waiting to close sessions":0,"Waiting to restart PQRF session":0,"Forced closed sessions":0,"Active Gx Volume Reporting sessions":0,"Active Sd Volume Reporting sessions":0,"Active offline sessions":0,"Active sdr collection sessions":0,"Active online sessions":0,"Session Deletion due to ResultCode":0,"Diameter Inactivity Session Termination":0}},"subscriber":{"values":{"Active subscribers":2367,"Active Gx Volume Reporting subscribers":0,"Active Sd Volume Reporting subscribers":0,"Active offline subscribers":0,"Active sdr collection subscribers":0,"Total assign ipv4":2367,"Total assign ipv6":2366,"Total assign TID":4733,"Subscriber name out of bound":0,"Registered cmts subscribers":0,"Active online subscribers":0,"Subscribers instance ids":0}},"gx-client":{"values":{"Sent CCR-I to PCRF":0,"Gx CCR-I Rate":0,"Sent CCR-U to PCRF":0,"Gx CCR-U Rate":0,"Sent CCR-T to PCRF":0,"Gx CCR-T Rate":0,"Fail to send CCR-I to PCRF":0,"Fail to send CCR-U to PCRF":0,"Fail to send CCR-T to PCRF":0,"Number Of Active Policy Control (Gx) Rules":0}},"sd-client":{"values":{"Total number of Sent CCR to Sd PCRF":0,"Sent CCR-U to PCRF":0,"Sd CCR-U Rate":0,"Sent CCR-T to PCRF":0,"Sd CCR-T Rate":0,"Fail to send CCR/RAA/TSA PCRF":0,"Fail to send CCR-U to PCRF":0,"Fail to send CCR-T to PCRF":0,"Number Of Active Policy Control (Sd) Rules":0}},"gy-client":{"values":{"Sent CCR-I to OCS":0,"Gy Ccr-I Rate":0,"Sent CCR-U to OCS":0,"Gy Ccr-U Rate":0,"Sent CCR-T to OCS":0,"Gy Ccr-T Rate":0,"Fail to send CCR-I to OCS":0,"Fail to send CCR-U to OCS":0,"Fail to send CCR-T to OCS":0,"Number Of Active Online Charging (Gy) Rules":0}},"message-handler":{"values":{"Incoming start messages":385,"Incoming start messages rate":1,"Incoming stop messages":418,"Incoming stop messages rate":0,"Incoming update messages":2265,"Total incoming messages":5568,"Total incoming messages rate":12,"Incoming cmts messages":0,"Total skip nat stop messages":2482,"Termination requests":75,"Termination requests rate":0,"Incoming notification messages":0,"Incoming notification messages rate":0,"Notification messages queue size":0,"Force session termination queue size":0}},"gx-listener":{"values":{"Incoming CCA-I from PCRF":0,"Incoming CCA-I from PCRF Rate":0,"Incoming CCA-T from PCRF":0,"Incoming CCA-T from PCRF Rate":0,"Incoming CCA-U from PCRF":0,"Incoming CCA-U from PCRF Rate":0,"Incoming RAR from PCRF":0,"Incoming RAR from PCRF Rate":0,"Fail processing RAR from PCRF":0,"Sent RAA to PCRF":0,"Sent RAA to PCRF Rate":0,"Fail to Send RAA to PCRF":0,"Received Error in CCR-I from PCRF":0,"Received Error in CCR-U from PCRF":0,"Received Error in CCR-T from PCRF":0,"Received Timeout on GX CCR-I":0,"Received Timeout on GX CCR-U":0,"Received Timeout on GX CCR-T":0}},"sd-listener":{"values":{"Total Incoming Transactions from Sd PCRF":0,"Incoming TSR from PCRF":0,"Incoming TSR Rate":0,"Incoming CCA-T from PCRF":0,"Incoming CCA-T from PCRF Rate":0,"Incoming CCA-U from PCRF":0,"Incoming CCA-U from PCRF Rate":0,"Incoming RAR from PCRF":0,"Incoming RAR from PCRF Rate":0,"Incoming RAR-Termination Rate":0,"Fail processing RAR from PCRF":0,"Fail processing TSR from PCRF":0,"Sent RAA to PCRF":0,"Sent RAA to PCRF Rate":0,"Sent TSA to PCRF":0,"Sent TSA to PCRF Rate":0,"Fail to send TSA to PCRF":0,"Fail to Sent RAA to PCRF":0,"Received Error in CCR-U from PCRF":0,"Received Error in CCR-T from PCRF":0,"Received Timeout on Sd CCR-U":0,"Received Timeout on Sd CCR-T":0,"Force SD Session Termination":0}},"gy-listener":{"values":{"Incoming RAR from OCS":0,"Gy Incoming RAR Rate":0,"Fail processing RAR from OCS":0,"Sent RAA to OCS":0,"Gy Sent RAA Rate":0,"Fail to Send RAA to OCS":0,"Incoming ASR from OCS":0,"Gy Incoming ASR Rate":0,"Fail processing ASR from OCS":0,"Sent ASA to OCS":0,"Gy Sent ASA Rate":0,"Fail to Send ASA to OCS":0,"Incoming CCA-I from OCS":0,"Incoming CCA-I from OCS Rate":0,"Incoming GY CCA-T from OCS":0,"Incoming GY CCA-T from OCS Rate":0,"Incoming GY CCA-U from OCS":0,"Incoming GY CCA-U from OCS Rate":0,"Received Error in CCR-I from OCS":0,"Received Error in CCR-U from OCS":0,"Received Error in CCR-T from OCS":0,"Received Timeout on GY CCR-I":0,"Received Timeout on GY CCR-U":0,"Received Timeout on GY CCR-T":0}},"message-2-db":{"values":{"Outgoing DB Messages":3013,"Outgoing DB Messages Rate":4,"Outgoing DB Messages Failed":0}},"persistency":{"values":{"Current Tasks in Persistency Queue":0,"Persistency Queue Max Size":10000000,"Total Incoming Persistency Tasks":2730,"Total Incoming Persistency Tasks Rate":6,"Total Incoming Persistency Tasks Failed":0,"Total Outgoing Persistency Tasks":2730,"Total Outgoing Persistency Tasks Rate":6}},"cdr":{"values":{"Number of Active Offline Charging (CDR) rules":0,"Total number of CDRs":0,"CDRs generation rate":0,"CDRs in Queue":0}},"fup":{"values":{"Total number of Start Fup messages sent":7950,"FUP Start Messages Rate":18,"Total number of Stop Fup messages sent":240,"FUP Stop Messages Rate":0,"Total number of Update Fup messages sent":0,"FUP Update Messages Rate":0,"Fup Outgoing Msg Rate":6}},"general-fup":null,"quota":{"values":{"Active Quota subscribers":0,"Active Quota sessions":0}},"charging":{"values":{"Number of Active charging rules":0,"Dynamic QoS Enforcement Rules Total":0,"Dynamic Service Activation Rules total":0,"Dynamic Service Service Plan AddOn Rules total":0}},"dhcp":{"values":{"Outgoing lease query IPv4 messages":0,"Incoming lease query IPv4 messages":0,"Outgoing lease query IPv6 messages":0,"Incoming lease query IPv6 messages":0,"pending dhcp client request":0}},"pilot":{"values":{"Maximal number of port chunks which were allocated to a single session in the reporting interval":0}},"gx-PQRF-client":{"values":{"Sent CCR-I to PQRF":0,"Sent CCR-I to PQRF Rate":0,"Sent CCR-U to PQRF":0,"Sent CCR-U to PQRF Rate":0,"Sent CCR-T to PQRF":0,"Sent CCR-T to PQRF Rate":0,"Sent RAA to PQRF":0,"Sent RAA to PQRF Rate":0,"Failed to Send CCR-I to PQRF":0,"Failed to Send CCR-U to PQRF":0,"Failed to Send CCR-T to PQRF":0,"Fail to Send RAA to PQRF":0}},"gx-PQRF-listener":{"values":{"Incoming CCA-I from PQRF":0,"Incoming CCA-I from PQRF Rate":0,"Incoming CCA-T from PQRF":0,"Incoming CCA-T from PQRF Rate":0,"Incoming CCA-U from PQRF":0,"Incoming CCA-U from PQRF Rate":0,"Incoming RAR from PQRF":0,"Incoming RAR from PQRF Rate":0,"Fail processing RAR from PQRF":0,"Error Received for CCR-I from PQRF":0,"Error Received for CCR-U from PQRF":0,"Error Received for CCR-T from PQRF":0,"Timeout Received on CCR-I from PQRF":0,"Timeout Received on CCR-U from PQRF":0,"Timeout Received on CCR-T from PQRF":0}},"gtp-handler":null}
+
+Last 12 lines StatisticsLog
+2026-05-21 13:54:42.208 +0000,16962600004,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-05-21 13:59:42.208 +0000,16962900004,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-05-21 14:04:42.208 +0000,16963200004,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-05-21 14:09:42.208 +0000,16963500004,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-05-21 14:14:42.209 +0000,16963800005,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-05-21 14:19:42.208 +0000,16964100004,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-05-21 14:24:42.208 +0000,16964400004,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-05-21 14:29:42.208 +0000,16964700004,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-05-21 14:34:42.209 +0000,16965000005,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-05-21 14:39:42.209 +0000,16965300005,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-05-21 14:44:42.208 +0000,16965600004,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2026-05-21 14:49:42.208 +0000,16965900004,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+
+Last 45 lines RadiusGroups_Statistics.log
+Radius Target Groups
+--------------------
+
+Radius Group:
+-------------
+group id..................: <Central_Managers/8>
+state.....................: active
+target ips................: [/2607:f160:8a05:a253:e0:222:0:1]
+load balancing type.......: BROADCAST
+
+total incoming............: 2730
+messages success..........: 2730
+- RADIUS_START: 2429
+- RADIUS_STOP: 62
+- RADIUS_INTERIM_UPDATE: 221
+- RADIUS_NAT_DEALLOC: 18
+messages filtered.........: 0
+
+command queue size........: 0
+incoming message rate.....: 7
+outgoing message rate.....: 7
+
+Radius Client Map: 
+  ---------------
+  ip...................: 2607:f160:8a05:a253:e0:222:0:1
+  state................: active
+  reachable............: n/a
+  connections(out of)..: 2 (50)
+  total sent(rate).....: 2730 (7)
+  total retry..........: 0
+  total sent failed....: 0
+  total ack(rate)......: Disabled
+  total ack failed.....: 0
+  pending ack..........: 0
+
+=================================================================================

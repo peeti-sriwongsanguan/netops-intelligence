@@ -1,0 +1,69 @@
+SOLKTXESVZWvSAS-Y-AT-SECaS-01-CLRBI-001
+ACP 17.15.32 CentOS 7.9
+build_13 2024-12-30 SSPK
+
+ clearsee             17.2.32.7                                                                                           
+
+*****pcs cluster status*****
+Cluster Status:
+ Stack: corosync
+ Current DC: ha-primary (version 1.1.23-1.el7_9.1-9acf116022) - partition with quorum
+ Last updated: Thu May 21 14:59:52 2026
+ Last change: Tue Jul 22 16:14:37 2025 by root via crm_resource on ha-primary
+ 2 nodes configured
+ 6 resource instances configured
+
+PCSD Status:
+  ha-secondary: Online
+  ha-primary: Online
+*****psql*****
+One hour ago output:
+                 original_path                  | mediator_id | data_source_id | state | count 
+------------------------------------------------+-------------+----------------+-------+-------
+ /opt/allot/datamediation/export/WSPFIREWALL_CS |           1 |             31 |    20 |   158
+ /opt/allot/datamediation/export/WSPFIREWALL_CS |           2 |             31 |    20 |    29
+ /opt/allot/datamediation/export/WSPFIREWALL_CS |           3 |             31 |    10 |     6
+ /opt/allot/datamediation/export/WSPFIREWALL_CS |           3 |             31 |    20 |    72
+ /opt/allot/datamediation/export/WSPREQUEST_CS  |           1 |             26 |    10 |    11
+ /opt/allot/datamediation/export/WSPREQUEST_CS  |           1 |             26 |    20 |   356
+ /opt/allot/datamediation/export/WSPREQUEST_CS  |           2 |             26 |    20 |   234
+ /opt/allot/datamediation/export/WSPREQUEST_CS  |           3 |             26 |    10 |     6
+ /opt/allot/datamediation/export/WSPREQUEST_CS  |           3 |             26 |    20 |   252
+(9 rows)
+
+10 minutes ago output:
+                 original_path                  | mediator_id | data_source_id | state | count 
+------------------------------------------------+-------------+----------------+-------+-------
+ /opt/allot/datamediation/export/WSPFIREWALL_CS |           1 |             31 |    20 |    26
+ /opt/allot/datamediation/export/WSPFIREWALL_CS |           2 |             31 |    20 |     5
+ /opt/allot/datamediation/export/WSPFIREWALL_CS |           3 |             31 |    10 |     6
+ /opt/allot/datamediation/export/WSPFIREWALL_CS |           3 |             31 |    20 |     7
+ /opt/allot/datamediation/export/WSPREQUEST_CS  |           1 |             26 |    10 |    11
+ /opt/allot/datamediation/export/WSPREQUEST_CS  |           1 |             26 |    20 |    52
+ /opt/allot/datamediation/export/WSPREQUEST_CS  |           2 |             26 |    20 |    39
+ /opt/allot/datamediation/export/WSPREQUEST_CS  |           3 |             26 |    10 |     6
+ /opt/allot/datamediation/export/WSPREQUEST_CS  |           3 |             26 |    20 |    37
+(9 rows)
+
+
+***** df -h *****
+Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs         32G     0   32G   0% /dev
+tmpfs            32G   53M   32G   1% /dev/shm
+tmpfs            32G  1.5M   32G   1% /run
+tmpfs            32G     0   32G   0% /sys/fs/cgroup
+/dev/vda2        15G  8.8G  5.9G  60% /
+/dev/vda8       3.9G  1.2G  2.8G  29% /var
+/dev/vda6       4.9G   35M  4.9G   1% /home
+/dev/vda1      1014M  573M  442M  57% /boot
+/dev/vda12      182M  4.8M  178M   3% /boot/efi
+/dev/vda5       7.6G   36M  7.2G   1% /tmp
+/dev/vda3        58G   24G   35G  41% /opt
+/dev/vda11      997M   33M  965M   4% /var/tmp
+/dev/vda9       3.9G  2.2G  1.8G  57% /var/log
+/dev/vda10      997M   73M  925M   8% /var/log/audit
+/dev/drbd0      148G  6.1G  135G   5% /var/lib/pgsql/data
+overlay          58G   24G   35G  41% /opt/overlay2/01b23f92d3df4cc3891cfbb67ef06fa9fccb4f4b62390e67eaa4ae0f90bf2cf1/merged
+shm              64M  5.4M   59M   9% /var/lib/docker/containers/212312afdef619cb625648a8d6ace233c54b2e49af536950463f0ce03b41fe84/mounts/shm
+tmpfs           6.3G     0  6.3G   0% /run/user/1003
+tmpfs           6.3G     0  6.3G   0% /run/user/0

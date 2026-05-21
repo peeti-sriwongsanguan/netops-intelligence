@@ -1,0 +1,1681 @@
+ansible 2.9.27
+  config file = /etc/ansible/ansible.cfg
+  configured module search path = [u'/root/.ansible/plugins/modules', u'/usr/share/ansible/plugins/modules']
+  ansible python module location = /usr/lib/python2.7/site-packages/ansible
+  executable location = /bin/ansible
+  python version = 2.7.5 (default, Nov 14 2023, 16:14:06) [GCC 4.8.5 20150623 (Red Hat 4.8.5-44)]
+Using /etc/ansible/ansible.cfg as config file
+Skipping callback 'actionable', as we already have a stdout callback.
+Skipping callback 'counter_enabled', as we already have a stdout callback.
+Skipping callback 'debug', as we already have a stdout callback.
+Skipping callback 'dense', as we already have a stdout callback.
+Skipping callback 'dense', as we already have a stdout callback.
+Skipping callback 'full_skip', as we already have a stdout callback.
+Skipping callback 'json', as we already have a stdout callback.
+Skipping callback 'minimal', as we already have a stdout callback.
+Skipping callback 'null', as we already have a stdout callback.
+Skipping callback 'oneline', as we already have a stdout callback.
+Skipping callback 'selective', as we already have a stdout callback.
+Skipping callback 'skippy', as we already have a stdout callback.
+Skipping callback 'stderr', as we already have a stdout callback.
+Skipping callback 'unixy', as we already have a stdout callback.
+Skipping callback 'yaml', as we already have a stdout callback.
+META: ran handlers
+sgve2_redmondridge | CHANGED | rc=0 >>
+====================================sgve_stat=================================
+ACP 17.15.32 CentOS 7.9
+build_13 2024-12-30
+
+AOS.SGVE.17.2.145_B26
+ 14:56:30 up 387 days,  6:22,  2 users,  load average: 5.86, 6.12, 6.16
+
+
+Thu May 21 14:56:30 UTC 2026
+
+
+rdmewa22vzwvsas-y-at-secas-01-sgve-002
+
+****show_steering_services****
+Catalog                           Admin_ Oper__ Current_status Down__ Tracking Num_Of_ Min_UP_ Servers Servers 
+_ID     Service_Name              Status Status _time          Events _Method  Servers Servers _UP     _DOWN   
+------- ------------------------- ------ ------ -------------- ------ -------- ------- ------- ------- ------- 
+    201 RDMEWA22VZWVSAS-Y-AT-SEC* Act    UP        84.03:25:10     14 Ping           8       6       8       0 
+
+*****show_steering_servers****
+                                         Admin_ Oper__                            Current_status Down__ Tracking Tracking Tracking MAC_Res_ MAC_Res_ MAC_Res_
+ID   Server_Name     Service_Name        Status Status Tracking_Status            _time          Events _TX      _RX      _Diff    TX       RX       Diff    
+---- --------------- ------------------- ------ ------ -------------------------- -------------- ------ -------- -------- -------- -------- -------- --------
+ 485 RedmondRidgeWA* RDMEWA22VZWVSAS-Y-* Act    UP     ICMPV4[UP],_ICMPV6[UP]         1.07:39:00    104   455760   454144     1616     3798     7582    -3784
+ 493 RedmondRidgeWA* RDMEWA22VZWVSAS-Y-* Act    UP     ICMPV4[UP],_ICMPV6[UP]         1.07:39:00    108   455758   454876      882     3798     7588    -3790
+ 486 RedmondRidgeWA* RDMEWA22VZWVSAS-Y-* Act    UP     ICMPV4[UP],_ICMPV6[UP]         0.07:48:36     94   112462   112401       61      938     1875     -937
+ 494 RedmondRidgeWA* RDMEWA22VZWVSAS-Y-* Act    UP     ICMPV4[UP],_ICMPV6[UP]         0.07:48:36     94   112462   112452       10      938     1876     -938
+ 488 RedmondRidgeWA* RDMEWA22VZWVSAS-Y-* Act    UP     ICMPV4[UP],_ICMPV6[UP]        14.07:45:52     52  4950208  4929973    20235    41252    82342   -41090
+ 496 RedmondRidgeWA* RDMEWA22VZWVSAS-Y-* Act    UP     ICMPV4[UP],_ICMPV6[UP]        14.07:45:52     52  4950208  4937676    12532    41252    82405   -41153
+ 490 RedmondRidgeWA* RDMEWA22VZWVSAS-Y-* Act    UP     ICMPV4[UP],_ICMPV6[UP]         0.07:45:20    102   111678   111621       57      932     1863     -931
+ 498 RedmondRidgeWA* RDMEWA22VZWVSAS-Y-* Act    UP     ICMPV4[UP],_ICMPV6[UP]         0.07:45:20    105   111678   111664       14      932     1864     -932
+
+*****acmon -c1*****
+Port_1       Port_2       Usage              Description_1 Rate_1[Mbps] Description_2 Rate_2[Mbps] Ratio  
+------------ ------------ ------------------ ------------- ------------ ------------- ------------ ------ 
+L1           L2           network            Inbound           4112.924 Outbound           748.145   5.50 
+L3           L4           network            Inbound           4558.699 Outbound           676.771   6.74 
+L5           L5           redirect_indirect  Rx                4970.039 Tx                5019.747   0.99 
+L6           L6           redirect_indirect  Rx                4976.449 Tx                5029.412   0.99 
+------------ ------------ ------------------ ------------- ------------ ------------- ------------ ------ 
+Total        Total        network            Inbound           8671.623 Outbound          1424.916   6.09 
+
+*****show_aosrp*****
+*****************************************************************************************************SGW configuration******************************************************************************************************
+
+ID                                      :2
+Group ID                                :1
+Minimum active links                    :2
+Priority                                :10
+Hello keep alive interval (mSec)        :100
+Hello keep alive timeout (mSec)         :600
+NHR tracking interval (mSec)            :100
+NHR tracking timeout (mSec)             :600
+Hello msg UDP port                      :51876
+Num of gratuitous packets on switchover :3
+IPv6 tracking                           :Enabled
+
+*********************************************************************************************************SGW Status*********************************************************************************************************
+
+AOSRP activity state                    :ACTIVE
+Active network links below minimum      :FALSE
+Critical steering service down          :FALSE
+
+*******************************************************************************************************IP Interfaces********************************************************************************************************
+
+                                                                                                                                                                                  NHR_____                                 
+                                                                                                                                                                                  IP__IF__                                 
+                                                                                                                                                               NHR__ NHR__state__ tracking Hello_messages_ Hello_messages_ 
+Interface        MAC_address        IP_address                               Virt_IP_address                          NHR_IP_address                           state duration     __state_ send_count      recieve_count   
+---------------- ------------------ ---------------------------------------- ---------------------------------------- ---------------------------------------- ----- ------------ -------- --------------- --------------- 
+l3.1542          fa:16:3e:10:87:88  174.8.194.100                            174.8.194.102                            174.8.194.97                             UP    6417968      UP       334594345       334379514      
+l3.1542          fa:16:3e:10:87:88  2001:4888:53:3104:524:222:0:2            2001:4888:53:3104:524:222:0:ff           2001:4888:53:3104:524:28::               UP    6417968      UP       0               0              
+l4.1543          fa:16:3e:73:4e:ec  174.8.194.68                             174.8.194.70                             174.8.194.65                             UP    6417968      UP       334594345       334381129      
+l4.1543          fa:16:3e:73:4e:ec  2001:4888:53:3100:524:222:0:2            2001:4888:53:3100:524:222:0:ff           2001:4888:53:3100:524:28::               UP    6417968      UP       0               0              
+l2.1545          fa:16:3e:9d:39:e7  174.8.194.76                             174.8.194.78                             174.8.194.73                             UP    5212056      UP       334594345       334292414      
+l2.1545          fa:16:3e:9d:39:e7  2001:4888:53:3101:524:222:0:2            2001:4888:53:3101:524:222:0:ff           2001:4888:53:3101:524:28::               UP    5212056      UP       0               0              
+l1.1544          fa:16:3e:a9:56:b6  174.8.194.108                            174.8.194.110                            174.8.194.105                            UP    5212053      UP       334594345       334290378      
+l1.1544          fa:16:3e:a9:56:b6  2001:4888:53:3105:524:222:0:2            2001:4888:53:3105:524:222:0:ff           2001:4888:53:3105:524:28::               UP    5212053      UP       0               0              
+
+*****acstat -xef -m 15*****
+               NetworkBW                                                                                                                                               TCP_Raw__                                          
+S.C  Direction [Mbps]    NetworkPPS SteeringPPS SFR     AvgPktSize %Util OverUtil MitigatedPPS %Discard NormalCER QuickCER PPS/CER_Ratio Total_NOC TCP_NOC   %TCP_NOC  Con       UDP_NOC   %UDP_NOC  Other_NOC %Other_NOC 
+---- --------- --------- ---------- ----------- ------- ---------- ----- -------- ------------ -------- --------- -------- ------------- --------- --------- --------- --------- --------- --------- --------- ----------
+ 1.0 InB        7754.768     817936      804354    3755       1185     - -                   -        -         -        -             -         -         -         -         -         -         -         -          - 
+ 1.0 OutB       1459.283     389418      363015   16219        468     - -                   -        -         -        -             -         -         -         -         -         -         -         -          - 
+ 1.0 Both       9214.051    1207354     1167369   19974        953  63.7 No                  0      0.0     16445        0          73.4   1015326    758652      74.7     14472    246510      24.3     10164        1.0 
+
+*****show_nics******
+                                                                                                               Nic_______                                                   
+                                                                               Transceiver____                 Firmware__ Nic_Driver_____                                   
+Interface    Port_Usage              Oper_State Admin   Speed[Gb] Transceiver  Part_Number     Rx[dBm] Tx[dBm] Version    Version         Rx_BW[Mbps] Tx_BW[Mbps] AOF       
+------------ ----------------------- ---------- ------- --------- ------------ --------------- ------- ------- ---------- --------------- ----------- ----------- --------- 
+L1           network                 up         enable  25        NA           _                    NA      NA N/A        4.0.1               806.671    4271.067 none     
+L2           network                 up         enable  25        NA           _                    NA      NA N/A        4.0.1              4338.256     761.086 none     
+L3           network                 up         enable  25        NA           _                    NA      NA N/A        4.0.1               802.105    4112.637 none     
+L4           network                 up         enable  25        NA           _                    NA      NA N/A        4.0.1              4076.242     755.612 none     
+L5           redirect_indirect       up         enable  25        NA           _                    NA      NA N/A        4.0.1              4672.172    4721.510 none     
+L6           redirect_indirect       up         enable  25        NA           _                    NA      NA N/A        4.0.1              5053.801    5111.530 none     
+
+*****FuAdmin -c******
+     Card                   Extended_Subscrib              Extended_#IP              Extended_#IP              Extended_#IP              Extended_#Gt Monitor_Rule ApplicationU Enforcemen_ 
+S.C  Role Total_Subscribers ers               Total_#IPs   s            Total_#IP4s  4s           Total_#IP6s  6s           Total_#Gtpus pus          s            se_Trigger   Rules       
+---- ---- ----------------- ----------------- ------------ ------------ ------------ ------------ ------------ ------------ ------------ ------------ ------------ ------------ -----------
+ 1.0   SA             65523             65523       180377       180377       114940       114940        65437        65437            0            0         2502             0           0
+---- ---- ----------------- ----------------- ------------ ------------ ------------ ------------ ------------ ------------ ------------ ------------ ------------ ------------ -----------
+ SUM    .             65523             65523       180377       180377       114940       114940        65437        65437            0            0         2502            0           0
+
+
+*****ifstat*****
+#kernel
+Interface        RX Pkts/Rate    TX Pkts/Rate    RX Data/Rate    TX Data/Rate  
+                 RX Errs/Drop    TX Errs/Drop    RX Over/Rate    TX Coll/Rate  
+lo                 1083K 0         1083K 0       206994K 0       206994K 0      
+                       0 0             0 0             0 0             0 0      
+eth0              179085 0        190133 0        34852K 0        33544K 0      
+                       0 0             0 0             0 0             0 0      
+l1                179561 0        180394 0        17051K 0        16474K 0      
+                       0 0             0 0             0 0             0 0      
+l2                179669 0        180513 0        17058K 0        16480K 0      
+                       0 0             0 0             0 0             0 0      
+l3                180159 0        180420 0        17107K 0        16475K 0      
+                       0 0             0 0             0 0             0 0      
+l4                180127 0        180392 0        17105K 0        16474K 0      
+                       0 0             0 0             0 0             0 0      
+l5                     0 0             0 0             0 0             0 0      
+                       0 0             0 0             0 0             0 0      
+l6                     0 0             0 0             0 0             0 0      
+                       0 0             0 0             0 0             0 0      
+l3.1542           180159 0        180420 0        13864K 0        15754K 0      
+                       0 0             0 0             0 0             0 0      
+l4.1543           180127 0        180392 0        13863K 0        15752K 0      
+                       0 0             0 0             0 0             0 0      
+l2.1545           179669 0        180513 0        13824K 0        15758K 0      
+                       0 0             0 0             0 0             0 0      
+l1.1544           179561 0        180394 0        13819K 0        15753K 0      
+                       0 0             0 0             0 0             0 0      
+
+*****show_gleaning_stats*****
+                                                   Received_Frames Received_Frames Received_Frames Mirror_To_Host_ Aggregated 
+S.C  Gleaning_Item                                 From_Boot       Total           Rate            Rate            _Rows      
+---- --------------------------------------------- --------------- --------------- --------------- --------------- ----------
+ 0.0 DHCP                                                        0               0               0               0          1
+ 0.0 Pilot_Packets                                       170227930       170227930              32              30          1
+ 0.0 Radius                                                      0               0               0               0          1
+ 0.0 GTP-C_All_Versions                                          0               0               0               0          1
+ 0.0 ____GTPv1(3G)                                               0               0               0               0          1
+ 0.0 ____GTPv2(LTE)_Non_Piggyback                                0               0               0               0          1
+ 0.0 ____GTPv2(LTE)_Piggyback                                    0               0               0               0          1
+
+*****Subscriber Unique IP****
+5891
+
+*****sg_arp*****
+IP                                             MAC               SWITCH PORT  
+---------------------------------------------- ----------------- ------ ----- 
+192.168.196.1                                  fa:16:3e:93:cf:34 00         5 
+192.168.196.2                                  fa:16:3e:56:e0:6f 00         5 
+192.168.196.3                                  fa:16:3e:3a:5e:12 00         5 
+192.168.196.4                                  fa:16:3e:3a:0:87  00         5 
+192.168.196.6                                  fa:16:3e:b1:b0:7f 00         6 
+192.168.196.7                                  fa:16:3e:a7:2e:35 00         6 
+192.168.196.8                                  fa:16:3e:86:19:5e 00         6 
+192.168.196.9                                  fa:16:3e:1b:90:72 00         6 
+192.168.198.1                                  fa:16:3e:93:cf:34 00         5 
+192.168.198.2                                  fa:16:3e:56:e0:6f 00         5 
+192.168.198.3                                  fa:16:3e:3a:5e:12 00         5 
+192.168.198.4                                  fa:16:3e:3a:0:87  00         5 
+192.168.198.6                                  fa:16:3e:b1:b0:7f 00         6 
+192.168.198.7                                  fa:16:3e:a7:2e:35 00         6 
+192.168.198.8                                  fa:16:3e:86:19:5e 00         6 
+192.168.198.9                                  fa:16:3e:1b:90:72 00         6 
+fd02:4888:a53:ff47:524:222:0:ff01              fa:16:3e:93:cf:34 00         5 
+fd02:4888:a53:ff47:524:222:0:ff02              fa:16:3e:56:e0:6f 00         5 
+fd02:4888:a53:ff47:524:222:0:ff03              fa:16:3e:3a:5e:12 00         5 
+fd02:4888:a53:ff47:524:222:0:ff04              fa:16:3e:3a:0:87  00         5 
+fd02:4888:a53:ff47:524:222:0:ff06              fa:16:3e:b1:b0:7f 00         6 
+fd02:4888:a53:ff47:524:222:0:ff07              fa:16:3e:a7:2e:35 00         6 
+fd02:4888:a53:ff47:524:222:0:ff08              fa:16:3e:86:19:5e 00         6 
+fd02:4888:a53:ff47:524:222:0:ff09              fa:16:3e:1b:90:72 00         6 
+fd02:4888:a53:ff46:524:222:0:ff01              fa:16:3e:93:cf:34 00         5 
+fd02:4888:a53:ff46:524:222:0:ff02              fa:16:3e:56:e0:6f 00         5 
+fd02:4888:a53:ff46:524:222:0:ff03              fa:16:3e:3a:5e:12 00         5 
+fd02:4888:a53:ff46:524:222:0:ff04              fa:16:3e:3a:0:87  00         5 
+fd02:4888:a53:ff46:524:222:0:ff06              fa:16:3e:b1:b0:7f 00         6 
+fd02:4888:a53:ff46:524:222:0:ff07              fa:16:3e:a7:2e:35 00         6 
+fd02:4888:a53:ff46:524:222:0:ff08              fa:16:3e:86:19:5e 00         6 
+fd02:4888:a53:ff46:524:222:0:ff09              fa:16:3e:1b:90:72 00         6 
+
+*****Rx Discards*****
+Name Rx_Err+Discards
+----------- --------------------
+eth5 5186501
+eth6 4747891
+eth4 2120235
+eth3 7463985
+eth1 7518193
+eth2 1976849
+eth0 0
+****show_cpu_load****
+                  Load_Last Load_Last Load_Last 
+S.C  Uptime       Min       5_Min     15_Min    
+---- ------------ --------- --------- --------- 
+ 1.0 387d.6h.22m       5.56      6.05      6.14
+****show_mem****
+S.C  Total    Used     Free     Shared   Buff_Cache Available 
+---- -------- -------- -------- -------- ---------- --------- 
+ 1.0 41034672 37667100   280556    99708    3087016   3197452
+****df -h****
+Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs        3.1G     0  3.1G   0% /dev
+tmpfs            20G   45M   20G   1% /dev/shm
+tmpfs            20G  856K   20G   1% /run
+tmpfs            20G     0   20G   0% /sys/fs/cgroup
+/dev/vda2        15G  7.9G  6.9G  54% /
+/dev/vda6       4.9G  387M  4.5G   8% /home
+/dev/vda8       3.9G  389M  3.6G  10% /var
+/dev/vda3        58G  7.6G   51G  14% /opt
+/dev/vda5       7.6G  996M  6.2G  14% /tmp
+/dev/vda1      1014M  484M  531M  48% /boot
+/dev/vda12      182M  4.8M  178M   3% /boot/efi
+/dev/vda11      997M   33M  965M   4% /var/tmp
+/dev/vda9       3.9G  590M  3.4G  15% /var/log
+/dev/vda10      997M   67M  931M   7% /var/log/audit
+/dev/sr0        554K  554K     0 100% /mnt/cdrom
+tmpfs          1000M   51M  950M   6% /tmpfs
+tmpfs           4.0G  1.4M  4.0G   1% /run/user/1003
+tmpfs           4.0G     0  4.0G   0% /run/user/1002
+****DataPlane/DataFlowManager_DropFramesCount****
+===================================================================================================================================
+   Applicative drop frames counters                                         | Total From Boot |Total From Reset |      Total Rate |
+===================================================================================================================================
+frame_dropped_by_data_flow_module                                           |        85229168 |        85229168 |               - |
+        frame_dropped_to_vip                                                |               0 |               0 |               - |
+        frame_dropped_call_tx_but_not_frame                                 |               0 |               0 |               - |
+        frame_dropped_by_invalid_action                                     |               0 |               0 |               - |
+        frame_dropped_urlf_frame_adjust_failed                              |               0 |               0 |               - |
+        frame_dropped_wrong_egress_thread                                   |               0 |               0 |               - |
+        frame_dropped_cer_overflow                                          |               0 |               0 |               0 |
+        frame_dropped_noc_overflow                                          |               0 |               0 |               0 |
+        frame_dropped_fin_rst_stray_ack                                     |               0 |               0 |               0 |
+        frame_dropped_session_id_invalid                                    |               0 |               0 |               - |
+        frame_dropped_invalid_double_process_frame_msg_type                 |               0 |               0 |               - |
+        frame_dropped_rx_undef_vlan                                         |               0 |               0 |               - |
+        frame_dropped_rx_without_meta_data                                  |               0 |               0 |               - |
+        frame_dropped_rx_undef_direction                                    |        23806926 |        23806926 |               - |
+        frame_dropped_rx_invalid_direction                                  |               0 |               0 |               - |
+        frame_dropped_steering_drop_frames                                  |               0 |               0 |               - |
+        frame_dropped_by_new_session_mitigation                             |               0 |               0 |               0 |
+        frame_dropped_by_exist_session_mitigation                           |               0 |               0 |               0 |
+        frame_dropped_by_close_connection                                   |               1 |               1 |               - |
+        frame_dropped_proxy_mode_cant_set_route_data                        |        56204335 |        56204335 |               - |
+        frame_dropped_session_msg_drop_all                                  |               1 |               1 |               0 |
+        frame_dropped_fail_upload_2_app                                     |           67160 |           67160 |               0 |
+        frame_dropped_session_msg_unprocess                                 |              47 |              47 |               0 |
+        frame_dropped_session_upload_profile_A_max_total_reached            |               0 |               0 |               0 |
+        frame_dropped_session_upload_profile_A_max_on_session_reached       |               0 |               0 |               0 |
+        frame_dropped_session_upload_profile_A_failed_taking_new_queue      |               0 |               0 |               0 |
+        frame_dropped_session_upload_profile_B_max_total_reached            |               0 |               0 |               0 |
+        frame_dropped_session_upload_profile_B_max_on_session_reached       |               0 |               0 |               0 |
+        frame_dropped_session_upload_profile_B_failed_taking_new_queue      |               0 |               0 |               0 |
+        frame_dropped_session_upload_profile_C_max_total_reached            |           96271 |           96271 |               0 |
+        frame_dropped_session_upload_profile_C_max_on_session_reached       |         5054428 |         5054428 |               0 |
+        frame_dropped_session_upload_profile_C_failed_taking_new_queue      |               0 |               0 |               0 |
+-----------------------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_session_manager                                            |       272279343 |       272279343 |               - |
+        frame_dropped_by_access_module                                      |       272279343 |       272279343 |               - |
+                frame_dropped_by_access_reject                              |               0 |               0 |               - |
+                frame_dropped_by_access_drop                                |       272279343 |       272279343 |              26 |
+        frame_dropped_by_sessionMgr_DOS                                     |               0 |               0 |               - |
+        frame_dropped_by_sessionMgr_SG                                      |               0 |               0 |               - |
+        frame_dropped_by_sessionMgr_QOS                                     |               0 |               0 |               - |
+        frame_dropped_by_sessionMgr_URLF                                    |               0 |               0 |               - |
+        frame_dropped_by_sessionMgr_invalid                                 |               0 |               0 |               - |
+-----------------------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_qos_module                                                 |               0 |               0 |               0 |
+        frame_dropped_by_qos                                                |               0 |               0 |               0 |
+        frame_stored_dropped_by_qos                                         |               0 |               0 |               0 |
+-----------------------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_charging_module                                            |               0 |               0 |               - |
+        frame_dropped_by_charging                                           |               0 |               0 |               0 |
+        frame_dropped_by_charging_rate_limit                                |               0 |               0 |               0 |
+-----------------------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_frame_modification_module                                  |               - |               0 |               - |
+        frame_dropped_by_hhe_enforcer                                       |               - |               0 |               - |
+-----------------------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_vas_redirector_module                                      |          124287 |          124287 |               - |
+        frame_dropped_vr_counters                                           |          123736 |          123736 |               0 |
+        frame_dropped_chained_flow_invalid_vr_action                        |             551 |             551 |               - |
+        frame_dropped_chained_vr_inactive                                   |               0 |               0 |               - |
+-----------------------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_inner_vas_module                                           |               0 |               0 |               - |
+        frame_dropped_captive_portal_rate_limit                             |               0 |               0 |               0 |
+-----------------------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_rate_limitation                                            |               0 |               0 |               - |
+===================================================================================================================================
+frame_dropped_applicative_total                                             |       357632799 |       357632799 |              26 |
+===================================================================================================================================
+
+===================================================================================================================================
+          Infra frame drop counters                                         | Total From Boot |Total From Reset |      Total Rate |
+===================================================================================================================================
+frame_dropped_by_fail_send_to_network                                       |          274376 |          274376 |               0 |
+        frame_dropped_by_tx_qos_fail                                        |               0 |               0 |               0 |
+        frame_dropped_by_tx_fail                                            |          274376 |          274376 |               0 |
+        frame_dropped_by_url_fail                                           |               0 |               0 |               0 |
+        frame_dropped_by_access_reject                                      |               0 |               0 |               0 |
+        frame_dropped_by_chraging_reject                                    |               0 |               0 |               0 |
+        frame_dropped_by_bypass                                             |               0 |               0 |               0 |
+===================================================================================================================================
+frame_dropped_total                                                         |       357907175 |       357907175 |              26 |
+===================================================================================================================================
+ 
+****BalancePlane/DispatcherFlowMgr_DropFramesCount****
+====================================================================================================================
+                                              Dropped Frames
+====================================================================================================================
+                        Drop Reason                          | Total From Boot | Total From Reset|      Total Rate |
+====================================================================================================================
+frame_dropped_general                                        |       490579079 |       490579079 |               - |
+        frame_dropped_no_vlan                                |               0 |               0 |               0 |
+        frame_dropped_no_meta_data                           |               0 |               0 |               0 |
+        frame_dropped_undefined_port_usage                   |               0 |               0 |               0 |
+        frame_dropped_tx_frame_failed                        |       490555394 |       490555394 |               0 |
+        frame_dropped_tx_to_net_via_dispatcher_failed        |               0 |               0 |               0 |
+        frame_dropped_system_in_bypass                       |           23685 |           23685 |               0 |
+        frame_dropped_by_subnet_special_flow                 |               0 |               0 |               0 |
+--------------------------------------------------------------------------------------------------------------------
+frame_dropped_tunnel_to_host                                 |               0 |               0 |               - |
+        frame_dropped_control_crossed_max_rate               |               0 |               0 |               0 |
+        frame_dropped_cloned_control_crossed_max_rate        |               0 |               0 |               0 |
+        dfm_network_failed_tunnel_ip_net_frame_to_host_drop  |               0 |               0 |               0 |
+        dfm_network_failed_tunnel_to_host_arp_to_me_drop     |               0 |               0 |               0 |
+        dfm_redirect_indirect_failed_tunnel_to_host_drop     |               0 |               0 |               0 |
+        dfm_redirect_internal_failed_tunnel_to_host_drop     |               0 |               0 |               0 |
+        dfm_redirect_direct_failed_tunnel_to_host_drop       |               0 |               0 |               0 |
+        dfm_error_rx_t2h_returning_frame_no_sec_vlan_drop    |               0 |               0 |               0 |
+        dfm_error_failed_tunnel_to_host_returning_frame_drop |               0 |               0 |               0 |
+--------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_proxy_mode                                  |       376062831 |       376063366 |               - |
+        frame_dropped_tunnel_to_host_control_crossed_rate    |               0 |               0 |               0 |
+        frame_dropped_tunnel_to_host_data_crossed_rate       |               1 |               1 |               0 |
+        frame_dropped_cant_set_route_data                    |               0 |               0 |               0 |
+        frame_dropped_not_my_vlan_interface                  |       376062581 |       376062581 |               4 |
+        frame_dropped_virtual_interface_non_active           |               0 |               0 |               0 |
+        frame_dropped_ucast_mac_to_me_bcast_ip               |               0 |               0 |               0 |
+        frame_dropped_ucast_mac_to_me_mcast_ip_no_ssm        |               0 |               0 |               0 |
+        frame_dropped_ucast_mac_to_me_mcast_ip_ssm_by_conf   |               0 |               0 |               0 |
+        frame_dropped_bcast_mac                              |               0 |               0 |               0 |
+        frame_dropped_arp_not_to_me                          |             104 |             104 |               0 |
+        frame_dropped_ndp_not_to_me                          |             145 |             145 |               0 |
+        frame_dropped_ipv6_mcast_reserved_addr               |               0 |               0 |               0 |
+        frame_dropped_ipv6_mcast_interface_scope             |               0 |               0 |               0 |
+        frame_dropped_mcast_mac_no_ipv4                      |               0 |               0 |               0 |
+        frame_dropped_mcast_mac_no ipv6                      |               0 |               0 |               0 |
+        frame_dropped_mcast_mac_mcast_ip_ssm_by_conf         |               0 |               0 |               0 |
+        frame_dropped_mcast_mac_no_mcast_ipv4_ssm            |               0 |               0 |               0 |
+        frame_dropped_ucast_mac_not_to_me                    |               0 |               0 |               0 |
+        frame_dropped_drop_non_ip_outer_header_frame         |             535 |             535 |               0 |
+        frame_dropped_failed_tunnel_icmp_to_host             |               0 |               0 |               0 |
+        frame_dropped_failed_tunnel_broadcast_ip_to_host     |               0 |               0 |               0 |
+        frame_dropped_failed_tunnel_arp_replay_to_host       |               0 |               0 |               0 |
+        frame_dropped_failed_tunnel_arp_request_to_host      |               0 |               0 |               0 |
+        frame_dropped_failed_tunnel_gratuitous_arp_to_host   |               0 |               0 |               0 |
+        frame_dropped_failed_tunnel_broadcast_ip_aosrp_hello |               0 |               0 |               0 |
+--------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_redirected_frames                           |               0 |               0 |               - |
+        frame_dropped_steering_no_sec_vlan                   |               0 |               0 |               0 |
+        frame_dropped_dir_srv_undef                          |               0 |               0 |               0 |
+        frame_dropped_from_generic_mirroring                 |               0 |               0 |               0 |
+        frame_dropped_invalid_dest_mac                       |               0 |               0 |               0 |
+        frame_dropped_steering_invalid_sec_vlan              |               0 |               0 |               0 |
+--------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_non_network_frames                          |               0 |               0 |               - |
+        frame_dropped_slot_id_bypass                         |               0 |               0 |               0 |
+--------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_asymmetry_frames                            |               0 |               0 |               - |
+        frame_dropped_asymmetry_invalid_fcb                  |               0 |               0 |               0 |
+        frame_dropped_asymmetry_no_sec_vlan                  |               0 |               0 |               0 |
+        frame_dropped_asymmetry_invalid_broadcast_dest       |               0 |               0 |               0 |
+        frame_dropped_asymmetry_broadcast_d_process_failed   |               0 |               0 |               0 |
+        frame_dropped_asymmetry_broadcast_frame_failed       |               0 |               0 |               0 |
+        frame_dropped_asy_sub_not_found                      |               0 |               0 |               0 |
+        frame_dropped_asymmetry_unicast_frame_failed         |               0 |               0 |               0 |
+        frame_dropped_asy_unicast_by_specific_info_failed    |               0 |               0 |               0 |
+        frame_dropped_asymmetry_invalid_specific_info        |               0 |               0 |               0 |
+        frame_drop_asy_specific_info_invalid_dispatch_type   |               0 |               0 |               0 |
+====================================================================================================================
+frame_dropped_total                                          |       376087051 |       376087051 |               4 |
+====================================================================================================================
+ 
+****show_utilization****
+     Thr Thread__ro Phy       %SMA_ Role____ Number_of_ Average___ 
+S.C  ead le         Thr %Util Util  Variance packets    cycle      
+---- --- ---------- --- ----- ----- -------- ---------- ----------
+1.0    1 Ctrl_0       0   0.0   0.0      0.0         34      57248
+1.0    2 Ctrl_1       2   2.2   2.2      0.0        218     251970
+1.0    3 Debug_Ctrl   2   0.0  14.5      0.0          0          0
+1.0    4 Port_Ctrl    2  56.5  35.3      0.0         37   34993319
+1.0    5 Timer        2   5.9   6.2      0.0      10000      14191
+1.0    6 Utility      2   8.1   8.2      0.0        424     461234
+1.0    8 Dispatch     4  47.9  46.3      0.9    1251400        918
+1.0    9 Dispatch     5  48.2  47.3      0.6    1261506        915
+1.0   10 Dispatch     6  47.3  45.9      1.5    1233908        919
+1.0   11 Dispatch     7  51.7  47.9      2.9    1341031        923
+1.0   12 D_Flow       8  67.0  64.3      0.1     648061       2478
+1.0   13 S_Flow       9  12.3  12.2      0.0      11307      26172
+1.0   14 D_Flow      10  69.6  63.3      2.7     679807       2453
+1.0   15 S_Flow      11  12.3  12.2      0.0      11557      25664
+1.0   16 D_Flow      12  68.9  64.8      2.0     665760       2481
+1.0   17 S_Flow      13  12.4  12.3      0.1      11550      25788
+1.0   18 D_Flow      14  62.2  62.3      4.7     587627       2536
+1.0   19 S_Flow      15  12.4  12.4      0.1      11723      25328
+==============================================================================
+sgve1_redmondridge | CHANGED | rc=0 >>
+====================================sgve_stat=================================
+ACP 17.15.32 CentOS 7.9
+build_13 2024-12-30
+
+AOS.SGVE.17.2.145_B26
+ 14:56:02 up 387 days,  6:10,  2 users,  load average: 2.77, 3.11, 3.10
+
+
+Thu May 21 14:56:02 UTC 2026
+
+
+rdmewa22vzwvsas-y-at-secas-01-sgve-001
+
+****show_steering_services****
+Catalog                           Admin_ Oper__ Current_status Down__ Tracking Num_Of_ Min_UP_ Servers Servers 
+_ID     Service_Name              Status Status _time          Events _Method  Servers Servers _UP     _DOWN   
+------- ------------------------- ------ ------ -------------- ------ -------- ------- ------- ------- ------- 
+    201 RDMEWA22VZWVSAS-Y-AT-SEC* Act    UP        28.02:24:55     18 Ping           8       6       8       0 
+
+*****show_steering_servers****
+                                         Admin_ Oper__                            Current_status Down__ Tracking Tracking Tracking MAC_Res_ MAC_Res_ MAC_Res_
+ID   Server_Name     Service_Name        Status Status Tracking_Status            _time          Events _TX      _RX      _Diff    TX       RX       Diff    
+---- --------------- ------------------- ------ ------ -------------------------- -------------- ------ -------- -------- -------- -------- -------- --------
+ 483 RedmondRidgeWA* RDMEWA22VZWVSAS-Y-* Act    UP     ICMPV4[UP],_ICMPV6[UP]         1.07:38:59    112   455758   455746       12     3798     7596    -3798
+ 491 RedmondRidgeWA* RDMEWA22VZWVSAS-Y-* Act    UP     ICMPV4[UP],_ICMPV6[UP]         1.07:38:59    114   455758   455744       14     3798     7596    -3798
+ 484 RedmondRidgeWA* RDMEWA22VZWVSAS-Y-* Act    UP     ICMPV4[UP],_ICMPV6[UP]         0.07:48:35     96   112462   112461        1      938     1876     -938
+ 492 RedmondRidgeWA* RDMEWA22VZWVSAS-Y-* Act    UP     ICMPV4[UP],_ICMPV6[UP]         0.07:48:35    101   112462   112462        0      938     1876     -938
+ 487 RedmondRidgeWA* RDMEWA22VZWVSAS-Y-* Act    UP     ICMPV4[UP],_ICMPV6[UP]        14.07:45:49     52  4950198  4949884      314    41252    82498   -41246
+ 495 RedmondRidgeWA* RDMEWA22VZWVSAS-Y-* Act    UP     ICMPV4[UP],_ICMPV6[UP]        14.07:45:49     54  4950198  4949890      308    41252    82498   -41246
+ 489 RedmondRidgeWA* RDMEWA22VZWVSAS-Y-* Act    UP     ICMPV4[UP],_ICMPV6[UP]         0.07:45:19    104   111678   111680       -2      932     1864     -932
+ 497 RedmondRidgeWA* RDMEWA22VZWVSAS-Y-* Act    UP     ICMPV4[UP],_ICMPV6[UP]         0.07:45:19    104   111680   111680        0      932     1864     -932
+
+*****acmon -c1*****
+Port_1       Port_2       Usage              Description_1 Rate_1[Mbps] Description_2 Rate_2[Mbps] Ratio  
+------------ ------------ ------------------ ------------- ------------ ------------- ------------ ------ 
+L1           L2           network            Inbound              0.027 Outbound             0.027   1.00 
+L3           L4           network            Inbound              0.027 Outbound             0.027   1.00 
+L5           L5           redirect_indirect  Rx                   0.021 Tx                   0.009   2.27 
+L6           L6           redirect_indirect  Rx                   0.018 Tx                   0.009   1.91 
+------------ ------------ ------------------ ------------- ------------ ------------- ------------ ------ 
+Total        Total        network            Inbound              0.053 Outbound             0.053   1.00 
+
+*****show_aosrp*****
+*****************************************************************************************************SGW configuration******************************************************************************************************
+
+ID                                      :1
+Group ID                                :1
+Minimum active links                    :2
+Priority                                :10
+Hello keep alive interval (mSec)        :100
+Hello keep alive timeout (mSec)         :600
+NHR tracking interval (mSec)            :100
+NHR tracking timeout (mSec)             :600
+Hello msg UDP port                      :51876
+Num of gratuitous packets on switchover :3
+IPv6 tracking                           :Enabled
+
+*********************************************************************************************************SGW Status*********************************************************************************************************
+
+AOSRP activity state                    :STANDBY
+Active network links below minimum      :FALSE
+Critical steering service down          :FALSE
+
+*******************************************************************************************************IP Interfaces********************************************************************************************************
+
+                                                                                                                                                                                  NHR_____                                 
+                                                                                                                                                                                  IP__IF__                                 
+                                                                                                                                                               NHR__ NHR__state__ tracking Hello_messages_ Hello_messages_ 
+Interface        MAC_address        IP_address                               Virt_IP_address                          NHR_IP_address                           state duration     __state_ send_count      recieve_count   
+---------------- ------------------ ---------------------------------------- ---------------------------------------- ---------------------------------------- ----- ------------ -------- --------------- --------------- 
+l4.1543          fa:16:3e:14:cf:e0  174.8.194.67                             174.8.194.70                             174.8.194.65                             UP    2427717      UP       334584741       334583368      
+l4.1543          fa:16:3e:14:cf:e0  2001:4888:53:3100:524:222:0:1            2001:4888:53:3100:524:222:0:ff           2001:4888:53:3100:524:28::               UP    2427717      UP       0               0              
+l3.1542          fa:16:3e:2d:40:3a  174.8.194.99                             174.8.194.102                            174.8.194.97                             UP    2427717      UP       334584741       334583623      
+l3.1542          fa:16:3e:2d:40:3a  2001:4888:53:3104:524:222:0:1            2001:4888:53:3104:524:222:0:ff           2001:4888:53:3104:524:28::               UP    2427717      UP       0               0              
+l1.1544          fa:16:3e:99:be:b5  174.8.194.107                            174.8.194.110                            174.8.194.105                            UP    16254981     UP       334587636       334587810      
+l1.1544          fa:16:3e:99:be:b5  2001:4888:53:3105:524:222:0:1            2001:4888:53:3105:524:222:0:ff           2001:4888:53:3105:524:28::               UP    16254981     UP       0               0              
+l2.1545          fa:16:3e:9d:62:05  174.8.194.75                             174.8.194.78                             174.8.194.73                             UP    16254981     UP       334587636       334587360      
+l2.1545          fa:16:3e:9d:62:05  2001:4888:53:3101:524:222:0:1            2001:4888:53:3101:524:222:0:ff           2001:4888:53:3101:524:28::               UP    16254981     UP       0               0              
+
+*****acstat -xef -m 15*****
+               NetworkBW                                                                                                                                               TCP_Raw__                                          
+S.C  Direction [Mbps]    NetworkPPS SteeringPPS SFR     AvgPktSize %Util OverUtil MitigatedPPS %Discard NormalCER QuickCER PPS/CER_Ratio Total_NOC TCP_NOC   %TCP_NOC  Con       UDP_NOC   %UDP_NOC  Other_NOC %Other_NOC 
+---- --------- --------- ---------- ----------- ------- ---------- ----- -------- ------------ -------- --------- -------- ------------- --------- --------- --------- --------- --------- --------- --------- ----------
+ 1.0 InB           0.000          0           0       0          0     - -                   -        -         -        -             -         -         -         -         -         -         -         -          - 
+ 1.0 OutB          0.000          0           0       0          0     - -                   -        -         -        -             -         -         -         -         -         -         -         -          - 
+ 1.0 Both          0.000          0           0       0          0   5.8 No                  0      0.0         0        0           0.0         2         2     100.0 18446744*         0       0.0         0        0.0 
+
+*****show_nics******
+                                                                                                               Nic_______                                                   
+                                                                               Transceiver____                 Firmware__ Nic_Driver_____                                   
+Interface    Port_Usage              Oper_State Admin   Speed[Gb] Transceiver  Part_Number     Rx[dBm] Tx[dBm] Version    Version         Rx_BW[Mbps] Tx_BW[Mbps] AOF       
+------------ ----------------------- ---------- ------- --------- ------------ --------------- ------- ------- ---------- --------------- ----------- ----------- --------- 
+L1           network                 up         enable  25        NA           _                    NA      NA N/A        4.0.1                 0.041       0.026 none     
+L2           network                 up         enable  25        NA           _                    NA      NA N/A        4.0.1                 0.041       0.027 none     
+L3           network                 up         enable  25        NA           _                    NA      NA N/A        4.0.1                 0.039       0.025 none     
+L4           network                 up         enable  25        NA           _                    NA      NA N/A        4.0.1                 0.041       0.028 none     
+L5           redirect_indirect       up         enable  25        NA           _                    NA      NA N/A        4.0.1                 0.026       0.008 none     
+L6           redirect_indirect       up         enable  25        NA           _                    NA      NA N/A        4.0.1                 0.032       0.016 none     
+
+*****FuAdmin -c******
+     Card                   Extended_Subscrib              Extended_#IP              Extended_#IP              Extended_#IP              Extended_#Gt Monitor_Rule ApplicationU Enforcemen_ 
+S.C  Role Total_Subscribers ers               Total_#IPs   s            Total_#IP4s  4s           Total_#IP6s  6s           Total_#Gtpus pus          s            se_Trigger   Rules       
+---- ---- ----------------- ----------------- ------------ ------------ ------------ ------------ ------------ ------------ ------------ ------------ ------------ ------------ -----------
+ 1.0   SA             65524             65524       180381       180381       114943       114943        65438        65438            0            0        63499             0           0
+---- ---- ----------------- ----------------- ------------ ------------ ------------ ------------ ------------ ------------ ------------ ------------ ------------ ------------ -----------
+ SUM    .             65524             65524       180381       180381       114943       114943        65438        65438            0            0        63499            0           0
+
+
+*****ifstat*****
+#kernel
+Interface        RX Pkts/Rate    TX Pkts/Rate    RX Data/Rate    TX Data/Rate  
+                 RX Errs/Drop    TX Errs/Drop    RX Over/Rate    TX Coll/Rate  
+lo                 1269K 0         1269K 0       249118K 0       249118K 0      
+                       0 0             0 0             0 0             0 0      
+eth0               95729 0        107046 0        27496K 0        10774K 0      
+                       0 0             0 0             0 0             0 0      
+l1                108517 0        108629 0        11594K 0        11595K 0      
+                       0 0             0 0             0 0             0 0      
+l2                108676 0        108787 0        11603K 0        11600K 0      
+                       0 0             0 0             0 0             0 0      
+l3                108523 0        108633 0        11593K 0        11593K 0      
+                       0 0             0 0             0 0             0 0      
+l4                108531 0        108643 0        11595K 0        11597K 0      
+                       0 0             0 0             0 0             0 0      
+l5                     0 0             0 0             0 0             0 0      
+                       0 0             0 0             0 0             0 0      
+l6                     0 0             0 0             0 0             0 0      
+                       0 0             0 0             0 0             0 0      
+l4.1543           108531 0        108643 0         9642K 0        11162K 0      
+                       0 0             0 0             0 0             0 0      
+l3.1542           108523 0        108633 0         9640K 0        11159K 0      
+                       0 0             0 0             0 0             0 0      
+l1.1544           108517 0        108629 0         9641K 0        11160K 0      
+                       0 0             0 0             0 0             0 0      
+l2.1545           108676 0        108787 0         9647K 0        11165K 0      
+                       0 0             0 0             0 0             0 0      
+
+*****show_gleaning_stats*****
+                                                   Received_Frames Received_Frames Received_Frames Mirror_To_Host_ Aggregated 
+S.C  Gleaning_Item                                 From_Boot       Total           Rate            Rate            _Rows      
+---- --------------------------------------------- --------------- --------------- --------------- --------------- ----------
+ 0.0 DHCP                                                        0               0               0               0          1
+ 0.0 Pilot_Packets                                       154198963       154198963               0               0          1
+ 0.0 Radius                                                      0               0               0               0          1
+ 0.0 GTP-C_All_Versions                                          0               0               0               0          1
+ 0.0 ____GTPv1(3G)                                               0               0               0               0          1
+ 0.0 ____GTPv2(LTE)_Non_Piggyback                                0               0               0               0          1
+ 0.0 ____GTPv2(LTE)_Piggyback                                    0               0               0               0          1
+
+*****Subscriber Unique IP****
+5
+
+*****sg_arp*****
+IP                                             MAC               SWITCH PORT  
+---------------------------------------------- ----------------- ------ ----- 
+192.168.196.1                                  fa:16:3e:93:cf:34 00         5 
+192.168.196.2                                  fa:16:3e:56:e0:6f 00         5 
+192.168.196.3                                  fa:16:3e:3a:5e:12 00         5 
+192.168.196.4                                  fa:16:3e:3a:0:87  00         5 
+192.168.196.6                                  fa:16:3e:b1:b0:7f 00         6 
+192.168.196.7                                  fa:16:3e:a7:2e:35 00         6 
+192.168.196.8                                  fa:16:3e:86:19:5e 00         6 
+192.168.196.9                                  fa:16:3e:1b:90:72 00         6 
+192.168.198.1                                  fa:16:3e:93:cf:34 00         5 
+192.168.198.2                                  fa:16:3e:56:e0:6f 00         5 
+192.168.198.3                                  fa:16:3e:3a:5e:12 00         5 
+192.168.198.4                                  fa:16:3e:3a:0:87  00         5 
+192.168.198.6                                  fa:16:3e:b1:b0:7f 00         6 
+192.168.198.7                                  fa:16:3e:a7:2e:35 00         6 
+192.168.198.8                                  fa:16:3e:86:19:5e 00         6 
+192.168.198.9                                  fa:16:3e:1b:90:72 00         6 
+fd02:4888:a53:ff47:524:222:0:ff01              fa:16:3e:93:cf:34 00         5 
+fd02:4888:a53:ff47:524:222:0:ff02              fa:16:3e:56:e0:6f 00         5 
+fd02:4888:a53:ff47:524:222:0:ff03              fa:16:3e:3a:5e:12 00         5 
+fd02:4888:a53:ff47:524:222:0:ff04              fa:16:3e:3a:0:87  00         5 
+fd02:4888:a53:ff47:524:222:0:ff06              fa:16:3e:b1:b0:7f 00         6 
+fd02:4888:a53:ff47:524:222:0:ff07              fa:16:3e:a7:2e:35 00         6 
+fd02:4888:a53:ff47:524:222:0:ff08              fa:16:3e:86:19:5e 00         6 
+fd02:4888:a53:ff47:524:222:0:ff09              fa:16:3e:1b:90:72 00         6 
+fd02:4888:a53:ff46:524:222:0:ff01              fa:16:3e:93:cf:34 00         5 
+fd02:4888:a53:ff46:524:222:0:ff02              fa:16:3e:56:e0:6f 00         5 
+fd02:4888:a53:ff46:524:222:0:ff03              fa:16:3e:3a:5e:12 00         5 
+fd02:4888:a53:ff46:524:222:0:ff04              fa:16:3e:3a:0:87  00         5 
+fd02:4888:a53:ff46:524:222:0:ff06              fa:16:3e:b1:b0:7f 00         6 
+fd02:4888:a53:ff46:524:222:0:ff07              fa:16:3e:a7:2e:35 00         6 
+fd02:4888:a53:ff46:524:222:0:ff08              fa:16:3e:86:19:5e 00         6 
+fd02:4888:a53:ff46:524:222:0:ff09              fa:16:3e:1b:90:72 00         6 
+
+*****Rx Discards*****
+Name Rx_Err+Discards
+----------- --------------------
+eth3 8239360
+eth4 2048700
+eth6 5802281
+eth5 5857454
+eth2 2153204
+eth1 7982477
+eth0 0
+****show_cpu_load****
+                  Load_Last Load_Last Load_Last 
+S.C  Uptime       Min       5_Min     15_Min    
+---- ------------ --------- --------- --------- 
+ 1.0 387d.6h.11m       2.45      3.02      3.07
+****show_mem****
+S.C  Total    Used     Free     Shared   Buff_Cache Available 
+---- -------- -------- -------- -------- ---------- --------- 
+ 1.0 41034680 37848080   171832    48244    3014768   3067908
+****df -h****
+Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs        3.1G     0  3.1G   0% /dev
+tmpfs            20G   45M   20G   1% /dev/shm
+tmpfs            20G  856K   20G   1% /run
+tmpfs            20G     0   20G   0% /sys/fs/cgroup
+/dev/vda2        15G  7.9G  6.9G  54% /
+/dev/vda6       4.9G  387M  4.5G   8% /home
+/dev/vda3        58G  7.6G   51G  14% /opt
+/dev/vda8       3.9G  389M  3.6G  10% /var
+/dev/vda9       3.9G  625M  3.3G  16% /var/log
+/dev/vda5       7.6G  996M  6.2G  14% /tmp
+/dev/vda10      997M   73M  924M   8% /var/log/audit
+/dev/vda11      997M   33M  965M   4% /var/tmp
+/dev/vda1      1014M  484M  531M  48% /boot
+/dev/vda12      182M  4.8M  178M   3% /boot/efi
+/dev/sr0        554K  554K     0 100% /mnt/cdrom
+tmpfs          1000M   24K 1000M   1% /tmpfs
+tmpfs           4.0G  1.4M  4.0G   1% /run/user/1003
+tmpfs           4.0G     0  4.0G   0% /run/user/1002
+****DataPlane/DataFlowManager_DropFramesCount****
+===================================================================================================================================
+   Applicative drop frames counters                                         | Total From Boot |Total From Reset |      Total Rate |
+===================================================================================================================================
+frame_dropped_by_data_flow_module                                           |       147266337 |       147266337 |               - |
+        frame_dropped_to_vip                                                |               0 |               0 |               - |
+        frame_dropped_call_tx_but_not_frame                                 |               0 |               0 |               - |
+        frame_dropped_by_invalid_action                                     |               0 |               0 |               - |
+        frame_dropped_urlf_frame_adjust_failed                              |               0 |               0 |               - |
+        frame_dropped_wrong_egress_thread                                   |               0 |               0 |               - |
+        frame_dropped_cer_overflow                                          |               0 |               0 |               0 |
+        frame_dropped_noc_overflow                                          |               0 |               0 |               0 |
+        frame_dropped_fin_rst_stray_ack                                     |               0 |               0 |               0 |
+        frame_dropped_session_id_invalid                                    |               0 |               0 |               - |
+        frame_dropped_invalid_double_process_frame_msg_type                 |               0 |               0 |               - |
+        frame_dropped_rx_undef_vlan                                         |               0 |               0 |               - |
+        frame_dropped_rx_without_meta_data                                  |               0 |               0 |               - |
+        frame_dropped_rx_undef_direction                                    |        71692087 |        71692087 |               - |
+        frame_dropped_rx_invalid_direction                                  |               0 |               0 |               - |
+        frame_dropped_steering_drop_frames                                  |               0 |               0 |               - |
+        frame_dropped_by_new_session_mitigation                             |               0 |               0 |               0 |
+        frame_dropped_by_exist_session_mitigation                           |               0 |               0 |               0 |
+        frame_dropped_by_close_connection                                   |              43 |              43 |               - |
+        frame_dropped_proxy_mode_cant_set_route_data                        |        68640681 |        68640681 |               - |
+        frame_dropped_session_msg_drop_all                                  |             149 |             149 |               0 |
+        frame_dropped_fail_upload_2_app                                     |          173624 |          173624 |               0 |
+        frame_dropped_session_msg_unprocess                                 |             396 |             396 |               0 |
+        frame_dropped_session_upload_profile_A_max_total_reached            |               0 |               0 |               0 |
+        frame_dropped_session_upload_profile_A_max_on_session_reached       |               0 |               0 |               0 |
+        frame_dropped_session_upload_profile_A_failed_taking_new_queue      |               0 |               0 |               0 |
+        frame_dropped_session_upload_profile_B_max_total_reached            |               0 |               0 |               0 |
+        frame_dropped_session_upload_profile_B_max_on_session_reached       |               0 |               0 |               0 |
+        frame_dropped_session_upload_profile_B_failed_taking_new_queue      |               0 |               0 |               0 |
+        frame_dropped_session_upload_profile_C_max_total_reached            |          157309 |          157309 |               0 |
+        frame_dropped_session_upload_profile_C_max_on_session_reached       |         6602091 |         6602091 |               0 |
+        frame_dropped_session_upload_profile_C_failed_taking_new_queue      |               0 |               0 |               0 |
+-----------------------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_session_manager                                            |       285700428 |       285700428 |               - |
+        frame_dropped_by_access_module                                      |       285700428 |       285700428 |               - |
+                frame_dropped_by_access_reject                              |               0 |               0 |               - |
+                frame_dropped_by_access_drop                                |       285700428 |       285700428 |               0 |
+        frame_dropped_by_sessionMgr_DOS                                     |               0 |               0 |               - |
+        frame_dropped_by_sessionMgr_SG                                      |               0 |               0 |               - |
+        frame_dropped_by_sessionMgr_QOS                                     |               0 |               0 |               - |
+        frame_dropped_by_sessionMgr_URLF                                    |               0 |               0 |               - |
+        frame_dropped_by_sessionMgr_invalid                                 |               0 |               0 |               - |
+-----------------------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_qos_module                                                 |               0 |               0 |               0 |
+        frame_dropped_by_qos                                                |               0 |               0 |               0 |
+        frame_stored_dropped_by_qos                                         |               0 |               0 |               0 |
+-----------------------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_charging_module                                            |               0 |               0 |               - |
+        frame_dropped_by_charging                                           |               0 |               0 |               0 |
+        frame_dropped_by_charging_rate_limit                                |               0 |               0 |               0 |
+-----------------------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_frame_modification_module                                  |               - |               0 |               - |
+        frame_dropped_by_hhe_enforcer                                       |               - |               0 |               - |
+-----------------------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_vas_redirector_module                                      |          240454 |          240454 |               - |
+        frame_dropped_vr_counters                                           |          238494 |          238494 |               0 |
+        frame_dropped_chained_flow_invalid_vr_action                        |            1960 |            1960 |               - |
+        frame_dropped_chained_vr_inactive                                   |               0 |               0 |               - |
+-----------------------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_inner_vas_module                                           |               0 |               0 |               - |
+        frame_dropped_captive_portal_rate_limit                             |               0 |               0 |               0 |
+-----------------------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_rate_limitation                                            |               0 |               0 |               - |
+===================================================================================================================================
+frame_dropped_applicative_total                                             |       433207262 |       433207262 |               0 |
+===================================================================================================================================
+
+===================================================================================================================================
+          Infra frame drop counters                                         | Total From Boot |Total From Reset |      Total Rate |
+===================================================================================================================================
+frame_dropped_by_fail_send_to_network                                       |          127036 |          127036 |               0 |
+        frame_dropped_by_tx_qos_fail                                        |               0 |               0 |               0 |
+        frame_dropped_by_tx_fail                                            |          127036 |          127036 |               0 |
+        frame_dropped_by_url_fail                                           |               0 |               0 |               0 |
+        frame_dropped_by_access_reject                                      |               0 |               0 |               0 |
+        frame_dropped_by_chraging_reject                                    |               0 |               0 |               0 |
+        frame_dropped_by_bypass                                             |               0 |               0 |               0 |
+===================================================================================================================================
+frame_dropped_total                                                         |       433334298 |       433334298 |               0 |
+===================================================================================================================================
+ 
+****BalancePlane/DispatcherFlowMgr_DropFramesCount****
+====================================================================================================================
+                                              Dropped Frames
+====================================================================================================================
+                        Drop Reason                          | Total From Boot | Total From Reset|      Total Rate |
+====================================================================================================================
+frame_dropped_general                                        |       270148316 |       270148316 |               - |
+        frame_dropped_no_vlan                                |               0 |               0 |               0 |
+        frame_dropped_no_meta_data                           |               0 |               0 |               0 |
+        frame_dropped_undefined_port_usage                   |               0 |               0 |               0 |
+        frame_dropped_tx_frame_failed                        |       270121716 |       270121716 |               0 |
+        frame_dropped_tx_to_net_via_dispatcher_failed        |               0 |               0 |               0 |
+        frame_dropped_system_in_bypass                       |           26600 |           26600 |               0 |
+        frame_dropped_by_subnet_special_flow                 |               0 |               0 |               0 |
+--------------------------------------------------------------------------------------------------------------------
+frame_dropped_tunnel_to_host                                 |               0 |               0 |               - |
+        frame_dropped_control_crossed_max_rate               |               0 |               0 |               0 |
+        frame_dropped_cloned_control_crossed_max_rate        |               0 |               0 |               0 |
+        dfm_network_failed_tunnel_ip_net_frame_to_host_drop  |               0 |               0 |               0 |
+        dfm_network_failed_tunnel_to_host_arp_to_me_drop     |               0 |               0 |               0 |
+        dfm_redirect_indirect_failed_tunnel_to_host_drop     |               0 |               0 |               0 |
+        dfm_redirect_internal_failed_tunnel_to_host_drop     |               0 |               0 |               0 |
+        dfm_redirect_direct_failed_tunnel_to_host_drop       |               0 |               0 |               0 |
+        dfm_error_rx_t2h_returning_frame_no_sec_vlan_drop    |               0 |               0 |               0 |
+        dfm_error_failed_tunnel_to_host_returning_frame_drop |               0 |               0 |               0 |
+--------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_proxy_mode                                  |      1613038823 |      1613039319 |               - |
+        frame_dropped_tunnel_to_host_control_crossed_rate    |               0 |               0 |               0 |
+        frame_dropped_tunnel_to_host_data_crossed_rate       |               0 |               0 |               0 |
+        frame_dropped_cant_set_route_data                    |               0 |               0 |               0 |
+        frame_dropped_not_my_vlan_interface                  |      1613038378 |      1613038378 |              68 |
+        frame_dropped_virtual_interface_non_active           |               0 |               0 |               0 |
+        frame_dropped_ucast_mac_to_me_bcast_ip               |               0 |               0 |               0 |
+        frame_dropped_ucast_mac_to_me_mcast_ip_no_ssm        |               0 |               0 |               0 |
+        frame_dropped_ucast_mac_to_me_mcast_ip_ssm_by_conf   |               0 |               0 |               0 |
+        frame_dropped_bcast_mac                              |               0 |               0 |               0 |
+        frame_dropped_arp_not_to_me                          |             176 |             176 |               0 |
+        frame_dropped_ndp_not_to_me                          |             269 |             269 |               0 |
+        frame_dropped_ipv6_mcast_reserved_addr               |               0 |               0 |               0 |
+        frame_dropped_ipv6_mcast_interface_scope             |               0 |               0 |               0 |
+        frame_dropped_mcast_mac_no_ipv4                      |               0 |               0 |               0 |
+        frame_dropped_mcast_mac_no ipv6                      |               0 |               0 |               0 |
+        frame_dropped_mcast_mac_mcast_ip_ssm_by_conf         |               0 |               0 |               0 |
+        frame_dropped_mcast_mac_no_mcast_ipv4_ssm            |               0 |               0 |               0 |
+        frame_dropped_ucast_mac_not_to_me                    |               0 |               0 |               0 |
+        frame_dropped_drop_non_ip_outer_header_frame         |             496 |             496 |               0 |
+        frame_dropped_failed_tunnel_icmp_to_host             |               0 |               0 |               0 |
+        frame_dropped_failed_tunnel_broadcast_ip_to_host     |               0 |               0 |               0 |
+        frame_dropped_failed_tunnel_arp_replay_to_host       |               0 |               0 |               0 |
+        frame_dropped_failed_tunnel_arp_request_to_host      |               0 |               0 |               0 |
+        frame_dropped_failed_tunnel_gratuitous_arp_to_host   |               0 |               0 |               0 |
+        frame_dropped_failed_tunnel_broadcast_ip_aosrp_hello |               0 |               0 |               0 |
+--------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_redirected_frames                           |               0 |               0 |               - |
+        frame_dropped_steering_no_sec_vlan                   |               0 |               0 |               0 |
+        frame_dropped_dir_srv_undef                          |               0 |               0 |               0 |
+        frame_dropped_from_generic_mirroring                 |               0 |               0 |               0 |
+        frame_dropped_invalid_dest_mac                       |               0 |               0 |               0 |
+        frame_dropped_steering_invalid_sec_vlan              |               0 |               0 |               0 |
+--------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_non_network_frames                          |               0 |               0 |               - |
+        frame_dropped_slot_id_bypass                         |               0 |               0 |               0 |
+--------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_asymmetry_frames                            |               0 |               0 |               - |
+        frame_dropped_asymmetry_invalid_fcb                  |               0 |               0 |               0 |
+        frame_dropped_asymmetry_no_sec_vlan                  |               0 |               0 |               0 |
+        frame_dropped_asymmetry_invalid_broadcast_dest       |               0 |               0 |               0 |
+        frame_dropped_asymmetry_broadcast_d_process_failed   |               0 |               0 |               0 |
+        frame_dropped_asymmetry_broadcast_frame_failed       |               0 |               0 |               0 |
+        frame_dropped_asy_sub_not_found                      |               0 |               0 |               0 |
+        frame_dropped_asymmetry_unicast_frame_failed         |               0 |               0 |               0 |
+        frame_dropped_asy_unicast_by_specific_info_failed    |               0 |               0 |               0 |
+        frame_dropped_asymmetry_invalid_specific_info        |               0 |               0 |               0 |
+        frame_drop_asy_specific_info_invalid_dispatch_type   |               0 |               0 |               0 |
+====================================================================================================================
+frame_dropped_total                                          |      1613065919 |      1613065919 |              68 |
+====================================================================================================================
+ 
+****show_utilization****
+     Thr Thread__ro Phy       %SMA_ Role____ Number_of_ Average___ 
+S.C  ead le         Thr %Util Util  Variance packets    cycle      
+---- --- ---------- --- ----- ----- -------- ---------- ----------
+1.0    1 Ctrl_0       0   0.0   0.0      0.0         33      45505
+1.0    2 Ctrl_1       2   2.0   2.0      0.0        136     361928
+1.0    3 Debug_Ctrl   2   0.1  49.2      0.0          0          0
+1.0    4 Port_Ctrl    2  44.0  32.4      0.0         28   37650720
+1.0    5 Timer        2   2.2   2.4      0.0       9999       5501
+1.0    6 Utility      2  14.8  14.9      0.0        372     958287
+1.0    8 Dispatch     4   0.2   0.2      0.0        174      31511
+1.0    9 Dispatch     5   0.2   0.2      0.0         82      66402
+1.0   10 Dispatch     6   0.2   0.2      0.0        166      34869
+1.0   11 Dispatch     7   0.2   0.2      0.0         38     147124
+1.0   12 D_Flow       8   0.0   0.0      0.0          0          0
+1.0   13 S_Flow       9   5.9   5.7      0.1       2137      66704
+1.0   14 D_Flow      10   0.0   0.0      0.0          0          0
+1.0   15 S_Flow      11   5.7   5.9      0.1       2137      64408
+1.0   16 D_Flow      12   0.0   0.0      0.0          0          0
+1.0   17 S_Flow      13   5.7   5.8      0.1       2137      64353
+1.0   18 D_Flow      14   0.0   0.0      0.0          0          0
+1.0   19 S_Flow      15   5.8   5.8      0.0       2137      65723
+==============================================================================
+sgve1_redmondridge_icsr | CHANGED | rc=0 >>
+====================================sgve_stat=================================
+ACP 17.15.32 CentOS 7.9
+build_13 2024-12-30
+
+AOS.SGVE.17.2.145_B26
+ 14:56:01 up 387 days,  6:21,  2 users,  load average: 1.93, 1.79, 1.77
+
+
+Thu May 21 14:56:01 UTC 2026
+
+
+rdmewa22vzwvsas-y-at-secas-01-sgve-003
+
+****show_steering_services****
+Catalog                           Admin_ Oper__ Current_status Down__ Tracking Num_Of_ Min_UP_ Servers Servers 
+_ID     Service_Name              Status Status _time          Events _Method  Servers Servers _UP     _DOWN   
+------- ------------------------- ------ ------ -------------- ------ -------- ------- ------- ------- ------- 
+    201 RDMEWA22VZWVSAS-Y-AT-SEC* Act    UP        28.02:24:54      2 Ping           8       6       8       0 
+
+*****show_steering_servers****
+                                         Admin_ Oper__                            Current_status Down__ Tracking Tracking Tracking MAC_Res_ MAC_Res_ MAC_Res_
+ID   Server_Name     Service_Name        Status Status Tracking_Status            _time          Events _TX      _RX      _Diff    TX       RX       Diff    
+---- --------------- ------------------- ------ ------ -------------------------- -------------- ------ -------- -------- -------- -------- -------- --------
+ 499 RedmondRidgeWA* RDMEWA22VZWVSAS-Y-* Act    UP     ICMPV4[UP],_ICMPV6[UP]       156.08:24:52      9 54034770 54034510      260   450288   900576  -450288
+ 507 RedmondRidgeWA* RDMEWA22VZWVSAS-Y-* Act    UP     ICMPV4[UP],_ICMPV6[UP]        28.02:24:56     10  9711586  9711578        8    80930   161860   -80930
+ 500 RedmondRidgeWA* RDMEWA22VZWVSAS-Y-* Act    UP     ICMPV4[UP],_ICMPV6[UP]        10.07:39:38     10  3566314  3566316       -2    29718    59436   -29718
+ 508 RedmondRidgeWA* RDMEWA22VZWVSAS-Y-* Act    UP     ICMPV4[UP],_ICMPV6[UP]        10.07:39:38     11  3566316  3566316        0    29718    59436   -29718
+ 503 RedmondRidgeWA* RDMEWA22VZWVSAS-Y-* Act    UP     ICMPV4[UP],_ICMPV6[UP]       133.06:48:29     11 46062838 46062838        0   383856   767712  -383856
+ 511 RedmondRidgeWA* RDMEWA22VZWVSAS-Y-* Act    UP     ICMPV4[UP],_ICMPV6[UP]        28.02:24:07     12  9711390  9711392       -2    80928   161856   -80928
+ 505 RedmondRidgeWA* RDMEWA22VZWVSAS-Y-* Act    UP     ICMPV4[UP],_ICMPV6[UP]        10.07:43:41     11  3567286  3567288       -2    29726    59452   -29726
+ 513 RedmondRidgeWA* RDMEWA22VZWVSAS-Y-* Act    UP     ICMPV4[UP],_ICMPV6[UP]        10.07:43:41     12  3567286  3567288       -2    29726    59452   -29726
+
+*****acmon -c1*****
+Port_1       Port_2       Usage              Description_1 Rate_1[Mbps] Description_2 Rate_2[Mbps] Ratio  
+------------ ------------ ------------------ ------------- ------------ ------------- ------------ ------ 
+L1           L2           network            Inbound              0.027 Outbound             0.027   1.00 
+L3           L4           network            Inbound              0.027 Outbound             0.027   1.02 
+L5           L5           redirect_indirect  Rx                   0.013 Tx                   0.009   1.46 
+L6           L6           redirect_indirect  Rx                   0.014 Tx                   0.009   1.52 
+------------ ------------ ------------------ ------------- ------------ ------------- ------------ ------ 
+Total        Total        network            Inbound              0.054 Outbound             0.053   1.01 
+
+*****show_aosrp*****
+*****************************************************************************************************SGW configuration******************************************************************************************************
+
+ID                                      :1
+Group ID                                :1
+Minimum active links                    :2
+Priority                                :10
+Hello keep alive interval (mSec)        :100
+Hello keep alive timeout (mSec)         :600
+NHR tracking interval (mSec)            :100
+NHR tracking timeout (mSec)             :600
+Hello msg UDP port                      :51876
+Num of gratuitous packets on switchover :3
+IPv6 tracking                           :Enabled
+
+*********************************************************************************************************SGW Status*********************************************************************************************************
+
+AOSRP activity state                    :STANDBY
+Active network links below minimum      :FALSE
+Critical steering service down          :FALSE
+
+*******************************************************************************************************IP Interfaces********************************************************************************************************
+
+                                                                                                                                                                                  NHR_____                                 
+                                                                                                                                                                                  IP__IF__                                 
+                                                                                                                                                               NHR__ NHR__state__ tracking Hello_messages_ Hello_messages_ 
+Interface        MAC_address        IP_address                               Virt_IP_address                          NHR_IP_address                           state duration     __state_ send_count      recieve_count   
+---------------- ------------------ ---------------------------------------- ---------------------------------------- ---------------------------------------- ----- ------------ -------- --------------- --------------- 
+l2.2015          fa:16:3e:02:ee:44  174.8.194.91                             174.8.194.94                             174.8.194.89                             UP    16254981     UP       334594137       334590772      
+l2.2015          fa:16:3e:02:ee:44  2001:4888:53:3103:524:222:0:1            2001:4888:53:3103:524:222:0:ff           2001:4888:53:3103:524:28::               UP    16254981     UP       0               0              
+l1.2014          fa:16:3e:28:1d:31  174.8.194.123                            174.8.194.126                            174.8.194.121                            UP    16254981     UP       334594137       334590769      
+l1.2014          fa:16:3e:28:1d:31  2001:4888:53:3107:524:222:0:1            2001:4888:53:3107:524:222:0:ff           2001:4888:53:3107:524:28::               UP    16254981     UP       0               0              
+l3.2012          fa:16:3e:7e:f0:63  174.8.194.115                            174.8.194.118                            174.8.194.113                            UP    2427717      UP       334591208       334586405      
+l3.2012          fa:16:3e:7e:f0:63  2001:4888:53:3106:524:222:0:1            2001:4888:53:3106:524:222:0:ff           2001:4888:53:3106:524:28::               UP    2427717      UP       0               0              
+l4.2013          fa:16:3e:98:d8:45  174.8.194.83                             174.8.194.86                             174.8.194.81                             UP    2427901      UP       334591209       334586395      
+l4.2013          fa:16:3e:98:d8:45  2001:4888:53:3102:524:222:0:1            2001:4888:53:3102:524:222:0:ff           2001:4888:53:3102:524:28::               UP    2427901      UP       0               0              
+
+*****acstat -xef -m 15*****
+               NetworkBW                                                                                                                                               TCP_Raw__                                          
+S.C  Direction [Mbps]    NetworkPPS SteeringPPS SFR     AvgPktSize %Util OverUtil MitigatedPPS %Discard NormalCER QuickCER PPS/CER_Ratio Total_NOC TCP_NOC   %TCP_NOC  Con       UDP_NOC   %UDP_NOC  Other_NOC %Other_NOC 
+---- --------- --------- ---------- ----------- ------- ---------- ----- -------- ------------ -------- --------- -------- ------------- --------- --------- --------- --------- --------- --------- --------- ----------
+ 1.0 InB           0.000          0           0       0          0     - -                   -        -         -        -             -         -         -         -         -         -         -         -          - 
+ 1.0 OutB          0.000          0           0       0          0     - -                   -        -         -        -             -         -         -         -         -         -         -         -          - 
+ 1.0 Both          0.000          0           0       0          0   5.5 No                  0      0.0         0        0           0.0         0         0       0.0         2         0       0.0         0        0.0 
+
+*****show_nics******
+                                                                                                               Nic_______                                                   
+                                                                               Transceiver____                 Firmware__ Nic_Driver_____                                   
+Interface    Port_Usage              Oper_State Admin   Speed[Gb] Transceiver  Part_Number     Rx[dBm] Tx[dBm] Version    Version         Rx_BW[Mbps] Tx_BW[Mbps] AOF       
+------------ ----------------------- ---------- ------- --------- ------------ --------------- ------- ------- ---------- --------------- ----------- ----------- --------- 
+L1           network                 up         enable  25        NA           _                    NA      NA N/A        4.0.1                 0.041       0.025 none     
+L2           network                 up         enable  25        NA           _                    NA      NA N/A        4.0.1                 0.042       0.027 none     
+L3           network                 up         enable  25        NA           _                    NA      NA N/A        4.0.1                 0.039       0.027 none     
+L4           network                 up         enable  25        NA           _                    NA      NA N/A        4.0.1                 0.035       0.027 none     
+L5           redirect_indirect       up         enable  25        NA           _                    NA      NA N/A        4.0.1                 0.024       0.018 none     
+L6           redirect_indirect       up         enable  25        NA           _                    NA      NA N/A        4.0.1                 0.022       0.018 none     
+
+*****FuAdmin -c******
+     Card                   Extended_Subscrib              Extended_#IP              Extended_#IP              Extended_#IP              Extended_#Gt Monitor_Rule ApplicationU Enforcemen_ 
+S.C  Role Total_Subscribers ers               Total_#IPs   s            Total_#IP4s  4s           Total_#IP6s  6s           Total_#Gtpus pus          s            se_Trigger   Rules       
+---- ---- ----------------- ----------------- ------------ ------------ ------------ ------------ ------------ ------------ ------------ ------------ ------------ ------------ -----------
+ 1.0   SA             65524             65524       180385       180385       114947       114947        65438        65438            0            0        65158             0           0
+---- ---- ----------------- ----------------- ------------ ------------ ------------ ------------ ------------ ------------ ------------ ------------ ------------ ------------ -----------
+ SUM    .             65524             65524       180385       180385       114947       114947        65438        65438            0            0        65158            0           0
+
+
+*****ifstat*****
+#kernel
+Interface        RX Pkts/Rate    TX Pkts/Rate    RX Data/Rate    TX Data/Rate  
+                 RX Errs/Drop    TX Errs/Drop    RX Over/Rate    TX Coll/Rate  
+lo                 1270K 0         1270K 0       249186K 0       249186K 0      
+                       0 0             0 0             0 0             0 0      
+eth0               95742 0        107038 0        27481K 0        10771K 0      
+                       0 0             0 0             0 0             0 0      
+l1                108467 0        108577 0        11587K 0        11587K 0      
+                       0 0             0 0             0 0             0 0      
+l2                108550 0        108661 0        11592K 0        11591K 0      
+                       0 0             0 0             0 0             0 0      
+l3                108419 0        108529 0        11583K 0        11583K 0      
+                       0 0             0 0             0 0             0 0      
+l4                108448 0        108559 0        11584K 0        11583K 0      
+                       0 0             0 0             0 0             0 0      
+l5                     0 0             0 0             0 0             0 0      
+                       0 0             0 0             0 0             0 0      
+l6                     0 0             0 0             0 0             0 0      
+                       0 0             0 0             0 0             0 0      
+l2.2015           108550 0        108661 0         9638K 0        11156K 0      
+                       0 0             0 0             0 0             0 0      
+l1.2014           108467 0        108577 0         9634K 0        11153K 0      
+                       0 0             0 0             0 0             0 0      
+l3.2012           108419 0        108529 0         9631K 0        11149K 0      
+                       0 0             0 0             0 0             0 0      
+l4.2013           108448 0        108559 0         9632K 0        11149K 0      
+                       0 0             0 0             0 0             0 0      
+
+*****show_gleaning_stats*****
+                                                   Received_Frames Received_Frames Received_Frames Mirror_To_Host_ Aggregated 
+S.C  Gleaning_Item                                 From_Boot       Total           Rate            Rate            _Rows      
+---- --------------------------------------------- --------------- --------------- --------------- --------------- ----------
+ 0.0 DHCP                                                        0               0               0               0          1
+ 0.0 Pilot_Packets                                         2035507         2035507               0               0          1
+ 0.0 Radius                                                      0               0               0               0          1
+ 0.0 GTP-C_All_Versions                                          0               0               0               0          1
+ 0.0 ____GTPv1(3G)                                               0               0               0               0          1
+ 0.0 ____GTPv2(LTE)_Non_Piggyback                                0               0               0               0          1
+ 0.0 ____GTPv2(LTE)_Piggyback                                    0               0               0               0          1
+
+*****Subscriber Unique IP****
+3
+
+*****sg_arp*****
+IP                                             MAC               SWITCH PORT  
+---------------------------------------------- ----------------- ------ ----- 
+192.168.206.1                                  fa:16:3e:7b:cf:84 00         5 
+192.168.206.2                                  fa:16:3e:21:6e:ef 00         5 
+192.168.206.3                                  fa:16:3e:5f:53:b6 00         5 
+192.168.206.4                                  fa:16:3e:cc:f2:2e 00         5 
+192.168.206.6                                  fa:16:3e:7e:ab:e5 00         6 
+192.168.206.7                                  fa:16:3e:9f:81:4f 00         6 
+192.168.206.8                                  fa:16:3e:79:3a:ff 00         6 
+192.168.206.9                                  fa:16:3e:35:e9:1d 00         6 
+192.168.207.1                                  fa:16:3e:7b:cf:84 00         5 
+192.168.207.2                                  fa:16:3e:21:6e:ef 00         5 
+192.168.207.3                                  fa:16:3e:5f:53:b6 00         5 
+192.168.207.4                                  fa:16:3e:cc:f2:2e 00         5 
+192.168.207.6                                  fa:16:3e:7e:ab:e5 00         6 
+192.168.207.7                                  fa:16:3e:9f:81:4f 00         6 
+192.168.207.8                                  fa:16:3e:79:3a:ff 00         6 
+192.168.207.9                                  fa:16:3e:35:e9:1d 00         6 
+fd02:4888:a53:ff91:524:222:0:ff06              fa:16:3e:7e:ab:e5 00         6 
+fd02:4888:a53:ff91:524:222:0:ff07              fa:16:3e:9f:81:4f 00         6 
+fd02:4888:a53:ff91:524:222:0:ff08              fa:16:3e:79:3a:ff 00         6 
+fd02:4888:a53:ff91:524:222:0:ff09              fa:16:3e:35:e9:1d 00         6 
+fd02:4888:a53:ff90:524:222:0:ff01              fa:16:3e:7b:cf:84 00         5 
+fd02:4888:a53:ff90:524:222:0:ff02              fa:16:3e:21:6e:ef 00         5 
+fd02:4888:a53:ff90:524:222:0:ff03              fa:16:3e:5f:53:b6 00         5 
+fd02:4888:a53:ff90:524:222:0:ff04              fa:16:3e:cc:f2:2e 00         5 
+fd02:4888:a53:ff90:524:222:0:ff06              fa:16:3e:7e:ab:e5 00         6 
+fd02:4888:a53:ff90:524:222:0:ff07              fa:16:3e:9f:81:4f 00         6 
+fd02:4888:a53:ff90:524:222:0:ff08              fa:16:3e:79:3a:ff 00         6 
+fd02:4888:a53:ff90:524:222:0:ff09              fa:16:3e:35:e9:1d 00         6 
+fd02:4888:a53:ff91:524:222:0:ff01              fa:16:3e:7b:cf:84 00         5 
+fd02:4888:a53:ff91:524:222:0:ff02              fa:16:3e:21:6e:ef 00         5 
+fd02:4888:a53:ff91:524:222:0:ff03              fa:16:3e:5f:53:b6 00         5 
+fd02:4888:a53:ff91:524:222:0:ff04              fa:16:3e:cc:f2:2e 00         5 
+
+*****Rx Discards*****
+Name Rx_Err+Discards
+----------- --------------------
+eth1 112718
+eth2 15898
+eth4 69921
+eth5 16680
+eth6 82503
+eth3 115063
+eth0 0
+****show_cpu_load****
+                  Load_Last Load_Last Load_Last 
+S.C  Uptime       Min       5_Min     15_Min    
+---- ------------ --------- --------- --------- 
+ 1.0 387d.6h.21m       1.88      1.78      1.77
+****show_mem****
+S.C  Total    Used     Free     Shared   Buff_Cache Available 
+---- -------- -------- -------- -------- ---------- --------- 
+ 1.0 41034680 37640488   142376    48236    3251816   3275556
+****df -h****
+Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs        3.1G     0  3.1G   0% /dev
+tmpfs            20G   45M   20G   1% /dev/shm
+tmpfs            20G  852K   20G   1% /run
+tmpfs            20G     0   20G   0% /sys/fs/cgroup
+/dev/vda2        15G  7.9G  6.9G  54% /
+/dev/vda3        58G  7.7G   51G  14% /opt
+/dev/vda8       3.9G  389M  3.6G  10% /var
+/dev/vda5       7.6G  996M  6.2G  14% /tmp
+/dev/vda9       3.9G  617M  3.3G  16% /var/log
+/dev/vda6       4.9G  286M  4.6G   6% /home
+/dev/vda10      997M   66M  932M   7% /var/log/audit
+/dev/vda1      1014M  484M  531M  48% /boot
+/dev/vda12      182M  4.8M  178M   3% /boot/efi
+/dev/vda11      997M   33M  965M   4% /var/tmp
+/dev/sr0        554K  554K     0 100% /mnt/cdrom
+tmpfs          1000M   20K 1000M   1% /tmpfs
+tmpfs           4.0G  1.4M  4.0G   1% /run/user/1003
+tmpfs           4.0G     0  4.0G   0% /run/user/1002
+****DataPlane/DataFlowManager_DropFramesCount****
+===================================================================================================================================
+   Applicative drop frames counters                                         | Total From Boot |Total From Reset |      Total Rate |
+===================================================================================================================================
+frame_dropped_by_data_flow_module                                           |        94875118 |        94875118 |               - |
+        frame_dropped_to_vip                                                |               0 |               0 |               - |
+        frame_dropped_call_tx_but_not_frame                                 |               0 |               0 |               - |
+        frame_dropped_by_invalid_action                                     |               0 |               0 |               - |
+        frame_dropped_urlf_frame_adjust_failed                              |               0 |               0 |               - |
+        frame_dropped_wrong_egress_thread                                   |               0 |               0 |               - |
+        frame_dropped_cer_overflow                                          |               0 |               0 |               0 |
+        frame_dropped_noc_overflow                                          |               0 |               0 |               0 |
+        frame_dropped_fin_rst_stray_ack                                     |               0 |               0 |               0 |
+        frame_dropped_session_id_invalid                                    |               0 |               0 |               - |
+        frame_dropped_invalid_double_process_frame_msg_type                 |               0 |               0 |               - |
+        frame_dropped_rx_undef_vlan                                         |               0 |               0 |               - |
+        frame_dropped_rx_without_meta_data                                  |               0 |               0 |               - |
+        frame_dropped_rx_undef_direction                                    |        93706384 |        93706384 |               - |
+        frame_dropped_rx_invalid_direction                                  |               0 |               0 |               - |
+        frame_dropped_steering_drop_frames                                  |               0 |               0 |               - |
+        frame_dropped_by_new_session_mitigation                             |               0 |               0 |               0 |
+        frame_dropped_by_exist_session_mitigation                           |               0 |               0 |               0 |
+        frame_dropped_by_close_connection                                   |               0 |               0 |               - |
+        frame_dropped_proxy_mode_cant_set_route_data                        |         1056990 |         1056990 |               - |
+        frame_dropped_session_msg_drop_all                                  |               0 |               0 |               0 |
+        frame_dropped_fail_upload_2_app                                     |            3508 |            3508 |               0 |
+        frame_dropped_session_msg_unprocess                                 |               0 |               0 |               0 |
+        frame_dropped_session_upload_profile_A_max_total_reached            |               0 |               0 |               0 |
+        frame_dropped_session_upload_profile_A_max_on_session_reached       |               0 |               0 |               0 |
+        frame_dropped_session_upload_profile_A_failed_taking_new_queue      |               0 |               0 |               0 |
+        frame_dropped_session_upload_profile_B_max_total_reached            |               0 |               0 |               0 |
+        frame_dropped_session_upload_profile_B_max_on_session_reached       |               0 |               0 |               0 |
+        frame_dropped_session_upload_profile_B_failed_taking_new_queue      |               0 |               0 |               0 |
+        frame_dropped_session_upload_profile_C_max_total_reached            |            1549 |            1549 |               0 |
+        frame_dropped_session_upload_profile_C_max_on_session_reached       |          106687 |          106687 |               0 |
+        frame_dropped_session_upload_profile_C_failed_taking_new_queue      |               0 |               0 |               0 |
+-----------------------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_session_manager                                            |         3080864 |         3080864 |               - |
+        frame_dropped_by_access_module                                      |         3080864 |         3080864 |               - |
+                frame_dropped_by_access_reject                              |               0 |               0 |               - |
+                frame_dropped_by_access_drop                                |         3080864 |         3080864 |               0 |
+        frame_dropped_by_sessionMgr_DOS                                     |               0 |               0 |               - |
+        frame_dropped_by_sessionMgr_SG                                      |               0 |               0 |               - |
+        frame_dropped_by_sessionMgr_QOS                                     |               0 |               0 |               - |
+        frame_dropped_by_sessionMgr_URLF                                    |               0 |               0 |               - |
+        frame_dropped_by_sessionMgr_invalid                                 |               0 |               0 |               - |
+-----------------------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_qos_module                                                 |               0 |               0 |               0 |
+        frame_dropped_by_qos                                                |               0 |               0 |               0 |
+        frame_stored_dropped_by_qos                                         |               0 |               0 |               0 |
+-----------------------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_charging_module                                            |               0 |               0 |               - |
+        frame_dropped_by_charging                                           |               0 |               0 |               0 |
+        frame_dropped_by_charging_rate_limit                                |               0 |               0 |               0 |
+-----------------------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_frame_modification_module                                  |               - |               0 |               - |
+        frame_dropped_by_hhe_enforcer                                       |               - |               0 |               - |
+-----------------------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_vas_redirector_module                                      |            1064 |            1064 |               - |
+        frame_dropped_vr_counters                                           |            1064 |            1064 |               0 |
+        frame_dropped_chained_flow_invalid_vr_action                        |               0 |               0 |               - |
+        frame_dropped_chained_vr_inactive                                   |               0 |               0 |               - |
+-----------------------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_inner_vas_module                                           |               0 |               0 |               - |
+        frame_dropped_captive_portal_rate_limit                             |               0 |               0 |               0 |
+-----------------------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_rate_limitation                                            |               0 |               0 |               - |
+===================================================================================================================================
+frame_dropped_applicative_total                                             |        97957046 |        97957046 |               0 |
+===================================================================================================================================
+
+===================================================================================================================================
+          Infra frame drop counters                                         | Total From Boot |Total From Reset |      Total Rate |
+===================================================================================================================================
+frame_dropped_by_fail_send_to_network                                       |             902 |             902 |               0 |
+        frame_dropped_by_tx_qos_fail                                        |               0 |               0 |               0 |
+        frame_dropped_by_tx_fail                                            |             902 |             902 |               0 |
+        frame_dropped_by_url_fail                                           |               0 |               0 |               0 |
+        frame_dropped_by_access_reject                                      |               0 |               0 |               0 |
+        frame_dropped_by_chraging_reject                                    |               0 |               0 |               0 |
+        frame_dropped_by_bypass                                             |               0 |               0 |               0 |
+===================================================================================================================================
+frame_dropped_total                                                         |        97957948 |        97957948 |               0 |
+===================================================================================================================================
+ 
+****BalancePlane/DispatcherFlowMgr_DropFramesCount****
+====================================================================================================================
+                                              Dropped Frames
+====================================================================================================================
+                        Drop Reason                          | Total From Boot | Total From Reset|      Total Rate |
+====================================================================================================================
+frame_dropped_general                                        |          488056 |          488056 |               - |
+        frame_dropped_no_vlan                                |               0 |               0 |               0 |
+        frame_dropped_no_meta_data                           |               0 |               0 |               0 |
+        frame_dropped_undefined_port_usage                   |               0 |               0 |               0 |
+        frame_dropped_tx_frame_failed                        |          462773 |          462773 |               0 |
+        frame_dropped_tx_to_net_via_dispatcher_failed        |               0 |               0 |               0 |
+        frame_dropped_system_in_bypass                       |           25283 |           25283 |               0 |
+        frame_dropped_by_subnet_special_flow                 |               0 |               0 |               0 |
+--------------------------------------------------------------------------------------------------------------------
+frame_dropped_tunnel_to_host                                 |               0 |               0 |               - |
+        frame_dropped_control_crossed_max_rate               |               0 |               0 |               0 |
+        frame_dropped_cloned_control_crossed_max_rate        |               0 |               0 |               0 |
+        dfm_network_failed_tunnel_ip_net_frame_to_host_drop  |               0 |               0 |               0 |
+        dfm_network_failed_tunnel_to_host_arp_to_me_drop     |               0 |               0 |               0 |
+        dfm_redirect_indirect_failed_tunnel_to_host_drop     |               0 |               0 |               0 |
+        dfm_redirect_internal_failed_tunnel_to_host_drop     |               0 |               0 |               0 |
+        dfm_redirect_direct_failed_tunnel_to_host_drop       |               0 |               0 |               0 |
+        dfm_error_rx_t2h_returning_frame_no_sec_vlan_drop    |               0 |               0 |               0 |
+        dfm_error_failed_tunnel_to_host_returning_frame_drop |               0 |               0 |               0 |
+--------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_proxy_mode                                  |      1663128406 |      1663128598 |               - |
+        frame_dropped_tunnel_to_host_control_crossed_rate    |               0 |               0 |               0 |
+        frame_dropped_tunnel_to_host_data_crossed_rate       |               0 |               0 |               0 |
+        frame_dropped_cant_set_route_data                    |               0 |               0 |               0 |
+        frame_dropped_not_my_vlan_interface                  |      1663128173 |      1663128173 |             108 |
+        frame_dropped_virtual_interface_non_active           |               0 |               0 |               0 |
+        frame_dropped_ucast_mac_to_me_bcast_ip               |               0 |               0 |               0 |
+        frame_dropped_ucast_mac_to_me_mcast_ip_no_ssm        |               0 |               0 |               0 |
+        frame_dropped_ucast_mac_to_me_mcast_ip_ssm_by_conf   |               0 |               0 |               0 |
+        frame_dropped_bcast_mac                              |               0 |               0 |               0 |
+        frame_dropped_arp_not_to_me                          |             112 |             112 |               0 |
+        frame_dropped_ndp_not_to_me                          |             121 |             121 |               0 |
+        frame_dropped_ipv6_mcast_reserved_addr               |               0 |               0 |               0 |
+        frame_dropped_ipv6_mcast_interface_scope             |               0 |               0 |               0 |
+        frame_dropped_mcast_mac_no_ipv4                      |               0 |               0 |               0 |
+        frame_dropped_mcast_mac_no ipv6                      |               0 |               0 |               0 |
+        frame_dropped_mcast_mac_mcast_ip_ssm_by_conf         |               0 |               0 |               0 |
+        frame_dropped_mcast_mac_no_mcast_ipv4_ssm            |               0 |               0 |               0 |
+        frame_dropped_ucast_mac_not_to_me                    |               0 |               0 |               0 |
+        frame_dropped_drop_non_ip_outer_header_frame         |             192 |             192 |               0 |
+        frame_dropped_failed_tunnel_icmp_to_host             |               0 |               0 |               0 |
+        frame_dropped_failed_tunnel_broadcast_ip_to_host     |               0 |               0 |               0 |
+        frame_dropped_failed_tunnel_arp_replay_to_host       |               0 |               0 |               0 |
+        frame_dropped_failed_tunnel_arp_request_to_host      |               0 |               0 |               0 |
+        frame_dropped_failed_tunnel_gratuitous_arp_to_host   |               0 |               0 |               0 |
+        frame_dropped_failed_tunnel_broadcast_ip_aosrp_hello |               0 |               0 |               0 |
+--------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_redirected_frames                           |               0 |               0 |               - |
+        frame_dropped_steering_no_sec_vlan                   |               0 |               0 |               0 |
+        frame_dropped_dir_srv_undef                          |               0 |               0 |               0 |
+        frame_dropped_from_generic_mirroring                 |               0 |               0 |               0 |
+        frame_dropped_invalid_dest_mac                       |               0 |               0 |               0 |
+        frame_dropped_steering_invalid_sec_vlan              |               0 |               0 |               0 |
+--------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_non_network_frames                          |               0 |               0 |               - |
+        frame_dropped_slot_id_bypass                         |               0 |               0 |               0 |
+--------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_asymmetry_frames                            |               0 |               0 |               - |
+        frame_dropped_asymmetry_invalid_fcb                  |               0 |               0 |               0 |
+        frame_dropped_asymmetry_no_sec_vlan                  |               0 |               0 |               0 |
+        frame_dropped_asymmetry_invalid_broadcast_dest       |               0 |               0 |               0 |
+        frame_dropped_asymmetry_broadcast_d_process_failed   |               0 |               0 |               0 |
+        frame_dropped_asymmetry_broadcast_frame_failed       |               0 |               0 |               0 |
+        frame_dropped_asy_sub_not_found                      |               0 |               0 |               0 |
+        frame_dropped_asymmetry_unicast_frame_failed         |               0 |               0 |               0 |
+        frame_dropped_asy_unicast_by_specific_info_failed    |               0 |               0 |               0 |
+        frame_dropped_asymmetry_invalid_specific_info        |               0 |               0 |               0 |
+        frame_drop_asy_specific_info_invalid_dispatch_type   |               0 |               0 |               0 |
+====================================================================================================================
+frame_dropped_total                                          |      1663153881 |      1663153881 |             108 |
+====================================================================================================================
+ 
+****show_utilization****
+     Thr Thread__ro Phy       %SMA_ Role____ Number_of_ Average___ 
+S.C  ead le         Thr %Util Util  Variance packets    cycle      
+---- --- ---------- --- ----- ----- -------- ---------- ----------
+1.0    1 Ctrl_0       1   0.0   0.0      0.0         34      47756
+1.0    2 Ctrl_1       2   2.0   1.9      0.0        150     319919
+1.0    3 Debug_Ctrl   2   0.0  40.0      0.0          0          0
+1.0    4 Port_Ctrl    2  42.0  32.6      0.0         34   29591953
+1.0    5 Timer        2   2.2   2.4      0.0      10000       5450
+1.0    6 Utility      2  13.1  13.3      0.0        352     895678
+1.0    8 Dispatch     4   0.2   0.2      0.0        136      44914
+1.0    9 Dispatch     5   0.2   0.2      0.0         82      75745
+1.0   10 Dispatch     6   0.2   0.2      0.0        162      39342
+1.0   11 Dispatch     7   0.2   0.2      0.0         30     198070
+1.0   12 D_Flow       8   0.0   0.0      0.0          0          0
+1.0   13 S_Flow       9   5.3   5.4      0.1       2137      59469
+1.0   14 D_Flow      10   0.0   0.0      0.0          0          0
+1.0   15 S_Flow      11   5.3   5.4      0.1       2137      60388
+1.0   16 D_Flow      12   0.0   0.0      0.0          0          0
+1.0   17 S_Flow      13   5.2   5.3      0.0       2137      59326
+1.0   18 D_Flow      14   0.0   0.0      0.0          0          0
+1.0   19 S_Flow      15   5.1   5.2      0.1       2137      58093
+==============================================================================
+sgve2_redmondridge_icsr | CHANGED | rc=0 >>
+====================================sgve_stat=================================
+ACP 17.15.32 CentOS 7.9
+build_13 2024-12-30
+
+AOS.SGVE.17.2.145_B26
+ 14:56:35 up 387 days,  6:11,  2 users,  load average: 2.29, 2.04, 2.12
+
+
+Thu May 21 14:56:35 UTC 2026
+
+
+rdmewa22vzwvsas-y-at-secas-01-sgve-004
+
+****show_steering_services****
+Catalog                           Admin_ Oper__ Current_status Down__ Tracking Num_Of_ Min_UP_ Servers Servers 
+_ID     Service_Name              Status Status _time          Events _Method  Servers Servers _UP     _DOWN   
+------- ------------------------- ------ ------ -------------- ------ -------- ------- ------- ------- ------- 
+    201 RDMEWA22VZWVSAS-Y-AT-SEC* Act    UP       156.08:29:08      1 Ping           8       6       8       0 
+
+*****show_steering_servers****
+                                         Admin_ Oper__                            Current_status Down__ Tracking Tracking Tracking MAC_Res_ MAC_Res_ MAC_Res_
+ID   Server_Name     Service_Name        Status Status Tracking_Status            _time          Events _TX      _RX      _Diff    TX       RX       Diff    
+---- --------------- ------------------- ------ ------ -------------------------- -------------- ------ -------- -------- -------- -------- -------- --------
+ 501 RedmondRidgeWA* RDMEWA22VZWVSAS-Y-* Act    UP     ICMPV4[UP],_ICMPV6[UP]       156.08:25:10      9 54034838 54034805       33   450292   900584  -450292
+ 509 RedmondRidgeWA* RDMEWA22VZWVSAS-Y-* Act    UP     ICMPV4[UP],_ICMPV6[UP]        28.02:24:11     10  9711402  9711394        8    80930   161860   -80930
+ 502 RedmondRidgeWA* RDMEWA22VZWVSAS-Y-* Act    UP     ICMPV4[UP],_ICMPV6[UP]        10.07:39:40     10  3566318  3566320       -2    29720    59440   -29720
+ 510 RedmondRidgeWA* RDMEWA22VZWVSAS-Y-* Act    UP     ICMPV4[UP],_ICMPV6[UP]        10.07:39:40     11  3566320  3566320        0    29720    59440   -29720
+ 504 RedmondRidgeWA* RDMEWA22VZWVSAS-Y-* Act    UP     ICMPV4[UP],_ICMPV6[UP]       133.06:48:45     11 46062898 46062900       -2   383858   767716  -383858
+ 512 RedmondRidgeWA* RDMEWA22VZWVSAS-Y-* Act    UP     ICMPV4[UP],_ICMPV6[UP]       133.06:48:45     11 46062898 46062900       -2   383858   767716  -383858
+ 506 RedmondRidgeWA* RDMEWA22VZWVSAS-Y-* Act    UP     ICMPV4[UP],_ICMPV6[UP]        10.07:43:44     11  3567294  3567296       -2    29728    59456   -29728
+ 514 RedmondRidgeWA* RDMEWA22VZWVSAS-Y-* Act    UP     ICMPV4[UP],_ICMPV6[UP]        10.07:43:44     11  3567294  3567296       -2    29728    59456   -29728
+
+*****acmon -c1*****
+Port_1       Port_2       Usage              Description_1 Rate_1[Mbps] Description_2 Rate_2[Mbps] Ratio  
+------------ ------------ ------------------ ------------- ------------ ------------- ------------ ------ 
+L1           L2           network            Inbound              0.038 Outbound             0.038   1.00 
+L3           L4           network            Inbound              0.041 Outbound             0.041   1.01 
+L5           L5           redirect_indirect  Rx                   0.011 Tx                   0.012   0.98 
+L6           L6           redirect_indirect  Rx                   0.009 Tx                   0.009   0.97 
+------------ ------------ ------------------ ------------- ------------ ------------- ------------ ------ 
+Total        Total        network            Inbound              0.079 Outbound             0.079   1.01 
+
+*****show_aosrp*****
+*****************************************************************************************************SGW configuration******************************************************************************************************
+
+ID                                      :2
+Group ID                                :1
+Minimum active links                    :2
+Priority                                :10
+Hello keep alive interval (mSec)        :100
+Hello keep alive timeout (mSec)         :600
+NHR tracking interval (mSec)            :100
+NHR tracking timeout (mSec)             :600
+Hello msg UDP port                      :51876
+Num of gratuitous packets on switchover :3
+IPv6 tracking                           :Enabled
+
+*********************************************************************************************************SGW Status*********************************************************************************************************
+
+AOSRP activity state                    :ACTIVE
+Active network links below minimum      :FALSE
+Critical steering service down          :FALSE
+
+*******************************************************************************************************IP Interfaces********************************************************************************************************
+
+                                                                                                                                                                                  NHR_____                                 
+                                                                                                                                                                                  IP__IF__                                 
+                                                                                                                                                               NHR__ NHR__state__ tracking Hello_messages_ Hello_messages_ 
+Interface        MAC_address        IP_address                               Virt_IP_address                          NHR_IP_address                           state duration     __state_ send_count      recieve_count   
+---------------- ------------------ ---------------------------------------- ---------------------------------------- ---------------------------------------- ----- ------------ -------- --------------- --------------- 
+l2.2015          fa:16:3e:13:16:fc  174.8.194.92                             174.8.194.94                             174.8.194.89                             UP    5212054      UP       334588177       334587829      
+l2.2015          fa:16:3e:13:16:fc  2001:4888:53:3103:524:222:0:2            2001:4888:53:3103:524:222:0:ff           2001:4888:53:3103:524:28::               UP    5212054      UP       0               0              
+l4.2013          fa:16:3e:3e:71:92  174.8.194.84                             174.8.194.86                             174.8.194.81                             UP    6417969      UP       334588177       334583840      
+l4.2013          fa:16:3e:3e:71:92  2001:4888:53:3102:524:222:0:2            2001:4888:53:3102:524:222:0:ff           2001:4888:53:3102:524:28::               UP    6417969      UP       0               0              
+l3.2012          fa:16:3e:45:15:03  174.8.194.116                            174.8.194.118                            174.8.194.113                            UP    6417969      UP       334588177       334583880      
+l3.2012          fa:16:3e:45:15:03  2001:4888:53:3106:524:222:0:2            2001:4888:53:3106:524:222:0:ff           2001:4888:53:3106:524:28::               UP    6417969      UP       0               0              
+l1.2014          fa:16:3e:5d:d2:84  174.8.194.124                            174.8.194.126                            174.8.194.121                            UP    5212054      UP       334588177       334587830      
+l1.2014          fa:16:3e:5d:d2:84  2001:4888:53:3107:524:222:0:2            2001:4888:53:3107:524:222:0:ff           2001:4888:53:3107:524:28::               UP    5212054      UP       0               0              
+
+*****acstat -xef -m 15*****
+               NetworkBW                                                                                                                                               TCP_Raw__                                          
+S.C  Direction [Mbps]    NetworkPPS SteeringPPS SFR     AvgPktSize %Util OverUtil MitigatedPPS %Discard NormalCER QuickCER PPS/CER_Ratio Total_NOC TCP_NOC   %TCP_NOC  Con       UDP_NOC   %UDP_NOC  Other_NOC %Other_NOC 
+---- --------- --------- ---------- ----------- ------- ---------- ----- -------- ------------ -------- --------- -------- ------------- --------- --------- --------- --------- --------- --------- --------- ----------
+ 1.0 InB           0.006          8           4       0         88     - -                   -        -         -        -             -         -         -         -         -         -         -         -          - 
+ 1.0 OutB          0.006          8           4       0         88     - -                   -        -         -        -             -         -         -         -         -         -         -         -          - 
+ 1.0 Both          0.011         16           8       0         88   6.9 No                  0      0.0         0        0           0.0         4         0       0.0         0         0       0.0         4      100.0 
+
+*****show_nics******
+                                                                                                               Nic_______                                                   
+                                                                               Transceiver____                 Firmware__ Nic_Driver_____                                   
+Interface    Port_Usage              Oper_State Admin   Speed[Gb] Transceiver  Part_Number     Rx[dBm] Tx[dBm] Version    Version         Rx_BW[Mbps] Tx_BW[Mbps] AOF       
+------------ ----------------------- ---------- ------- --------- ------------ --------------- ------- ------- ---------- --------------- ----------- ----------- --------- 
+L1           network                 up         enable  25        NA           _                    NA      NA N/A        4.0.1                 0.045       0.038 none     
+L2           network                 up         enable  25        NA           _                    NA      NA N/A        4.0.1                 0.045       0.038 none     
+L3           network                 up         enable  25        NA           _                    NA      NA N/A        4.0.1                 0.048       0.041 none     
+L4           network                 up         enable  25        NA           _                    NA      NA N/A        4.0.1                 0.048       0.041 none     
+L5           redirect_indirect       up         enable  25        NA           _                    NA      NA N/A        4.0.1                 0.016       0.010 none     
+L6           redirect_indirect       up         enable  25        NA           _                    NA      NA N/A        4.0.1                 0.015       0.009 none     
+
+*****FuAdmin -c******
+     Card                   Extended_Subscrib              Extended_#IP              Extended_#IP              Extended_#IP              Extended_#Gt Monitor_Rule ApplicationU Enforcemen_ 
+S.C  Role Total_Subscribers ers               Total_#IPs   s            Total_#IP4s  4s           Total_#IP6s  6s           Total_#Gtpus pus          s            se_Trigger   Rules       
+---- ---- ----------------- ----------------- ------------ ------------ ------------ ------------ ------------ ------------ ------------ ------------ ------------ ------------ -----------
+ 1.0   SA             65526             65526       180389       180389       114949       114949        65440        65440            0            0        65145             0           0
+---- ---- ----------------- ----------------- ------------ ------------ ------------ ------------ ------------ ------------ ------------ ------------ ------------ ------------ -----------
+ SUM    .             65526             65526       180389       180389       114949       114949        65440        65440            0            0        65145            0           0
+
+
+*****ifstat*****
+#kernel
+Interface        RX Pkts/Rate    TX Pkts/Rate    RX Data/Rate    TX Data/Rate  
+                 RX Errs/Drop    TX Errs/Drop    RX Over/Rate    TX Coll/Rate  
+lo                 1075K 0         1075K 0       208265K 0       208265K 0      
+                       0 0             0 0             0 0             0 0      
+eth0               96125 0        107352 0        27887K 0        10817K 0      
+                       0 0             0 0             0 0             0 0      
+l1                180241 0        180361 0        17116K 0        16471K 0      
+                       0 0             0 0             0 0             0 0      
+l2                180305 0        180425 0        17120K 0        16474K 0      
+                       0 0             0 0             0 0             0 0      
+l3                180249 0        180369 0        17116K 0        16471K 0      
+                       0 0             0 0             0 0             0 0      
+l4                180258 0        180378 0        17117K 0        16472K 0      
+                       0 0             0 0             0 0             0 0      
+l5                     0 0             0 0             0 0             0 0      
+                       0 0             0 0             0 0             0 0      
+l6                     0 0             0 0             0 0             0 0      
+                       0 0             0 0             0 0             0 0      
+l2.2015           180305 0        180425 0        13874K 0        15752K 0      
+                       0 0             0 0             0 0             0 0      
+l4.2013           180258 0        180378 0        13872K 0        15750K 0      
+                       0 0             0 0             0 0             0 0      
+l3.2012           180249 0        180369 0        13872K 0        15750K 0      
+                       0 0             0 0             0 0             0 0      
+l1.2014           180241 0        180361 0        13871K 0        15749K 0      
+                       0 0             0 0             0 0             0 0      
+
+*****show_gleaning_stats*****
+                                                   Received_Frames Received_Frames Received_Frames Mirror_To_Host_ Aggregated 
+S.C  Gleaning_Item                                 From_Boot       Total           Rate            Rate            _Rows      
+---- --------------------------------------------- --------------- --------------- --------------- --------------- ----------
+ 0.0 DHCP                                                        0               0               0               0          1
+ 0.0 Pilot_Packets                                           24401           24401               0               0          1
+ 0.0 Radius                                                      0               0               0               0          1
+ 0.0 GTP-C_All_Versions                                          0               0               0               0          1
+ 0.0 ____GTPv1(3G)                                               0               0               0               0          1
+ 0.0 ____GTPv2(LTE)_Non_Piggyback                                0               0               0               0          1
+ 0.0 ____GTPv2(LTE)_Piggyback                                    0               0               0               0          1
+
+*****Subscriber Unique IP****
+4
+
+*****sg_arp*****
+IP                                             MAC               SWITCH PORT  
+---------------------------------------------- ----------------- ------ ----- 
+192.168.206.1                                  fa:16:3e:7b:cf:84 00         5 
+192.168.206.2                                  fa:16:3e:21:6e:ef 00         5 
+192.168.206.3                                  fa:16:3e:5f:53:b6 00         5 
+192.168.206.4                                  fa:16:3e:cc:f2:2e 00         5 
+192.168.206.6                                  fa:16:3e:7e:ab:e5 00         6 
+192.168.206.7                                  fa:16:3e:9f:81:4f 00         6 
+192.168.206.8                                  fa:16:3e:79:3a:ff 00         6 
+192.168.206.9                                  fa:16:3e:35:e9:1d 00         6 
+192.168.207.1                                  fa:16:3e:7b:cf:84 00         5 
+192.168.207.2                                  fa:16:3e:21:6e:ef 00         5 
+192.168.207.3                                  fa:16:3e:5f:53:b6 00         5 
+192.168.207.4                                  fa:16:3e:cc:f2:2e 00         5 
+192.168.207.6                                  fa:16:3e:7e:ab:e5 00         6 
+192.168.207.7                                  fa:16:3e:9f:81:4f 00         6 
+192.168.207.8                                  fa:16:3e:79:3a:ff 00         6 
+192.168.207.9                                  fa:16:3e:35:e9:1d 00         6 
+fd02:4888:a53:ff91:524:222:0:ff06              fa:16:3e:7e:ab:e5 00         6 
+fd02:4888:a53:ff91:524:222:0:ff07              fa:16:3e:9f:81:4f 00         6 
+fd02:4888:a53:ff91:524:222:0:ff08              fa:16:3e:79:3a:ff 00         6 
+fd02:4888:a53:ff91:524:222:0:ff09              fa:16:3e:35:e9:1d 00         6 
+fd02:4888:a53:ff90:524:222:0:ff01              fa:16:3e:7b:cf:84 00         5 
+fd02:4888:a53:ff90:524:222:0:ff02              fa:16:3e:21:6e:ef 00         5 
+fd02:4888:a53:ff90:524:222:0:ff03              fa:16:3e:5f:53:b6 00         5 
+fd02:4888:a53:ff90:524:222:0:ff04              fa:16:3e:cc:f2:2e 00         5 
+fd02:4888:a53:ff90:524:222:0:ff06              fa:16:3e:7e:ab:e5 00         6 
+fd02:4888:a53:ff90:524:222:0:ff07              fa:16:3e:9f:81:4f 00         6 
+fd02:4888:a53:ff90:524:222:0:ff08              fa:16:3e:79:3a:ff 00         6 
+fd02:4888:a53:ff90:524:222:0:ff09              fa:16:3e:35:e9:1d 00         6 
+fd02:4888:a53:ff91:524:222:0:ff01              fa:16:3e:7b:cf:84 00         5 
+fd02:4888:a53:ff91:524:222:0:ff02              fa:16:3e:21:6e:ef 00         5 
+fd02:4888:a53:ff91:524:222:0:ff03              fa:16:3e:5f:53:b6 00         5 
+fd02:4888:a53:ff91:524:222:0:ff04              fa:16:3e:cc:f2:2e 00         5 
+
+*****Rx Discards*****
+Name Rx_Err+Discards
+----------- --------------------
+eth1 4590
+eth3 1969
+eth4 67
+eth2 156
+eth5 1667
+eth6 644
+eth0 0
+****show_cpu_load****
+                  Load_Last Load_Last Load_Last 
+S.C  Uptime       Min       5_Min     15_Min    
+---- ------------ --------- --------- --------- 
+ 1.0 387d.6h.12m       2.65      2.13      2.15
+****show_mem****
+S.C  Total    Used     Free     Shared   Buff_Cache Available 
+---- -------- -------- -------- -------- ---------- --------- 
+ 1.0 41034680 37639024   141304    48252    3254352   3276864
+****df -h****
+Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs        3.1G     0  3.1G   0% /dev
+tmpfs            20G   45M   20G   1% /dev/shm
+tmpfs            20G  852K   20G   1% /run
+tmpfs            20G     0   20G   0% /sys/fs/cgroup
+/dev/vda2        15G  7.9G  6.9G  54% /
+/dev/vda6       4.9G  286M  4.6G   6% /home
+/dev/vda3        58G  7.6G   51G  14% /opt
+/dev/vda8       3.9G  389M  3.6G  10% /var
+/dev/vda1      1014M  484M  531M  48% /boot
+/dev/vda5       7.6G  996M  6.2G  14% /tmp
+/dev/vda12      182M  4.8M  178M   3% /boot/efi
+/dev/vda9       3.9G  600M  3.4G  16% /var/log
+/dev/vda10      997M   67M  931M   7% /var/log/audit
+/dev/vda11      997M   33M  965M   4% /var/tmp
+/dev/sr0        554K  554K     0 100% /mnt/cdrom
+tmpfs          1000M   36K 1000M   1% /tmpfs
+tmpfs           4.0G  1.4M  4.0G   1% /run/user/1003
+tmpfs           4.0G     0  4.0G   0% /run/user/1002
+****DataPlane/DataFlowManager_DropFramesCount****
+===================================================================================================================================
+   Applicative drop frames counters                                         | Total From Boot |Total From Reset |      Total Rate |
+===================================================================================================================================
+frame_dropped_by_data_flow_module                                           |        23916896 |        23916896 |               - |
+        frame_dropped_to_vip                                                |               0 |               0 |               - |
+        frame_dropped_call_tx_but_not_frame                                 |               0 |               0 |               - |
+        frame_dropped_by_invalid_action                                     |               0 |               0 |               - |
+        frame_dropped_urlf_frame_adjust_failed                              |               0 |               0 |               - |
+        frame_dropped_wrong_egress_thread                                   |               0 |               0 |               - |
+        frame_dropped_cer_overflow                                          |               0 |               0 |               0 |
+        frame_dropped_noc_overflow                                          |               0 |               0 |               0 |
+        frame_dropped_fin_rst_stray_ack                                     |               0 |               0 |               0 |
+        frame_dropped_session_id_invalid                                    |               0 |               0 |               - |
+        frame_dropped_invalid_double_process_frame_msg_type                 |               0 |               0 |               - |
+        frame_dropped_rx_undef_vlan                                         |               0 |               0 |               - |
+        frame_dropped_rx_without_meta_data                                  |               0 |               0 |               - |
+        frame_dropped_rx_undef_direction                                    |        23798326 |        23798326 |               - |
+        frame_dropped_rx_invalid_direction                                  |               0 |               0 |               - |
+        frame_dropped_steering_drop_frames                                  |               0 |               0 |               - |
+        frame_dropped_by_new_session_mitigation                             |               0 |               0 |               0 |
+        frame_dropped_by_exist_session_mitigation                           |               0 |               0 |               0 |
+        frame_dropped_by_close_connection                                   |               0 |               0 |               - |
+        frame_dropped_proxy_mode_cant_set_route_data                        |           89900 |           89900 |               - |
+        frame_dropped_session_msg_drop_all                                  |               0 |               0 |               0 |
+        frame_dropped_fail_upload_2_app                                     |               0 |               0 |               0 |
+        frame_dropped_session_msg_unprocess                                 |               0 |               0 |               0 |
+        frame_dropped_session_upload_profile_A_max_total_reached            |               0 |               0 |               0 |
+        frame_dropped_session_upload_profile_A_max_on_session_reached       |               0 |               0 |               0 |
+        frame_dropped_session_upload_profile_A_failed_taking_new_queue      |               0 |               0 |               0 |
+        frame_dropped_session_upload_profile_B_max_total_reached            |               0 |               0 |               0 |
+        frame_dropped_session_upload_profile_B_max_on_session_reached       |               0 |               0 |               0 |
+        frame_dropped_session_upload_profile_B_failed_taking_new_queue      |               0 |               0 |               0 |
+        frame_dropped_session_upload_profile_C_max_total_reached            |               0 |               0 |               0 |
+        frame_dropped_session_upload_profile_C_max_on_session_reached       |           28670 |           28670 |               0 |
+        frame_dropped_session_upload_profile_C_failed_taking_new_queue      |               0 |               0 |               0 |
+-----------------------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_session_manager                                            |          126102 |          126102 |               - |
+        frame_dropped_by_access_module                                      |          126102 |          126102 |               - |
+                frame_dropped_by_access_reject                              |               0 |               0 |               - |
+                frame_dropped_by_access_drop                                |          126102 |          126102 |               0 |
+        frame_dropped_by_sessionMgr_DOS                                     |               0 |               0 |               - |
+        frame_dropped_by_sessionMgr_SG                                      |               0 |               0 |               - |
+        frame_dropped_by_sessionMgr_QOS                                     |               0 |               0 |               - |
+        frame_dropped_by_sessionMgr_URLF                                    |               0 |               0 |               - |
+        frame_dropped_by_sessionMgr_invalid                                 |               0 |               0 |               - |
+-----------------------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_qos_module                                                 |               0 |               0 |               0 |
+        frame_dropped_by_qos                                                |               0 |               0 |               0 |
+        frame_stored_dropped_by_qos                                         |               0 |               0 |               0 |
+-----------------------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_charging_module                                            |               0 |               0 |               - |
+        frame_dropped_by_charging                                           |               0 |               0 |               0 |
+        frame_dropped_by_charging_rate_limit                                |               0 |               0 |               0 |
+-----------------------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_frame_modification_module                                  |               - |               0 |               - |
+        frame_dropped_by_hhe_enforcer                                       |               - |               0 |               - |
+-----------------------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_vas_redirector_module                                      |             728 |             728 |               - |
+        frame_dropped_vr_counters                                           |             728 |             728 |               0 |
+        frame_dropped_chained_flow_invalid_vr_action                        |               0 |               0 |               - |
+        frame_dropped_chained_vr_inactive                                   |               0 |               0 |               - |
+-----------------------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_inner_vas_module                                           |               0 |               0 |               - |
+        frame_dropped_captive_portal_rate_limit                             |               0 |               0 |               0 |
+-----------------------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_rate_limitation                                            |               0 |               0 |               - |
+===================================================================================================================================
+frame_dropped_applicative_total                                             |        24043726 |        24043726 |               0 |
+===================================================================================================================================
+
+===================================================================================================================================
+          Infra frame drop counters                                         | Total From Boot |Total From Reset |      Total Rate |
+===================================================================================================================================
+frame_dropped_by_fail_send_to_network                                       |               2 |               2 |               0 |
+        frame_dropped_by_tx_qos_fail                                        |               0 |               0 |               0 |
+        frame_dropped_by_tx_fail                                            |               2 |               2 |               0 |
+        frame_dropped_by_url_fail                                           |               0 |               0 |               0 |
+        frame_dropped_by_access_reject                                      |               0 |               0 |               0 |
+        frame_dropped_by_chraging_reject                                    |               0 |               0 |               0 |
+        frame_dropped_by_bypass                                             |               0 |               0 |               0 |
+===================================================================================================================================
+frame_dropped_total                                                         |        24043728 |        24043728 |               0 |
+===================================================================================================================================
+ 
+****BalancePlane/DispatcherFlowMgr_DropFramesCount****
+====================================================================================================================
+                                              Dropped Frames
+====================================================================================================================
+                        Drop Reason                          | Total From Boot | Total From Reset|      Total Rate |
+====================================================================================================================
+frame_dropped_general                                        |           31773 |           31773 |               - |
+        frame_dropped_no_vlan                                |               0 |               0 |               0 |
+        frame_dropped_no_meta_data                           |               0 |               0 |               0 |
+        frame_dropped_undefined_port_usage                   |               0 |               0 |               0 |
+        frame_dropped_tx_frame_failed                        |            9511 |            9511 |               0 |
+        frame_dropped_tx_to_net_via_dispatcher_failed        |               0 |               0 |               0 |
+        frame_dropped_system_in_bypass                       |           22262 |           22262 |               0 |
+        frame_dropped_by_subnet_special_flow                 |               0 |               0 |               0 |
+--------------------------------------------------------------------------------------------------------------------
+frame_dropped_tunnel_to_host                                 |               0 |               0 |               - |
+        frame_dropped_control_crossed_max_rate               |               0 |               0 |               0 |
+        frame_dropped_cloned_control_crossed_max_rate        |               0 |               0 |               0 |
+        dfm_network_failed_tunnel_ip_net_frame_to_host_drop  |               0 |               0 |               0 |
+        dfm_network_failed_tunnel_to_host_arp_to_me_drop     |               0 |               0 |               0 |
+        dfm_redirect_indirect_failed_tunnel_to_host_drop     |               0 |               0 |               0 |
+        dfm_redirect_internal_failed_tunnel_to_host_drop     |               0 |               0 |               0 |
+        dfm_redirect_direct_failed_tunnel_to_host_drop       |               0 |               0 |               0 |
+        dfm_error_rx_t2h_returning_frame_no_sec_vlan_drop    |               0 |               0 |               0 |
+        dfm_error_failed_tunnel_to_host_returning_frame_drop |               0 |               0 |               0 |
+--------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_proxy_mode                                  |       376294772 |       376295010 |               - |
+        frame_dropped_tunnel_to_host_control_crossed_rate    |               0 |               0 |               0 |
+        frame_dropped_tunnel_to_host_data_crossed_rate       |               0 |               0 |               0 |
+        frame_dropped_cant_set_route_data                    |               0 |               0 |               0 |
+        frame_dropped_not_my_vlan_interface                  |       376294706 |       376294706 |               4 |
+        frame_dropped_virtual_interface_non_active           |               0 |               0 |               0 |
+        frame_dropped_ucast_mac_to_me_bcast_ip               |               0 |               0 |               0 |
+        frame_dropped_ucast_mac_to_me_mcast_ip_no_ssm        |               0 |               0 |               0 |
+        frame_dropped_ucast_mac_to_me_mcast_ip_ssm_by_conf   |               0 |               0 |               0 |
+        frame_dropped_bcast_mac                              |               0 |               0 |               0 |
+        frame_dropped_arp_not_to_me                          |              63 |              63 |               0 |
+        frame_dropped_ndp_not_to_me                          |               3 |               3 |               0 |
+        frame_dropped_ipv6_mcast_reserved_addr               |               0 |               0 |               0 |
+        frame_dropped_ipv6_mcast_interface_scope             |               0 |               0 |               0 |
+        frame_dropped_mcast_mac_no_ipv4                      |               0 |               0 |               0 |
+        frame_dropped_mcast_mac_no ipv6                      |               0 |               0 |               0 |
+        frame_dropped_mcast_mac_mcast_ip_ssm_by_conf         |               0 |               0 |               0 |
+        frame_dropped_mcast_mac_no_mcast_ipv4_ssm            |               0 |               0 |               0 |
+        frame_dropped_ucast_mac_not_to_me                    |               0 |               0 |               0 |
+        frame_dropped_drop_non_ip_outer_header_frame         |             238 |             238 |               0 |
+        frame_dropped_failed_tunnel_icmp_to_host             |               0 |               0 |               0 |
+        frame_dropped_failed_tunnel_broadcast_ip_to_host     |               0 |               0 |               0 |
+        frame_dropped_failed_tunnel_arp_replay_to_host       |               0 |               0 |               0 |
+        frame_dropped_failed_tunnel_arp_request_to_host      |               0 |               0 |               0 |
+        frame_dropped_failed_tunnel_gratuitous_arp_to_host   |               0 |               0 |               0 |
+        frame_dropped_failed_tunnel_broadcast_ip_aosrp_hello |               0 |               0 |               0 |
+--------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_redirected_frames                           |               0 |               0 |               - |
+        frame_dropped_steering_no_sec_vlan                   |               0 |               0 |               0 |
+        frame_dropped_dir_srv_undef                          |               0 |               0 |               0 |
+        frame_dropped_from_generic_mirroring                 |               0 |               0 |               0 |
+        frame_dropped_invalid_dest_mac                       |               0 |               0 |               0 |
+        frame_dropped_steering_invalid_sec_vlan              |               0 |               0 |               0 |
+--------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_non_network_frames                          |               0 |               0 |               - |
+        frame_dropped_slot_id_bypass                         |               0 |               0 |               0 |
+--------------------------------------------------------------------------------------------------------------------
+frame_dropped_by_asymmetry_frames                            |               0 |               0 |               - |
+        frame_dropped_asymmetry_invalid_fcb                  |               0 |               0 |               0 |
+        frame_dropped_asymmetry_no_sec_vlan                  |               0 |               0 |               0 |
+        frame_dropped_asymmetry_invalid_broadcast_dest       |               0 |               0 |               0 |
+        frame_dropped_asymmetry_broadcast_d_process_failed   |               0 |               0 |               0 |
+        frame_dropped_asymmetry_broadcast_frame_failed       |               0 |               0 |               0 |
+        frame_dropped_asy_sub_not_found                      |               0 |               0 |               0 |
+        frame_dropped_asymmetry_unicast_frame_failed         |               0 |               0 |               0 |
+        frame_dropped_asy_unicast_by_specific_info_failed    |               0 |               0 |               0 |
+        frame_dropped_asymmetry_invalid_specific_info        |               0 |               0 |               0 |
+        frame_drop_asy_specific_info_invalid_dispatch_type   |               0 |               0 |               0 |
+====================================================================================================================
+frame_dropped_total                                          |       376317272 |       376317272 |               4 |
+====================================================================================================================
+ 
+****show_utilization****
+     Thr Thread__ro Phy       %SMA_ Role____ Number_of_ Average___ 
+S.C  ead le         Thr %Util Util  Variance packets    cycle      
+---- --- ---------- --- ----- ----- -------- ---------- ----------
+1.0    1 Ctrl_0       1   0.0   0.0      0.0         34      50174
+1.0    2 Ctrl_1       2   1.9   2.0      0.0        219     214570
+1.0    3 Debug_Ctrl   2   0.0  43.4      0.0          0          0
+1.0    4 Port_Ctrl    2  48.3  34.5      0.0         31   44787270
+1.0    5 Timer        2   2.5   2.7      0.0       9999       6208
+1.0    6 Utility      2  14.0  14.6      0.0        402     837247
+1.0    8 Dispatch     4   0.2   0.2      0.0         84      66052
+1.0    9 Dispatch     5   0.2   0.2      0.0         98      60487
+1.0   10 Dispatch     6   0.2   0.2      0.0        291      21420
+1.0   11 Dispatch     7   0.2   0.2      0.0         41     145619
+1.0   12 D_Flow       8   0.0   0.0      0.0         16      96281
+1.0   13 S_Flow       9   6.3   6.2      0.1       2137      70737
+1.0   14 D_Flow      10   0.0   0.0      0.0          6     247305
+1.0   15 S_Flow      11   6.3   6.2      0.1       2137      70992
+1.0   16 D_Flow      12   0.0   0.0      0.0          0          0
+1.0   17 S_Flow      13   6.3   6.1      0.1       2136      70843
+1.0   18 D_Flow      14   0.0   0.0      0.0          0          0
+1.0   19 S_Flow      15   5.9   6.0      0.3       2137      66957
+==============================================================================
+META: ran handlers
+META: ran handlers
