@@ -30,8 +30,8 @@ ENV/
 .AppleDouble
 
 # Logs
-#*.log
-#logs/
+*.log
+logs/
 
 # Flask
 instance/
