@@ -1,5 +1,5 @@
 # NetOps Intelligence Platform
-### Network & Endpoint Security Monitoring — VZW NetworkSecure
+### Network & Endpoint Security Monitoring — NetworkSecure
 
 > As a **Network Automation Engineer** running **NetworkSecure**
 > across **1,870,561 devices** and **1,762,518 users**. My goal is to develop an in-house tool that can replace Ansible
