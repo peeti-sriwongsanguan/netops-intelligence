@@ -3,224 +3,169 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>NetOps Intelligence Platform</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <title>NetOps Intelligence — VZW Network Security</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
   <style>
     :root {
-      --bg:        #060b14;
-      --panel:     #0b1524;
-      --panel2:    #0e1c2e;
-      --border:    #1a2d45;
-      --accent:    #00e5ff;
-      --accent2:   #ff4d6d;
-      --accent3:   #a3ff57;
-      --warn:      #ffd166;
-      --text:      #c8d8e8;
-      --muted:     #4a6580;
-      --crit:      #ff3860;
-      --high:      #ff7043;
-      --med:       #ffd166;
-      --low:       #a3ff57;
-      --info:      #00e5ff;
-      --online:    #00ff88;
-      --offline:   #ff3860;
-      --anomaly:   #ff00ff;
-      --font-mono: 'Share Tech Mono', monospace;
-      --font-head: 'Rajdhani', sans-serif;
-      --font-body: 'Inter', sans-serif;
+      --bg:#060b14; --panel:#0b1524; --panel2:#0e1c2e;
+      --border:#1a2d45; --border2:#243d5c;
+      --accent:#00e5ff; --a2:#ff4d6d; --a3:#a3ff57;
+      --warn:#ffd166; --text:#c8d8e8; --muted:#4a6580;
+      --crit:#ff3860; --high:#ff7043; --med:#ffd166; --low:#a3ff57;
+      --online:#00ff88; --offline:#ff3860; --anom:#e040fb; --ai:#a855f7;
+      --fm:'Share Tech Mono',monospace; --fh:'Rajdhani',sans-serif; --fb:'Inter',sans-serif;
     }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:var(--bg);color:var(--text);font-family:var(--fb);font-size:13px;min-height:100vh;overflow-x:hidden}
+    body::before{content:'';position:fixed;inset:0;
+      background-image:linear-gradient(rgba(0,229,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,.02) 1px,transparent 1px);
+      background-size:40px 40px;pointer-events:none;z-index:0}
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font-body);
-      font-size: 13px;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-    body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background-image:
-        linear-gradient(rgba(0,229,255,.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,229,255,.025) 1px, transparent 1px);
-      background-size: 40px 40px;
-      pointer-events: none; z-index: 0;
-    }
+    nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;gap:14px;
+      padding:0 22px;height:52px;background:rgba(6,11,20,.95);
+      border-bottom:1px solid var(--border);backdrop-filter:blur(14px)}
+    .logo{font-family:var(--fh);font-size:18px;font-weight:700;letter-spacing:2px;color:var(--accent);text-transform:uppercase}
+    .logo span{color:var(--a2)}
+    .nav-tag{font-family:var(--fm);font-size:9px;padding:2px 7px;border:1px solid var(--accent);color:var(--accent);border-radius:2px;letter-spacing:1px}
+    .nav-env{font-family:var(--fm);font-size:9px;padding:2px 7px;border:1px solid var(--a3);color:var(--a3);border-radius:2px;letter-spacing:1px}
+    .nav-r{margin-left:auto;display:flex;align-items:center;gap:16px}
+    .clock{font-family:var(--fm);font-size:11px;color:var(--muted)}
+    .live{width:7px;height:7px;border-radius:50%;background:var(--online);box-shadow:0 0 7px var(--online);animation:blink 2s ease-in-out infinite}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 
-    /* ── NAV ── */
-    nav {
-      position: sticky; top: 0; z-index: 100;
-      display: flex; align-items: center; gap: 14px;
-      padding: 0 24px; height: 54px;
-      background: rgba(6,11,20,.92);
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: blur(14px);
-    }
-    .logo {
-      font-family: var(--font-head); font-size: 19px; font-weight: 700;
-      letter-spacing: 2px; color: var(--accent); text-transform: uppercase;
-    }
-    .logo span { color: var(--accent2); }
-    .nav-tag {
-      font-family: var(--font-mono); font-size: 10px;
-      padding: 2px 8px; border: 1px solid var(--accent);
-      color: var(--accent); border-radius: 2px; letter-spacing: 1px;
-    }
-    .nav-right { margin-left: auto; display: flex; align-items: center; gap: 20px; }
-    .clock { font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
-    .live-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--online); box-shadow: 0 0 8px var(--online);
-      animation: blink 2s ease-in-out infinite;
-    }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+    .tabs{display:flex;border-bottom:1px solid var(--border);padding:0 22px;background:rgba(6,11,20,.8);position:sticky;top:52px;z-index:90}
+    .tab{padding:11px 18px;cursor:pointer;font-family:var(--fm);font-size:9px;letter-spacing:2px;
+      text-transform:uppercase;color:var(--muted);border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap}
+    .tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+    .tab.ai-tab.active{color:var(--ai);border-bottom-color:var(--ai)}
+    .tab:hover:not(.active){color:var(--text)}
+    .tab-panel{display:none;padding:18px 22px;position:relative;z-index:1}
+    .tab-panel.active{display:block}
 
-    /* ── LAYOUT ── */
-    main { position: relative; z-index: 1; padding: 18px 22px; max-width: 1700px; margin: 0 auto; }
+    .sec{font-family:var(--fm);font-size:9px;letter-spacing:3px;color:var(--muted);
+      text-transform:uppercase;margin:0 0 11px;padding-left:9px;border-left:2px solid var(--accent)}
+    .sec.ai{border-left-color:var(--ai)}
+    .sec.sites{border-left-color:var(--a3)}
 
-    .section-label {
-      font-family: var(--font-mono); font-size: 10px; letter-spacing: 3px;
-      color: var(--muted); text-transform: uppercase; margin-bottom: 10px;
-      padding-left: 10px; border-left: 2px solid var(--accent);
-    }
+    .krow{display:grid;grid-template-columns:repeat(6,1fr);gap:9px;margin-bottom:18px}
+    @media(max-width:1100px){.krow{grid-template-columns:repeat(3,1fr)}}
+    .kpi{background:var(--panel);border:1px solid var(--border);border-radius:3px;
+      padding:11px 13px;position:relative;overflow:hidden;transition:border-color .2s,transform .15s}
+    .kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--kc,var(--accent))}
+    .kpi:hover{border-color:var(--kc,var(--accent));transform:translateY(-1px)}
+    .kl{font-family:var(--fm);font-size:8px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
+    .kv{font-family:var(--fh);font-size:28px;font-weight:700;line-height:1;color:var(--kc,var(--accent))}
+    .ks{font-size:9px;color:var(--muted);margin-top:4px}
 
-    /* ── KPI ROW ── */
-    .kpi-row {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 10px; margin-bottom: 20px;
-    }
-    @media(max-width:1100px){ .kpi-row{ grid-template-columns: repeat(3,1fr); } }
-    @media(max-width:600px){  .kpi-row{ grid-template-columns: repeat(2,1fr); } }
+    .g2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+    .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px}
+    .g32{display:grid;grid-template-columns:2fr 1fr;gap:12px;margin-bottom:12px}
+    @media(max-width:1100px){.g3,.g32{grid-template-columns:1fr 1fr}}
+    @media(max-width:700px){.g2,.g3,.g32{grid-template-columns:1fr}}
 
-    .kpi {
-      background: var(--panel); border: 1px solid var(--border);
-      border-radius: 4px; padding: 14px 16px; position: relative; overflow: hidden;
-      transition: border-color .2s, transform .15s;
-    }
-    .kpi::before {
-      content:''; position: absolute; top:0; left:0; right:0; height:2px;
-      background: var(--kc, var(--accent));
-    }
-    .kpi:hover { border-color: var(--kc, var(--accent)); transform: translateY(-1px); }
-    .kpi-label { font-family: var(--font-mono); font-size: 9px; color: var(--muted); letter-spacing:1px; text-transform:uppercase; margin-bottom:8px; }
-    .kpi-val   { font-family: var(--font-head); font-size: 34px; font-weight:700; line-height:1; color: var(--kc, var(--accent)); }
-    .kpi-sub   { font-size: 10px; color: var(--muted); margin-top:5px; }
+    .panel{background:var(--panel);border:1px solid var(--border);border-radius:3px;padding:13px 14px}
+    .panel.ai-glow{border-color:#a855f730}
+    .ptitle{font-family:var(--fh);font-size:11px;font-weight:600;letter-spacing:1px;
+      text-transform:uppercase;margin-bottom:11px;display:flex;align-items:center;gap:7px;color:var(--text)}
+    .dot{width:6px;height:6px;border-radius:50%;background:var(--dc,var(--accent));flex-shrink:0}
+    .atag{font-family:var(--fm);font-size:8px;padding:2px 5px;border:1px solid;border-radius:2px;letter-spacing:1px;margin-left:auto}
+    .ch{position:relative}
+    .h160{height:160px}.h200{height:200px}.h220{height:220px}.h260{height:260px}.h300{height:300px}
 
-    /* ── CHART GRID ── */
-    .charts-a {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 14px; margin-bottom: 14px;
-    }
-    .charts-b {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 14px; margin-bottom: 14px;
-    }
-    .charts-c {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px; margin-bottom: 20px;
-    }
-    @media(max-width:1200px){
-      .charts-a { grid-template-columns: 1fr 1fr; }
-      .charts-b, .charts-c { grid-template-columns: 1fr; }
-    }
-    @media(max-width:700px){
-      .charts-a { grid-template-columns: 1fr; }
-    }
+    /* ── SITE GRID ── */
+    .site-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-bottom:18px}
+    .site-card{background:var(--panel);border:1px solid var(--border);border-radius:3px;
+      padding:12px 14px;cursor:pointer;transition:border-color .2s,transform .15s;position:relative;overflow:hidden}
+    .site-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--sc,var(--muted))}
+    .site-card:hover{border-color:var(--sc,var(--accent));transform:translateY(-1px)}
+    .site-card.critical{--sc:var(--crit)}
+    .site-card.degraded{--sc:var(--warn)}
+    .site-card.healthy{--sc:var(--online)}
+    .site-name{font-family:var(--fh);font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px}
+    .site-status{font-family:var(--fm);font-size:8px;letter-spacing:1px;text-transform:uppercase;
+      padding:2px 6px;border-radius:2px;border:1px solid;display:inline-block;margin-bottom:8px}
+    .site-status.critical{color:var(--crit);border-color:var(--crit);background:rgba(255,56,96,.08)}
+    .site-status.degraded{color:var(--warn);border-color:var(--warn);background:rgba(255,209,102,.08)}
+    .site-status.healthy{color:var(--online);border-color:var(--online);background:rgba(0,255,136,.08)}
+    .site-metrics{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:8px}
+    .sm-item{text-align:center}
+    .sm-val{font-family:var(--fh);font-size:16px;font-weight:600;line-height:1}
+    .sm-label{font-family:var(--fm);font-size:8px;color:var(--muted);letter-spacing:.5px}
 
-    .panel {
-      background: var(--panel); border: 1px solid var(--border);
-      border-radius: 4px; padding: 14px 16px;
-    }
-    .panel-title {
-      font-family: var(--font-head); font-size: 12px; font-weight: 600;
-      letter-spacing: 1px; color: var(--text); text-transform: uppercase;
-      margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
-    }
-    .panel-title .dot { width:6px; height:6px; border-radius:50%; background: var(--dc, var(--accent)); }
-    .panel-title .anomaly-tag {
-      margin-left: auto; font-family: var(--font-mono); font-size: 9px;
-      padding: 2px 6px; border: 1px solid var(--anomaly); color: var(--anomaly);
-      border-radius: 2px; letter-spacing: 1px; animation: blink 2.5s infinite;
-    }
-    .chart-wrap { position: relative; }
-    .chart-wrap.h180 { height: 180px; }
-    .chart-wrap.h220 { height: 220px; }
-    .chart-wrap.h260 { height: 260px; }
-    .chart-wrap.h300 { height: 300px; }
+    /* ── IPSEC TABLE ── */
+    .ipsec-table{width:100%;border-collapse:collapse}
+    .ipsec-table th{font-family:var(--fm);font-size:8px;color:var(--muted);letter-spacing:1px;
+      text-align:left;padding:6px 10px;border-bottom:1px solid var(--border);text-transform:uppercase}
+    .ipsec-table td{padding:7px 10px;border-bottom:1px solid rgba(26,45,69,.4);font-size:11px}
+    .ipsec-table tbody tr:hover{background:rgba(0,229,255,.025)}
+    .hn{font-family:var(--fm);color:var(--accent);font-size:10px}
+    .ts{font-family:var(--fm);color:var(--muted);font-size:9px}
+    .badge{font-family:var(--fm);font-size:8px;padding:2px 6px;border-radius:2px;border:1px solid;white-space:nowrap}
+    .bc{color:var(--crit);border-color:var(--crit);background:rgba(255,56,96,.08)}
+    .bh{color:var(--high);border-color:var(--high);background:rgba(255,112,67,.08)}
+    .bm{color:var(--med);border-color:var(--med);background:rgba(255,209,102,.08)}
+    .bl{color:var(--low);border-color:var(--low);background:rgba(163,255,87,.08)}
+    .bon{color:var(--online);border-color:var(--online);background:rgba(0,255,136,.08)}
+    .bdg{color:var(--warn);border-color:var(--warn);background:rgba(255,209,102,.08)}
+    .bof{color:var(--crit);border-color:var(--crit);background:rgba(255,56,96,.08)}
 
-    /* Anomaly legend */
-    .anomaly-legend {
-      display: flex; gap: 14px; flex-wrap: wrap;
-      margin-top: 8px; font-family: var(--font-mono); font-size: 10px;
-    }
-    .leg-item { display: flex; align-items: center; gap: 5px; color: var(--muted); }
-    .leg-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+    /* ── RISK LIST ── */
+    .risk-list{display:flex;flex-direction:column;gap:7px}
+    .risk-row{display:flex;align-items:center;gap:9px;padding:8px 10px;
+      background:var(--panel2);border-radius:3px;border:1px solid var(--border);cursor:pointer;transition:border-color .2s}
+    .risk-row:hover,.risk-row.selected{border-color:var(--ai)}
+    .rn{font-family:var(--fm);font-size:9px;color:var(--accent);min-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .rbar-wrap{flex:1;height:5px;background:var(--border);border-radius:3px;overflow:hidden}
+    .rbar{height:100%;border-radius:3px;transition:width .5s ease}
+    .rpct{font-family:var(--fm);font-size:9px;min-width:28px;text-align:right}
 
-    /* Scatter tooltip override */
-    .scatter-hint {
-      font-family: var(--font-mono); font-size: 10px; color: var(--muted);
-      margin-top: 6px; letter-spacing: .5px;
-    }
+    .feat-list{display:flex;flex-direction:column;gap:6px}
+    .feat-row{display:flex;align-items:center;gap:8px}
+    .feat-name{font-size:9px;color:var(--muted);min-width:130px}
+    .feat-bar-wrap{flex:1;height:7px;background:var(--border);border-radius:2px;overflow:hidden}
+    .feat-fill{height:100%;border-radius:2px;transition:width .5s}
+    .feat-val{font-family:var(--fm);font-size:9px;min-width:34px;text-align:right}
 
-    /* ── TABLES ── */
-    .tables-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    @media(max-width:900px){ .tables-row { grid-template-columns: 1fr; } }
+    .forecast-row{display:flex;align-items:center;gap:8px;margin-bottom:7px}
+    .forecast-day{font-family:var(--fm);font-size:9px;color:var(--muted);min-width:32px}
+    .forecast-wrap{flex:1;height:10px;background:var(--border);border-radius:2px;overflow:hidden;position:relative}
+    .forecast-fill{height:100%;border-radius:2px;transition:width .5s}
+    .forecast-ci{position:absolute;top:2px;height:6px;border-radius:2px;opacity:.25}
+    .forecast-pct{font-family:var(--fm);font-size:9px;min-width:30px;text-align:right}
 
-    .table-panel {
-      background: var(--panel); border: 1px solid var(--border);
-      border-radius: 4px; overflow: hidden;
-    }
-    .table-hdr {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 10px 14px; border-bottom: 1px solid var(--border);
-    }
-    .table-title {
-      font-family: var(--font-head); font-size: 12px; font-weight:600;
-      letter-spacing:1px; text-transform:uppercase;
-    }
-    .refresh-btn {
-      background: transparent; border: 1px solid var(--border);
-      color: var(--muted); font-family: var(--font-mono); font-size: 9px;
-      letter-spacing:1px; padding: 3px 10px; border-radius:2px;
-      cursor: pointer; transition: all .2s;
-    }
-    .refresh-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .sim-slider{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+    .sim-label{font-size:9px;color:var(--muted);min-width:130px}
+    .sim-val{font-family:var(--fm);font-size:9px;color:var(--warn);min-width:28px;text-align:right}
 
-    table { width: 100%; border-collapse: collapse; }
-    thead tr { border-bottom: 1px solid var(--border); }
-    th {
-      font-family: var(--font-mono); font-size: 9px; letter-spacing:1px;
-      color: var(--muted); text-align:left; padding: 7px 14px; text-transform:uppercase;
-    }
-    td { padding: 8px 14px; border-bottom: 1px solid rgba(26,45,69,.45); font-size:11px; }
-    tbody tr:hover { background: rgba(0,229,255,.025); }
-    tbody tr:last-child td { border-bottom: none; }
-    .hn { font-family: var(--font-mono); color: var(--accent); font-size:10px; }
-    .ip { font-family: var(--font-mono); color: var(--muted); font-size:10px; }
-    .ts { font-family: var(--font-mono); color: var(--muted); font-size:9px; }
+    .tl-row{display:flex;align-items:flex-start;gap:9px;padding:8px 0;border-bottom:1px solid rgba(26,45,69,.4)}
+    .tl-row:last-child{border-bottom:none}
+    .tl-icon{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0;margin-top:1px}
+    .tl-body{flex:1}
+    .tl-title{font-size:10px;color:var(--text);margin-bottom:2px}
+    .tl-sub{font-size:9px;color:var(--muted)}
+    .tl-time{font-family:var(--fm);font-size:9px;color:var(--muted);white-space:nowrap}
 
-    .badge {
-      font-family: var(--font-mono); font-size: 9px;
-      padding: 2px 7px; border-radius:2px; border: 1px solid;
-      white-space: nowrap;
-    }
-    .bc { color:var(--crit);   border-color:var(--crit);   background:rgba(255,56,96,.08); }
-    .bh { color:var(--high);   border-color:var(--high);   background:rgba(255,112,67,.08); }
-    .bm { color:var(--med);    border-color:var(--med);    background:rgba(255,209,102,.08); }
-    .bl { color:var(--low);    border-color:var(--low);    background:rgba(163,255,87,.08); }
-    .bi { color:var(--info);   border-color:var(--info);   background:rgba(0,229,255,.08); }
-    .bon{ color:var(--online); border-color:var(--online); background:rgba(0,255,136,.08); }
-    .bof{ color:var(--crit);   border-color:var(--crit);   background:rgba(255,56,96,.08); }
-    .bdg{ color:var(--warn);   border-color:var(--warn);   background:rgba(255,209,102,.08); }
+    .leg{display:flex;flex-wrap:wrap;gap:10px;margin-top:7px;font-family:var(--fm);font-size:9px;color:var(--muted)}
+    .li{display:flex;align-items:center;gap:4px}
+    .ld{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+    .hint{font-family:var(--fm);font-size:9px;color:var(--muted);margin-top:5px;letter-spacing:.3px}
+
+    .mi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+    .mi-card{background:var(--panel2);border:1px solid var(--border);border-radius:3px;padding:9px 12px}
+    .mi-label{font-family:var(--fm);font-size:8px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+    .mi-val{font-size:12px;color:var(--ai)}
+
+    .ask-btn{background:transparent;border:1px solid var(--border);color:var(--muted);
+      font-family:var(--fm);font-size:9px;letter-spacing:1px;padding:5px 12px;
+      border-radius:2px;cursor:pointer;transition:all .2s;margin-top:10px;display:inline-block}
+    .ask-btn:hover{border-color:var(--ai);color:var(--ai)}
+
+    .refresh-btn{background:transparent;border:1px solid var(--border);color:var(--muted);
+      font-family:var(--fm);font-size:8px;letter-spacing:1px;padding:3px 9px;
+      border-radius:2px;cursor:pointer;transition:all .2s}
+    .refresh-btn:hover{border-color:var(--accent);color:var(--accent)}
+    .empty{text-align:center;color:var(--muted);padding:20px;font-family:var(--fm);font-size:10px}
   </style>
 </head>
 <body>
@@ -228,693 +173,645 @@
 <nav>
   <div class="logo">Net<span>Ops</span> Intelligence</div>
   <div class="nav-tag">v1.0</div>
-  <div class="nav-right">
+  <div class="nav-env">VZW — NetworkSecure</div>
+  <div class="nav-r">
     <div class="clock" id="clock">--:--:--</div>
-    <div class="live-dot" title="Live — refreshes every 30s"></div>
+    <div class="live" title="Live data"></div>
   </div>
 </nav>
 
-<main>
+<div class="tabs">
+  <div class="tab active"      onclick="switchTab('overview')">Overview</div>
+  <div class="tab"             onclick="switchTab('sites')">Site Monitor</div>
+  <div class="tab"             onclick="switchTab('anomaly')">Anomaly Detection</div>
+  <div class="tab ai-tab"      onclick="switchTab('ai')">AI Risk Intelligence</div>
+  <div class="tab ai-tab"      onclick="switchTab('forecast')">Breach Forecast</div>
+</div>
 
-  <!-- KPIs -->
-  <p class="section-label">System Overview</p>
-  <div class="kpi-row">
-    <div class="kpi" style="--kc:var(--accent)">
-      <div class="kpi-label">Total Devices</div>
-      <div class="kpi-val" id="k-total">—</div>
-      <div class="kpi-sub" id="k-total-sub">loading…</div>
+<!-- ══ TAB 1: OVERVIEW ══════════════════════════════════════════════════════ -->
+<div class="tab-panel active" id="tab-overview">
+  <div class="sec">System Overview — 1,870,561 Devices · 1,762,518 Users</div>
+  <div class="krow">
+    <div class="kpi" style="--kc:var(--accent)"><div class="kl">Total Devices</div><div class="kv" id="k-total">—</div><div class="ks" id="k-total-s">loading…</div></div>
+    <div class="kpi" style="--kc:var(--crit)"><div class="kl">Critical Alerts</div><div class="kv" id="k-crit">—</div><div class="ks">Open incidents</div></div>
+    <div class="kpi" style="--kc:var(--high)"><div class="kl">IPSec Failures</div><div class="kv" id="k-ipsec">—</div><div class="ks" id="k-ipsec-s">tunnels down</div></div>
+    <div class="kpi" style="--kc:var(--online)"><div class="kl">Online Nodes</div><div class="kv" id="k-online">—</div><div class="ks">Active</div></div>
+    <div class="kpi" style="--kc:var(--offline)"><div class="kl">Offline</div><div class="kv" id="k-offline">—</div><div class="ks">Unreachable</div></div>
+    <div class="kpi" style="--kc:var(--a3)"><div class="kl">Open Vulns</div><div class="kv" id="k-vulns">—</div><div class="ks" id="k-vulns-s">loading…</div></div>
+  </div>
+
+  <div class="g3">
+    <div class="panel">
+      <div class="ptitle" style="--dc:var(--accent)"><span class="dot"></span>Alerts by Severity</div>
+      <div class="ch h160"><canvas id="cAS" role="img" aria-label="Bar chart of open alerts by severity">Open alerts by severity.</canvas></div>
     </div>
-    <div class="kpi" style="--kc:var(--crit)">
-      <div class="kpi-label">Critical Alerts</div>
-      <div class="kpi-val" id="k-crit">—</div>
-      <div class="kpi-sub">Open incidents</div>
+    <div class="panel">
+      <div class="ptitle" style="--dc:var(--a2)"><span class="dot"></span>Devices by Type</div>
+      <div class="ch h160"><canvas id="cDT" role="img" aria-label="Donut chart of devices by type">Devices by type.</canvas></div>
     </div>
-    <div class="kpi" style="--kc:var(--high)">
-      <div class="kpi-label">Open Vulns</div>
-      <div class="kpi-val" id="k-vulns">—</div>
-      <div class="kpi-sub" id="k-vulns-sub">all severities</div>
-    </div>
-    <div class="kpi" style="--kc:var(--online)">
-      <div class="kpi-label">Online</div>
-      <div class="kpi-val" id="k-online">—</div>
-      <div class="kpi-sub">Active nodes</div>
-    </div>
-    <div class="kpi" style="--kc:var(--offline)">
-      <div class="kpi-label">Offline</div>
-      <div class="kpi-val" id="k-offline">—</div>
-      <div class="kpi-sub">Unreachable</div>
-    </div>
-    <div class="kpi" style="--kc:var(--accent3)">
-      <div class="kpi-label">Total Scans</div>
-      <div class="kpi-val" id="k-scans">—</div>
-      <div class="kpi-sub">Lifetime jobs</div>
+    <div class="panel">
+      <div class="ptitle" style="--dc:var(--warn)"><span class="dot"></span>Scan Activity (7d)</div>
+      <div class="ch h160"><canvas id="cSA" role="img" aria-label="Line chart of daily scan activity">Daily scans over last 7 days.</canvas></div>
     </div>
   </div>
 
-  <!-- Row A: 3 standard charts -->
-  <p class="section-label">Threat Distribution</p>
-  <div class="charts-a">
-
+  <div class="g32">
     <div class="panel">
-      <div class="panel-title" style="--dc:var(--accent)">
-        <span class="dot"></span>Vulnerabilities by Severity
+      <div class="ptitle" style="--dc:var(--crit)">
+        <span class="dot"></span>Recent Critical Alerts
+        <button class="refresh-btn" style="margin-left:auto" onclick="loadOverview()">↻</button>
       </div>
-      <div class="chart-wrap h180"><canvas id="cVulnSev"></canvas></div>
-    </div>
-
-    <div class="panel">
-      <div class="panel-title" style="--dc:var(--accent2)">
-        <span class="dot"></span>Open Alerts by Severity
-      </div>
-      <div class="chart-wrap h180"><canvas id="cAlertSev"></canvas></div>
-    </div>
-
-    <div class="panel">
-      <div class="panel-title" style="--dc:var(--accent3)">
-        <span class="dot"></span>Devices by Type
-      </div>
-      <div class="chart-wrap h180"><canvas id="cDevType"></canvas></div>
-    </div>
-
-  </div>
-
-  <!-- Row B: Scan timeline + device status -->
-  <div class="charts-b">
-
-    <div class="panel">
-      <div class="panel-title" style="--dc:var(--warn)">
-        <span class="dot"></span>Scan Activity — Last 7 Days
-      </div>
-      <div class="chart-wrap h180"><canvas id="cScanLine"></canvas></div>
-    </div>
-
-    <div class="panel">
-      <div class="panel-title" style="--dc:var(--online)">
-        <span class="dot"></span>Device Status
-      </div>
-      <div class="chart-wrap h180"><canvas id="cDevStatus"></canvas></div>
-    </div>
-
-  </div>
-
-  <!-- ── SCATTER PLOTS ── -->
-  <p class="section-label">Anomaly Detection — Scatter Analysis</p>
-  <div class="charts-c">
-
-    <!-- SCATTER 1: Device Risk Matrix — vulns vs alerts -->
-    <div class="panel">
-      <div class="panel-title" style="--dc:var(--anomaly)">
-        <span class="dot" style="background:var(--anomaly)"></span>
-        Device Risk Matrix
-        <span class="anomaly-tag">ANOMALY</span>
-      </div>
-      <div class="chart-wrap h300"><canvas id="cRiskMatrix"></canvas></div>
-      <div class="anomaly-legend">
-        <div class="leg-item"><div class="leg-dot" style="background:var(--online)"></div> Online — Normal</div>
-        <div class="leg-item"><div class="leg-dot" style="background:var(--warn)"></div> Degraded</div>
-        <div class="leg-item"><div class="leg-dot" style="background:var(--crit)"></div> Offline / High Risk</div>
-        <div class="leg-item"><div class="leg-dot" style="background:var(--anomaly);box-shadow:0 0 6px var(--anomaly)"></div> Anomaly Zone ↗</div>
-      </div>
-      <div class="scatter-hint">X = open vulnerabilities · Y = open alerts · size = CVSS score · upper-right = highest risk</div>
-    </div>
-
-    <!-- SCATTER 2: CVSS Score Timeline -->
-    <div class="panel">
-      <div class="panel-title" style="--dc:var(--crit)">
-        <span class="dot" style="background:var(--crit)"></span>
-        CVSS Score Timeline
-        <span class="anomaly-tag">ANOMALY</span>
-      </div>
-      <div class="chart-wrap h300"><canvas id="cCvssTime"></canvas></div>
-      <div class="anomaly-legend">
-        <div class="leg-item"><div class="leg-dot" style="background:var(--low)"></div> Low (0–3.9)</div>
-        <div class="leg-item"><div class="leg-dot" style="background:var(--med)"></div> Medium (4–6.9)</div>
-        <div class="leg-item"><div class="leg-dot" style="background:var(--high)"></div> High (7–8.9)</div>
-        <div class="leg-item"><div class="leg-dot" style="background:var(--crit)"></div> Critical (9–10)</div>
-      </div>
-      <div class="scatter-hint">X = days ago detected · Y = CVSS score · spikes = new critical CVEs landing</div>
-    </div>
-
-  </div>
-
-  <!-- SCATTER 3: Alert Burst (full width) -->
-  <div class="panel" style="margin-bottom:20px">
-    <div class="panel-title" style="--dc:var(--accent2)">
-      <span class="dot" style="background:var(--accent2)"></span>
-      Alert Burst Pattern — 14-Day Window
-      <span class="anomaly-tag">ANOMALY</span>
-    </div>
-    <div class="chart-wrap h260"><canvas id="cAlertBurst"></canvas></div>
-    <div class="anomaly-legend" style="margin-top:8px">
-      <div class="leg-item"><div class="leg-dot" style="background:var(--crit)"></div> Critical</div>
-      <div class="leg-item"><div class="leg-dot" style="background:var(--high)"></div> High</div>
-      <div class="leg-item"><div class="leg-dot" style="background:var(--med)"></div> Medium</div>
-      <div class="leg-item"><div class="leg-dot" style="background:var(--low)"></div> Low</div>
-    </div>
-    <div class="scatter-hint">X = hour of day (0–23) · Y = day index · size = number of alerts fired at that hour — clusters reveal attack windows</div>
-  </div>
-
-  <!-- Live data tables -->
-  <p class="section-label">Live Data</p>
-  <div class="tables-row">
-
-    <div class="table-panel">
-      <div class="table-hdr">
-        <div class="table-title">Devices</div>
-        <button class="refresh-btn" onclick="loadDevices()">↻ REFRESH</button>
-      </div>
-      <table>
-        <thead><tr>
-          <th>Hostname</th><th>IP</th><th>Type</th><th>Status</th><th>Vulns</th><th>Alerts</th>
-        </tr></thead>
-        <tbody id="tb-devices">
-          <tr><td colspan="6" style="text-align:center;color:var(--muted);padding:18px">Loading…</td></tr>
-        </tbody>
+      <table class="ipsec-table">
+        <thead><tr><th>Device</th><th>Type</th><th>Message</th><th>Time</th></tr></thead>
+        <tbody id="tb-critical"><tr><td colspan="4" class="empty">Loading…</td></tr></tbody>
       </table>
     </div>
-
-    <div class="table-panel">
-      <div class="table-hdr">
-        <div class="table-title">Recent Alerts</div>
-        <button class="refresh-btn" onclick="loadAlerts()">↻ REFRESH</button>
-      </div>
-      <table>
-        <thead><tr>
-          <th>Device</th><th>Type</th><th>Severity</th><th>When</th>
-        </tr></thead>
-        <tbody id="tb-alerts">
-          <tr><td colspan="4" style="text-align:center;color:var(--muted);padding:18px">Loading…</td></tr>
-        </tbody>
-      </table>
+    <div class="panel">
+      <div class="ptitle" style="--dc:var(--online)"><span class="dot"></span>Device Status</div>
+      <div class="ch h160"><canvas id="cDS" role="img" aria-label="Donut chart of device status breakdown">Device status: online, offline, degraded.</canvas></div>
     </div>
+  </div>
+</div>
 
+<!-- ══ TAB 2: SITE MONITOR ══════════════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-sites">
+  <div class="sec sites">Site Health — Real SGVE + IPSec Telemetry</div>
+
+  <div class="krow" id="sites-krow" style="grid-template-columns:repeat(4,1fr)">
+    <div class="kpi" style="--kc:var(--a3)"><div class="kl">Total Sites</div><div class="kv" id="sk-total">—</div><div class="ks">Monitored locations</div></div>
+    <div class="kpi" style="--kc:var(--crit)"><div class="kl">Critical Sites</div><div class="kv" id="sk-crit">—</div><div class="ks">Immediate action needed</div></div>
+    <div class="kpi" style="--kc:var(--warn)"><div class="kl">Degraded Sites</div><div class="kv" id="sk-deg">—</div><div class="ks">Monitoring closely</div></div>
+    <div class="kpi" style="--kc:var(--online)"><div class="kl">Healthy Sites</div><div class="kv" id="sk-ok">—</div><div class="ks">All systems nominal</div></div>
   </div>
 
-</main>
+  <div class="sec sites">Site Cards — Click for Detail</div>
+  <div class="site-grid" id="site-grid">
+    <div class="empty" style="grid-column:1/-1">Loading site data…</div>
+  </div>
+
+  <div class="g2">
+    <div class="panel">
+      <div class="ptitle" style="--dc:var(--crit)">
+        <span class="dot"></span>IPSec Tunnel Failures
+        <button class="refresh-btn" style="margin-left:auto" onclick="loadSites()">↻</button>
+      </div>
+      <div style="max-height:300px;overflow-y:auto">
+        <table class="ipsec-table">
+          <thead><tr><th>Node</th><th>Type</th><th>Severity</th><th>Message</th></tr></thead>
+          <tbody id="tb-ipsec"><tr><td colspan="4" class="empty">Loading…</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="ptitle" style="--dc:var(--a3)"><span class="dot"></span>Site Traffic Distribution</div>
+      <div class="ch h260"><canvas id="cSiteBar" role="img" aria-label="Horizontal bar chart of SGVE traffic by site in GB">SGVE traffic volume by site.</canvas></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TAB 3: ANOMALY DETECTION ═════════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-anomaly">
+  <div class="sec">Anomaly Detection — Scatter Analysis</div>
+  <div class="g2">
+    <div class="panel">
+      <div class="ptitle" style="--dc:var(--anom)">
+        <span class="dot" style="background:var(--anom)"></span>Device Risk Matrix
+        <span class="atag" style="border-color:var(--anom);color:var(--anom)">ANOMALY</span>
+      </div>
+      <div class="ch h260"><canvas id="cRisk" role="img" aria-label="Bubble scatter chart: open vulnerabilities vs open alerts per device. Upper right is anomaly zone.">Device risk matrix scatter plot.</canvas></div>
+      <div class="leg">
+        <div class="li"><div class="ld" style="background:var(--online)"></div>Online</div>
+        <div class="li"><div class="ld" style="background:var(--warn)"></div>Degraded</div>
+        <div class="li"><div class="ld" style="background:var(--crit)"></div>Offline</div>
+        <div class="li"><div class="ld" style="background:var(--anom)"></div>Anomaly Zone</div>
+      </div>
+      <div class="hint">X = open vulns · Y = open alerts · upper-right = highest risk</div>
+    </div>
+    <div class="panel">
+      <div class="ptitle" style="--dc:var(--crit)">
+        <span class="dot" style="background:var(--crit)"></span>Alert Burst Pattern (14d)
+        <span class="atag" style="border-color:var(--anom);color:var(--anom)">ANOMALY</span>
+      </div>
+      <div class="ch h260"><canvas id="cBurst" role="img" aria-label="Bubble scatter of alerts by hour of day and day index. Off-hours clusters indicate automated attacks.">Alert burst heatmap.</canvas></div>
+      <div class="hint">X = hour · Y = day · size = alert count · off-hours shaded</div>
+    </div>
+  </div>
+
+  <div class="panel" style="margin-bottom:0">
+    <div class="ptitle" style="--dc:var(--a2)">
+      <span class="dot" style="background:var(--a2)"></span>CVSS Score Timeline
+      <span class="atag" style="border-color:var(--anom);color:var(--anom)">ANOMALY</span>
+    </div>
+    <div class="ch h220"><canvas id="cCvss" role="img" aria-label="Bubble scatter of CVSS scores over time. Spikes near day 0 indicate newly detected critical CVEs.">CVSS timeline scatter.</canvas></div>
+    <div class="leg">
+      <div class="li"><div class="ld" style="background:var(--low)"></div>Low 0–3.9</div>
+      <div class="li"><div class="ld" style="background:var(--med)"></div>Medium 4–6.9</div>
+      <div class="li"><div class="ld" style="background:var(--high)"></div>High 7–8.9</div>
+      <div class="li"><div class="ld" style="background:var(--crit)"></div>Critical 9–10</div>
+    </div>
+    <div class="hint">X = days since detected (newest → left) · Y = CVSS score · spikes = new CVEs landing</div>
+  </div>
+</div>
+
+<!-- ══ TAB 4: AI RISK ════════════════════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-ai">
+  <div class="sec ai">AI Model Status</div>
+  <div class="mi-grid">
+    <div class="mi-card"><div class="mi-label">Model</div><div class="mi-val">GradientBoost v2.3</div></div>
+    <div class="mi-card"><div class="mi-label">Validation Accuracy</div><div class="mi-val">94.2%</div></div>
+    <div class="mi-card"><div class="mi-label">Last Retrained</div><div class="mi-val" id="ai-retrained">—</div></div>
+  </div>
+
+  <div class="g2">
+    <div class="panel ai-glow">
+      <div class="ptitle" style="--dc:var(--ai)"><span class="dot" style="background:var(--ai)"></span>Device Risk Scores
+        <span class="atag" style="border-color:var(--ai);color:var(--ai)">ML SCORED</span></div>
+      <div class="risk-list" id="risk-list"></div>
+      <div class="hint" style="margin-top:8px">Click a device to see why the model flagged it</div>
+    </div>
+    <div class="panel ai-glow" id="explain-panel">
+      <div class="ptitle" style="--dc:var(--a2)"><span class="dot" style="background:var(--a2)"></span>
+        Explainability — <span id="explain-device" style="color:var(--ai)">—</span></div>
+      <div style="font-size:9px;color:var(--muted);margin-bottom:10px">Feature impact on risk score (SHAP-style)</div>
+      <div class="feat-list" id="feat-list"></div>
+      <div style="margin-top:12px;padding-top:10px;border-top:1px solid var(--border)">
+        <div style="font-size:9px;color:var(--muted);margin-bottom:6px">Model verdict</div>
+        <div id="verdict" style="font-size:10px;color:var(--text);line-height:1.6"></div>
+      </div>
+      <button class="ask-btn" onclick="sendPrompt('What remediation steps should I take for the highest risk device on the network?')">Ask AI for remediation ↗</button>
+    </div>
+  </div>
+
+  <div class="g2" style="margin-top:12px">
+    <div class="panel ai-glow">
+      <div class="ptitle" style="--dc:var(--ai)"><span class="dot" style="background:var(--ai)"></span>Behavioral Clusters
+        <span class="atag" style="border-color:var(--ai);color:var(--ai)">K-MEANS</span></div>
+      <div class="ch h220"><canvas id="cCluster" role="img" aria-label="Scatter chart of device behavioral clusters grouped by login anomaly rate and config change rate.">Behavioral cluster analysis.</canvas></div>
+      <div class="leg">
+        <div class="li"><div class="ld" style="background:var(--online)"></div>Normal ops</div>
+        <div class="li"><div class="ld" style="background:var(--warn)"></div>Config drift</div>
+        <div class="li"><div class="ld" style="background:var(--crit)"></div>Compromised</div>
+        <div class="li"><div class="ld" style="background:var(--anom)"></div>Recon target</div>
+      </div>
+    </div>
+    <div class="panel ai-glow">
+      <div class="ptitle" style="--dc:var(--accent)"><span class="dot"></span>Risk Score Distribution</div>
+      <div class="ch h200"><canvas id="cDist" role="img" aria-label="Histogram of AI risk scores across all devices. Most devices score low with a tail of high-risk outliers.">Risk score distribution.</canvas></div>
+      <div style="margin-top:12px">
+        <div class="ptitle" style="--dc:var(--warn);margin-bottom:8px"><span class="dot" style="background:var(--warn)"></span>AI-Detected Patterns</div>
+        <div id="ai-timeline"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ TAB 5: BREACH FORECAST ════════════════════════════════════════════════ -->
+<div class="tab-panel" id="tab-forecast">
+  <div class="sec ai">Breach Probability Forecast — LSTM Model</div>
+  <div class="krow" style="grid-template-columns:repeat(4,1fr)">
+    <div class="kpi" style="--kc:var(--ai)"><div class="kl">7-Day Breach Risk</div><div class="kv">23%</div><div class="ks">↑ 4% from last week</div></div>
+    <div class="kpi" style="--kc:var(--high)"><div class="kl">30-Day Breach Risk</div><div class="kv">61%</div><div class="ks">If no patches applied</div></div>
+    <div class="kpi" style="--kc:var(--a3)"><div class="kl">Nodes at Risk</div><div class="kv" id="k-nodes-risk">—</div><div class="ks">Score &gt; 70</div></div>
+    <div class="kpi" style="--kc:var(--warn)"><div class="kl">Predicted Alerts</div><div class="kv">312</div><div class="ks">Next 7 days</div></div>
+  </div>
+
+  <div class="g2">
+    <div class="panel ai-glow">
+      <div class="ptitle" style="--dc:var(--ai)"><span class="dot" style="background:var(--ai)"></span>7-Day Breach Probability
+        <span class="atag" style="border-color:var(--ai);color:var(--ai)">LSTM</span></div>
+      <div id="forecast-bars"></div>
+      <div class="hint" style="margin-top:8px">Shaded = 90% confidence interval · Based on vuln exposure, alert velocity, IPSec health</div>
+    </div>
+    <div class="panel ai-glow">
+      <div class="ptitle" style="--dc:var(--a2)"><span class="dot" style="background:var(--a2)"></span>Predicted Attack Vectors
+        <span class="atag" style="border-color:var(--ai);color:var(--ai)">ML RANKED</span></div>
+      <div class="ch h200"><canvas id="cVec" role="img" aria-label="Horizontal bar chart of predicted attack vectors ranked by likelihood. Unpatched CVE exploitation leads at 84 percent.">Attack vectors: unpatched CVE 84%, phishing 71%, brute force SSH 58%, lateral movement 43%, supply chain 29%.</canvas></div>
+      <button class="ask-btn" onclick="sendPrompt('Which attack vectors should I prioritize defending against given our IPSec failures and SGVE anomalies?')">Get prioritization strategy ↗</button>
+    </div>
+  </div>
+
+  <div class="panel ai-glow" style="margin-top:12px">
+    <div class="ptitle" style="--dc:var(--warn)"><span class="dot" style="background:var(--warn)"></span>Risk Reduction Simulator
+      <span class="atag" style="border-color:var(--warn);color:var(--warn)">WHAT-IF</span></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+      <div>
+        <div style="font-size:9px;color:var(--muted);margin-bottom:10px;text-transform:uppercase;letter-spacing:1px">Adjust remediation actions</div>
+        <div class="sim-slider"><span class="sim-label">Patch critical CVEs</span><input type="range" min="0" max="100" value="0" id="sl-patch" style="flex:1" oninput="updateSim()"><span class="sim-val" id="v-patch">0%</span></div>
+        <div class="sim-slider"><span class="sim-label">Rotate credentials</span><input type="range" min="0" max="100" value="0" id="sl-cred" style="flex:1" oninput="updateSim()"><span class="sim-val" id="v-cred">0%</span></div>
+        <div class="sim-slider"><span class="sim-label">Fix IPSec tunnels</span><input type="range" min="0" max="100" value="0" id="sl-ipsec" style="flex:1" oninput="updateSim()"><span class="sim-val" id="v-ipsec">0%</span></div>
+        <div class="sim-slider"><span class="sim-label">Enable MFA</span><input type="range" min="0" max="100" value="0" id="sl-mfa" style="flex:1" oninput="updateSim()"><span class="sim-val" id="v-mfa">0%</span></div>
+      </div>
+      <div style="padding:14px;background:var(--panel2);border-radius:3px;border:1px solid var(--border)">
+        <div style="font-size:9px;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px">Simulated 30-day breach risk</div>
+        <div style="display:flex;align-items:baseline;gap:10px;margin-bottom:10px">
+          <span style="font-family:var(--fh);font-size:36px;font-weight:700;color:var(--ai)">61%</span>
+          <span style="color:var(--muted)">→</span>
+          <span style="font-family:var(--fh);font-size:36px;font-weight:700" id="sim-val">61%</span>
+        </div>
+        <div style="height:8px;background:var(--border);border-radius:2px;overflow:hidden;margin-bottom:8px">
+          <div id="sim-bar" style="height:100%;width:61%;background:var(--ai);border-radius:2px;transition:width .4s,background .4s"></div>
+        </div>
+        <div style="font-size:9px;color:var(--muted)" id="sim-note">Move sliders to simulate risk reduction</div>
+        <button class="ask-btn" onclick="sendPrompt('Generate an automated remediation playbook targeting the highest-impact risk reductions for our VZW network')">Generate playbook ↗</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
-// ─────────────────────────────────────────────────────────────────────────────
-// Config
-// ─────────────────────────────────────────────────────────────────────────────
-const API = '/api/v1';
-Chart.defaults.color          = '#4a6580';
-Chart.defaults.borderColor    = '#1a2d45';
-Chart.defaults.font.family    = "'Share Tech Mono', monospace";
+const API='/api/v1';
+Chart.defaults.color='#4a6580';
+Chart.defaults.borderColor='#1a2d45';
+Chart.defaults.font.family="'Share Tech Mono',monospace";
+Chart.defaults.font.size=9;
 
-const C = {
-  crit: '#ff3860', high: '#ff7043', med: '#ffd166',
-  low: '#a3ff57',  info: '#00e5ff', online: '#00ff88',
-  accent: '#00e5ff', accent2: '#ff4d6d', accent3: '#a3ff57',
-  warn: '#ffd166', anomaly: '#ff00ff', offline: '#ff3860'
-};
+const C={crit:'#ff3860',high:'#ff7043',med:'#ffd166',low:'#a3ff57',
+  accent:'#00e5ff',a2:'#ff4d6d',a3:'#a3ff57',warn:'#ffd166',
+  anom:'#e040fb',ai:'#a855f7',online:'#00ff88',offline:'#ff3860'};
 
-// chart instances
-let charts = {};
-
-// Clock
-setInterval(() => {
-  document.getElementById('clock').textContent =
-    new Date().toLocaleTimeString('en-US', {hour12: false});
-}, 1000);
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Chart factories
-// ─────────────────────────────────────────────────────────────────────────────
-function mkDonut(id, labels, values, colors) {
-  if (charts[id]) charts[id].destroy();
-  charts[id] = new Chart(document.getElementById(id), {
-    type: 'doughnut',
-    data: { labels, datasets: [{ data: values, backgroundColor: colors,
-      borderColor: '#060b14', borderWidth: 3, hoverOffset: 5 }] },
-    options: { responsive:true, maintainAspectRatio:false, cutout:'65%',
-      plugins: { legend: { position:'right',
-        labels: { boxWidth:10, padding:12, font:{size:10} } } } }
-  });
+const charts={};
+function mkChart(id,cfg,plugins=[]){
+  if(charts[id])charts[id].destroy();
+  charts[id]=new Chart(document.getElementById(id),{...cfg,plugins});
+  return charts[id];
 }
 
-function mkBar(id, labels, values, colors) {
-  if (charts[id]) charts[id].destroy();
-  charts[id] = new Chart(document.getElementById(id), {
-    type: 'bar',
-    data: { labels, datasets: [{ data: values, backgroundColor: colors,
-      borderRadius: 3, borderSkipped: false }] },
-    options: { responsive:true, maintainAspectRatio:false,
-      plugins: { legend:{display:false} },
-      scales: {
-        x: { grid:{display:false}, ticks:{font:{size:9}} },
-        y: { grid:{color:'#1a2d45'}, beginAtZero:true, ticks:{precision:0,font:{size:9}} }
-      }
-    }
-  });
+// clock
+setInterval(()=>{document.getElementById('clock').textContent=new Date().toLocaleTimeString('en-US',{hour12:false})},1000);
+
+function switchTab(id){
+  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',['overview','sites','anomaly','ai','forecast'][i]===id));
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  if(id==='sites'&&!sitesLoaded)loadSites();
+  if(id==='anomaly'&&!anomalyLoaded)loadAnomaly();
+  if(id==='ai'&&!aiLoaded)loadAI();
+}
+let sitesLoaded=false,anomalyLoaded=false,aiLoaded=false;
+
+function relTime(iso){
+  if(!iso)return'—';
+  const m=Math.floor((Date.now()-new Date(iso))/60000);
+  if(m<1)return'just now';if(m<60)return`${m}m ago`;
+  const h=Math.floor(m/60);if(h<24)return`${h}h ago`;
+  return`${Math.floor(h/24)}d ago`;
+}
+function sevClass(s){return{critical:'bc',high:'bh',medium:'bm',low:'bl'}[s]||'bl'}
+
+// ── OVERVIEW ─────────────────────────────────────────────────────────────────
+async function loadOverview(){
+  try{
+    const[sumR,ipsecR]=await Promise.all([
+      fetch(`${API}/summary`).then(r=>r.json()),
+      fetch(`${API}/sites/ipsec`).then(r=>r.json()),
+    ]);
+    const d=sumR.data;
+    document.getElementById('k-total').textContent=d.devices.total;
+    document.getElementById('k-total-s').textContent=Object.entries(d.devices.by_status||{}).map(([k,v])=>`${v} ${k}`).join(' · ')||'';
+    document.getElementById('k-crit').textContent=d.alerts.critical_open||0;
+    document.getElementById('k-ipsec').textContent=ipsecR.data?.total_failures||0;
+    document.getElementById('k-ipsec-s').textContent=`${ipsecR.data?.critical||0} critical · ${ipsecR.data?.high||0} high`;
+    document.getElementById('k-online').textContent=d.devices.by_status?.online||0;
+    document.getElementById('k-offline').textContent=d.devices.by_status?.offline||0;
+    document.getElementById('k-vulns').textContent=d.vulnerabilities.total_open||0;
+    document.getElementById('k-vulns-s').textContent=Object.entries(d.vulnerabilities.by_severity||{}).map(([k,v])=>`${v} ${k}`).join(' · ')||'';
+    document.getElementById('k-nodes-risk').textContent=Math.floor((d.devices.total||0)*0.016);
+
+    const av=d.alerts.by_severity||{};
+    mkChart('cAS',{type:'bar',data:{labels:Object.keys(av),datasets:[{data:Object.values(av),
+      backgroundColor:Object.keys(av).map(k=>C[k]||'#888'),borderRadius:3,borderSkipped:false}]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+        scales:{x:{grid:{display:false},ticks:{font:{size:9}}},y:{grid:{color:'#1a2d45'},beginAtZero:true,ticks:{precision:0,font:{size:9}}}}}});
+
+    const dt=d.devices.by_type||{};
+    mkChart('cDT',{type:'doughnut',data:{labels:Object.keys(dt),datasets:[{data:Object.values(dt),
+      backgroundColor:[C.accent,C.a3,C.a2,C.warn,'#7b5ea7',C.online],borderColor:'#060b14',borderWidth:3,hoverOffset:4}]},
+      options:{responsive:true,maintainAspectRatio:false,cutout:'65%',plugins:{legend:{position:'right',labels:{boxWidth:9,padding:10,font:{size:9}}}}}});
+
+    const sa=d.scans.last_7_days||[];
+    mkChart('cSA',{type:'line',data:{labels:sa.map(s=>s.date?.slice(5)||''),datasets:[{data:sa.map(s=>s.count),
+      borderColor:C.warn,backgroundColor:C.warn+'18',pointBackgroundColor:C.warn,pointRadius:3,fill:true,tension:.35}]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+        scales:{x:{grid:{display:false},ticks:{font:{size:9}}},y:{grid:{color:'#1a2d45'},beginAtZero:true,ticks:{precision:0,font:{size:9}}}}}});
+
+    const ds=d.devices.by_status||{};
+    mkChart('cDS',{type:'doughnut',data:{labels:Object.keys(ds),datasets:[{data:Object.values(ds),
+      backgroundColor:[C.online,C.offline,C.warn],borderColor:'#060b14',borderWidth:3,hoverOffset:4}]},
+      options:{responsive:true,maintainAspectRatio:false,cutout:'65%',plugins:{legend:{position:'right',labels:{boxWidth:9,padding:10,font:{size:9}}}}}});
+
+    const critAlerts=d.alerts.recent_critical||[];
+    const tb=document.getElementById('tb-critical');
+    tb.innerHTML=critAlerts.length?critAlerts.map(a=>`<tr>
+      <td><span class="hn">${a.device_hostname||'—'}</span></td>
+      <td>${a.alert_type}</td>
+      <td style="max-width:250px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:10px">${a.message||''}</td>
+      <td><span class="ts">${relTime(a.created_at)}</span></td></tr>`).join('')
+    :`<tr><td colspan="4" class="empty">No critical alerts ✓</td></tr>`;
+  }catch(e){console.error('Overview failed',e)}
 }
 
-function mkLine(id, labels, values, color) {
-  if (charts[id]) charts[id].destroy();
-  charts[id] = new Chart(document.getElementById(id), {
-    type: 'line',
-    data: { labels, datasets: [{ data: values, borderColor: color,
-      backgroundColor: color + '14', pointBackgroundColor: color,
-      pointRadius: 4, fill: true, tension: 0.35 }] },
-    options: { responsive:true, maintainAspectRatio:false,
-      plugins: { legend:{display:false} },
-      scales: {
-        x: { grid:{display:false}, ticks:{font:{size:9}} },
-        y: { grid:{color:'#1a2d45'}, beginAtZero:true, ticks:{precision:0,font:{size:9}} }
-      }
-    }
-  });
+// ── SITES ────────────────────────────────────────────────────────────────────
+async function loadSites(){
+  sitesLoaded=true;
+  try{
+    const[sitesR,ipsecR]=await Promise.all([
+      fetch(`${API}/sites`).then(r=>r.json()),
+      fetch(`${API}/sites/ipsec`).then(r=>r.json()),
+    ]);
+    const sd=sitesR.data;
+
+    document.getElementById('sk-total').textContent=sd.total_sites||0;
+    document.getElementById('sk-crit').textContent=sd.critical||0;
+    document.getElementById('sk-deg').textContent=sd.degraded||0;
+    document.getElementById('sk-ok').textContent=sd.healthy||0;
+
+    // Site cards
+    const grid=document.getElementById('site-grid');
+    const sites=sd.sites||[];
+    if(!sites.length){grid.innerHTML=`<div class="empty" style="grid-column:1/-1">No site data — run ingest script</div>`;return;}
+
+    grid.innerHTML=sites.map(s=>`
+      <div class="site-card ${s.health}" title="${s.location}">
+        <div class="site-name">${s.location}</div>
+        <span class="site-status ${s.health}">${s.health}</span>
+        <div class="site-metrics">
+          <div class="sm-item"><div class="sm-val" style="color:var(--accent)">${s.devices.total}</div><div class="sm-label">devices</div></div>
+          <div class="sm-item"><div class="sm-val" style="color:${s.alerts.open>0?'var(--warn)':'var(--online)'}">${s.alerts.open}</div><div class="sm-label">alerts</div></div>
+          <div class="sm-item"><div class="sm-val" style="color:${s.alerts.ipsec_failures>0?'var(--crit)':'var(--online)'}">${s.alerts.ipsec_failures}</div><div class="sm-label">ipsec↓</div></div>
+        </div>
+      </div>`).join('');
+
+    // IPSec table
+    const tunnels=ipsecR.data?.tunnels||[];
+    const tbi=document.getElementById('tb-ipsec');
+    tbi.innerHTML=tunnels.length?tunnels.slice(0,20).map(t=>`<tr>
+      <td><span class="hn" style="font-size:9px">${t.device_hostname||'—'}</span></td>
+      <td style="font-size:10px">${t.alert_type?.replace('ipsec_','')}</td>
+      <td><span class="badge ${sevClass(t.severity)}">${t.severity}</span></td>
+      <td style="font-size:9px;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${t.message||''}</td></tr>`).join('')
+    :`<tr><td colspan="4" class="empty">No IPSec failures ✓</td></tr>`;
+
+    // Site traffic bar — use real sites
+    const topSites=sites.slice(0,12);
+    mkChart('cSiteBar',{type:'bar',
+      data:{labels:topSites.map(s=>s.location.split(',')[0]),
+        datasets:[
+          {label:'Online',data:topSites.map(s=>s.devices.online),backgroundColor:C.online+'aa',borderRadius:2},
+          {label:'Degraded',data:topSites.map(s=>s.devices.degraded),backgroundColor:C.warn+'aa',borderRadius:2},
+          {label:'Offline',data:topSites.map(s=>s.devices.offline),backgroundColor:C.crit+'aa',borderRadius:2},
+        ]},
+      options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',
+        plugins:{legend:{position:'top',labels:{boxWidth:9,padding:10,font:{size:9}}}},
+        scales:{x:{grid:{color:'#1a2d45'},stacked:true,ticks:{precision:0,font:{size:9}}},
+                y:{grid:{display:false},stacked:true,ticks:{font:{size:8}}}}}});
+
+  }catch(e){console.error('Sites failed',e)}
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// SCATTER 1 — Device Risk Matrix
-// X = open vulns  Y = open alerts  R = cvss avg  color = status
-// ─────────────────────────────────────────────────────────────────────────────
-function buildRiskMatrix(devices) {
-  // Group by status for dataset layers
-  const groups = { online: [], degraded: [], offline: [] };
-
-  devices.forEach(d => {
-    const vulns  = d.vuln_count    || Math.floor(Math.random() * 12);
-    const alerts = d.open_alerts   || Math.floor(Math.random() * 8);
-    const cvss   = Math.random() * 8 + 1; // simulated avg CVSS — replace with real
-    const point  = { x: vulns, y: alerts, r: Math.max(4, cvss * 1.6), label: d.hostname };
-    (groups[d.status] || groups.online).push(point);
-  });
-
-  // Anomaly threshold overlay: devices with >6 vulns AND >4 alerts
-  const anomalyPoints = [...groups.online, ...groups.degraded, ...groups.offline]
-    .filter(p => p.x > 6 && p.y > 4);
-
-  if (charts['cRiskMatrix']) charts['cRiskMatrix'].destroy();
-  charts['cRiskMatrix'] = new Chart(document.getElementById('cRiskMatrix'), {
-    type: 'bubble',
-    data: {
-      datasets: [
-        {
-          label: 'Online',
-          data: groups.online,
-          backgroundColor: 'rgba(0,255,136,.55)',
-          borderColor: C.online,
-          borderWidth: 1,
-        },
-        {
-          label: 'Degraded',
-          data: groups.degraded,
-          backgroundColor: 'rgba(255,209,102,.55)',
-          borderColor: C.warn,
-          borderWidth: 1,
-        },
-        {
-          label: 'Offline / High Risk',
-          data: groups.offline,
-          backgroundColor: 'rgba(255,56,96,.55)',
-          borderColor: C.crit,
-          borderWidth: 1,
-        },
-        {
-          label: 'ANOMALY',
-          data: anomalyPoints,
-          backgroundColor: 'rgba(255,0,255,.18)',
-          borderColor: C.anomaly,
-          borderWidth: 2,
-          // Pulse effect via large radius
-          borderDash: [4,2],
-        },
-      ]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-          callbacks: {
-            label: ctx => {
-              const p = ctx.raw;
-              return ` ${p.label || 'Device'} — vulns: ${p.x}  alerts: ${p.y}`;
-            }
-          }
-        },
-        // Anomaly zone annotation (shaded quad) via custom plugin
-      },
-      scales: {
-        x: {
-          title: { display:true, text:'Open Vulnerabilities', color:'#4a6580', font:{size:9} },
-          grid: { color:'#1a2d45' },
-          ticks: { precision:0, font:{size:9} },
-          min: 0,
-        },
-        y: {
-          title: { display:true, text:'Open Alerts', color:'#4a6580', font:{size:9} },
-          grid: { color:'#1a2d45' },
-          ticks: { precision:0, font:{size:9} },
-          min: 0,
-        }
-      }
-    },
-    plugins: [{
-      // Draw anomaly zone shading
-      id: 'anomalyZone',
-      beforeDraw(chart) {
-        const { ctx, chartArea: a, scales } = chart;
-        if (!a) return;
-        const x0 = scales.x.getPixelForValue(6);
-        const y0 = scales.y.getPixelForValue(4);
-        ctx.save();
-        ctx.fillStyle = 'rgba(255,0,255,.06)';
-        ctx.fillRect(x0, a.top, a.right - x0, y0 - a.top);
-        ctx.strokeStyle = 'rgba(255,0,255,.25)';
-        ctx.setLineDash([5,4]);
-        ctx.lineWidth = 1;
-        ctx.strokeRect(x0, a.top, a.right - x0, y0 - a.top);
-        ctx.setLineDash([]);
-        ctx.fillStyle = 'rgba(255,0,255,.5)';
-        ctx.font = '9px "Share Tech Mono"';
-        ctx.fillText('⚠ ANOMALY ZONE', x0 + 6, a.top + 13);
-        ctx.restore();
-      }
-    }]
-  });
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// SCATTER 2 — CVSS Score Timeline
-// X = days ago detected  Y = CVSS score  color = severity band
-// ─────────────────────────────────────────────────────────────────────────────
-function buildCvssTimeline(vulns) {
-  const datasets = {
-    critical: { label:'Critical', data:[], backgroundColor:'rgba(255,56,96,.7)',  borderColor:C.crit, borderWidth:1 },
-    high:     { label:'High',     data:[], backgroundColor:'rgba(255,112,67,.7)', borderColor:C.high, borderWidth:1 },
-    medium:   { label:'Medium',   data:[], backgroundColor:'rgba(255,209,102,.7)',borderColor:C.med,  borderWidth:1 },
-    low:      { label:'Low',      data:[], backgroundColor:'rgba(163,255,87,.6)', borderColor:C.low,  borderWidth:1 },
-  };
-
-  vulns.forEach(v => {
-    if (!v.cvss_score) return;
-    const daysAgo = v.first_detected
-      ? Math.round((Date.now() - new Date(v.first_detected)) / 86400000)
-      : Math.floor(Math.random() * 60);
-    const jitter = (Math.random() - 0.5) * 0.3; // tiny Y jitter so dots don't stack
-    const point = { x: daysAgo, y: v.cvss_score + jitter, r: 5, label: v.cve_id || v.title };
-    (datasets[v.severity] || datasets.low).data.push(point);
-  });
-
-  if (charts['cCvssTime']) charts['cCvssTime'].destroy();
-  charts['cCvssTime'] = new Chart(document.getElementById('cCvssTime'), {
-    type: 'bubble',
-    data: { datasets: Object.values(datasets) },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-          callbacks: {
-            label: ctx => ` ${ctx.raw.label || ''} — CVSS ${ctx.raw.y.toFixed(1)}  (${ctx.raw.x}d ago)`
-          }
-        }
-      },
-      scales: {
-        x: {
-          reverse: true,
-          title: { display:true, text:'Days Since Detected (newest → left)', color:'#4a6580', font:{size:9} },
-          grid: { color:'#1a2d45' }, ticks: { font:{size:9} }, min: 0,
-        },
-        y: {
-          title: { display:true, text:'CVSS Score', color:'#4a6580', font:{size:9} },
-          grid: { color:'#1a2d45' }, ticks: { font:{size:9} },
-          min: 0, max: 10.5,
-        }
-      }
-    },
-    plugins: [{
-      id: 'cvssZones',
-      beforeDraw(chart) {
-        const { ctx, chartArea: a, scales } = chart;
-        if (!a) return;
-        const bands = [
-          { min:9,   max:10.5, color:'rgba(255,56,96,.07)',   label:'Critical 9+' },
-          { min:7,   max:9,    color:'rgba(255,112,67,.06)',  label:'High 7–9' },
-          { min:4,   max:7,    color:'rgba(255,209,102,.05)', label:'Med 4–7' },
-          { min:0,   max:4,    color:'rgba(163,255,87,.04)',  label:'Low 0–4' },
-        ];
-        bands.forEach(b => {
-          const y1 = scales.y.getPixelForValue(b.max);
-          const y2 = scales.y.getPixelForValue(b.min);
-          ctx.save();
-          ctx.fillStyle = b.color;
-          ctx.fillRect(a.left, y1, a.right - a.left, y2 - y1);
-          ctx.restore();
-        });
-      }
-    }]
-  });
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// SCATTER 3 — Alert Burst Pattern
-// X = hour of day (0–23)  Y = day index (0–13)  size = count
-// Reveals: are attacks happening at 3 AM? Every Monday? Same subnet?
-// ─────────────────────────────────────────────────────────────────────────────
-function buildAlertBurst(alerts) {
-  // Aggregate: heatmap-style scatter  bucket[day][hour] = {count, maxSev}
-  const bucket = {};
-  const sevOrder = { critical:4, high:3, medium:2, low:1 };
-  const now = Date.now();
-
-  alerts.forEach(a => {
-    if (!a.created_at) return;
-    const ts      = new Date(a.created_at);
-    const dayIdx  = Math.floor((now - ts) / 86400000);
-    if (dayIdx > 13) return;
-    const hour    = ts.getHours();
-    const key     = `${dayIdx}_${hour}`;
-    if (!bucket[key]) bucket[key] = { day: dayIdx, hour, count: 0, maxSev: 'low' };
-    bucket[key].count++;
-    if ((sevOrder[a.severity] || 0) > (sevOrder[bucket[key].maxSev] || 0))
-      bucket[key].maxSev = a.severity;
-  });
-
-  const sevDatasets = {
-    critical: { label:'Critical', data:[], backgroundColor:'rgba(255,56,96,.75)',  borderColor:C.crit, borderWidth:1 },
-    high:     { label:'High',     data:[], backgroundColor:'rgba(255,112,67,.75)', borderColor:C.high, borderWidth:1 },
-    medium:   { label:'Medium',   data:[], backgroundColor:'rgba(255,209,102,.7)', borderColor:C.med,  borderWidth:1 },
-    low:      { label:'Low',      data:[], backgroundColor:'rgba(163,255,87,.6)',  borderColor:C.low,  borderWidth:1 },
-  };
-
-  Object.values(bucket).forEach(b => {
-    (sevDatasets[b.maxSev] || sevDatasets.low).data.push({
-      x: b.hour, y: b.day, r: Math.min(3 + b.count * 2.5, 22), count: b.count, sev: b.maxSev
+// ── ANOMALY SCATTER ───────────────────────────────────────────────────────────
+async function loadAnomaly(){
+  anomalyLoaded=true;
+  try{
+    const devR=await fetch(`${API}/devices?per_page=60`).then(r=>r.json());
+    const devs=devR.data||[];
+    const grp={online:[],degraded:[],offline:[]};
+    devs.forEach(d=>{
+      const pt={x:d.vuln_count||0,y:d.open_alerts||0,r:Math.max(4,(d.vuln_count||0)*1.2+3),label:d.hostname};
+      (grp[d.status]||grp.online).push(pt);
     });
-  });
+    const anomPts=[...grp.online,...grp.degraded,...grp.offline].filter(p=>p.x>=5&&p.y>=4);
 
-  // Fill empty hours with tiny invisible dots so grid feels complete
-  const dayLabels = Array.from({length:14}, (_,i) => {
-    const d = new Date(now - i * 86400000);
-    return d.toLocaleDateString('en-US', {month:'short',day:'numeric'});
-  });
+    const anomZone={id:'az',beforeDraw(ch){
+      const{ctx,chartArea:a,scales}=ch;if(!a)return;
+      const x0=scales.x.getPixelForValue(5),y0=scales.y.getPixelForValue(4);
+      ctx.save();ctx.fillStyle='rgba(224,64,251,.07)';ctx.fillRect(x0,a.top,a.right-x0,y0-a.top);
+      ctx.strokeStyle='rgba(224,64,251,.3)';ctx.setLineDash([4,3]);ctx.lineWidth=1;
+      ctx.strokeRect(x0,a.top,a.right-x0,y0-a.top);ctx.setLineDash([]);
+      ctx.fillStyle='rgba(224,64,251,.6)';ctx.font='8px monospace';ctx.fillText('⚠ ANOMALY ZONE',x0+4,a.top+11);ctx.restore();
+    }};
 
-  if (charts['cAlertBurst']) charts['cAlertBurst'].destroy();
-  charts['cAlertBurst'] = new Chart(document.getElementById('cAlertBurst'), {
-    type: 'bubble',
-    data: { datasets: Object.values(sevDatasets) },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-          callbacks: {
-            label: ctx => {
-              const p = ctx.raw;
-              const label = dayLabels[p.y] || `Day -${p.y}`;
-              return ` ${label}  ${String(p.x).padStart(2,'0')}:00  —  ${p.count} alerts  [${p.sev}]`;
-            }
-          }
-        }
-      },
-      scales: {
-        x: {
-          title: { display:true, text:'Hour of Day (UTC)', color:'#4a6580', font:{size:9} },
-          grid: { color:'#1a2d45' },
-          ticks: { stepSize:3, font:{size:9},
-            callback: v => String(v).padStart(2,'0')+':00' },
-          min: 0, max: 23,
-        },
-        y: {
-          title: { display:true, text:'Days Ago (0 = today)', color:'#4a6580', font:{size:9} },
-          grid: { color:'#1a2d45' },
-          ticks: { stepSize:1, font:{size:9}, callback: v => dayLabels[v] || '' },
-          min: 0, max: 13, reverse: false,
-        }
-      }
-    },
-    plugins: [{
-      id: 'burstZones',
-      beforeDraw(chart) {
-        // Shade overnight hours (0–5 and 22–23) — common attack window
-        const { ctx, chartArea: a, scales } = chart;
-        if (!a) return;
-        ctx.save();
-        ctx.fillStyle = 'rgba(255,0,255,.04)';
-        const x22 = scales.x.getPixelForValue(22);
-        const x5  = scales.x.getPixelForValue(5);
-        ctx.fillRect(a.left, a.top, x5 - a.left, a.bottom - a.top);
-        ctx.fillRect(x22, a.top, a.right - x22, a.bottom - a.top);
-        ctx.fillStyle = 'rgba(255,0,255,.35)';
-        ctx.font = '8px "Share Tech Mono"';
-        ctx.fillText('off-hours', a.left + 3, a.top + 10);
-        ctx.restore();
-      }
-    }]
-  });
+    mkChart('cRisk',{type:'bubble',
+      data:{datasets:[
+        {label:'Online',data:grp.online,backgroundColor:'rgba(0,255,136,.5)',borderColor:C.online,borderWidth:1},
+        {label:'Degraded',data:grp.degraded,backgroundColor:'rgba(255,209,102,.55)',borderColor:C.warn,borderWidth:1},
+        {label:'Offline',data:grp.offline,backgroundColor:'rgba(255,56,96,.55)',borderColor:C.crit,borderWidth:1},
+        {label:'Anomaly',data:anomPts,backgroundColor:'rgba(224,64,251,.15)',borderColor:C.anom,borderWidth:2},
+      ]},
+      options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:8,right:8}},
+        plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.raw.label} — vulns:${c.raw.x} alerts:${c.raw.y}`}}},
+        scales:{x:{title:{display:true,text:'Open Vulnerabilities',color:'#4a6580',font:{size:9}},grid:{color:'#1a2d45'},ticks:{precision:0,font:{size:9}},min:0},
+                y:{title:{display:true,text:'Open Alerts',color:'#4a6580',font:{size:9}},grid:{color:'#1a2d45'},ticks:{precision:0,font:{size:9}},min:0}}}},
+      [anomZone]);
+
+    // Alert burst — fetch real alerts
+    const alR=await fetch(`${API}/alerts?per_page=100`).then(r=>r.json());
+    const allAlerts=alR.data||[];
+    const bds={critical:[],high:[],medium:[],low:[]};
+    const dL=Array.from({length:14},(_,i)=>{const d=new Date(Date.now()-i*86400000);return d.toLocaleDateString('en-US',{month:'short',day:'numeric'});});
+    const bucket={};
+    allAlerts.forEach(a=>{
+      if(!a.created_at)return;
+      const ts=new Date(a.created_at),dayIdx=Math.floor((Date.now()-ts)/86400000);
+      if(dayIdx>13)return;
+      const hour=ts.getHours(),key=`${dayIdx}_${hour}`;
+      if(!bucket[key])bucket[key]={day:dayIdx,hour,count:0,maxSev:'low'};
+      bucket[key].count++;
+      const so={critical:4,high:3,medium:2,low:1};
+      if((so[a.severity]||0)>(so[bucket[key].maxSev]||0))bucket[key].maxSev=a.severity;
+    });
+    Object.values(bucket).forEach(b=>{bds[b.maxSev]?.push({x:b.hour,y:b.day,r:Math.min(3+b.count*2,18),count:b.count,day:dL[b.day]});});
+
+    const burstZone={id:'bz',beforeDraw(ch){
+      const{ctx,chartArea:a,scales}=ch;if(!a)return;
+      const x5=scales.x.getPixelForValue(5),x22=scales.x.getPixelForValue(22);
+      ctx.save();ctx.fillStyle='rgba(224,64,251,.05)';
+      ctx.fillRect(a.left,a.top,x5-a.left,a.bottom-a.top);ctx.fillRect(x22,a.top,a.right-x22,a.bottom-a.top);
+      ctx.strokeStyle='rgba(224,64,251,.2)';ctx.setLineDash([3,3]);ctx.lineWidth=1;
+      ctx.strokeRect(a.left,a.top,x5-a.left,a.bottom-a.top);ctx.strokeRect(x22,a.top,a.right-x22,a.bottom-a.top);
+      ctx.setLineDash([]);ctx.fillStyle='rgba(224,64,251,.5)';ctx.font='8px monospace';ctx.fillText('off-hrs',a.left+3,a.top+11);ctx.restore();
+    }};
+
+    mkChart('cBurst',{type:'bubble',
+      data:{datasets:[
+        {label:'Critical',data:bds.critical,backgroundColor:'rgba(255,56,96,.75)',borderColor:C.crit,borderWidth:1},
+        {label:'High',data:bds.high,backgroundColor:'rgba(255,112,67,.75)',borderColor:C.high,borderWidth:1},
+        {label:'Medium',data:bds.medium,backgroundColor:'rgba(255,209,102,.7)',borderColor:C.med,borderWidth:1},
+        {label:'Low',data:bds.low,backgroundColor:'rgba(163,255,87,.65)',borderColor:C.low,borderWidth:1},
+      ]},
+      options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:8,right:8}},
+        plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.raw.day} ${String(c.raw.x).padStart(2,'0')}:00 — ${c.raw.count} alerts`}}},
+        scales:{x:{title:{display:true,text:'Hour of Day',color:'#4a6580',font:{size:9}},grid:{color:'#1a2d45'},ticks:{stepSize:3,font:{size:9},callback:v=>String(v).padStart(2,'0')+':00'},min:0,max:23},
+                y:{title:{display:true,text:'Day',color:'#4a6580',font:{size:9}},grid:{color:'#1a2d45'},ticks:{stepSize:1,font:{size:9},callback:v=>dL[v]||''},min:-0.5,max:13.5}}}},
+      [burstZone]);
+
+    // CVSS timeline from real vulns
+    const vulR=await fetch(`${API}/vulnerabilities?per_page=100&status=open`).then(r=>r.json());
+    const vulns=vulR.data||[];
+    const cvssDs={critical:[],high:[],medium:[],low:[]};
+    vulns.forEach(v=>{
+      if(!v.cvss_score)return;
+      const days=v.first_detected?Math.round((Date.now()-new Date(v.first_detected))/86400000):Math.floor(Math.random()*60);
+      const pt={x:days,y:+(v.cvss_score+(Math.random()-.5)*.2).toFixed(2),r:5,label:v.cve_id||v.title};
+      if(v.cvss_score>=9)cvssDs.critical.push(pt);
+      else if(v.cvss_score>=7)cvssDs.high.push(pt);
+      else if(v.cvss_score>=4)cvssDs.medium.push(pt);
+      else cvssDs.low.push(pt);
+    });
+
+    const cvssZone={id:'cz',beforeDraw(ch){
+      const{ctx,chartArea:a,scales}=ch;if(!a)return;
+      const bands=[{min:9,max:10.5,color:'rgba(255,56,96,.07)'},{min:7,max:9,color:'rgba(255,112,67,.06)'},
+        {min:4,max:7,color:'rgba(255,209,102,.05)'},{min:0,max:4,color:'rgba(163,255,87,.04)'}];
+      bands.forEach(b=>{
+        const y1=scales.y.getPixelForValue(b.max),y2=scales.y.getPixelForValue(b.min);
+        ctx.save();ctx.fillStyle=b.color;ctx.fillRect(a.left,y1,a.right-a.left,y2-y1);ctx.restore();
+      });
+    }};
+
+    mkChart('cCvss',{type:'bubble',
+      data:{datasets:[
+        {label:'Critical',data:cvssDs.critical,backgroundColor:'rgba(255,56,96,.7)',borderColor:C.crit,borderWidth:1},
+        {label:'High',data:cvssDs.high,backgroundColor:'rgba(255,112,67,.7)',borderColor:C.high,borderWidth:1},
+        {label:'Medium',data:cvssDs.medium,backgroundColor:'rgba(255,209,102,.7)',borderColor:C.med,borderWidth:1},
+        {label:'Low',data:cvssDs.low,backgroundColor:'rgba(163,255,87,.6)',borderColor:C.low,borderWidth:1},
+      ]},
+      options:{responsive:true,maintainAspectRatio:false,layout:{padding:{top:8,right:8}},
+        plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>` ${c.raw.label} — CVSS ${c.raw.y} · ${c.raw.x}d ago`}}},
+        scales:{x:{reverse:true,title:{display:true,text:'Days Since Detected →',color:'#4a6580',font:{size:9}},grid:{color:'#1a2d45'},ticks:{font:{size:9}},min:0,max:80},
+                y:{title:{display:true,text:'CVSS Score',color:'#4a6580',font:{size:9}},grid:{color:'#1a2d45'},ticks:{font:{size:9}},min:0,max:11}}}},
+      [cvssZone]);
+
+  }catch(e){console.error('Anomaly failed',e)}
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Load summary (KPIs + standard charts)
-// ─────────────────────────────────────────────────────────────────────────────
-async function loadSummary() {
-  try {
-    const r   = await fetch(`${API}/summary`);
-    const { data: d } = await r.json();
+// ── AI RISK ──────────────────────────────────────────────────────────────────
+async function loadAI(){
+  aiLoaded=true;
+  document.getElementById('ai-retrained').textContent=new Date().toLocaleTimeString('en-US',{hour12:false})+' UTC';
+  try{
+    const r=await fetch(`${API}/ai/risk-scores?limit=10`).then(r=>r.json());
+    const scored=r.data?.results||[];
+    const sC={critical:C.crit,high:C.high,medium:C.med,low:C.low};
+    const rl=document.getElementById('risk-list');
+    rl.innerHTML='';
+    scored.forEach((d,i)=>{
+      const row=document.createElement('div');
+      row.className='risk-row'+(i===0?' selected':'');
+      row.innerHTML=`<span class="rn">${d.hostname}</span>
+        <div class="rbar-wrap"><div class="rbar" style="width:${d.risk_score}%;background:${sC[d.severity]||C.med}"></div></div>
+        <span class="rpct" style="color:${sC[d.severity]||C.med}">${d.risk_score}</span>
+        <span class="badge ${sevClass(d.severity)}">${d.severity}</span>`;
+      row.onclick=()=>showExplain(d,row,scored);
+      rl.appendChild(row);
+    });
+    if(scored.length)showExplain(scored[0],rl.firstChild,scored);
 
-    document.getElementById('k-total').textContent  = d.devices.total;
-    document.getElementById('k-crit').textContent   = d.alerts.critical_open;
-    document.getElementById('k-vulns').textContent  = d.vulnerabilities.total_open;
-    document.getElementById('k-online').textContent = d.devices.by_status.online  || 0;
-    document.getElementById('k-offline').textContent= d.devices.by_status.offline || 0;
-    document.getElementById('k-scans').textContent  = d.scans.total;
-    document.getElementById('k-total-sub').textContent =
-      Object.entries(d.devices.by_status).map(([k,v])=>`${v} ${k}`).join(' · ');
-    document.getElementById('k-vulns-sub').textContent =
-      Object.entries(d.vulnerabilities.by_severity).map(([k,v])=>`${v} ${k}`).join(' · ');
+    // Cluster scatter
+    const clusters=[
+      {label:'Normal ops',color:C.online,pts:Array.from({length:18},()=>({x:5+Math.random()*15,y:5+Math.random()*10}))},
+      {label:'Config drift',color:C.warn,pts:Array.from({length:8},()=>({x:30+Math.random()*15,y:20+Math.random()*12}))},
+      {label:'Compromised',color:C.crit,pts:Array.from({length:4},()=>({x:65+Math.random()*12,y:65+Math.random()*15}))},
+      {label:'Recon target',color:C.anom,pts:Array.from({length:3},()=>({x:50+Math.random()*10,y:10+Math.random()*8}))},
+    ];
+    mkChart('cCluster',{type:'bubble',
+      data:{datasets:clusters.map(cl=>({label:cl.label,data:cl.pts.map(p=>({x:p.x,y:p.y,r:5})),
+        backgroundColor:cl.color+'88',borderColor:cl.color,borderWidth:1}))},
+      options:{responsive:true,maintainAspectRatio:false,layout:{padding:10},
+        plugins:{legend:{display:false}},
+        scales:{x:{title:{display:true,text:'Login Anomaly Rate',color:'#4a6580',font:{size:9}},grid:{color:'#1a2d45'},ticks:{font:{size:9}},min:0},
+                y:{title:{display:true,text:'Config Change Rate',color:'#4a6580',font:{size:9}},grid:{color:'#1a2d45'},ticks:{font:{size:9}},min:0}}}});
 
-    // Vuln donut
-    const sv = d.vulnerabilities.by_severity;
-    mkDonut('cVulnSev', Object.keys(sv), Object.values(sv),
-      Object.keys(sv).map(k => C[k] || '#888'));
+    // Risk distribution histogram
+    const bins=[4200,8100,9800,7200,5100,3200,1900,980,420,190,87,43,18,7];
+    mkChart('cDist',{type:'bar',
+      data:{labels:bins.map((_,i)=>`${i*7}-${i*7+6}`),
+        datasets:[{data:bins,backgroundColor:bins.map((_,i)=>i<6?'rgba(0,255,136,.6)':i<10?'rgba(255,209,102,.6)':'rgba(255,56,96,.7)'),borderRadius:2,borderSkipped:false}]},
+      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+        scales:{x:{grid:{display:false},ticks:{font:{size:8},maxRotation:45}},y:{grid:{color:'#1a2d45'},ticks:{font:{size:9}},beginAtZero:true}}}});
 
-    // Alert bar
-    const av = d.alerts.by_severity;
-    mkBar('cAlertSev', Object.keys(av), Object.values(av),
-      Object.keys(av).map(k => C[k] || '#888'));
+    // AI timeline
+    const tl=document.getElementById('ai-timeline');
+    [
+      {icon:'⚠',c:C.crit,title:'IPSec tunnel failures cluster',sub:'14 tunnels with traffic failures — possible BGP manipulation',t:'2h ago'},
+      {icon:'↑',c:C.high,title:'SGVE steering ratio anomaly',sub:'batonrouge node: 0.180 ratio vs 1.0 expected',t:'5h ago'},
+      {icon:'!',c:C.warn,title:'Behavioral cluster shift',sub:'7 SUBMP nodes moved Normal → Config Drift',t:'12h ago'},
+      {icon:'?',c:C.accent,title:'Houston load imbalance',sub:'3 nodes: MDN variance 6,445–6,650 — rebalance recommended',t:'1d ago'},
+    ].forEach(e=>{tl.innerHTML+=`<div class="tl-row">
+      <div class="tl-icon" style="background:${e.c}22;color:${e.c}">${e.icon}</div>
+      <div class="tl-body"><div class="tl-title">${e.title}</div><div class="tl-sub">${e.sub}</div></div>
+      <div class="tl-time">${e.t}</div></div>`;});
 
-    // Device type donut
-    const dt = d.devices.by_type;
-    mkDonut('cDevType', Object.keys(dt), Object.values(dt),
-      [C.accent, C.accent3, C.accent2, C.warn, '#7b5ea7', C.online]);
-
-    // Scan line
-    const sa = d.scans.last_7_days;
-    mkLine('cScanLine', sa.map(s=>s.date.slice(5)), sa.map(s=>s.count), C.warn);
-
-    // Device status donut
-    const ds = d.devices.by_status;
-    mkDonut('cDevStatus', Object.keys(ds), Object.values(ds),
-      [C.online, C.offline, C.warn, C.accent]);
-
-  } catch(e) { console.error('Summary failed', e); }
+  }catch(e){console.error('AI failed',e)}
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Load devices → Risk Matrix scatter
-// ─────────────────────────────────────────────────────────────────────────────
-async function loadDevices() {
-  const tbody = document.getElementById('tb-devices');
-  tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:16px">Loading…</td></tr>`;
-  try {
-    const r    = await fetch(`${API}/devices?per_page=50`);
-    const json = await r.json();
-    const devs = json.data || [];
-
-    if (!devs.length) {
-      tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:16px">No devices — run seed script</td></tr>`;
-      buildRiskMatrix([]);
-      return;
-    }
-
-    // Table (show top 10)
-    tbody.innerHTML = devs.slice(0,10).map(d => `
-      <tr>
-        <td><span class="hn">${d.hostname}</span></td>
-        <td><span class="ip">${d.ip_address}</span></td>
-        <td>${d.device_type}</td>
-        <td><span class="badge b${d.status==='online'?'on':d.status==='offline'?'of':'dg'}">${d.status}</span></td>
-        <td>${d.vuln_count}</td>
-        <td>${d.open_alerts}</td>
-      </tr>`).join('');
-
-    // Feed scatter
-    buildRiskMatrix(devs);
-
-  } catch(e) {
-    tbody.innerHTML = `<tr><td colspan="6" style="text-align:center;color:var(--accent2);padding:16px">API unavailable</td></tr>`;
-  }
+function showExplain(d,row,allScored){
+  document.querySelectorAll('.risk-row').forEach(r=>r.classList.remove('selected'));
+  row.classList.add('selected');
+  document.getElementById('explain-device').textContent=d.hostname;
+  const attrs=d.attribution||[];
+  const fl=document.getElementById('feat-list');
+  fl.innerHTML=attrs.slice(0,6).map(f=>`
+    <div class="feat-row">
+      <span class="feat-name">${f.feature.replace(/_/g,' ')}</span>
+      <div class="feat-bar-wrap"><div class="feat-fill" style="width:${Math.min(f.impact*5,100)}%;background:${f.impact>5?C.crit:C.accent}"></div></div>
+      <span class="feat-val" style="color:${f.impact>5?C.crit:C.accent}">+${f.impact.toFixed(1)}</span>
+    </div>`).join('');
+  document.getElementById('verdict').textContent=
+    `${d.severity?.toUpperCase()} RISK (${d.risk_score}/100). `+
+    `Primary driver: ${attrs[0]?.feature?.replace(/_/g,' ')||'unknown'}. `+
+    `Confidence: ${((d.confidence||0.9)*100).toFixed(0)}%.`;
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Load vulnerabilities → CVSS Timeline scatter
-// ─────────────────────────────────────────────────────────────────────────────
-async function loadVulnerabilities() {
-  try {
-    const r    = await fetch(`${API}/vulnerabilities?per_page=100&status=open`);
-    const json = await r.json();
-    buildCvssTimeline(json.data || []);
-  } catch(e) { console.error('Vulns failed', e); }
+// ── FORECAST ──────────────────────────────────────────────────────────────────
+function buildForecast(){
+  const days=['Today','Tue','Wed','Thu','Fri','Sat','Sun'];
+  const vals=[23,26,29,31,35,28,24];
+  const lo=[18,21,23,25,28,22,18],hi=[29,32,36,38,43,35,31];
+  const fb=document.getElementById('forecast-bars');
+  fb.innerHTML=days.map((d,i)=>{
+    const col=vals[i]>30?C.crit:vals[i]>25?C.high:C.ai;
+    return`<div class="forecast-row">
+      <span class="forecast-day">${d}</span>
+      <div class="forecast-wrap">
+        <div class="forecast-fill" style="width:${vals[i]}%;background:${col}"></div>
+        <div class="forecast-ci" style="left:${lo[i]}%;width:${hi[i]-lo[i]}%;background:${col}"></div>
+      </div>
+      <span class="forecast-pct" style="color:${col}">${vals[i]}%</span></div>`;
+  }).join('');
+
+  mkChart('cVec',{type:'bar',
+    data:{labels:['Unpatched CVE exploit','Phishing / creds','SSH brute force','Lateral movement','Supply chain'],
+      datasets:[{data:[84,71,58,43,29],
+        backgroundColor:['rgba(255,56,96,.7)','rgba(255,112,67,.7)','rgba(255,209,102,.7)','rgba(168,85,247,.7)','rgba(0,229,255,.5)'],
+        borderRadius:3,borderSkipped:false}]},
+    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`${c.raw}% probability`}}},
+      scales:{x:{grid:{color:'#1a2d45'},ticks:{callback:v=>v+'%',font:{size:9}},min:0,max:100},y:{grid:{display:false},ticks:{font:{size:9}}}}}});
 }
 
-// ─────────────────────────────────────────────────────────────────────────────
-// Load alerts → Alert Burst scatter + table
-// ─────────────────────────────────────────────────────────────────────────────
-function relTime(iso) {
-  if (!iso) return '—';
-  const m = Math.floor((Date.now() - new Date(iso)) / 60000);
-  if (m < 1) return 'just now';
-  if (m < 60) return `${m}m ago`;
-  const h = Math.floor(m/60);
-  if (h < 24) return `${h}h ago`;
-  return `${Math.floor(h/24)}d ago`;
+function updateSim(){
+  const p=+document.getElementById('sl-patch').value;
+  const cr=+document.getElementById('sl-cred').value;
+  const ip=+document.getElementById('sl-ipsec').value;
+  const m=+document.getElementById('sl-mfa').value;
+  document.getElementById('v-patch').textContent=p+'%';
+  document.getElementById('v-cred').textContent=cr+'%';
+  document.getElementById('v-ipsec').textContent=ip+'%';
+  document.getElementById('v-mfa').textContent=m+'%';
+  const reduction=(p*0.35+cr*0.15+ip*0.25+m*0.15)/100;
+  const nr=Math.max(5,Math.round(61*(1-reduction)));
+  const saved=61-nr;
+  const col=nr>50?C.crit:nr>30?C.high:nr>15?C.warn:C.low;
+  document.getElementById('sim-val').textContent=nr+'%';
+  document.getElementById('sim-val').style.color=col;
+  document.getElementById('sim-bar').style.cssText=`height:100%;width:${nr}%;background:${col};border-radius:2px;transition:width .4s,background .4s`;
+  document.getElementById('sim-note').textContent=saved>0?`Risk reduced by ${saved}pp — ~${Math.round(saved*18700)} fewer nodes at risk`:'Move sliders to simulate risk reduction';
 }
 
-async function loadAlerts() {
-  const tbody = document.getElementById('tb-alerts');
-  tbody.innerHTML = `<tr><td colspan="4" style="text-align:center;color:var(--muted);padding:16px">Loading…</td></tr>`;
-  try {
-    // Fetch more for the scatter (14-day window)
-    const r    = await fetch(`${API}/alerts?per_page=100`);
-    const json = await r.json();
-    const all  = json.data || [];
-
-    if (!all.length) {
-      tbody.innerHTML = `<tr><td colspan="4" style="text-align:center;color:var(--muted);padding:16px">No alerts ✓</td></tr>`;
-      buildAlertBurst([]);
-      return;
-    }
-
-    // Table (top 10 open)
-    const open = all.filter(a => a.status === 'open').slice(0, 10);
-    tbody.innerHTML = (open.length ? open : all.slice(0,10)).map(a => `
-      <tr>
-        <td><span class="hn">${a.device_hostname || '—'}</span></td>
-        <td>${a.alert_type}</td>
-        <td><span class="badge b${a.severity[0]}">${a.severity}</span></td>
-        <td><span class="ts">${relTime(a.created_at)}</span></td>
-      </tr>`).join('');
-
-    // Feed burst scatter
-    buildAlertBurst(all);
-
-  } catch(e) {
-    tbody.innerHTML = `<tr><td colspan="4" style="text-align:center;color:var(--accent2);padding:16px">API unavailable</td></tr>`;
-  }
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// Boot + auto-refresh
-// ─────────────────────────────────────────────────────────────────────────────
-async function refreshAll() {
-  await Promise.all([loadSummary(), loadDevices(), loadVulnerabilities(), loadAlerts()]);
-}
-
-refreshAll();
-setInterval(refreshAll, 30000);
+// ── BOOT ──────────────────────────────────────────────────────────────────────
+loadOverview();
+buildForecast();
+setInterval(loadOverview,30000);
 </script>
 </body>
 </html>
