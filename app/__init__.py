@@ -79,12 +79,12 @@ def create_app():
         SESSION_COOKIE_SECURE=os.getenv('FLASK_ENV', 'development') == 'production',
 
         # Flask-Mail Configurations (Gmail)
-        MAIL_SERVER=os.getenv('MAIL_SERVER', 'smtp.gmail.com'),
-        MAIL_PORT=int(os.getenv('MAIL_PORT', 587)),
+        MAIL_SERVER=os.getenv('MAIL_SERVER'),
+        MAIL_PORT=int(os.getenv('MAIL_PORT')),
         MAIL_USE_TLS=os.getenv('MAIL_USE_TLS', 'True').lower() in ['true', '1', 't'],
         MAIL_USERNAME=os.getenv('MAIL_USERNAME'),
         MAIL_PASSWORD=os.getenv('MAIL_PASSWORD'),
-        MAIL_DEFAULT_SENDER=os.getenv('SENDER_EMAIL', os.getenv('MAIL_USERNAME')),
+        MAIL_DEFAULT_SENDER=os.getenv('SENDER_EMAIL'),
 
         # Flask-Caching
         CACHE_TYPE='SimpleCache',
