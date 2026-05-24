@@ -1,0 +1,153 @@
+<!--app/templates/protected.html-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecAAS Hub - Network Automation</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/Favicon/16x16/Icon on stone.png') }}">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .hover-card {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+
+        .hover-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased min-h-screen flex flex-col">
+
+<nav class="bg-white shadow-sm border-b border-gray-200 px-6 py-4 flex justify-between items-center sticky top-0 z-50">
+    <div class="flex items-center gap-3">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="h-6">
+        <h1 class="text-xl font-bold text-gray-800 tracking-wide">
+            <span class="text-red-600">Sec</span>AAS Hub
+        </h1>
+    </div>
+    <div class="text-sm font-medium text-gray-600">
+        <span>Welcome, {{ current_user.name | default('User') }}</span>
+        <span class="mx-2">|</span>
+        {% if 'admin' in current_user.permissions %}
+            <a href="{{ url_for('main.manage_users') }}" class="hover:text-red-600 transition">User Control</a>
+            <span class="mx-2">|</span>
+            <a href="{{ url_for('main.activity_report') }}" class="hover:text-red-600 transition">Monitor</a>
+            <span class="mx-2">|</span>
+        {% endif %}
+        <a href="{{ url_for('main.logout') }}"
+           class="text-red-600 hover:text-red-800 hover:underline transition">Logout</a>
+    </div>
+</nav>
+
+<main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <div class="mb-12 bg-white rounded-lg p-8 shadow-sm border border-gray-100">
+        <h2 class="text-3xl font-extrabold text-gray-900 tracking-tight">Network Automation Repository</h2>
+        <p class="mt-4 text-lg text-gray-600 max-w-4xl leading-relaxed">
+            Welcome to the centralized reporting portal. This repository hosts cross-functional telemetry,
+            real-time security postures, and legacy infrastructure tracking. Select an authorized workspace below.
+        </p>
+    </div>
+
+    <h3 class="text-lg font-semibold text-gray-900 mb-6 uppercase tracking-wider">Your Authorized Workspaces</h3>
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+
+        <a href="{{ url_for('main.netops_dashboard') }}"
+           class="hover-card block bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+            <div class="h-2 bg-gray-900"></div>
+            <div class="p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h4 class="text-xl font-bold text-gray-900">NetOps Intelligence</h4>
+                    <span class="bg-red-100 text-red-800 text-xs px-2 py-1 rounded font-bold tracking-wide">SecAAS</span>
+                </div>
+                <p class="text-sm text-gray-600 mb-6">
+                    Real-time monitoring for device health, IPSec tunnel failures, vulnerability scanning, and AI-driven
+                    breach forecasting.
+                </p>
+                <div class="text-indigo-600 text-sm font-semibold">Launch Dashboard &rarr;</div>
+            </div>
+        </a>
+
+        {% if 'pub-sec-baseline' in current_user.permissions %}
+            <a href="{{ url_for('main.pubsec_page') }}"
+               class="hover-card block bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                <div class="h-2 bg-purple-500"></div>
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h4 class="text-xl font-bold text-gray-900">PubSec Baseline</h4>
+                        <span class="bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded font-bold tracking-wide">PUBSEC</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-6">
+                        Load latest data from multiple sources to generate the monthly Public Sector baseline report.
+                    </p>
+                    <div class="text-indigo-600 text-sm font-semibold">Launch Generator &rarr;</div>
+                </div>
+            </a>
+        {% endif %}
+
+        {% if 'rcm2' in current_user.permissions %}
+            <a href="{{ url_for('main.rcm2_page') }}"
+               class="hover-card block bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                <div class="h-2 bg-blue-500"></div>
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h4 class="text-xl font-bold text-gray-900">Fiber RCM2 Inventory</h4>
+                        <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded font-bold tracking-wide">FIBER</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-6">
+                        Manage and view Fiber migration circuits mapped to active address details from EDW.
+                    </p>
+                    <div class="text-indigo-600 text-sm font-semibold">Launch Dashboard &rarr;</div>
+                </div>
+            </a>
+        {% endif %}
+
+        {% if 'frn' in current_user.permissions %}
+            <a href="{{ url_for('main.frn_page') }}"
+               class="hover-card block bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                <div class="h-2 bg-green-500"></div>
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h4 class="text-xl font-bold text-gray-900">FRN Footprint</h4>
+                        <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded font-bold tracking-wide">STRATEGY</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-6">
+                        Aggregated views and raw data analysis to identify legacy exposure and fiber readiness.
+                    </p>
+                    <div class="text-indigo-600 text-sm font-semibold">Launch Dashboard &rarr;</div>
+                </div>
+            </a>
+        {% endif %}
+
+        {% if 'cheetah' in current_user.permissions %}
+            <a href="{{ url_for('main.cheetah_page') }}"
+               class="hover-card block bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                <div class="h-2 bg-yellow-500"></div>
+                <div class="p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h4 class="text-xl font-bold text-gray-900">NFOD (Cheetah)</h4>
+                        <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded font-bold tracking-wide">DECOMM</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-6">
+                        Network Facility Optimization. Target site consolidations, retire legacy assets, and manage CMT
+                        focus.
+                    </p>
+                    <div class="text-indigo-600 text-sm font-semibold">Launch Dashboard &rarr;</div>
+                </div>
+            </a>
+        {% endif %}
+
+    </div>
+</main>
+
+<footer class="bg-white border-t border-gray-200 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center text-sm text-gray-500">
+        <p>Verizon confidential and proprietary. Unauthorized disclosure, reproduction or other use prohibited.</p>
+        <p class="mt-1">Managed by the Network Automation Team</p>
+    </div>
+</footer>
+
+</body>
+</html>

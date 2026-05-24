@@ -3,15 +3,12 @@ run.py — application entry point
 Run with:  python run.py
            flask --app run:app run --debug
 """
-import os
+
 from app import create_app
+import os
 
-env = os.environ.get("FLASK_ENV", "development")
-app = create_app(env)
+port = int(os.environ.get('PORT', 5111))
+app = create_app()
 
-if __name__ == "__main__":
-    app.run(
-        host="0.0.0.0",
-        port=int(os.environ.get("PORT", 5001)),
-        debug=(env == "development"),
-    )
+if __name__ == '__main__':
+    app.run(debug=True, host='0.0.0.0', port=port, use_reloader=False)

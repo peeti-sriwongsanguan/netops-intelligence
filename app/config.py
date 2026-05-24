@@ -8,7 +8,7 @@ load_dotenv()
 
 
 class BaseConfig:
-    SECRET_KEY = os.environ.get("SECRET_KEY", "dev-secret-change-in-prod")
+    SECRET_KEY = os.environ.get("SECRET_KEY")
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     JSON_SORT_KEYS = False
     API_TITLE = "Network Intelligence API"
@@ -21,15 +21,15 @@ class BaseConfig:
     # Rate limiting
     RATELIMIT_DEFAULT = "200 per day;50 per hour"
 
-    # PostgreSQL
     SQLALCHEMY_DATABASE_URI = os.environ.get(
         "DATABASE_URL",
-        "postgresql://netops:netops123@localhost:5432/network_intelligence"
+        "sqlite:///D:/DRIVE/project/netops-intelligence/secaas.db"
     )
+
+
 
     # Celery (for async task queue — future)
     CELERY_BROKER_URL = os.environ.get("REDIS_URL", "redis://localhost:6379/0")
-
 
 class DevelopmentConfig(BaseConfig):
     DEBUG = True

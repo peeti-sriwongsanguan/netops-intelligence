@@ -362,13 +362,30 @@ def main():
     parser = argparse.ArgumentParser(description="Ingest real production monitoring data")
     parser.add_argument(
         "--log-dir",
-        default="data/opt/admin/monitoring/logs/20260521_095546",
-        help="Path to the daily log directory"
+        default=None,
+        help="Path to the daily log directory. If empty, finds the newest folder."
     )
     args = parser.parse_args()
-    log_dir = args.log_dir
 
-    print(f"🚀  Ingesting from: {log_dir}")
+    # 1. Base log directory (should match your .env or hardcoded path)
+    BASE_LOG_DIR = r"D:\DRIVE\data\sec\opt\admin\monitoring\logs"
+
+    # 2. Auto-detect the newest folder if no argument is provided
+    if args.log_dir:
+        log_dir = args.log_dir
+    else:
+        # Get all subdirectories
+        subfolders = [os.path.join(BASE_LOG_DIR, d) for d in os.listdir(BASE_LOG_DIR)
+                      if os.path.isdir(os.path.join(BASE_LOG_DIR, d))]
+
+        if not subfolders:
+            print(f"❌ No log directories found in {BASE_LOG_DIR}")
+            return
+
+        # Find the most recently created/modified folder
+        log_dir = max(subfolders, key=os.path.getmtime)
+
+    print(f"🚀 Ingesting from newest directory: {log_dir}")
 
     with app.app_context():
         db.create_all()
@@ -376,44 +393,31 @@ def main():
         # Find files dynamically
         files = os.listdir(log_dir)
 
-        sgve_file = next(
-            (os.path.join(log_dir, f) for f in files if "SGVE-usage" in f), None
-        )
-        ipsec_file = next(
-            (os.path.join(log_dir, f) for f in files if "ipsec_monitor" in f), None
-        )
-        prom_cs = next(
-            (os.path.join(log_dir, f) for f in files if "prometheus_metrics_CS" in f), None
-        )
-        prom_sl = next(
-            (os.path.join(log_dir, f) for f in files if "prometheus_metrics_SL" in f), None
-        )
+        sgve_file = next((os.path.join(log_dir, f) for f in files if "SGVE-usage" in f), None)
+        ipsec_file = next((os.path.join(log_dir, f) for f in files if "ipsec_monitor" in f), None)
+        prom_cs = next((os.path.join(log_dir, f) for f in files if "prometheus_metrics_CS" in f), None)
+        prom_sl = next((os.path.join(log_dir, f) for f in files if "prometheus_metrics_SL" in f), None)
 
         if sgve_file:
             ingest_sgve_usage(sgve_file)
         else:
-            print("⚠  SGVE usage file not found")
+            print("⚠ SGVE usage file not found")
 
         if ipsec_file:
             ingest_ipsec(ipsec_file)
         else:
-            print("⚠  IPSec monitor file not found")
+            print("⚠ IPSec monitor file not found")
 
-        if prom_cs:
-            ingest_prometheus(prom_cs, region="CS")
+        if prom_cs: ingest_prometheus(prom_cs, region="CS")
+        if prom_sl: ingest_prometheus(prom_sl, region="SL")
 
-        if prom_sl:
-            ingest_prometheus(prom_sl, region="SL")
+        print(f"\n{'─' * 50}")
+        print(f"✅ Ingest complete!")
+        print(f"{'─' * 50}")
 
-        # Summary
-        print(f"\n{'─'*50}")
-        print(f"✅  Ingest complete!")
-        print(f"   Devices  : {Device.query.count()}")
-        print(f"   Alerts   : {Alert.query.count()}")
-        print(f"   Scans    : {NetworkScan.query.count()}")
-        print(f"   Vulns    : {Vulnerability.query.count()}")
-        print(f"{'─'*50}")
 
+if __name__ == "__main__":
+    main()
 
 if __name__ == "__main__":
     main()

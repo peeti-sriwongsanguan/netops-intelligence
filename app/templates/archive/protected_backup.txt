@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMAART Report</title>
+    <link rel="icon" type="image/x-con" href="{{ url_for('static', filename='images/Favicon/16x16/Icon on stone.png') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div id="toast"></div>
+
+    <div class="container">
+        <div class="banner">
+            <a href="{{ url_for('main.protected') }}" class="banner-link">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Verizon Business" class="logo">
+            </a>
+            <a href="{{ url_for('main.protected') }}" class="banner-link">
+                <h1><span class="highlight-word">SMAART</span> Report</h1>
+            </a>
+            <div class="user-info">
+                <span>Welcome, {{ current_user.name }}</span>
+                <a href="{{ url_for('main.logout') }}">Logout</a>
+            </div>
+        </div>
+
+        <div class="nav-bar">
+            {% if 'third-party-decomm' in current_user.permissions %}
+                <button class="nav-tab" onclick="openTool(event, 'thirdPartyDecomm')" id="defaultOpen">Third Party Decomm</button>
+            {% endif %}
+            {% if 'pub-sec-baseline' in current_user.permissions %}
+                <button class="nav-tab" onclick="openTool(event, 'pubsecBaseline')">Pub Sec Baseline</button>
+            {% endif %}
+
+
+            {% if 'strategic-analyzer' in current_user.permissions or True %}
+                <button class="nav-tab" onclick="openTool(event, 'strategicAnalyzer')">Strategic Analyzer</button>
+            {% endif %}
+
+            {% if 'rcm2' in current_user.permissions %}
+                <button class="nav-tab" onclick="openTool(event, 'rcm2Run')">RCM2+</button>
+            {% endif %}
+            {% if 'fwa' in current_user.permissions %}
+                <button class="nav-tab" onclick="openTool(event, 'fwaRun')">FWA</button>
+            {% endif %}
+        </div>
+
+        <div class="main-content">
+
+            {% if 'third-party-decomm' in current_user.permissions %}
+            <div id="thirdPartyDecomm" class="tool-content">
+                <h2>Third-Party Decommissions Mailing & Tracker Update</h2>
+                <br/>
+                <button id="processButton" class="btn btn-vz">Process Data</button>
+                <hr/>
+                <div id="loading" style="display: none; text-align: center; margin: 20px;">
+                    <p>Processing data, please wait...</p>
+                </div>
+                <div id="processingInfo" class="lookup-form" style="display: none;">
+                    <h5>Processing Steps Completed</h5>
+                    <div id="processingContent"></div>
+                </div>
+                <div id="resultsWrapper" style="display: none;">
+                    <div class="results-container mt-4">
+                        <h4>VZ Circuit ID matching a third-party ID</h4>
+                        <div id="related-circuits-table"></div>
+                        <div class="button-group download-buttons">
+                            <button class="btn btn-gray" onclick="copyTableData('related_circuits')">Copy</button>
+                            <button class="btn btn-stone" onclick="downloadCSV('related_circuits')">CSV</button>
+                            <button class="btn btn-stone" onclick="downloadExcel('related_circuits')">Excel</button>
+                        </div>
+                    </div>
+                    <div class="results-container mt-4">
+                        <h4>Circuit found in Access Unification</h4>
+                        <div id="access-unification-table"></div>
+                        <div class="button-group download-buttons">
+                            <button class="btn btn-gray" onclick="copyTableData('access_unification')">Copy</button>
+                            <button class="btn btn-stone" onclick="downloadCSV('access_unification')">CSV</button>
+                            <button class="btn btn-stone" onclick="downloadExcel('access_unification')">Excel</button>
+                        </div>
+                    </div>
+                    <div class="results-container mt-4">
+                        <h4>Disconnected Circuits</h4>
+                        <div id="disconnected-table"></div>
+                        <div class="button-group download-buttons">
+                            <button class="btn btn-gray" onclick="copyTableData('disconnected')">Copy</button>
+                            <button class="btn btn-stone" onclick="downloadCSV('disconnected')">CSV</button>
+                            <button class="btn btn-stone" onclick="downloadExcel('disconnected')">Excel</button>
+                        </div>
+                    </div>
+                    <div class="results-container mt-4">
+                        <h4>Mailing List</h4>
+                        <div id="mailing-list-table"></div>
+                        <div class="button-group download-buttons">
+                            <button class="btn btn-gray" onclick="copyTableData('mailing_list')">Copy</button>
+                            <button class="btn btn-stone" onclick="downloadCSV('mailing_list')">CSV</button>
+                            <button class="btn btn-stone" onclick="downloadExcel('mailing_list')">Excel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if 'pub-sec-baseline' in current_user.permissions %}
+                <div id="pubsecBaseline" class="tool-content">
+                    <h3>Public Sector Baseline Report</h3>
+                    <p>This process will load the latest data from multiple sources to generate the monthly baseline report.</p>
+
+
+                    <div class="lookup-form" style="margin-top: 20px;">
+                        <h4>Prerequisites</h4>
+                        <p>Before running, please complete the following manual steps:</p>
+                        <ol>
+                            <li>Go to the latest monthly folder and download the Google Sheet file as an XLSX file.</li>
+                            <li>Add `_completed` to the end of the downloaded file name (e.g., `..._completed.xlsx`).</li>
+                            <li>Upload this new `_completed.xlsx` file back into the same monthly folder.</li>
+                        </ol>
+                    </div>
+                    <br/>
+                    <button id="generateReportBtn" class="btn btn-vz">Generate Report</button>
+                    <div id="pubsecLoading" style="display: none; margin-top: 20px;">
+                        <p>Generating report, please wait...</p>
+
+                        <pre id="log-output" class="lookup-form" style="text-align: left;"></pre>
+                    </div>
+
+                    <div id="pubsecResultsWrapper" style="display: none;">
+                        <div class="results-container mt-4">
+                            <h4>Baseline Report Results</h4>
+                            <div id="pubsec-baseline-table"></div>
+                            <div class="button-group download-buttons">
+                                <button class="btn btn-stone" onclick="downloadExcel('pubsec_baseline')">Download Excel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+
+            {% if 'strategic-analyzer' in current_user.permissions or True %}
+            <div id="strategicAnalyzer" class="tool-content">
+                <header class="text-center mb-8">
+                    <h1 class="text-3xl md:text-4xl font-bold text-gray-800">Strategic Location Analyzer</h1>
+                    <p class="text-gray-600 mt-2">A PoC for deriving business insights from network data using AI.</p>
+                </header>
+
+                <main>
+                    <div class="bg-white p-6 rounded-lg shadow-md max-w-2xl mx-auto">
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <input type="text" id="state-input" placeholder="Enter 2-letter state code (e.g., PA)"
+                                   class="flex-grow p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <button id="analyze-btn"
+                                    class="bg-blue-600 text-white font-bold py-3 px-6 rounded-md hover:bg-blue-700 transition duration-300">
+                                Analyze
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="loading-spinner" class="text-center my-8 hidden">
+                        <div class="spinner"></div>
+                        <p class="text-gray-600 mt-2">Analyzing data and generating insights...</p>
+                    </div>
+
+                    <div id="error-message"
+                         class="text-center my-8 hidden bg-red-100 text-red-700 p-4 rounded-lg max-w-2xl mx-auto">
+
+                    </div>
+
+                    <div id="results-container"
+                         class="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto hidden">
+                        <!-- Analysis Summary Column -->
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <h2 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Analysis Summary</h2>
+                            <div id="analysis-summary">
+                                <!-- Data will be injected here -->
+                            </div>
+                        </div>
+
+                        <!-- Strategic Recommendation Column -->
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <h2 class="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">AI Strategic
+                                Recommendation</h2>
+                            <div id="strategic-recommendation" class="prose">
+                                <!-- AI text will be injected here -->
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+            {% endif %}
+
+
+
+            {% if 'rcm2' in current_user.permissions %}
+            <div id="rcm2Run" class="tool-content">
+                <h3>RCM2+</h3>
+                <p>RCM2+ coming soon.</p>
+            </div>
+            {% endif %}
+
+            {% if 'fwa' in current_user.permissions %}
+            <div id="fwaRun" class="tool-content">
+                <h3>FWA Wireless Data Viewer</h3>
+
+                <p style="font-size: 0.9em; color: #555;">
+                    <strong>Data Sources:</strong><br>
+                    - Monthly data pull from AI&D (Srawan Kumar Gullapalle)<br>
+                    - FIXED_FWA_SUBSCRIBER_FACT_V Table
+                </p>
+                <br/>
+                <p>
+                    This tool provides a comprehensive view of Fixed Wireless Access (FWA) data. It is designed to
+                    streamline our reporting process by including all necessary information from the start, such as FIOS
+                    eligibility and key site triggers. The goal is to create a complete initial report that reduces the
+                    need for additional manual edits by multiple teams.
+                </p>
+
+                <h4>Purpose of this Tool</h4>
+                <ul>
+                    <li>
+                        <strong>Consolidate Data:</strong> Combines FWA data, FIOS eligibility, and other key details
+                        into a single, unified view.
+                    </li>
+                    <li>
+                        <strong>Automate Reporting:</strong> Replaces a multi-step process that required manual data
+                        additions from different teams.
+                    </li>
+                    <li>
+                        <strong>Increase Efficiency:</strong> Delivers a more complete report from the beginning to
+                        limit extra steps and save time.
+                    </li>
+                </ul>
+
+                <hr/>
+
+                <div id="fwa-summary-cards" class="stats-container">
+                </div>
+
+                <div class="fwa-container">
+                    <div id="fwa-sidebar" class="sidebar">
+                        <h4>Select Columns</h4>
+                        <div id="fwa-column-list" class="column-list">
+                        </div>
+                        <button id="fwa-update-view-btn" class="btn btn-vz">Update View</button>
+                    </div>
+
+                    <div class="main-panel">
+                        <div id="fwa-controls" class="button-group" style="display: none;">
+                            <span>Download:</span>
+                            <button class="btn btn-stone" onclick="downloadFwaData('csv', 'all')">All Records (CSV)
+                            </button>
+                            <button class="btn btn-stone" onclick="downloadFwaData('excel', 'all')">All Records
+                                (Excel)
+                            </button>
+                            <button class="btn btn-stone" onclick="downloadFwaData('csv', 'matched')">Matched Only
+                                (CSV)
+                            </button>
+                            <button class="btn btn-stone" onclick="downloadFwaData('excel', 'matched')">Matched Only
+                                (Excel)
+                            </button>
+                        </div>
+                        <p style="font-size: 0.9em; color: #962a2a;">
+                            <strong>Note:</strong> The table below displays a preview of the first 50 records. For a
+                            complete export, please use the download buttons.
+                        </p>
+                        <div id="fwa-loading" style="display: none; text-align: center; margin: 20px;">
+                            <p>Loading FWA data...</p>
+                        </div>
+                        <div id="fwa-table-container">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+        </div> </div> <footer class="app-footer">
+        <a href="mailto:smaart_team@verizon.com?subject=Feedback/Question for DRIVE-Lookup Tool">Questions or Feedback? Contact the SMAART Team</a>
+        <span style="margin: 0 10px;">|</span>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScPslBEDXeX9axhILKBYZDlWAf3oOKAmRW1VdO_j7j70aN53Q/viewform" target="_blank" rel="noopener noreferrer">Submit Feedback via SMAART Frontdoor</a>
+        <p>Verizon confidential and proprietary. Unauthorized disclosure, reproduction or other use prohibited.</p>
+        <p>By Strategic Modernization via Analytics & Actionable Results Team</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
