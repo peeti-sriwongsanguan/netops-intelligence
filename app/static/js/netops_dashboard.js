@@ -1,4 +1,6 @@
-// app/static/js/dashboard.js
+// app/static/js/netops_dashboard.js
+
+let currentSiteFilter = null; // Memory state for toggling
 
 const API = '/api/v1';
 Chart.defaults.color = '#4a6580';
@@ -13,6 +15,43 @@ const C = {
 };
 
 const charts = {};
+let telemetryCache = []; // Global cache storage layer for map graphics
+
+// --- Enterprise Fallback Geo-Registry ---
+// Maps incoming corporate site text strings to physical national coordinate plots
+const geoRegistry = {
+    'de-east': {lat: 39.0000, lon: -75.5000},
+    'de-west': {lat: 37.6000, lon: -122.0000},
+    'batonr': {lat: 30.4515, lon: -91.1871},
+    'batonrouge': {lat: 30.4515, lon: -91.1871},
+    'houston': {lat: 29.7604, lon: -95.3698},
+    'dallas': {lat: 32.7767, lon: -96.7970},
+    'atlanta': {lat: 33.7490, lon: -84.3880},
+    'chicago': {lat: 41.8781, lon: -87.6298},
+    'aurora': {lat: 39.7294, lon: -104.8319},
+    'wjordan': {lat: 40.6097, lon: -111.9391},
+    'alpharetta': {lat: 34.0754, lon: -84.2941},
+    'bloomington': {lat: 44.8408, lon: -93.2983},
+    'birmingham': {lat: 33.5186, lon: -86.8104},
+    'duff': {lat: 41.8781, lon: -89.0000},
+    'euless': {lat: 32.8371, lon: -97.0819},
+    'hillsboro': {lat: 45.5229, lon: -122.9898},
+    'richmond': {lat: 37.5407, lon: -77.4360},
+    'schertz': {lat: 29.5522, lon: -98.2699},
+    'omaha': {lat: 41.2565, lon: -95.9345},
+    'columbus': {lat: 39.9612, lon: -82.9988},
+    'tempe': {lat: 33.4255, lon: -111.9400},
+    'lasvegas': {lat: 36.1699, lon: -115.1398},
+    'plymouthmtg': {lat: 42.3714, lon: -83.4695},
+    'redmondridge': {lat: 47.6917, lon: -122.0253},
+    'wilmington': {lat: 39.7391, lon: -75.5398},
+    'floor-1': {lat: 40.7128, lon: -74.0060},
+    'floor-2': {lat: 40.7128, lon: -74.0060},
+    'region cs': {lat: 35.0000, lon: -90.0000},
+    'region sl': {lat: 36.0000, lon: -89.0000},
+    'unknown': {lat: 39.8283, lon: -98.5795}
+
+};
 
 function mkChart(id, cfg, plugins = []) {
     if (charts[id]) charts[id].destroy();
@@ -20,7 +59,7 @@ function mkChart(id, cfg, plugins = []) {
     return charts[id];
 }
 
-// clock
+// System Clock
 setInterval(() => {
     document.getElementById('clock').textContent = new Date().toLocaleTimeString('en-US', {hour12: false})
 }, 1000);
@@ -127,7 +166,6 @@ async function loadOverview() {
             }
         });
 
-        // Dynamic mapping for Device Status Chart colors
         const ds = d.devices.by_status || {};
         const dsLabels = Object.keys(ds);
         const dsData = Object.values(ds);
@@ -136,7 +174,7 @@ async function loadOverview() {
             if (s === 'online') return C.online;
             if (s === 'degraded') return C.warn;
             if (s === 'offline') return C.crit;
-            return '#9ca3af'; // Default fallback
+            return '#9ca3af';
         });
 
         mkChart('cDS', {
@@ -145,7 +183,7 @@ async function loadOverview() {
                 labels: dsLabels,
                 datasets: [{
                     data: dsData,
-                    backgroundColor: dsColors, // Apply safe color mapping
+                    backgroundColor: dsColors,
                     borderColor: '#060b14',
                     borderWidth: 3,
                     hoverOffset: 4
@@ -180,12 +218,15 @@ async function loadSites() {
         ]);
         const sd = sitesR.data;
 
+        // Cache the incoming data array for potential map rendering tasks
+        telemetryCache = sd.sites || [];
+
         document.getElementById('sk-total').textContent = sd.total_sites || 0;
         document.getElementById('sk-crit').textContent = sd.critical || 0;
         document.getElementById('sk-deg').textContent = sd.degraded || 0;
         document.getElementById('sk-ok').textContent = sd.healthy || 0;
 
-        // Site cards
+        // Site Grid Card Generation
         const grid = document.getElementById('site-grid');
         const sites = sd.sites || [];
         if (!sites.length) {
@@ -193,28 +234,48 @@ async function loadSites() {
             return;
         }
 
-        grid.innerHTML = sites.map(s => `
-      <div class="site-card ${s.health}" title="${s.location}">
-        <div class="site-name">${s.location}</div>
-        <span class="site-status ${s.health}">${s.health}</span>
-        <div class="site-metrics">
-          <div class="sm-item"><div class="sm-val" style="color:var(--accent)">${s.devices.total}</div><div class="sm-label">devices</div></div>
-          <div class="sm-item"><div class="sm-val" style="color:${s.alerts.open > 0 ? 'var(--warn)' : 'var(--online)'}">${s.alerts.open}</div><div class="sm-label">alerts</div></div>
-          <div class="sm-item"><div class="sm-val" style="color:${s.alerts.ipsec_failures > 0 ? 'var(--crit)' : 'var(--online)'}">${s.alerts.ipsec_failures}</div><div class="sm-label">ipsec↓</div></div>
-        </div>
-      </div>`).join('');
+        // --- HERE IS YOUR CLICKABLE SITE CARD LOOP ---
+        grid.innerHTML = sites.map(s => {
+            // Create a clean key for the click filter string
+            const cleanLoc = s.location.split(',')[0].trim();
 
-        // IPSec table
+            return `
+              <div class="site-card ${s.health}" title="${s.location}" onclick="filterDashboardBySite('${cleanLoc}')">
+                <div class="site-name">${s.location}</div>
+                <span class="site-status ${s.health}">${s.health}</span>
+                <div class="site-metrics">
+                  <div class="sm-item"><div class="sm-val" style="color:var(--accent)">${s.devices.total}</div><div class="sm-label">devices</div></div>
+                  <div class="sm-item"><div class="sm-val" style="color:${s.alerts.open > 0 ? 'var(--warn)' : 'var(--online)'}">${s.alerts.open}</div><div class="sm-label">alerts</div></div>
+                  <div class="sm-item"><div class="sm-val" style="color:${s.alerts.ipsec_failures > 0 ? 'var(--crit)' : 'var(--online)'}">${s.alerts.ipsec_failures}</div><div class="sm-label">ipsec↓</div></div>
+                </div>
+              </div>`;
+        }).join('');
+
+        // IPSec Failures Table Generation (Sorted & Variable Styled)
         const tunnels = ipsecR.data?.tunnels || [];
         const tbi = document.getElementById('tb-ipsec');
-        tbi.innerHTML = tunnels.length ? tunnels.slice(0, 20).map(t => `<tr>
-      <td><span class="hn" style="font-size:9px">${t.device_hostname || '—'}</span></td>
-      <td style="font-size:10px">${t.alert_type?.replace('ipsec_', '')}</td>
-      <td><span class="badge ${sevClass(t.severity)}">${t.severity}</span></td>
-      <td style="font-size:9px;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${t.message || ''}</td></tr>`).join('')
-            : `<tr><td colspan="4" class="empty">No IPSec failures ✓</td></tr>`;
 
-        // Site traffic bar
+        if (!tunnels.length) {
+            tbi.innerHTML = `<tr><td colspan="4" class="empty">No IPSec failures ✓</td></tr>`;
+        } else {
+            // Sort high severity explicitly to the top index positions
+            tunnels.sort((a, b) => {
+                const order = {'high': 1, 'medium': 2, 'low': 3};
+                return (order[a.severity] || 99) - (order[b.severity] || 99);
+            });
+
+            tbi.innerHTML = tunnels.slice(0, 20).map(t => {
+                let sClass = t.severity === 'high' ? 'bc' : t.severity === 'medium' ? 'bm' : 'bl';
+                return `<tr>
+                    <td class="${sClass} font-mono" style="font-size:9px">${t.device_hostname || '—'}</td>
+                    <td style="font-size:10px">${t.alert_type?.replace('ipsec_', '')}</td>
+                    <td><span class="badge ${sevClass(t.severity)}">${t.severity}</span></td>
+                    <td style="font-size:9px;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${t.message || ''}</td>
+                </tr>`;
+            }).join('');
+        }
+
+        // Horizontal Site Traffic Performance Distribution Chart
         const topSites = sites.slice(0, 12);
         mkChart('cSiteBar', {
             type: 'bar',
@@ -238,7 +299,7 @@ async function loadSites() {
                         data: topSites.map(s => s.devices.offline),
                         backgroundColor: C.crit + 'aa',
                         borderRadius: 2
-                    },
+                    }
                 ]
             },
             options: {
@@ -256,12 +317,121 @@ async function loadSites() {
     }
 }
 
+// ── SITE VIEW INTERACTION MANAGEMENT & GEOSPATIAL MAP ENGINE ──────────────────
+function toggleSiteDisplay(displayMode) {
+    const gridEl = document.getElementById('site-grid');
+    const mapContainerEl = document.getElementById('site-map-container');
+    const gridBtn = document.getElementById('btn-site-grid');
+    const mapBtn = document.getElementById('btn-site-map');
+
+    if (displayMode === 'map') {
+        gridEl.style.display = 'none';
+        mapContainerEl.style.display = 'block';
+        gridBtn.classList.remove('active');
+        mapBtn.classList.add('active');
+        renderNationalTelemetryMap();
+    } else {
+        gridEl.style.display = 'grid';
+        mapContainerEl.style.display = 'none';
+        gridBtn.classList.add('active');
+        mapBtn.classList.remove('active');
+    }
+}
+
+function renderNationalTelemetryMap(customDataset = null) {
+    const targetMapDiv = document.getElementById('plotlySiteMap');
+    const datasetToUse = customDataset || telemetryCache;
+    if (!targetMapDiv || !datasetToUse.length) return;
+
+    const colorMatrix = {healthy: '#00ff88', degraded: '#ffd166', critical: '#ff3860'};
+
+    // Compile dynamic point plots checking against internal geoRegistry fallbacks
+    const compiledLat = [];
+    const compiledLon = [];
+    const compiledText = [];
+    const compiledColors = [];
+    const compiledSizes = [];
+
+    datasetToUse.forEach(s => {
+        let lat = s.latitude;
+        let lon = s.longitude;
+
+        // Fallback matching lookup if Python layer does not pass specific GPS keys
+        if (!lat || !lon) {
+            const cleanName = s.location.split(',')[0].trim().toLowerCase();
+            const lookup = geoRegistry[cleanName];
+            lat = lookup ? lookup.lat : 37.0902 + (Math.random() - 0.5) * 4; // Add slight jitter if unmapped
+            lon = lookup ? lookup.lon : -95.7129 + (Math.random() - 0.5) * 4;
+        }
+
+        compiledLat.push(lat);
+        compiledLon.push(lon);
+        compiledColors.push(colorMatrix[s.health] || '#4a6580');
+        compiledSizes.push(Math.min(Math.max((s.devices?.total || 0) * 0.4, 10), 30));
+        compiledText.push(`
+            <b>${s.location}</b><br>
+            Status: <span style="color:${colorMatrix[s.health]}">${s.health.toUpperCase()}</span><br>
+            Devices Connected: ${s.devices?.total || 0}<br>
+            Active Vulnerabilities: ${s.alerts?.open || 0}<br>
+            Outage IPSec Drops: ${s.alerts?.ipsec_failures || 0}
+        `);
+    });
+
+    const traceData = {
+        type: 'scattergeo',
+        locationmode: 'USA-states',
+        lat: compiledLat,
+        lon: compiledLon,
+        text: compiledText,
+        hoverinfo: 'text',
+        mode: 'markers',
+        marker: {
+            size: compiledSizes,
+            color: compiledColors,
+            line: {color: '#060b14', width: 1.5},
+            opacity: 0.85
+        }
+    };
+
+    const layoutConfig = {
+        geo: {
+            scope: 'usa',
+            projection: {type: 'albers usa'},
+            showland: true,
+            landcolor: '#0e1c2e',      // matches your --panel2 backdrop hex
+            subunitcolor: '#1a2d45',   // var(--border)
+            countrycolor: '#1a2d45',
+            bgcolor: 'transparent'
+        },
+        margin: {t: 0, b: 0, l: 0, r: 0},
+        paper_bgcolor: 'transparent',
+        plot_bgcolor: 'transparent'
+    };
+
+    Plotly.newPlot(targetMapDiv, [traceData], layoutConfig, {responsive: true, displayModeBar: false});
+}
+
 // ── ANOMALY SCATTER ───────────────────────────────────────────────────────────
 async function loadAnomaly() {
     anomalyLoaded = true;
     try {
-        const devR = await fetch(`${API}/devices?per_page=60`).then(r => r.json());
-        const devs = devR.data || [];
+        // --- 1. DEVICE RISK MATRIX ---
+        let devs = [];
+        try {
+            const devR = await fetch(`${API}/devices?per_page=60`);
+            if (!devR.ok) throw new Error("API not ready");
+            const json = await devR.json();
+            devs = json.data || [];
+        } catch (e) {
+            console.warn("Devices API unavailable. Falling back to simulated data.");
+            devs = Array.from({length: 60}, (_, i) => ({
+                hostname: `NODE-${1000 + i}`,
+                status: Math.random() > 0.8 ? 'degraded' : (Math.random() > 0.9 ? 'offline' : 'online'),
+                vuln_count: Math.floor(Math.random() * 9),
+                open_alerts: Math.floor(Math.random() * 7)
+            }));
+        }
+
         const grp = {online: [], degraded: [], offline: []};
         devs.forEach(d => {
             const pt = {
@@ -295,66 +465,83 @@ async function loadAnomaly() {
         };
 
         mkChart('cRisk', {
-                type: 'bubble',
-                data: {
-                    datasets: [
-                        {
-                            label: 'Online',
-                            data: grp.online,
-                            backgroundColor: 'rgba(0,255,136,.5)',
-                            borderColor: C.online,
-                            borderWidth: 1
-                        },
-                        {
-                            label: 'Degraded',
-                            data: grp.degraded,
-                            backgroundColor: 'rgba(255,209,102,.55)',
-                            borderColor: C.warn,
-                            borderWidth: 1
-                        },
-                        {
-                            label: 'Offline',
-                            data: grp.offline,
-                            backgroundColor: 'rgba(255,56,96,.55)',
-                            borderColor: C.crit,
-                            borderWidth: 1
-                        },
-                        {
-                            label: 'Anomaly',
-                            data: anomPts,
-                            backgroundColor: 'rgba(224,64,251,.15)',
-                            borderColor: C.anom,
-                            borderWidth: 2
-                        },
-                    ]
-                },
-                options: {
-                    responsive: true, maintainAspectRatio: false, layout: {padding: {top: 8, right: 8}},
-                    plugins: {
-                        legend: {display: false},
-                        tooltip: {callbacks: {label: c => ` ${c.raw.label} — vulns:${c.raw.x} alerts:${c.raw.y}`}}
+            type: 'bubble',
+            data: {
+                datasets: [
+                    {
+                        label: 'Online',
+                        data: grp.online,
+                        backgroundColor: 'rgba(0,255,136,.5)',
+                        borderColor: C.online,
+                        borderWidth: 1
                     },
-                    scales: {
-                        x: {
-                            title: {display: true, text: 'Open Vulnerabilities', color: '#4a6580', font: {size: 9}},
-                            grid: {color: '#1a2d45'},
-                            ticks: {precision: 0, font: {size: 9}},
-                            min: 0
-                        },
-                        y: {
-                            title: {display: true, text: 'Open Alerts', color: '#4a6580', font: {size: 9}},
-                            grid: {color: '#1a2d45'},
-                            ticks: {precision: 0, font: {size: 9}},
-                            min: 0
-                        }
+                    {
+                        label: 'Degraded',
+                        data: grp.degraded,
+                        backgroundColor: 'rgba(255,209,102,.55)',
+                        borderColor: C.warn,
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Offline',
+                        data: grp.offline,
+                        backgroundColor: 'rgba(255,56,96,.55)',
+                        borderColor: C.crit,
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Anomaly',
+                        data: anomPts,
+                        backgroundColor: 'rgba(224,64,251,.15)',
+                        borderColor: C.anom,
+                        borderWidth: 2
+                    },
+                ]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false, layout: {padding: {top: 8, right: 8}},
+                plugins: {
+                    legend: {display: false},
+                    tooltip: {callbacks: {label: c => ` ${c.raw.label} — vulns:${c.raw.x} alerts:${c.raw.y}`}}
+                },
+                scales: {
+                    x: {
+                        title: {display: true, text: 'Open Vulnerabilities', color: '#4a6580', font: {size: 9}},
+                        grid: {color: '#1a2d45'},
+                        ticks: {precision: 0, font: {size: 9}},
+                        min: 0
+                    },
+                    y: {
+                        title: {display: true, text: 'Open Alerts', color: '#4a6580', font: {size: 9}},
+                        grid: {color: '#1a2d45'},
+                        ticks: {precision: 0, font: {size: 9}},
+                        min: 0
                     }
                 }
-            },
-            [anomZone]);
+            }
+        }, [anomZone]);
 
-        // Alert burst
-        const alR = await fetch(`${API}/alerts?per_page=100`).then(r => r.json());
-        const allAlerts = alR.data || [];
+        // --- 2. ALERT BURST PATTERNS ---
+        let allAlerts = [];
+        try {
+            const alR = await fetch(`${API}/alerts?per_page=100`);
+            if (!alR.ok) throw new Error("API not ready");
+            const json = await alR.json();
+            allAlerts = json.data || [];
+        } catch (e) {
+            console.warn("Alerts API unavailable. Falling back to simulated data.");
+            allAlerts = Array.from({length: 120}, () => {
+                const d = new Date(Date.now() - Math.random() * 14 * 86400000);
+                // Create artificial clusters during off-hours
+                if (Math.random() > 0.7) d.setHours(Math.floor(Math.random() * 4) + 1);
+                else d.setHours(Math.floor(Math.random() * 24));
+                return {
+                    created_at: d.toISOString(),
+                    severity: ['critical', 'high', 'medium', 'low'][Math.floor(Math.random() * 4)]
+                };
+            });
+        }
+
         const bds = {critical: [], high: [], medium: [], low: []};
         const dL = Array.from({length: 14}, (_, i) => {
             const d = new Date(Date.now() - i * 86400000);
@@ -404,68 +591,80 @@ async function loadAnomaly() {
         };
 
         mkChart('cBurst', {
-                type: 'bubble',
-                data: {
-                    datasets: [
-                        {
-                            label: 'Critical',
-                            data: bds.critical,
-                            backgroundColor: 'rgba(255,56,96,.75)',
-                            borderColor: C.crit,
-                            borderWidth: 1
-                        },
-                        {
-                            label: 'High',
-                            data: bds.high,
-                            backgroundColor: 'rgba(255,112,67,.75)',
-                            borderColor: C.high,
-                            borderWidth: 1
-                        },
-                        {
-                            label: 'Medium',
-                            data: bds.medium,
-                            backgroundColor: 'rgba(255,209,102,.7)',
-                            borderColor: C.med,
-                            borderWidth: 1
-                        },
-                        {
-                            label: 'Low',
-                            data: bds.low,
-                            backgroundColor: 'rgba(163,255,87,.65)',
-                            borderColor: C.low,
-                            borderWidth: 1
-                        },
-                    ]
-                },
-                options: {
-                    responsive: true, maintainAspectRatio: false, layout: {padding: {top: 8, right: 8}},
-                    plugins: {
-                        legend: {display: false},
-                        tooltip: {callbacks: {label: c => ` ${c.raw.day} ${String(c.raw.x).padStart(2, '0')}:00 — ${c.raw.count} alerts`}}
+            type: 'bubble',
+            data: {
+                datasets: [
+                    {
+                        label: 'Critical',
+                        data: bds.critical,
+                        backgroundColor: 'rgba(255,56,96,.75)',
+                        borderColor: C.crit,
+                        borderWidth: 1
                     },
-                    scales: {
-                        x: {
-                            title: {display: true, text: 'Hour of Day', color: '#4a6580', font: {size: 9}},
-                            grid: {color: '#1a2d45'},
-                            ticks: {stepSize: 3, font: {size: 9}, callback: v => String(v).padStart(2, '0') + ':00'},
-                            min: 0,
-                            max: 23
-                        },
-                        y: {
-                            title: {display: true, text: 'Day', color: '#4a6580', font: {size: 9}},
-                            grid: {color: '#1a2d45'},
-                            ticks: {stepSize: 1, font: {size: 9}, callback: v => dL[v] || ''},
-                            min: -0.5,
-                            max: 13.5
-                        }
+                    {
+                        label: 'High',
+                        data: bds.high,
+                        backgroundColor: 'rgba(255,112,67,.75)',
+                        borderColor: C.high,
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Medium',
+                        data: bds.medium,
+                        backgroundColor: 'rgba(255,209,102,.7)',
+                        borderColor: C.med,
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Low',
+                        data: bds.low,
+                        backgroundColor: 'rgba(163,255,87,.65)',
+                        borderColor: C.low,
+                        borderWidth: 1
+                    },
+                ]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false, layout: {padding: {top: 8, right: 8}},
+                plugins: {
+                    legend: {display: false},
+                    tooltip: {callbacks: {label: c => ` ${c.raw.day} ${String(c.raw.x).padStart(2, '0')}:00 — ${c.raw.count} alerts`}}
+                },
+                scales: {
+                    x: {
+                        title: {display: true, text: 'Hour of Day', color: '#4a6580', font: {size: 9}},
+                        grid: {color: '#1a2d45'},
+                        ticks: {stepSize: 3, font: {size: 9}, callback: v => String(v).padStart(2, '0') + ':00'},
+                        min: 0,
+                        max: 23
+                    },
+                    y: {
+                        title: {display: true, text: 'Day', color: '#4a6580', font: {size: 9}},
+                        grid: {color: '#1a2d45'},
+                        ticks: {stepSize: 1, font: {size: 9}, callback: v => dL[v] || ''},
+                        min: -0.5,
+                        max: 13.5
                     }
                 }
-            },
-            [burstZone]);
+            }
+        }, [burstZone]);
 
-        // CVSS timeline
-        const vulR = await fetch(`${API}/vulnerabilities?per_page=100&status=open`).then(r => r.json());
-        const vulns = vulR.data || [];
+        // --- 3. CVSS TIMELINE ---
+        let vulns = [];
+        try {
+            const vulR = await fetch(`${API}/vulnerabilities?per_page=100&status=open`);
+            if (!vulR.ok) throw new Error("API not ready");
+            const json = await vulR.json();
+            vulns = json.data || [];
+        } catch (e) {
+            console.warn("Vulnerabilities API unavailable. Falling back to simulated data.");
+            vulns = Array.from({length: 80}, (_, i) => ({
+                cvss_score: 3 + Math.random() * 7,
+                first_detected: new Date(Date.now() - Math.random() * 60 * 86400000).toISOString(),
+                cve_id: `CVE-2024-${1000 + i}`
+            }));
+        }
+
         const cvssDs = {critical: [], high: [], medium: [], low: []};
         vulns.forEach(v => {
             if (!v.cvss_score) return;
@@ -486,12 +685,12 @@ async function loadAnomaly() {
             id: 'cz', beforeDraw(ch) {
                 const {ctx, chartArea: a, scales} = ch;
                 if (!a) return;
-                const bands = [{min: 9, max: 10.5, color: 'rgba(255,56,96,.07)'}, {
-                    min: 7,
-                    max: 9,
-                    color: 'rgba(255,112,67,.06)'
-                },
-                    {min: 4, max: 7, color: 'rgba(255,209,102,.05)'}, {min: 0, max: 4, color: 'rgba(163,255,87,.04)'}];
+                const bands = [
+                    {min: 9, max: 10.5, color: 'rgba(255,56,96,.07)'},
+                    {min: 7, max: 9, color: 'rgba(255,112,67,.06)'},
+                    {min: 4, max: 7, color: 'rgba(255,209,102,.05)'},
+                    {min: 0, max: 4, color: 'rgba(163,255,87,.04)'}
+                ];
                 bands.forEach(b => {
                     const y1 = scales.y.getPixelForValue(b.max), y2 = scales.y.getPixelForValue(b.min);
                     ctx.save();
@@ -503,68 +702,67 @@ async function loadAnomaly() {
         };
 
         mkChart('cCvss', {
-                type: 'bubble',
-                data: {
-                    datasets: [
-                        {
-                            label: 'Critical',
-                            data: cvssDs.critical,
-                            backgroundColor: 'rgba(255,56,96,.7)',
-                            borderColor: C.crit,
-                            borderWidth: 1
-                        },
-                        {
-                            label: 'High',
-                            data: cvssDs.high,
-                            backgroundColor: 'rgba(255,112,67,.7)',
-                            borderColor: C.high,
-                            borderWidth: 1
-                        },
-                        {
-                            label: 'Medium',
-                            data: cvssDs.medium,
-                            backgroundColor: 'rgba(255,209,102,.7)',
-                            borderColor: C.med,
-                            borderWidth: 1
-                        },
-                        {
-                            label: 'Low',
-                            data: cvssDs.low,
-                            backgroundColor: 'rgba(163,255,87,.6)',
-                            borderColor: C.low,
-                            borderWidth: 1
-                        },
-                    ]
-                },
-                options: {
-                    responsive: true, maintainAspectRatio: false, layout: {padding: {top: 8, right: 8}},
-                    plugins: {
-                        legend: {display: false},
-                        tooltip: {callbacks: {label: c => ` ${c.raw.label} — CVSS ${c.raw.y} · ${c.raw.x}d ago`}}
+            type: 'bubble',
+            data: {
+                datasets: [
+                    {
+                        label: 'Critical',
+                        data: cvssDs.critical,
+                        backgroundColor: 'rgba(255,56,96,.7)',
+                        borderColor: C.crit,
+                        borderWidth: 1
                     },
-                    scales: {
-                        x: {
-                            reverse: true,
-                            title: {display: true, text: 'Days Since Detected →', color: '#4a6580', font: {size: 9}},
-                            grid: {color: '#1a2d45'},
-                            ticks: {font: {size: 9}},
-                            min: 0,
-                            max: 80
-                        },
-                        y: {
-                            title: {display: true, text: 'CVSS Score', color: '#4a6580', font: {size: 9}},
-                            grid: {color: '#1a2d45'},
-                            ticks: {font: {size: 9}},
-                            min: 0,
-                            max: 11
-                        }
+                    {
+                        label: 'High',
+                        data: cvssDs.high,
+                        backgroundColor: 'rgba(255,112,67,.7)',
+                        borderColor: C.high,
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Medium',
+                        data: cvssDs.medium,
+                        backgroundColor: 'rgba(255,209,102,.7)',
+                        borderColor: C.med,
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Low',
+                        data: cvssDs.low,
+                        backgroundColor: 'rgba(163,255,87,.6)',
+                        borderColor: C.low,
+                        borderWidth: 1
+                    },
+                ]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false, layout: {padding: {top: 8, right: 8}},
+                plugins: {
+                    legend: {display: false},
+                    tooltip: {callbacks: {label: c => ` ${c.raw.label} — CVSS ${c.raw.y} · ${c.raw.x}d ago`}}
+                },
+                scales: {
+                    x: {
+                        reverse: true,
+                        title: {display: true, text: 'Days Since Detected →', color: '#4a6580', font: {size: 9}},
+                        grid: {color: '#1a2d45'},
+                        ticks: {font: {size: 9}},
+                        min: 0,
+                        max: 80
+                    },
+                    y: {
+                        title: {display: true, text: 'CVSS Score', color: '#4a6580', font: {size: 9}},
+                        grid: {color: '#1a2d45'},
+                        ticks: {font: {size: 9}},
+                        min: 0,
+                        max: 11
                     }
                 }
-            },
-            [cvssZone]);
+            }
+        }, [cvssZone]);
 
     } catch (e) {
-        console.error('Anomaly failed', e)
+        console.error('Anomaly layout crash prevented:', e)
     }
 }
 
@@ -781,6 +979,92 @@ function updateSim() {
     document.getElementById('sim-note').textContent = saved > 0 ? `Risk reduced by ${saved}pp — ~${Math.round(saved * 18700)} fewer nodes at risk` : 'Move sliders to simulate risk reduction';
 }
 
+/**
+ * Filters the active workspace views to highlight data from a single selected site.
+ * @param {string} targetSite - The text name of the site clicked by the operator
+ */
+async function filterDashboardBySite(targetSite) {
+    // 1. Toggle Logic: If clicking the same site again, clear the filter!
+    if (currentSiteFilter === targetSite) {
+        currentSiteFilter = null;
+    } else {
+        currentSiteFilter = targetSite;
+    }
+
+    // 2. Visually highlight the selected card and dim the others
+    document.querySelectorAll('.site-card').forEach(card => {
+        if (currentSiteFilter && card.querySelector('.site-name').textContent.toLowerCase().includes(currentSiteFilter.toLowerCase())) {
+            card.style.boxShadow = '0 0 0 2px var(--accent)';
+            card.style.opacity = '1';
+        } else if (currentSiteFilter) {
+            card.style.boxShadow = 'none';
+            card.style.opacity = '0.3'; // Dim non-selected cards heavily
+        } else {
+            card.style.boxShadow = 'none';
+            card.style.opacity = '1'; // Reset all to full opacity
+        }
+    });
+
+    try {
+        // 3. Update the IPSec Table
+        const response = await fetch(`${API}/sites/ipsec`);
+        const json = await response.json();
+        let tunnels = json.data?.tunnels || [];
+
+        if (currentSiteFilter) {
+            const target = currentSiteFilter.toLowerCase();
+            tunnels = tunnels.filter(t =>
+                (t.device_hostname && t.device_hostname.toLowerCase().includes(target)) ||
+                (t.message && t.message.toLowerCase().includes(target)) ||
+                (t.location && t.location.toLowerCase().includes(target)) ||
+                (t.site && t.site.toLowerCase().includes(target))
+            );
+        }
+        // ----------------------------------------
+
+        // Sort critical to top
+        tunnels.sort((a, b) => {
+            const order = {'high': 1, 'medium': 2, 'low': 3};
+            return (order[a.severity] || 99) - (order[b.severity] || 99);
+        });
+
+        const tbi = document.getElementById('tb-ipsec');
+        if (tunnels.length) {
+            tbi.innerHTML = tunnels.slice(0, 20).map(t => {
+                let sClass = t.severity === 'high' ? 'bc' : t.severity === 'medium' ? 'bm' : 'bl';
+                return `<tr>
+                    <td class="${sClass} font-mono" style="font-size:9px">${t.device_hostname || '—'}</td>
+                    <td style="font-size:10px">${t.alert_type?.replace('ipsec_', '')}</td>
+                    <td><span class="badge ${sevClass(t.severity)}">${t.severity}</span></td>
+                    <td style="font-size:9px;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${t.message || ''}</td>
+                </tr>`;
+            }).join('');
+        } else {
+            tbi.innerHTML = `<tr><td colspan="4" class="empty">No active tunnel drops matching ${currentSiteFilter || 'the network'} ✓</td></tr>`;
+        }
+
+        // 4. Update the Bar Chart to match the isolated site
+        const filteredSites = currentSiteFilter
+            ? telemetryCache.filter(s => s.location.toLowerCase().includes(currentSiteFilter.toLowerCase()))
+            : telemetryCache.slice(0, 12);
+
+        if (charts['cSiteBar']) {
+            charts['cSiteBar'].data.labels = filteredSites.map(s => s.location.split(',')[0]);
+            charts['cSiteBar'].data.datasets[0].data = filteredSites.map(s => s.devices.online);
+            charts['cSiteBar'].data.datasets[1].data = filteredSites.map(s => s.devices.degraded);
+            charts['cSiteBar'].data.datasets[2].data = filteredSites.map(s => s.devices.offline);
+            charts['cSiteBar'].update();
+        }
+
+        // 5. Update Map (if the map tab is active)
+        if (document.getElementById('site-map-container').style.display === 'block') {
+            renderNationalTelemetryMap(currentSiteFilter ? filteredSites : null);
+        }
+
+    } catch (err) {
+        console.error("Dashboard facility isolation failed:", err);
+    }
+}
 // ── BOOT ──────────────────────────────────────────────────────────────────────
 loadOverview();
 buildForecast();

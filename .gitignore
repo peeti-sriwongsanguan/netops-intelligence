@@ -49,3 +49,6 @@ celerybeat-schedule
 
 # Redis dump
 dump.rdb
+
+.json
+*.json

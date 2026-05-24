@@ -216,21 +216,34 @@ def forgot_password():
         user = User.query.filter_by(username=username_submitted).first()
 
         if user:
-            print(f"[DEBUG] User found! Saved email is: '{user.email}'")
-            if user.email:
-                # Generate the secure token and the URL
+            # --- DYNAMIC TERADATA EMAIL LOOKUP ---
+            from app.db_utils import run_teradata_query
+            import pandas as pd
+
+            EMPLOYEE_TABLE = os.getenv('EMPLOYEE_TABLE')
+            print(f"[DEBUG] Looking up official email in {EMPLOYEE_TABLE}...")
+
+            # Query Teradata directly just like your old project
+            emp_query = f"SELECT EMAIL_ADDR FROM {EMPLOYEE_TABLE} WHERE VZID = ?"
+            emp_df = run_teradata_query(emp_query, params=(username_submitted,), use_cache=False)
+
+            if not emp_df.empty and pd.notna(emp_df.iloc[0]['EMAIL_ADDR']):
+                official_email = emp_df.iloc[0]['EMAIL_ADDR']
+                print(f"[DEBUG] Found official email: {official_email}")
+
+                # Generate token and link
                 token = user.get_reset_token()
                 reset_link = url_for('main.reset_password', token=token, _external=True)
 
-                # Use YOUR working function
-                success = send_reset_email_direct(user.email, reset_link)
+                # Send the email via corporate relay
+                success = send_reset_email_direct(official_email, reset_link)
 
                 if success:
                     flash('An email has been sent with instructions to reset your password.', 'info')
                 else:
                     flash('Error communicating with the Verizon mail server. Check terminal.', 'danger')
             else:
-                print(f"[DEBUG] ABORTING: User has NO email address!")
+                print(f"[DEBUG] ABORTING: User not found in HR table or missing email!")
                 flash('If an account with that VZID exists and has an email, a reset link has been sent.', 'info')
         else:
             print(f"[DEBUG] ABORTING: No user found matching '{username_submitted}'")
@@ -262,5 +275,21 @@ def reset_password(token):
         flash('Your password has been updated! You are now able to log in', 'success')
         return redirect(url_for('main.index'))
 
-    # Reusing the forgot_password template for speed, but passing the Reset form
-    return render_template('forgot_password.html', form=form, title='Reset Password')
+    # Now pointing to reset_password.html instead of forgot_password.html
+    return render_template('reset_password.html', form=form)
+
+
+# --- 6. Manage Users ---
+@main.route('/manage-users', methods=['GET', 'POST'])
+@login_required
+def manage_users():
+    # Placeholder to stop the Hub from crashing
+    return "User Management Page (You can paste your full manage_users code back here later!)"
+
+
+# --- 7. Activity Report ---
+@main.route('/activity-report')
+@login_required
+def activity_report():
+    # Placeholder to stop the Hub from crashing
+    return "Activity Report Page (Paste your full code back here later!)"

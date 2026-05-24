@@ -8,6 +8,8 @@ flask-limiter==3.7.0
 # ── Database ──────────────────────────────────────────
 psycopg2-binary==2.9.12       # PostgreSQL adapter
 sqlalchemy==2.0.30
+oracledb==2.1.1
+teradatasql==20.0.0.9
 
 # ── Environment ───────────────────────────────────────
 python-dotenv==1.0.1

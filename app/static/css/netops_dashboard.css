@@ -1,5 +1,5 @@
 /* ==========================================================================
-   app/static/css/dashboard.css
+   app/static/css/netops_dashboard.css
    Dash Styles
    ========================================================================== */
 
@@ -864,4 +864,115 @@ nav {
     padding: 20px;
     font-family: var(--fm);
     font-size: 10px
+}
+
+
+/* ==========================================================================
+   Recent Critical Alerts - Threat Intel Styling
+   ========================================================================== */
+
+/* 1. Make the small indicator dot in front of the section title pulse red */
+.ptitle .dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--crit);
+    box-shadow: 0 0 10px var(--crit), 0 0 20px var(--crit);
+    animation: critical-pulse 2s infinite ease-in-out;
+}
+
+@keyframes critical-pulse {
+    0%, 100% {
+        opacity: 1;
+        box-shadow: 0 0 10px var(--crit), 0 0 25px var(--crit);
+    }
+    50% {
+        opacity: 0.4;
+        box-shadow: 0 0 4px var(--crit);
+    }
+}
+
+/* 2. Style the device hostnames inside the critical alert table */
+.ipsec-table tbody tr td .hn,
+.ipsec-table tbody tr td:first-child {
+    color: var(--crit) !important;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 8px rgba(255, 56, 96, 0.2);
+    transition: all 0.2s ease-in-out;
+}
+
+/* Optional hover enhancement: slightly glows when investigating the device line */
+.ipsec-table tbody tr:hover td:first-child {
+    color: #ff6b8b !important;
+    text-shadow: 0 0 12px var(--crit);
+}
+
+/* ==========================================================================
+   IPSec Severity Routing Colors
+   ========================================================================== */
+
+/* Remove the old first-child rule and use these instead: */
+
+/* Critical Hostname Color Alignment */
+.ipsec-table tbody tr td.bc {
+    color: var(--crit) !important;
+    font-weight: 600;
+    text-shadow: 0 0 8px rgba(255, 56, 96, 0.15);
+}
+
+/* Warning Hostname Color Alignment */
+.ipsec-table tbody tr td.bm {
+    color: var(--warn) !important;
+    font-weight: 600;
+    text-shadow: 0 0 8px rgba(255, 209, 102, 0.15);
+}
+
+/* Ensure font alignment looks clean and monospaced for VZIDs */
+.ipsec-table tbody tr td.font-mono {
+    font-family: var(--fm);
+    letter-spacing: 0.5px;
+}
+/* ==========================================================================
+   Hub Navigation Return Button
+   ========================================================================== */
+.back-hub-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background-color: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #f3f4f6;
+    text-decoration: none;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 4px;
+    margin-right: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.back-hub-btn .icon {
+    font-size: 14px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.back-hub-btn:hover {
+    background-color: #ee001e; /* standard Verizon Red */
+    border-color: #ee001e;
+    color: #ffffff;
+    box-shadow: 0 0 10px rgba(238, 0, 30, 0.4);
+}
+
+.back-hub-btn:hover .icon {
+    transform: translateX(-3px);
+}
+
+.refresh-btn.active {
+    border-color: var(--accent) !important;
+    color: var(--accent) !important;
+    background: rgba(0, 229, 255, 0.05);
 }

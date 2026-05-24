@@ -1,0 +1,304 @@
+/*app/static/css/hub.css*/
+/* ==========================================================================
+   Base & Layout Framework
+   ========================================================================== */
+:root {
+    --vz-red: #ee001e;
+    --border-gray: #d1d5db;
+    --bg-light: #f3f4f6;
+    --text-dark: #374151;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+}
+
+.hub-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+/* ==========================================================================
+   Navigation Header Styles
+   ========================================================================== */
+.hub-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 1rem 1.5rem;
+    border-b: 1px solid var(--border-gray);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.nav-brand img {
+    height: 1.5rem;
+    width: auto;
+}
+
+.nav-brand h1 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1f2937;
+    tracking-wide: 0.025em;
+}
+
+.nav-brand h1 span {
+    color: var(--vz-red);
+}
+
+.nav-meta {
+    font-size: 0.875rem;
+    font-medium: 500;
+    color: #4b5563;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.2s ease-in-out;
+}
+
+.nav-link:hover {
+    color: var(--vz-red);
+}
+
+/* ==========================================================================
+   Repository Components & Cards
+   ========================================================================== */
+.hub-main {
+    flex-grow: 1;
+    max-width: 80rem;
+    width: 100%;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    box-sizing: border-box;
+}
+
+.hero-banner {
+    background-color: #ffffff;
+    border: 1px solid #f3f4f6;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.hero-banner h2 {
+    margin: 0;
+    font-size: 1.875rem;
+    font-weight: 800;
+    color: #111827;
+}
+
+.hero-banner p {
+    margin: 1rem 0 0 0;
+    font-size: 1.125rem;
+    line-height: 1.625;
+    color: #4b5563;
+}
+
+.section-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #111827;
+    margin-bottom: 1.5rem;
+}
+
+.project-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+@media (min-width: 768px) {
+    .project-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1024px) {
+    .project-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+.workspace-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: #ffffff;
+    border: 1px solid var(--border-gray);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.workspace-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.card-accent {
+    height: 0.5rem;
+    background-color: #111827;
+}
+
+.card-body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.card-header h4 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+.card-badge {
+    background-color: #fee2e2;
+    color: #991b1b;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    letter-spacing: 0.05em;
+}
+
+.card-desc {
+    margin: 0 0 1.5rem 0;
+    font-size: 0.875rem;
+    color: #4b5563;
+    line-height: 1.5;
+}
+
+.card-action {
+    color: #4f46e5;
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-top: auto;
+}
+
+/* ==========================================================================
+   System Fallback Views & Notification Alerts
+   ========================================================================== */
+.fallback-container {
+    text-align: center;
+    padding: 4rem 1.5rem;
+    background-color: #ffffff;
+    border: 1px dashed var(--border-gray);
+    border-radius: 0.75rem;
+    max-width: 28rem;
+    margin: 1.5rem auto 0 auto;
+}
+
+.fallback-icon {
+    margin-left: auto;
+    margin-right: auto;
+    height: 3rem;
+    width: 3rem;
+    color: #9ca3af;
+}
+
+.fallback-container h3 {
+    margin: 1rem 0 0.5rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #111827;
+}
+
+.fallback-container p {
+    margin: 0;
+    font-size: 0.875rem;
+    color: #6b7280;
+    line-height: 1.5;
+    padding: 0 1.5rem;
+}
+
+#toast {
+    visibility: hidden;
+    min-width: 250px;
+    background-color: #1f2937;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 16px;
+    position: fixed;
+    z-index: 100;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 30px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transition: visibility 0.4s, opacity 0.4s ease-in-out;
+}
+
+#toast.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+#toast.error {
+    background-color: var(--vz-red);
+}
+
+/* ==========================================================================
+   Footer Matrix
+   ========================================================================== */
+.hub-footer {
+    background-color: #ffffff;
+    border-top: 1px solid var(--border-gray);
+    padding: 1.5rem 0;
+    margin-top: auto;
+    width: 100%;
+}
+
+.footer-content {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 2rem;
+    text-align: center;
+    font-size: 0.875rem;
+    color: #6b7280;
+    box-sizing: border-box;
+}
+
+.footer-content p {
+    margin: 0 0 0.25rem 0;
+}
+
+.footer-content p:last-child {
+    margin-bottom: 0;
+}
