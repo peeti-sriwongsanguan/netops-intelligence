@@ -1,0 +1,115 @@
+<!--app/templates/manage_users.html-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Control - SecAAS Hub</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/hub.css') }}">
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased min-h-screen flex flex-col">
+
+<nav class="bg-white shadow-sm border-b border-gray-200 px-6 py-4 flex justify-between items-center sticky top-0 z-50">
+    <div class="flex items-center gap-3">
+        <h1 class="text-xl font-bold text-gray-800 tracking-wide"><span class="text-red-600">Sec</span>AAS Hub</h1>
+    </div>
+    <div class="text-sm font-medium flex items-center gap-4">
+        <a href="{{ url_for('main.hub') }}" class="text-indigo-600 hover:text-indigo-800 transition font-semibold">&larr;
+            Return to Hub</a>
+        <span class="text-gray-300">|</span>
+        <span>Admin Control</span>
+    </div>
+</nav>
+
+<main class="flex-grow max-w-7xl mx-auto px-4 py-12 w-full">
+    <div class="flex justify-between items-end mb-8">
+        <div>
+            <h2 class="text-3xl font-extrabold text-gray-900 tracking-tight">User Access Control</h2>
+            <p class="mt-2 text-sm text-gray-500">Assign platform authentication levels and workspace
+                authorizations.</p>
+        </div>
+        <button class="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded shadow-sm transition-colors text-sm">
+            + Provision New User
+        </button>
+    </div>
+
+    <div class="bg-white shadow-sm rounded-lg border border-gray-200 overflow-visible">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+            <tr>
+                <th class="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase">User Identity</th>
+                <th class="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase">Global Role</th>
+                <th class="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase">Workspace Assignments</th>
+                <th class="px-6 py-3 text-right text-xs font-bold text-gray-500 uppercase">Action</th>
+            </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+
+            {% for user in users %}
+                <tr>
+                    <form action="/update-user-permissions/{{ user.id }}" method="POST">
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0 h-10 w-10 bg-indigo-100 text-indigo-700 rounded-full flex items-center justify-center font-bold">
+                                    {{ user.username[0] | upper }}
+                                </div>
+                                <div class="ml-4">
+                                    <div class="text-sm font-medium text-gray-900">{{ user.username }}</div>
+                                    <div class="text-xs text-gray-500">ID: {{ user.id }}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <select name="role"
+                                    class="block w-full pl-3 pr-10 py-2 text-sm border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 rounded-md">
+                                <option value="standard" {% if 'admin' not in user.permissions %}selected{% endif %}>
+                                    Standard User
+                                </option>
+                                <option value="admin" {% if 'admin' in user.permissions %}selected{% endif %}>
+                                    Administrator
+                                </option>
+                            </select>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="flex gap-4">
+                                <label class="inline-flex items-center">
+                                    <input type="checkbox" name="permissions" value="netops"
+                                           class="rounded text-indigo-600 focus:ring-indigo-500 h-4 w-4"
+                                           {% if 'netops' in user.permissions %}checked{% endif %}>
+                                    <span class="ml-2 text-sm text-gray-700">NetOps</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input type="checkbox" name="permissions" value="cheetah"
+                                           class="rounded text-indigo-600 focus:ring-indigo-500 h-4 w-4"
+                                           {% if 'cheetah' in user.permissions %}checked{% endif %}>
+                                    <span class="ml-2 text-sm text-gray-700">NFOD (Cheetah)</span>
+                                </label>
+                                <label class="inline-flex items-center">
+                                    <input type="checkbox" name="permissions" value="rcm2"
+                                           class="rounded text-indigo-600 focus:ring-indigo-500 h-4 w-4"
+                                           {% if 'rcm2' in user.permissions %}checked{% endif %}>
+                                    <span class="ml-2 text-sm text-gray-700">RCM2</span>
+                                </label>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                            <button type="submit"
+                                    class="text-indigo-600 hover:text-indigo-900 font-bold bg-indigo-50 px-3 py-1 rounded">
+                                Save
+                            </button>
+                        </td>
+                    </form>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4" class="px-6 py-12 text-center text-gray-500">No users found in database.</td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+</main>
+</body>
+</html>

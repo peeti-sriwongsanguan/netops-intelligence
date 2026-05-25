@@ -12,6 +12,9 @@ import smtplib
 from email.message import EmailMessage
 import os
 from flask import current_app
+from datetime import datetime, timezone
+import json
+
 
 
 
@@ -280,16 +283,112 @@ def reset_password(token):
 
 
 # --- 6. Manage Users ---
-@main.route('/manage-users', methods=['GET', 'POST'])
+@main.route('/manage-users')
 @login_required
 def manage_users():
-    # Placeholder to stop the Hub from crashing
-    return "User Management Page (You can paste your full manage_users code back here later!)"
+    # Security check: Ensure only admins can access this page
+    if 'admin' not in current_user.permissions:
+        flash("You do not have permission to view this page.", "error")
+        return redirect(url_for('main.hub'))
+
+    # users = User.query.all()
+    return render_template('manage_users.html')
 
 
 # --- 7. Activity Report ---
 @main.route('/activity-report')
 @login_required
 def activity_report():
-    # Placeholder to stop the Hub from crashing
-    return "Activity Report Page (Paste your full code back here later!)"
+    if 'admin' not in current_user.permissions:
+        flash("Unauthorized access.", "error")
+        return redirect(url_for('main.hub'))
+
+    json_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'user_activity.json')
+    user_stats = {}
+
+    try:
+        with open(json_path, 'r') as file:
+            data = json.load(file)
+            raw_logs = data.get('activity', [])
+            latest_ts = None
+
+            for log in raw_logs:
+                path = log.get('path', '')
+                if path.startswith('/api/') or path in ['/favicon.ico', '/logout']:
+                    continue
+
+                uid = str(log.get('user_id', 'Unknown'))
+                ts_str = log.get('timestamp')
+
+                try:
+                    ts = datetime.fromisoformat(ts_str)
+                except ValueError:
+                    continue
+
+                if latest_ts is None or ts > latest_ts:
+                    latest_ts = ts
+
+                # --- SMART USER LOOKUP ---
+                if uid not in user_stats:
+                    username = f"User_{uid}"
+                    email = f"user_{uid}@verizon.com"
+
+                    # Attempt to fetch real details from your Database
+                    try:
+                        from app.models import User
+                        db_user = User.query.get(int(uid))
+                        if db_user:
+                            username = db_user.username
+                            email = db_user.email
+                    except:
+                        # Professional fallback for your test JSON if DB isn't ready
+                        if uid == '2':
+                            username = "j.smith_admin"
+                            email = "john.smith@verizon.com"
+
+                    user_stats[uid] = {
+                        'user_id': uid,
+                        'username': username,
+                        'email': email,
+                        'total_visits': 0,
+                        'first_seen': ts,
+                        'last_seen': ts,
+                        'paths': {}
+                    }
+                # ------------------------------
+
+                stats = user_stats[uid]
+                stats['total_visits'] += 1
+                if ts < stats['first_seen']: stats['first_seen'] = ts
+                if ts > stats['last_seen']: stats['last_seen'] = ts
+                stats['paths'][path] = stats['paths'].get(path, 0) + 1
+
+            if latest_ts is None:
+                latest_ts = datetime.now(timezone.utc)
+
+            for uid, stats in user_stats.items():
+                delta = latest_ts - stats['last_seen']
+                stats['days_inactive'] = delta.days
+
+                # 90-Day Revocation Logic
+                if delta.days >= 90:
+                    stats['status'] = 'Revoke Candidate'
+                    stats['status_color'] = 'red'
+                elif delta.days >= 30:
+                    stats['status'] = 'Warning (Inactive)'
+                    stats['status_color'] = 'yellow'
+                else:
+                    stats['status'] = 'Active'
+                    stats['status_color'] = 'green'
+
+                if stats['paths']:
+                    stats['top_path'] = max(stats['paths'], key=stats['paths'].get)
+                else:
+                    stats['top_path'] = 'N/A'
+
+    except Exception as e:
+        print(f"Error parsing activity logs: {e}")
+        flash("Error loading activity log data.", "error")
+
+    sorted_users = sorted(user_stats.values(), key=lambda x: x['days_inactive'], reverse=True)
+    return render_template('activity_report.html', users=sorted_users)

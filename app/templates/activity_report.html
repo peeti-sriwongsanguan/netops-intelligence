@@ -3,108 +3,222 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>User Activity Report: DRIVE Auto</title>
-    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/Favicon/16x16/Icon on stone.png') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <style>
-        .alerts-table {
-            border: 2px solid #d9534f;
-        }
-        .alerts-table th {
-            background-color: #f2dede;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Access Audit - SecAAS Hub</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/hub.css') }}">
 </head>
-<body>
-    <div class="container">
-        <div class="banner">
-            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Verizon Business" class="logo">
+<body class="bg-gray-50 text-gray-800 font-sans antialiased min-h-screen flex flex-col">
+
+<nav class="bg-white shadow-sm border-b border-gray-200 px-6 py-4 flex justify-between items-center sticky top-0 z-50">
+    <div class="flex items-center gap-3">
+        <h1 class="text-xl font-bold text-gray-800 tracking-wide"><span class="text-red-600">Sec</span>AAS Hub</h1>
+    </div>
+    <div class="text-sm font-medium flex items-center gap-4">
+        <a href="{{ url_for('main.hub') }}" class="text-indigo-600 hover:text-indigo-800 transition font-semibold">&larr;
+            Return to Hub</a>
+        <span class="text-gray-300">|</span>
+        <span>Admin Control</span>
+    </div>
+</nav>
+
+<main class="flex-grow max-w-7xl mx-auto px-4 py-8 w-full">
+    <h2 class="text-3xl font-extrabold text-gray-900 tracking-tight mb-6">User Access Audit</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm border-l-4 border-indigo-500">
+            <p class="text-sm font-medium text-gray-500 uppercase tracking-wider">Profiles in View</p>
+            <p class="mt-2 text-3xl font-bold text-gray-900" id="kpi-active">0</p>
         </div>
+        <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm border-l-4 border-red-500">
+            <p class="text-sm font-medium text-gray-500 uppercase tracking-wider">Revocation Candidates (>90d)</p>
+            <p class="mt-2 text-3xl font-bold text-red-600" id="kpi-revoke">0</p>
+        </div>
+        <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm border-l-4 border-green-500">
+            <p class="text-sm font-medium text-gray-500 uppercase tracking-wider">Total Page Views</p>
+            <p class="mt-2 text-3xl font-bold text-gray-900" id="kpi-views">0</p>
+        </div>
+    </div>
 
-        <h1>User Activity Report</h1>
-        <a href="{{ url_for('main.protected') }}">Back to Dashboard</a>
-        <hr>
+    <div class="flex justify-between items-center mb-4">
+        <h3 class="text-lg font-bold text-gray-800" id="chart-section-title">Global System Analytics</h3>
+        <button id="clear-filter-btn" style="display:none;" onclick="filterDashboard(null)"
+                class="text-sm text-indigo-600 hover:text-indigo-800 font-semibold underline bg-indigo-50 px-3 py-1 rounded">
+            &times; Clear User Filter
+        </button>
+    </div>
 
-        <h2>Security Alerts</h2>
-        <p>Review logins from IPs that do not match the user's approved IP list.</p>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+            <h4 class="text-sm font-bold text-gray-500 uppercase mb-4">User Activity Status</h4>
+            <div class="relative h-64 w-full">
+                <canvas id="statusChart"></canvas>
+            </div>
+        </div>
+        <div class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm">
+            <h4 class="text-sm font-bold text-gray-500 uppercase mb-4">Top Accessed Dashboards</h4>
+            <div class="relative h-64 w-full">
+                <canvas id="resourceChart"></canvas>
+            </div>
+        </div>
+    </div>
 
-        <h3>Login Mismatch Counts</h3>
-        <table class="alerts-table">
-            <thead>
-                <tr>
-                    <th>User ID</th>
-                    <th>Total Mismatched Logins</th>
-                </tr>
+    <h3 class="text-lg font-bold text-gray-800 mb-4">User Audit Matrix <span
+            class="text-sm text-gray-500 font-normal ml-2">(Click user below to view stats)</span></h3>
+
+    <div class="bg-white shadow-sm rounded-lg border border-gray-200 overflow-hidden">
+        <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+            <tr>
+                <th class="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase">User Identity</th>
+                <th class="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase">Status</th>
+                <th class="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase">Days Inactive</th>
+                <th class="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase">Total Page Views</th>
+                <th class="px-6 py-3 text-left text-xs font-bold text-gray-500 uppercase">Top Authorized Page</th>
+                <th class="px-6 py-3 text-right text-xs font-bold text-gray-500 uppercase">Action</th>
+            </tr>
             </thead>
-            <tbody>
-                {% for item in mismatch_counts %}
-                <tr>
-                    <td>{{ item.user_id }}</td>
-                    <td>{{ item.count }}</td>
-                </tr>
-                {% else %}
-                <tr>
-                    <td colspan="2">No mismatched IP logins found.</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        <br>
+            <tbody class="bg-white divide-y divide-gray-200 text-sm">
+            {% for u in users %}
+                <tr class="hover:bg-indigo-50 transition-colors cursor-pointer"
+                    onclick="filterDashboard('{{ u.username }}')">
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="font-medium text-gray-900">{{ u.username }}</div>
+                        <div class="text-xs text-gray-500">{{ u.email }}</div>
+                    </td>
 
-        <h3>Detailed Mismatch Log</h3>
-        <table class="alerts-table">
-            <thead>
-                <tr>
-                    <th>Timestamp</th>
-                    <th>User ID</th>
-                    <th>Event</th>
-                    <th>Mismatched IP Address</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for alert in security_alerts %}
-                <tr>
-                    <td>{{ alert.timestamp }}</td>
-                    <td>{{ alert.user_id }}</td>
-                    <td>{{ alert.event }}</td>
-                    <td>{{ alert.ip_address }}</td>
-                </tr>
-                {% else %}
-                <tr>
-                    <td colspan="4">No security alerts found.</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        {% if u.status_color == 'red' %}
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">{{ u.status }}</span>
+                        {% elif u.status_color == 'yellow' %}
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">{{ u.status }}</span>
+                        {% else %}
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">{{ u.status }}</span>
+                        {% endif %}
+                    </td>
 
-        <hr>
+                    <td class="px-6 py-4 text-gray-600 whitespace-nowrap font-mono">
+                        {% if u.days_inactive == 0 %} Today {% else %} {{ u.days_inactive }} days {% endif %}
+                    </td>
 
-        <h2>Page Visit Report</h2>
-        <p>This report shows the number of times users have visited specific pages, grouped by day.</p>
-        <table>
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>User ID</th>
-                    <th>Page</th>
-                    <th>Number of Visits</th>
+                    <td class="px-6 py-4 text-gray-600 whitespace-nowrap font-mono">{{ u.total_visits }} visits</td>
+                    <td class="px-6 py-4 text-indigo-600 font-mono text-xs truncate max-w-xs">{{ u.top_path }}</td>
+
+                    <td class="px-6 py-4 whitespace-nowrap text-right">
+                        {% if u.status_color == 'red' %}
+                            <a href="mailto:{{ u.email }}?subject=Action Required: SecAAS Hub Access Revocation&body=Hello {{ u.username }},%0D%0A%0D%0AYour account has been inactive for {{ u.days_inactive }} days. Per security policy, your SecAAS platform access will be automatically revoked within 48 hours unless you log in immediately.%0D%0A%0D%0AThank you,%0D%0ANetwork Automation Team"
+                               class="bg-red-600 hover:bg-red-700 text-white font-bold py-1.5 px-3 rounded text-xs transition shadow-sm inline-block"
+                               onclick="event.stopPropagation();">
+                                Email Warning
+                            </a>
+                        {% else %}
+                            <button class="text-gray-400 hover:text-indigo-600 font-medium py-1 px-3 rounded text-xs transition"
+                                    onclick="event.stopPropagation();">Manage
+                            </button>
+                        {% endif %}
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                {% for row in page_visit_report %}
+            {% else %}
                 <tr>
-                    <td>{{ row.date }}</td>
-                    <td>{{ row.user_id }}</td>
-                    <td>{{ row.path }}</td>
-                    <td>{{ row.visits }}</td>
+                    <td colspan="6" class="px-6 py-12 text-center text-gray-500 italic">No user activity recorded.</td>
                 </tr>
-                {% else %}
-                <tr>
-                    <td colspan="4">No page visit activity found.</td>
-                </tr>
-                {% endfor %}
+            {% endfor %}
             </tbody>
         </table>
     </div>
+</main>
+
+<script>
+    // Load Data
+    const usersData = {{ users | tojson | safe }};
+
+    // Store global chart instances so we can destroy/redraw them
+    let statusChartInstance = null;
+    let resourceChartInstance = null;
+
+    document.addEventListener('DOMContentLoaded', function () {
+        // Initialize dashboard with all users
+        filterDashboard(null);
+    });
+
+    // The Interactive Filter Engine
+    function filterDashboard(selectedUsername) {
+        let filteredUsers = usersData;
+
+        // Handle UI state based on filter
+        if (selectedUsername) {
+            filteredUsers = usersData.filter(u => u.username === selectedUsername);
+            document.getElementById('chart-section-title').innerText = `Analytics For: ${selectedUsername}`;
+            document.getElementById('clear-filter-btn').style.display = 'inline-block';
+        } else {
+            document.getElementById('chart-section-title').innerText = `Global System Analytics`;
+            document.getElementById('clear-filter-btn').style.display = 'none';
+        }
+
+        let activeCount = 0, warningCount = 0, revokeCount = 0;
+        let totalViews = 0;
+        let pathCounts = {};
+
+        // Aggregate Data
+        filteredUsers.forEach(u => {
+            totalViews += u.total_visits;
+            if (u.status_color === 'red') revokeCount++;
+            else if (u.status_color === 'yellow') warningCount++;
+            else activeCount++;
+
+            for (const [path, count] of Object.entries(u.paths)) {
+                let cleanName = path === '/' ? '/ (Root Login)' : path;
+                pathCounts[cleanName] = (pathCounts[cleanName] || 0) + count;
+            }
+        });
+
+        // Update KPIs
+        document.getElementById('kpi-active').textContent = filteredUsers.length.toLocaleString();
+        document.getElementById('kpi-views').textContent = totalViews.toLocaleString();
+        document.getElementById('kpi-revoke').textContent = revokeCount.toLocaleString();
+
+        // --- 1. Redraw Status Doughnut Chart ---
+        if (statusChartInstance) statusChartInstance.destroy();
+        const ctxStatus = document.getElementById('statusChart').getContext('2d');
+        statusChartInstance = new Chart(ctxStatus, {
+            type: 'doughnut',
+            data: {
+                labels: ['Active (<30d)', 'Warning (30-90d)', 'Revoke Candidate (>90d)'],
+                datasets: [{
+                    data: [activeCount, warningCount, revokeCount],
+                    backgroundColor: ['#10b981', '#f59e0b', '#ef4444'],
+                    borderWidth: 2
+                }]
+            },
+            options: {maintainAspectRatio: false, cutout: '70%', plugins: {legend: {position: 'right'}}}
+        });
+
+        // --- 2. Redraw Top Accessed Dashboards Bar Chart ---
+        const sortedPaths = Object.keys(pathCounts).sort((a, b) => pathCounts[b] - pathCounts[a]).slice(0, 5);
+        const sortedPathData = sortedPaths.map(p => pathCounts[p]);
+
+        if (resourceChartInstance) resourceChartInstance.destroy();
+        const ctxResource = document.getElementById('resourceChart').getContext('2d');
+        resourceChartInstance = new Chart(ctxResource, {
+            type: 'bar',
+            data: {
+                labels: sortedPaths,
+                datasets: [{
+                    label: 'Total Platform Page Views',
+                    data: sortedPathData,
+                    backgroundColor: 'rgba(79, 70, 229, 0.8)',
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                indexAxis: 'y',
+                plugins: {legend: {display: false}},
+                scales: {x: {beginAtZero: true, grid: {borderDash: [2, 4]}}, y: {grid: {display: false}}}
+            }
+        });
+    }
+</script>
 </body>
 </html>
